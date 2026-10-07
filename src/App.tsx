@@ -56,7 +56,7 @@ export function App() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-svh flex-col">
+      <div className="flex min-h-svh flex-col md:h-svh">
         <header className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-4 py-2.5">
           <div className="mr-auto">
             <h1 className="text-base font-semibold">Emphasis Engine</h1>
@@ -92,11 +92,11 @@ export function App() {
           </div>
         </header>
 
-        <div className="flex min-h-0 flex-1 flex-col md:flex-row">
+        <div className="flex flex-1 flex-col md:min-h-0 md:flex-row">
           <aside className="border-b md:w-80 md:shrink-0 md:overflow-y-auto md:border-r md:border-b-0" aria-label="Controls">
             <Controls engine={engine} />
           </aside>
-          <main className="min-w-0 flex-1 overflow-y-auto">
+          <main className="min-w-0 flex-1 md:overflow-y-auto">
             <Tabs value={tab} onValueChange={(v) => setTab(v as string)} className="gap-0">
               <div className="sticky top-0 z-20 border-b bg-background/80 px-4 py-2 backdrop-blur">
                 <TabsList>
