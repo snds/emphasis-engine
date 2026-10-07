@@ -1,0 +1,130 @@
+// Inputs and the starting targets. Every number here is a starting value
+// to be tuned on real screens (doc: Project risks, "Perception is not math").
+
+export type Mode = "light" | "dark"
+export type Context = "text" | "fill" | "stroke" | "surface"
+export type Level = 1 | 2 | 3 | 4 | 5
+export const LEVELS: Level[] = [1, 2, 3, 4, 5]
+export const CONTEXTS: Context[] = ["text", "fill", "stroke", "surface"]
+export const LEVEL_NAMES: Record<Level, string> = {
+  1: "minimal",
+  2: "low",
+  3: "medium",
+  4: "high",
+  5: "maximal",
+}
+
+export type RoleId = "brand" | "neutral" | "danger" | "success" | "warning" | "caution" | "info"
+export const ROLES: RoleId[] = ["brand", "neutral", "danger", "success", "warning", "caution", "info"]
+export const STATUS_ROLES: RoleId[] = ["danger", "success", "warning", "caution", "info"]
+
+export type NeutralId = "gray" | "mauve" | "slate" | "sand" | "olive" | "mist"
+export const NEUTRALS: Record<NeutralId, { label: string; hue: number; chroma: number }> = {
+  gray: { label: "Gray", hue: 0, chroma: 0 },
+  mauve: { label: "Mauve", hue: 326, chroma: 0.014 },
+  slate: { label: "Slate", hue: 260, chroma: 0.014 },
+  sand: { label: "Sand", hue: 70, chroma: 0.012 },
+  olive: { label: "Olive", hue: 120, chroma: 0.012 },
+  mist: { label: "Mist", hue: 210, chroma: 0.012 },
+}
+
+/** Conventional status colors as OKLCH anchors. Meaning outranks brand. */
+export const STATUS_ANCHORS: Record<string, { l: number; c: number; h: number; label: string }> = {
+  danger: { l: 0.577, c: 0.215, h: 27, label: "Danger" },
+  success: { l: 0.6, c: 0.16, h: 150, label: "Success" },
+  warning: { l: 0.68, c: 0.18, h: 55, label: "Warning" },
+  caution: { l: 0.82, c: 0.17, h: 92, label: "Caution" },
+  info: { l: 0.6, c: 0.15, h: 245, label: "Info" },
+}
+
+export type Target = { kind: "lc"; value: number } | { kind: "dL"; value: number }
+
+/**
+ * Base targets per context × level × mode. Text, fill, and stroke use APCA
+ * Lc. Surfaces use OKLCH ΔL, because APCA clamps to 0 below about Lc 10
+ * and reads 0 for most of the dark surface range.
+ */
+export const BASE_TARGETS: Record<Mode, Record<Context, Target[]>> = {
+  light: {
+    text: [45, 60, 75, 90, 100].map((value) => ({ kind: "lc", value })),
+    fill: [15, 30, 45, 60, 75].map((value) => ({ kind: "lc", value })),
+    stroke: [15, 30, 45, 60, 75].map((value) => ({ kind: "lc", value })),
+    surface: [0.009, 0.036, 0.06, 0.084, 0.11].map((value) => ({ kind: "dL", value })),
+  },
+  dark: {
+    // Large text in dark mode stays under Lc 90 (APCA dark-mode guidance).
+    text: [45, 60, 75, 85, 90].map((value) => ({ kind: "lc", value })),
+    // APCA reads light-on-dark solids lower than dark-on-light; Radix's dark
+    // step 9 sits near Lc 38. Dark fills target lower so solids stay solid.
+    fill: [15, 25, 35, 45, 60].map((value) => ({ kind: "lc", value })),
+    stroke: [15, 30, 45, 60, 75].map((value) => ({ kind: "lc", value })),
+    // Dark surfaces need larger lightness steps to read as separate.
+    surface: [0.036, 0.074, 0.107, 0.136, 0.17].map((value) => ({ kind: "dL", value })),
+  },
+}
+
+/** Minimum Lc for a label on a filled control (16px/700 per APCA). */
+export const ON_FILL_MIN = 60
+export const ON_FILL_PREFERRED = 75
+
+export type Settings = {
+  theme: string
+  chart: string
+  neutral: NeutralId
+  themeTint: boolean
+  tintStrength: number
+  layer: "flat" | "alpha"
+  tighter: boolean
+  advanced: boolean
+  leashDeg: number
+  tieBreak: "lowest-alpha" | "hue-fidelity"
+  stateStrategy: "step" | "overlay"
+  overlaySource: "brand" | "neutral"
+  pressedMode: "stacked" | "from-rest"
+  stateDelta: number
+  secondarySource: "neutral-flat" | "neutral-alpha" | "role-tint"
+  categoricalCount: number
+  familyPull: number
+  offsets: { text: number; fill: number; stroke: number }
+  surfaceScale: number
+  holdSaturation: boolean
+  chromaScale: number
+}
+
+export const DEFAULT_SETTINGS: Settings = {
+  theme: "#2563eb",
+  chart: "#06b6d4",
+  neutral: "mauve",
+  themeTint: true,
+  tintStrength: 0.35,
+  layer: "flat",
+  tighter: false,
+  advanced: false,
+  leashDeg: 5,
+  tieBreak: "lowest-alpha",
+  stateStrategy: "step",
+  overlaySource: "neutral",
+  pressedMode: "stacked",
+  stateDelta: 0.04,
+  secondarySource: "neutral-flat",
+  categoricalCount: 8,
+  familyPull: 0.5,
+  offsets: { text: 0, fill: 0, stroke: 0 },
+  surfaceScale: 1,
+  holdSaturation: true,
+  chromaScale: 1,
+}
+
+/** Bounds per control. Basic clamps to the inner range; Advanced to outer. */
+export const BOUNDS = {
+  leashDeg: { basic: [2.5, 5], advanced: [2, 8] },
+  offset: { basic: [-5, 5], advanced: [-15, 15] },
+  surfaceScale: { basic: [0.8, 1.2], advanced: [0.5, 1.8] },
+  chromaScale: { basic: [1, 1], advanced: [0.5, 1.3] },
+  stateDelta: { basic: [0.03, 0.06], advanced: [0.01, 0.12] },
+} as const
+
+export function effectiveLeash(s: Settings): number {
+  if (s.advanced) return s.leashDeg
+  return s.tighter ? 2.5 : 5
+}
