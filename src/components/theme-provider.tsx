@@ -15,6 +15,23 @@ type ThemeProviderState = {
   setTheme: (theme: Theme) => void
 }
 
+// Storage can be blocked (private windows, sandboxed previews). Never let
+// that break theming.
+const safeGet = (k: string) => {
+  try {
+    return localStorage.getItem(k)
+  } catch {
+    return null
+  }
+}
+const safeSet = (k: string, v: string) => {
+  try {
+    localStorage.setItem(k, v)
+  } catch {
+    /* ignore */
+  }
+}
+
 const COLOR_SCHEME_QUERY = "(prefers-color-scheme: dark)"
 const THEME_VALUES: Theme[] = ["dark", "light", "system"]
 
@@ -84,7 +101,7 @@ export function ThemeProvider({
   ...props
 }: ThemeProviderProps) {
   const [theme, setThemeState] = React.useState<Theme>(() => {
-    const storedTheme = localStorage.getItem(storageKey)
+    const storedTheme = safeGet(storageKey)
     if (isTheme(storedTheme)) {
       return storedTheme
     }
@@ -94,7 +111,7 @@ export function ThemeProvider({
 
   const setTheme = React.useCallback(
     (nextTheme: Theme) => {
-      localStorage.setItem(storageKey, nextTheme)
+      safeSet(storageKey, nextTheme)
       setThemeState(nextTheme)
     },
     [storageKey]
@@ -166,7 +183,7 @@ export function ThemeProvider({
                 ? "light"
                 : "dark"
 
-        localStorage.setItem(storageKey, nextTheme)
+        safeSet(storageKey, nextTheme)
         return nextTheme
       })
     }

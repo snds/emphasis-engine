@@ -30,13 +30,6 @@ export type Paint = {
 
 export type ButtonSpec = Record<State, Paint>
 
-function moveL(rgb: RGB, delta: number, dir: 1 | -1, hue: number, rule?: Parameters<typeof chromaAt>[0]): RGB {
-  const o = rgbToOklch(rgb)
-  const l = Math.min(1, Math.max(0, o.l + dir * delta))
-  const c = rule ? chromaAt(rule, l) : o.c
-  return toRgb({ l, c, h: o.c < 0.01 ? hue : o.h })
-}
-
 export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Variant): ButtonSpec {
   const s: Settings = sys.settings
   const ms: ModeSystem = sys.modes[mode]
@@ -45,18 +38,20 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     active(ms.tokens[tokenId(role, ctx, lvl)], s.layer)
   const n = (ctx: "text" | "fill" | "stroke" | "surface", lvl: 1 | 2 | 3 | 4 | 5) =>
     active(ms.tokens[tokenId("neutral", ctx, lvl)], s.layer)
-  const away: 1 | -1 = mode === "light" ? -1 : 1
   const page = ms.bg
   const delta = s.stateDelta
+  const awayFromPage: 1 | -1 = mode === "light" ? -1 : 1
   const sourceRole: RoleId = s.overlaySource === "brand" ? (role === "neutral" ? "brand" : role) : "neutral"
-  const ink = ms.tokens[tokenId(sourceRole, "text", 5)].flat.rgb
+  // Overlay inks of both polarities. A state darkens with dark ink and
+  // lightens with light ink, whatever the page mode.
+  const darkInk = sys.modes.light.tokens[tokenId(sourceRole, "text", 5)].flat.rgb
+  const lightInk = sys.modes.dark.tokens[tokenId(sourceRole, "text", 5)].flat.rgb
 
   const label = (fg: RGB, under: RGB, min = ON_FILL_MIN) => {
     const v = Math.abs(lc(fg, under))
     return { labelLc: v, labelMet: v >= min }
   }
 
-  // A paint for a visible color plus how it is drawn.
   const paint = (bgCss: string, visible: RGB, fg: RGB, extra: Partial<Paint> = {}): Paint => ({
     bg: bgCss,
     fg: hex(fg),
@@ -65,14 +60,41 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     ...extra,
   })
 
-  // Next state from a base, by the configured strategy.
-  const nextState = (base: RGB, baseCss: string, steps: number, stepSource?: RGB) => {
-    if (s.stateStrategy === "step") {
-      const moved = stepSource ?? moveL(base, delta * steps, away, r.named.h)
-      return { bg: hex(moved), visible: moved, overlay: undefined as string | undefined }
+  type Step = { bg: string; visible: RGB; overlay?: string }
+
+  /**
+   * Hover and pressed from a rest paint. Every state moves the container
+   * AWAY from its label by the configured step, so a state change can never
+   * cost label contrast. Step re-solves the color; Overlay adds live ink.
+   */
+  const chain = (restCss: string, rest: RGB, dir: 1 | -1, chroma?: { c: number; h: number }) => {
+    const ink = dir < 0 ? darkInk : lightInk
+    const move = (from: RGB, k: number): RGB => {
+      const o = rgbToOklch(from)
+      const l = Math.min(1, Math.max(0, o.l + dir * delta * k))
+      const c = chroma ? chroma.c : o.c
+      const h = chroma ? chroma.h : o.c < 0.01 ? r.named.h : o.h
+      return toRgb({ l, c, h })
     }
-    const o = solveOverlay(ink, base, delta * steps)
-    return { bg: baseCss, visible: o.composite, overlay: rgbaCss(ink, o.alpha) }
+    if (s.stateStrategy === "step") {
+      const hv = move(rest, 1)
+      const pr = s.pressedMode === "stacked" ? move(hv, 1) : move(rest, 2)
+      return {
+        hover: { bg: hex(hv), visible: hv } as Step,
+        pressed: { bg: hex(pr), visible: pr } as Step,
+      }
+    }
+    const h1 = solveOverlay(ink, rest, delta)
+    const hover: Step = { bg: restCss, visible: h1.composite, overlay: rgbaCss(ink, h1.alpha) }
+    let pressed: Step
+    if (s.pressedMode === "stacked") {
+      const p2 = solveOverlay(ink, h1.composite, delta)
+      pressed = { bg: restCss, visible: p2.composite, overlay: `${hover.overlay}, ${rgbaCss(ink, p2.alpha)}` }
+    } else {
+      const p2 = solveOverlay(ink, rest, delta * 2)
+      pressed = { bg: restCss, visible: p2.composite, overlay: rgbaCss(ink, p2.alpha) }
+    }
+    return { hover, pressed }
   }
 
   const spec = {} as ButtonSpec
@@ -80,40 +102,24 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
   const disabledFg = (under: RGB) => {
     // Disabled labels floor at Lc 30 and are marked as below target.
     const rule = { hue: r.named.h, baseChroma: 0.01, baseL: 0.5, factor: 1, holdSaturation: false }
-    let best = under
     for (let i = 0; i <= 100; i++) {
       const l = mode === "light" ? 1 - i / 100 : i / 100
       const rgb = toRgb({ l, c: chromaAt(rule, l), h: r.named.h })
-      if (Math.abs(lc(rgb, under)) >= 30) {
-        best = rgb
-        break
-      }
+      if (Math.abs(lc(rgb, under)) >= 30) return rgb
     }
-    return best
+    return under
   }
 
   if (variant === "primary") {
     const fill = t("fill", 4)
     const fg = (under: RGB) => solveOnFill(under, r.named.h).rgb
-    spec.rest = paint(fill.css, fill.rgb, fg(fill.rgb))
-    const hover = nextState(fill.rgb, fill.css, 1)
-    spec.hover = paint(hover.bg, hover.visible, fg(hover.visible), { overlay: hover.overlay })
-    const pressedBase = s.pressedMode === "stacked" ? hover.visible : fill.rgb
-    const pressed =
-      s.stateStrategy === "step"
-        ? nextState(pressedBase, hex(pressedBase), s.pressedMode === "stacked" ? 1 : 2)
-        : s.pressedMode === "stacked"
-          ? (() => {
-              const o = solveOverlay(ink, hover.visible, delta)
-              // Stacked: a second layer over the first.
-              return {
-                bg: fill.css,
-                visible: o.composite,
-                overlay: `${hover.overlay}, ${rgbaCss(ink, o.alpha)}`,
-              }
-            })()
-          : nextState(fill.rgb, fill.css, 2)
-    spec.pressed = paint(pressed.bg, pressed.visible, fg(pressed.visible), { overlay: pressed.overlay })
+    const restFg = fg(fill.rgb)
+    // Away from the label: a light label means states darken, even in dark mode.
+    const dir: 1 | -1 = rgbToOklch(restFg).l > rgbToOklch(fill.rgb).l ? -1 : 1
+    const st = chain(fill.css, fill.rgb, dir)
+    spec.rest = paint(fill.css, fill.rgb, restFg)
+    spec.hover = paint(st.hover.bg, st.hover.visible, fg(st.hover.visible), { overlay: st.hover.overlay })
+    spec.pressed = paint(st.pressed.bg, st.pressed.visible, fg(st.pressed.visible), { overlay: st.pressed.overlay })
     spec.disabled = paint(disabledBg.css, disabledBg.rgb, disabledFg(disabledBg.rgb))
   } else if (variant === "secondary") {
     const src =
@@ -124,50 +130,21 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     const css = useAlpha ? rgbaCss(src.alpha.tint, src.alpha.alpha) : hex(src.flat.rgb)
     const vis = useAlpha ? src.alpha.composite : src.flat.rgb
     const fgRgb = role === "neutral" ? n("text", 5).rgb : t("text", 4).rgb
+    const st = chain(css, vis, awayFromPage)
     spec.rest = paint(css, vis, fgRgb)
-    const next = (lvl: 4 | 5) => {
-      const tk = ms.tokens[tokenId(src.role, "surface", lvl)]
-      return useAlpha ? tk.alpha.composite : tk.flat.rgb
-    }
-    const hover = nextState(vis, css, 1, s.stateStrategy === "step" ? next(4) : undefined)
-    spec.hover = paint(hover.bg, hover.visible, fgRgb, { overlay: hover.overlay })
-    const pressed =
-      s.stateStrategy === "step"
-        ? nextState(vis, css, 2, next(5))
-        : nextState(s.pressedMode === "stacked" ? hover.visible : vis, s.pressedMode === "stacked" ? hex(hover.visible) : css, s.pressedMode === "stacked" ? 1 : 2)
-    spec.pressed = paint(pressed.bg, pressed.visible, fgRgb, { overlay: pressed.overlay })
+    spec.hover = paint(st.hover.bg, st.hover.visible, fgRgb, { overlay: st.hover.overlay })
+    spec.pressed = paint(st.pressed.bg, st.pressed.visible, fgRgb, { overlay: st.pressed.overlay })
     spec.disabled = paint(disabledBg.css, disabledBg.rgb, disabledFg(disabledBg.rgb))
   } else {
-    // Tertiary (outline) and ghost: no container fill at rest.
+    // Tertiary (outline) and ghost: no container fill at rest. Step states
+    // borrow the source surface's tint so hovers read as the right family.
     const fgRgb = role === "neutral" ? n("text", 5).rgb : t("text", 4).rgb
     const border = variant === "tertiary" ? t("stroke", 3).css : undefined
+    const tint = rgbToOklch(ms.tokens[tokenId(sourceRole, "surface", 3)].flat.rgb)
+    const st = chain("transparent", page, awayFromPage, { c: tint.c, h: tint.h })
     spec.rest = paint("transparent", page, fgRgb, { border })
-    const stepSrc = (lvl: 2 | 3) => {
-      const tk = ms.tokens[tokenId(sourceRole, "surface", lvl)]
-      return s.layer === "alpha" ? tk.alpha.composite : tk.flat.rgb
-    }
-    const hover =
-      s.stateStrategy === "step"
-        ? { bg: hex(stepSrc(2)), visible: stepSrc(2), overlay: undefined }
-        : (() => {
-            const o = solveOverlay(ink, page, delta)
-            return { bg: "transparent", visible: o.composite, overlay: rgbaCss(ink, o.alpha) }
-          })()
-    spec.hover = paint(hover.bg, hover.visible, fgRgb, { border, overlay: hover.overlay })
-    const pressed =
-      s.stateStrategy === "step"
-        ? { bg: hex(stepSrc(3)), visible: stepSrc(3), overlay: undefined }
-        : (() => {
-            const base = s.pressedMode === "stacked" ? hover.visible : page
-            const o = solveOverlay(ink, base, s.pressedMode === "stacked" ? delta : delta * 2)
-            const layer = rgbaCss(ink, o.alpha)
-            return {
-              bg: "transparent",
-              visible: o.composite,
-              overlay: s.pressedMode === "stacked" ? `${hover.overlay}, ${layer}` : layer,
-            }
-          })()
-    spec.pressed = paint(pressed.bg, pressed.visible, fgRgb, { border, overlay: pressed.overlay })
+    spec.hover = paint(st.hover.bg, st.hover.visible, fgRgb, { border, overlay: st.hover.overlay })
+    spec.pressed = paint(st.pressed.bg, st.pressed.visible, fgRgb, { border, overlay: st.pressed.overlay })
     spec.disabled = paint("transparent", page, disabledFg(page), {
       border: variant === "tertiary" ? n("stroke", 1).css : undefined,
     })

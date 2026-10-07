@@ -125,6 +125,27 @@ export const BOUNDS = {
 } as const
 
 export function effectiveLeash(s: Settings): number {
-  if (s.advanced) return s.leashDeg
+  // An Advanced leash value persists in Basic as an override.
+  if (s.advanced || s.leashDeg !== DEFAULT_SETTINGS.leashDeg) return s.leashDeg
   return s.tighter ? 2.5 : 5
+}
+
+/** Advanced-only values still in force; shown as a badge in Basic. */
+export function advancedOverrides(s: Settings): string[] {
+  const out: string[] = []
+  const d = DEFAULT_SETTINGS
+  if (s.leashDeg !== d.leashDeg) out.push(`Hue leash ±${s.leashDeg}°`)
+  if (s.chromaScale !== d.chromaScale) out.push(`Chroma scale ${Math.round(s.chromaScale * 100)}%`)
+  if (s.holdSaturation !== d.holdSaturation) out.push("Hold saturation off")
+  if (s.tieBreak !== d.tieBreak) out.push("Alpha tie-break: closest to hue")
+  if (s.familyPull !== d.familyPull) out.push(`Family pull ${Math.round(s.familyPull * 100)}%`)
+  const [lo, hi] = BOUNDS.offset.basic
+  for (const k of ["text", "fill", "stroke"] as const)
+    if (s.offsets[k] < lo || s.offsets[k] > hi) out.push(`${k} offset ${s.offsets[k]} Lc`)
+  const [slo, shi] = BOUNDS.surfaceScale.basic
+  if (s.surfaceScale < slo || s.surfaceScale > shi) out.push(`Surface spacing ${Math.round(s.surfaceScale * 100)}%`)
+  const [dlo, dhi] = BOUNDS.stateDelta.basic
+  if (s.stateDelta < dlo || s.stateDelta > dhi) out.push(`State step ${s.stateDelta.toFixed(3)}`)
+  if (s.tintStrength > 0.6) out.push(`Tint strength ${Math.round(s.tintStrength * 100)}%`)
+  return out
 }

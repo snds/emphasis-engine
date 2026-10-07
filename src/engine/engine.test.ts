@@ -4,7 +4,7 @@ import { composite, hex, hueDelta, oklchToSrgb01, parseHex, rgbToOklch } from ".
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral } from "./system"
-import { buildButton } from "./components"
+import { BUTTON_ROLES, VARIANTS, buildButton } from "./components"
 import { cssExport, dtcgJson } from "./export"
 
 const s = (over: Partial<Settings> = {}): Settings => ({ ...DEFAULT_SETTINGS, ...over })
@@ -111,6 +111,28 @@ describe("generate", () => {
         expect(b.hover.deltaMet, `${stateStrategy} ${mode}`).toBe(true)
         expect(b.rest.labelMet).toBe(true)
       }
+    }
+  })
+
+  it("never lets a state cost label contrast, across configurations", () => {
+    const configs: Partial<Settings>[] = [
+      {},
+      { stateStrategy: "overlay" },
+      { layer: "alpha" },
+      { secondarySource: "role-tint", stateStrategy: "overlay", pressedMode: "from-rest" },
+      { theme: "#f40009" },
+      { theme: "#eab308", neutral: "sand", themeTint: false },
+    ]
+    for (const over of configs) {
+      const sy = generate(s(over))
+      for (const mode of ["light", "dark"] as const)
+        for (const role of BUTTON_ROLES)
+          for (const variant of VARIANTS) {
+            const b = buildButton(sy, mode, role, variant)
+            const where = `${JSON.stringify(over)} ${mode} ${role} ${variant}`
+            for (const st of ["rest", "hover", "pressed"] as const) expect(b[st].labelMet, `${where} ${st}`).toBe(true)
+            expect(b.hover.deltaMet, `${where} hover step`).toBe(true)
+          }
     }
   })
 
