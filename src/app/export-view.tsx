@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react"
+import { useMemo, useRef, useState } from "react"
 import { CopyIcon, DownloadSimpleIcon, CheckIcon } from "@phosphor-icons/react"
 import { Button } from "@/components/ui/button"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
@@ -14,6 +14,9 @@ const FORMATS = [
 export function ExportView({ sys }: { sys: System }) {
   const [fmt, setFmt] = useState<(typeof FORMATS)[number]["id"]>("css")
   const [copied, setCopied] = useState(false)
+  const pre = useRef<HTMLPreElement>(null)
+  // Embedded viewers block script-driven downloads; offer Copy only there.
+  const embedded = typeof window !== "undefined" && window.self !== window.top
   const text = useMemo(() => (fmt === "css" ? cssExport(sys) : fmt === "radix" ? radixCss(sys) : dtcgJson(sys)), [fmt, sys])
   const f = FORMATS.find((x) => x.id === fmt)!
 
@@ -23,7 +26,14 @@ export function ExportView({ sys }: { sys: System }) {
       setCopied(true)
       setTimeout(() => setCopied(false), 1500)
     } catch {
-      setCopied(false)
+      // Clipboard refused: select the text so the viewer can copy it.
+      const sel = window.getSelection()
+      if (pre.current && sel) {
+        const range = document.createRange()
+        range.selectNodeContents(pre.current)
+        sel.removeAllRanges()
+        sel.addRange(range)
+      }
     }
   }
   const download = () => {
@@ -54,13 +64,15 @@ export function ExportView({ sys }: { sys: System }) {
             {copied ? <CheckIcon /> : <CopyIcon />}
             {copied ? "Copied" : "Copy"}
           </Button>
-          <Button size="sm" onClick={download}>
-            <DownloadSimpleIcon />
-            Download
-          </Button>
+          {!embedded && (
+            <Button size="sm" onClick={download}>
+              <DownloadSimpleIcon />
+              Download
+            </Button>
+          )}
         </div>
       </div>
-      <pre className="max-h-[65vh] overflow-auto rounded-lg border bg-muted/40 p-4 font-mono text-xs leading-relaxed">{text}</pre>
+      <pre ref={pre} className="max-h-[65vh] overflow-auto rounded-lg border bg-muted/40 p-4 font-mono text-xs leading-relaxed">{text}</pre>
     </div>
   )
 }
