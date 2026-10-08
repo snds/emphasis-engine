@@ -1,0 +1,666 @@
+{
+ "profile": "material",
+ "probedAt": "2026-10-08",
+ "source": "@material/web ^2.5.0",
+ "variables": 22,
+ "modes": {
+  "light": {
+   "samples": 604,
+   "recipes": 31,
+   "observed": [
+    "surface-container-low",
+    "surface-container-highest",
+    "on-surface",
+    "on-surface-variant",
+    "on-surface-variant-highest",
+    "outline",
+    "primary",
+    "on-primary",
+    "primary-hover",
+    "primary-container",
+    "on-primary-container",
+    "primary-container-hover",
+    "secondary-container",
+    "on-secondary-container",
+    "secondary-container-hover",
+    "text-button-hover",
+    "switch-edge",
+    "filled-field-label",
+    "control-hover"
+   ],
+   "elsewhere": [
+    "on-surface-highest",
+    "text-button-label",
+    "list-hover"
+   ],
+   "unobserved": [
+    {
+     "id": "surface-container-lowest",
+     "key": "--md-sys-color-surface-container-lowest | --md-sys-color-surface",
+     "source": "--md-sys-color-surface-container-lowest"
+    },
+    {
+     "id": "surface-container",
+     "key": "--md-sys-color-surface-container | --md-sys-color-surface",
+     "source": "--md-sys-color-surface-container"
+    },
+    {
+     "id": "surface-container-high",
+     "key": "--md-sys-color-surface-container-high | --md-sys-color-surface",
+     "source": "--md-sys-color-surface-container-high"
+    },
+    {
+     "id": "on-surface-highest",
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-highest",
+     "source": "--md-sys-color-on-surface on surface-container-highest"
+    },
+    {
+     "id": "outline-variant",
+     "key": "--md-sys-color-outline-variant | --md-sys-color-surface",
+     "source": "divider, card outline: outline-variant"
+    },
+    {
+     "id": "primary-pressed",
+     "key": "--md-sys-color-on-primary/0.1 | --md-sys-color-primary",
+     "source": "state layer: --md-sys-color-on-primary at 10%"
+    },
+    {
+     "id": "secondary",
+     "key": "--md-sys-color-secondary | --md-sys-color-surface",
+     "source": "--md-sys-color-secondary: filled button, active indicator"
+    },
+    {
+     "id": "on-secondary",
+     "key": "--md-sys-color-on-secondary | --md-sys-color-secondary",
+     "source": "--md-sys-color-on-secondary on --md-sys-color-secondary"
+    },
+    {
+     "id": "secondary-hover",
+     "key": "--md-sys-color-on-secondary/0.08 | --md-sys-color-secondary",
+     "source": "state layer: --md-sys-color-on-secondary at 8%"
+    },
+    {
+     "id": "secondary-pressed",
+     "key": "--md-sys-color-on-secondary/0.1 | --md-sys-color-secondary",
+     "source": "state layer: --md-sys-color-on-secondary at 10%"
+    },
+    {
+     "id": "error",
+     "key": "--md-sys-color-error | --md-sys-color-surface",
+     "source": "--md-sys-color-error: filled button, active indicator"
+    },
+    {
+     "id": "on-error",
+     "key": "--md-sys-color-on-error | --md-sys-color-error",
+     "source": "--md-sys-color-on-error on --md-sys-color-error"
+    },
+    {
+     "id": "error-hover",
+     "key": "--md-sys-color-on-error/0.08 | --md-sys-color-error",
+     "source": "state layer: --md-sys-color-on-error at 8%"
+    },
+    {
+     "id": "error-pressed",
+     "key": "--md-sys-color-on-error/0.1 | --md-sys-color-error",
+     "source": "state layer: --md-sys-color-on-error at 10%"
+    },
+    {
+     "id": "error-container",
+     "key": "--md-sys-color-error-container | --md-sys-color-surface",
+     "source": "--md-sys-color-error-container"
+    },
+    {
+     "id": "on-error-container",
+     "key": "--md-sys-color-on-error-container | --md-sys-color-error-container",
+     "source": "--md-sys-color-on-error-container on --md-sys-color-error-container"
+    },
+    {
+     "id": "error-container-hover",
+     "key": "--md-sys-color-on-error-container/0.08 | --md-sys-color-error-container",
+     "source": "state layer: --md-sys-color-on-error-container at 8%"
+    },
+    {
+     "id": "text-button-label",
+     "key": "--md-sys-color-primary | --md-sys-color-surface > --md-sys-color-primary/0.08",
+     "source": "text button: primary on its 8% layer"
+    },
+    {
+     "id": "focus",
+     "key": "--md-sys-color-secondary | --md-sys-color-surface",
+     "source": "focus ring: secondary, 3dp"
+    },
+    {
+     "id": "list-hover",
+     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container",
+     "source": "state layer: on-surface at 8%"
+    },
+    {
+     "id": "disabled-label",
+     "key": "--md-sys-color-on-surface/0.38 | --md-sys-color-surface",
+     "source": "on-surface at 38%"
+    }
+   ],
+   "candidates": [
+    {
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield rest color",
+      "textfield rest placeholder",
+      "textfield hover border",
+      "textfield hover color",
+      "textfield hover placeholder",
+      "textfield pressed color",
+      "textfield pressed placeholder",
+      "textfield focus color",
+      "textfield focus placeholder",
+      "textfield-filled rest color",
+      "textfield-filled rest placeholder",
+      "textfield-filled hover color",
+      "textfield-filled hover placeholder",
+      "textfield-filled pressed color",
+      "textfield-filled pressed placeholder",
+      "textfield-filled focus color",
+      "textfield-filled focus placeholder",
+      "chip rest color",
+      "chip hover color",
+      "chip pressed color",
+      "chip focus color",
+      "checkbox hover border",
+      "checkbox pressed border",
+      "checkbox focus border",
+      "checkbox-checked hover border",
+      "checkbox-checked pressed border",
+      "checkbox-checked focus border",
+      "text rest color",
+      "text hover color",
+      "text pressed color",
+      "text focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "button-filled rest background-color",
+      "button-filled hover background-color",
+      "button-filled pressed background-color",
+      "button-filled focus background-color",
+      "textfield pressed border",
+      "textfield pressed color",
+      "textfield focus border",
+      "textfield focus color",
+      "textfield-filled pressed color",
+      "textfield-filled focus color",
+      "checkbox focus background-color",
+      "checkbox-checked rest background-color",
+      "checkbox-checked hover background-color",
+      "checkbox-checked pressed background-color",
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-outline | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "button-outlined rest border",
+      "button-outlined hover border",
+      "button-outlined pressed border",
+      "button-outlined focus border",
+      "textfield rest border",
+      "chip rest border",
+      "chip hover border",
+      "chip pressed border",
+      "chip focus border",
+      "switch rest border",
+      "switch hover border",
+      "switch pressed border",
+      "switch-checked focus border"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield rest color",
+      "textfield-filled rest color",
+      "textfield-filled hover color",
+      "checkbox rest border",
+      "checkbox-checked rest border",
+      "text-muted rest color",
+      "text-muted hover color",
+      "text-muted pressed color",
+      "text-muted focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-secondary-container | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "button-tonal rest background-color",
+      "button-tonal hover background-color",
+      "button-tonal pressed background-color",
+      "button-tonal focus background-color",
+      "fab-secondary rest background-color",
+      "fab-secondary hover background-color",
+      "fab-secondary pressed background-color",
+      "fab-secondary focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "textfield-filled rest background-color",
+      "textfield-filled hover background-color",
+      "textfield-filled pressed background-color",
+      "textfield-filled focus background-color",
+      "switch rest background-color",
+      "switch hover background-color",
+      "switch pressed background-color",
+      "switch-checked focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "textfield-filled hover background-color",
+      "textfield-filled pressed background-color",
+      "chip hover background-color",
+      "chip pressed background-color",
+      "checkbox hover background-color",
+      "checkbox pressed background-color",
+      "list-item hover background-color",
+      "list-item pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary/0.08 | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "button-outlined hover background-color",
+      "button-outlined pressed background-color",
+      "button-text hover background-color",
+      "button-text pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary-container | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "fab-primary rest background-color",
+      "fab-primary hover background-color",
+      "fab-primary pressed background-color",
+      "fab-primary focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary-container | --md-sys-color-primary",
+     "prop": "background-color",
+     "sources": [
+      "switch focus background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary",
+     "prop": "background-color",
+     "sources": [
+      "checkbox-checked hover background-color",
+      "checkbox-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant",
+     "prop": "background-color",
+     "sources": [
+      "switch hover background-color",
+      "switch pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary-container",
+     "prop": "background-color",
+     "sources": [
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    }
+   ]
+  },
+  "dark": {
+   "samples": 604,
+   "recipes": 31,
+   "observed": [
+    "surface-container-low",
+    "surface-container-highest",
+    "on-surface",
+    "on-surface-variant",
+    "on-surface-variant-highest",
+    "outline",
+    "primary",
+    "on-primary",
+    "primary-hover",
+    "primary-container",
+    "on-primary-container",
+    "primary-container-hover",
+    "secondary-container",
+    "on-secondary-container",
+    "secondary-container-hover",
+    "text-button-hover",
+    "switch-edge",
+    "filled-field-label",
+    "control-hover"
+   ],
+   "elsewhere": [
+    "on-surface-highest",
+    "text-button-label",
+    "list-hover"
+   ],
+   "unobserved": [
+    {
+     "id": "surface-container-lowest",
+     "key": "--md-sys-color-surface-container-lowest | --md-sys-color-surface",
+     "source": "--md-sys-color-surface-container-lowest"
+    },
+    {
+     "id": "surface-container",
+     "key": "--md-sys-color-surface-container | --md-sys-color-surface",
+     "source": "--md-sys-color-surface-container"
+    },
+    {
+     "id": "surface-container-high",
+     "key": "--md-sys-color-surface-container-high | --md-sys-color-surface",
+     "source": "--md-sys-color-surface-container-high"
+    },
+    {
+     "id": "on-surface-highest",
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-highest",
+     "source": "--md-sys-color-on-surface on surface-container-highest"
+    },
+    {
+     "id": "outline-variant",
+     "key": "--md-sys-color-outline-variant | --md-sys-color-surface",
+     "source": "divider, card outline: outline-variant"
+    },
+    {
+     "id": "primary-pressed",
+     "key": "--md-sys-color-on-primary/0.1 | --md-sys-color-primary",
+     "source": "state layer: --md-sys-color-on-primary at 10%"
+    },
+    {
+     "id": "secondary",
+     "key": "--md-sys-color-secondary | --md-sys-color-surface",
+     "source": "--md-sys-color-secondary: filled button, active indicator"
+    },
+    {
+     "id": "on-secondary",
+     "key": "--md-sys-color-on-secondary | --md-sys-color-secondary",
+     "source": "--md-sys-color-on-secondary on --md-sys-color-secondary"
+    },
+    {
+     "id": "secondary-hover",
+     "key": "--md-sys-color-on-secondary/0.08 | --md-sys-color-secondary",
+     "source": "state layer: --md-sys-color-on-secondary at 8%"
+    },
+    {
+     "id": "secondary-pressed",
+     "key": "--md-sys-color-on-secondary/0.1 | --md-sys-color-secondary",
+     "source": "state layer: --md-sys-color-on-secondary at 10%"
+    },
+    {
+     "id": "error",
+     "key": "--md-sys-color-error | --md-sys-color-surface",
+     "source": "--md-sys-color-error: filled button, active indicator"
+    },
+    {
+     "id": "on-error",
+     "key": "--md-sys-color-on-error | --md-sys-color-error",
+     "source": "--md-sys-color-on-error on --md-sys-color-error"
+    },
+    {
+     "id": "error-hover",
+     "key": "--md-sys-color-on-error/0.08 | --md-sys-color-error",
+     "source": "state layer: --md-sys-color-on-error at 8%"
+    },
+    {
+     "id": "error-pressed",
+     "key": "--md-sys-color-on-error/0.1 | --md-sys-color-error",
+     "source": "state layer: --md-sys-color-on-error at 10%"
+    },
+    {
+     "id": "error-container",
+     "key": "--md-sys-color-error-container | --md-sys-color-surface",
+     "source": "--md-sys-color-error-container"
+    },
+    {
+     "id": "on-error-container",
+     "key": "--md-sys-color-on-error-container | --md-sys-color-error-container",
+     "source": "--md-sys-color-on-error-container on --md-sys-color-error-container"
+    },
+    {
+     "id": "error-container-hover",
+     "key": "--md-sys-color-on-error-container/0.08 | --md-sys-color-error-container",
+     "source": "state layer: --md-sys-color-on-error-container at 8%"
+    },
+    {
+     "id": "text-button-label",
+     "key": "--md-sys-color-primary | --md-sys-color-surface > --md-sys-color-primary/0.08",
+     "source": "text button: primary on its 8% layer"
+    },
+    {
+     "id": "focus",
+     "key": "--md-sys-color-secondary | --md-sys-color-surface",
+     "source": "focus ring: secondary, 3dp"
+    },
+    {
+     "id": "list-hover",
+     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container",
+     "source": "state layer: on-surface at 8%"
+    },
+    {
+     "id": "disabled-label",
+     "key": "--md-sys-color-on-surface/0.38 | --md-sys-color-surface",
+     "source": "on-surface at 38%"
+    }
+   ],
+   "candidates": [
+    {
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield rest color",
+      "textfield rest placeholder",
+      "textfield hover border",
+      "textfield hover color",
+      "textfield hover placeholder",
+      "textfield pressed color",
+      "textfield pressed placeholder",
+      "textfield focus color",
+      "textfield focus placeholder",
+      "textfield-filled rest color",
+      "textfield-filled rest placeholder",
+      "textfield-filled hover color",
+      "textfield-filled hover placeholder",
+      "textfield-filled pressed color",
+      "textfield-filled pressed placeholder",
+      "textfield-filled focus color",
+      "textfield-filled focus placeholder",
+      "chip rest color",
+      "chip hover color",
+      "chip pressed color",
+      "chip focus color",
+      "checkbox hover border",
+      "checkbox pressed border",
+      "checkbox focus border",
+      "checkbox-checked hover border",
+      "checkbox-checked pressed border",
+      "checkbox-checked focus border",
+      "text rest color",
+      "text hover color",
+      "text pressed color",
+      "text focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "button-filled rest background-color",
+      "button-filled hover background-color",
+      "button-filled pressed background-color",
+      "button-filled focus background-color",
+      "textfield pressed border",
+      "textfield pressed color",
+      "textfield focus border",
+      "textfield focus color",
+      "textfield-filled pressed color",
+      "textfield-filled focus color",
+      "checkbox rest background-color",
+      "checkbox hover background-color",
+      "checkbox pressed background-color",
+      "checkbox-checked focus background-color",
+      "switch rest background-color",
+      "switch hover background-color",
+      "switch pressed background-color",
+      "switch-checked focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-outline | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "button-outlined rest border",
+      "button-outlined hover border",
+      "button-outlined pressed border",
+      "button-outlined focus border",
+      "textfield rest border",
+      "chip rest border",
+      "chip hover border",
+      "chip pressed border",
+      "chip focus border",
+      "switch focus border",
+      "switch-checked rest border",
+      "switch-checked hover border",
+      "switch-checked pressed border"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield rest color",
+      "textfield-filled rest color",
+      "textfield-filled hover color",
+      "checkbox rest border",
+      "checkbox-checked rest border",
+      "text-muted rest color",
+      "text-muted hover color",
+      "text-muted pressed color",
+      "text-muted focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-secondary-container | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "button-tonal rest background-color",
+      "button-tonal hover background-color",
+      "button-tonal pressed background-color",
+      "button-tonal focus background-color",
+      "fab-secondary rest background-color",
+      "fab-secondary hover background-color",
+      "fab-secondary pressed background-color",
+      "fab-secondary focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "textfield-filled rest background-color",
+      "textfield-filled hover background-color",
+      "textfield-filled pressed background-color",
+      "textfield-filled focus background-color",
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "textfield-filled hover background-color",
+      "textfield-filled pressed background-color",
+      "chip hover background-color",
+      "chip pressed background-color",
+      "checkbox-checked hover background-color",
+      "checkbox-checked pressed background-color",
+      "list-item hover background-color",
+      "list-item pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary/0.08 | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "button-outlined hover background-color",
+      "button-outlined pressed background-color",
+      "button-text hover background-color",
+      "button-text pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary-container | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "fab-primary rest background-color",
+      "fab-primary hover background-color",
+      "fab-primary pressed background-color",
+      "fab-primary focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary-container | --md-sys-color-primary",
+     "prop": "background-color",
+     "sources": [
+      "switch hover background-color",
+      "switch pressed background-color",
+      "switch-checked focus background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary",
+     "prop": "background-color",
+     "sources": [
+      "checkbox hover background-color",
+      "checkbox pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary-container",
+     "prop": "background-color",
+     "sources": [
+      "switch hover background-color",
+      "switch pressed background-color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant",
+     "prop": "background-color",
+     "sources": [
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    }
+   ]
+  }
+ }
+}

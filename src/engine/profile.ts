@@ -66,6 +66,8 @@ export type Recipe = {
    * to what its painted partner could reach at the end of its path.
    */
   alsoDrives?: string[]
+  /** States the system's convention rather than a specific component paint; the probe doesn't look for it. */
+  convention?: boolean
 }
 
 export type SurfaceKey = keyof Intent["surfaces"]
@@ -447,7 +449,8 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
         }
       }
       // Translucent values ship rounded up to whole percents, like a designer would write them.
-      if (w.translucent) t = Math.min(1, Math.ceil(t * 100 - 1e-9) / 100)
+      // A layer the targets don't need at all ships fully transparent, not at 1%.
+      if (w.translucent) t = t < 0.005 ? 0 : Math.min(1, Math.ceil(t * 100 - 1e-9) / 100)
       values[spec.name] = w.candidate(t)
     }
   }

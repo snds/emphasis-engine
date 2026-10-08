@@ -1,6 +1,6 @@
 # Emphasis Engine: system-agnostic architecture
 
-Status: Phases 1–3 built (October 8, 2026). Supersedes the plan's assumption that the engine exports directly to one design system.
+Status: Phases 1–4 built (October 8, 2026). Supersedes the plan's assumption that the engine exports directly to one design system.
 
 ## The problem this fixes
 
@@ -90,9 +90,39 @@ Material 3 and MUI state layers are the engine's ink overlay with fixed alphas, 
 - **Joint constraints are solved in one pass.** A recipe that constrains a color it doesn't paint (Material's 8% on-color layer over primary) now holds that color only to what its partner could reach at the far end of its path. That finds the minimal pair instead of iterating, and it's what made the output stable.
 - **Reading through recipes surfaces version mismatches.** A shadcn v3 theme read through the v4 base-nova recipes shows dark `--destructive` at Lc 12 as text, because v3 used it as a solid fill. The Report flags it; that is the theme and the components disagreeing, not the solver.
 
+## What Phase 4 proved
+
+The probe (`npm run probe`, `scripts/probe.ts`) renders each system's real components in headless Chromium: this app's shadcn preset, `@radix-ui/themes` 3.3.0, and `@material/web` 2.5.0. It works like this:
+
+1. **Sentinels.** Every color variable the system defines (found by scanning its stylesheets) is set to a unique color. Four lightness bands with evenly spaced hues keep any two sentinels far enough apart that a small mix can't land on the wrong one. (An earlier golden-angle layout did exactly that: a 5% secondary/foreground mix landed on the accent-foreground sentinel.)
+2. **Real states.** Mouse hover, mouse press, and keyboard focus, with transitions stopped in the document and in every shadow root.
+3. **Sampling.** Background, text, placeholder, SVG fill and stroke, borders, outlines, and zero-blur box-shadow rings, on every element and its `::before` and `::after`, through shadow DOM, multiplied by effective opacity.
+4. **What's underneath.** The hit-test stack at the element's center, not just its ancestors, so sibling layers count (Material draws button containers and state layers as siblings; Radix draws card surfaces on pseudo-elements).
+5. **Tracing.** Each color maps back to a variable, a variable at an opacity, or a two-variable mix. Pairs are keyed the way recipes are and diffed against the hand-written profile, with aliases resolved.
+
+Results, light mode:
+
+| Profile | Recipes seen exactly | Before the probe's fixes |
+| --- | --- | --- |
+| shadcn | 22 of 25 (3 are popover and sidebar, not in the harness) | 21 of 25 |
+| Radix Themes | 23 of 26 | 6 of 18 |
+| Material 3 | 19 of 40 (the rest are roles the harness has no component for) | 10 of 37 |
+
+What the probe corrected in the hand-written profiles:
+
+- **Radix cards paint `--color-panel`, not `--color-panel-solid`.** Radix Themes defaults to a translucent panel. Fields and checkboxes sit on `--color-surface`, another translucent layer. Both are now variables with stock references, and every component recipe sits on them. That's what took Radix from 6 to 23.
+- **Radix switches draw their edge with `gray-a5`,** a step the convention calls a component background. It's now a control-border recipe, so Force accessibility covers it.
+- **shadcn light-mode inactive tabs use `text-foreground/60`, not muted text.** Dark mode uses muted text. The profile now has both, per mode, and the 60% foreground counts toward secondary-text accessibility.
+- **Material switches edge their track with `outline` on `surface-container-highest`,** and filled fields label with `on-surface-variant` on that same container. Both added.
+- **Scale-step recipes are conventions, not paints.** Radix's "step N on the page" recipes state intent; they're marked `convention` and the probe doesn't look for them.
+
+The Report now has a Components column: Seen, Seen on another surface, Not seen, or Convention. A test fails if a profile recipe was added or renamed without re-running the probe.
+
 ## Known limits
 
-- **Recipes live in code.** They were read by hand from the preset's class names. They drift when components change or new ones are added.
+- **Recipes are still written by hand.** The probe verifies them and lists what's missing, but turning a candidate pair into a recipe (choosing its element kind and metric) is a person's call.
+- **The probe sees what the harness renders.** Popovers, sidebars, dialogs, and Material's error-colored components aren't in the harnesses yet, so their recipes show as Not seen.
+- **Animated states.** Material's pressed ripple is driven by script animation; the probe catches hover layers reliably and pressed layers only sometimes.
 - **One value per variable.** Where one variable serves conflicting uses, the solver reports the unmet recipe. The fix is a split variable through a component override, flagged as leaving stock.
 - **Monotonic paths assumed.** Each recipe's measure must grow as a variable moves away from its parent. True for every shadcn recipe; a profile with recipes that pull in opposite directions would need a different search.
 - **Light-mode outline buttons** use `--border`, not `--input`, so the field-border switch does not reach them.
@@ -106,7 +136,7 @@ Material 3 and MUI state layers are the engine's ink overlay with fixed alphas, 
 1. **Intent contract and shadcn as the first profile.** Done.
 2. **Radix Themes and Material 3 profiles.** Done. Output system picker, stock-beside-yours specimens, per-system Report and CSS export.
 3. **Reference reading from any theme.** Done. Paste CSS per output system; coverage report; brand color pickup.
-4. **Browser probing.** Render real components headlessly, sample computed colors per state, and back-solve. Works for systems nobody has written a profile for, and validates hand-written profiles.
+4. **Browser probing.** Done for verification and discovery. Next: generate a starter profile for a system nobody has written one for, from probe output alone.
 
 ## Decisions
 

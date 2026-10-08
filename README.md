@@ -23,6 +23,7 @@ npm install
 npm run dev      # app at http://localhost:5173
 npm test         # engine test suite
 npm run build    # static build in dist/
+npm run probe    # render real shadcn, Radix Themes, and Material Web components headlessly and diff against the profiles
 ```
 
 ## Layout
@@ -40,6 +41,7 @@ npm run build    # static build in dist/
 | `src/engine/profile.ts` | Profile types, recipe expressions, reference reading, the backward solver |
 | `src/engine/profiles/` | System profiles: shadcn/ui, Radix Themes, Material 3 |
 | `src/engine/reference.ts` | Theme CSS import: parsing, mode detection, Radix renaming, merge over stock |
+| `scripts/probe.ts`, `probe/`, `src/probe/` | Component probe and its harness pages; results in `src/engine/profiles/probes/` and `docs/probes/` |
 | `src/engine/outputs.ts` | Solve, accessibility checks, and CSS per output system |
 | `src/engine/export.ts` | shadcn CSS, Radix-shaped scales, DTCG JSON |
 | `src/app/` | Controls, preview, grid, report, export, credits |

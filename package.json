@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "probe": "npx tsx scripts/probe.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",
@@ -29,6 +30,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^10",
+    "@material/web": "^2.5.0",
+    "@radix-ui/themes": "^3.3.0",
     "@types/culori": "^4.0.1",
     "@types/node": "^24",
     "@types/react": "^19",
@@ -38,6 +41,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
     "globals": "^17",
+    "playwright": "^1.64.0",
     "prettier": "^3.9.9",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "typescript": "~6.0.2",

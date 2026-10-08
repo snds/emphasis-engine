@@ -104,6 +104,9 @@ const R: Recipe[] = [
   { id: "text-button-hover", label: "Text button hover", source: "text button: primary at 8%", element: "state", paint: a(M("primary"), 0.08), over: [S], metric: "dL", check: true },
   { id: "text-button-label", label: "Text button label, hovered", source: "text button: primary on its 8% layer", element: "text-on-tint", paint: v(M("primary")), over: [S, a(M("primary"), 0.08)], metric: "lc" },
   { id: "focus", label: "Focus indicator", source: "focus ring: secondary, 3dp", element: "focus", paint: v(M("secondary")), over: [S], metric: "dL" },
+  { id: "switch-edge", label: "Switch track edge", source: "switch: outline on surface-container-highest (probe)", element: "border-control", paint: v(M("outline")), over: [v(M("surface-container-highest"))], metric: "dL" },
+  { id: "filled-field-label", label: "Filled field label", source: "filled text field: on-surface-variant on surface-container-highest", element: "text-secondary", paint: v(M("on-surface-variant")), over: [v(M("surface-container-highest"))], metric: "lc" },
+  { id: "control-hover", label: "Checkbox and list hover", source: "state layer: on-surface at 8% (probe)", element: "state", paint: a(M("on-surface"), 0.08), over: [S], metric: "dL", check: true },
   { id: "list-hover", label: "List item hover", source: "state layer: on-surface at 8%", element: "state", paint: a(M("on-surface"), 0.08), over: [v(M("surface-container"))], metric: "dL", check: true },
   { id: "disabled-label", label: "Disabled label", source: "on-surface at 38%", element: "state", paint: a(M("on-surface"), 0.38), over: [S], metric: "lc", check: true },
 ]

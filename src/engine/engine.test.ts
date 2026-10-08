@@ -6,6 +6,7 @@ import { outputCss, outputFindings, solveOutput } from "./outputs"
 import { PROFILES } from "./profiles"
 import { parseCss } from "./profile"
 import { brandOf, coverage, mergedReference, parseTheme } from "./reference"
+import { PROBES as PROBES_DATA } from "./probes"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral, targetFor } from "./system"
@@ -532,5 +533,25 @@ describe("theme import", () => {
     const soft = solveOutput(generate(s({ imports: { shadcn: parseTheme(css, PROFILES.shadcn) } })), "shadcn", "dark")
     const seen = (r: typeof base) => composite(r.values["--border"].rgb, r.values["--border"].a, r.values["--card"].rgb)
     expect(rgbToOklch(seen(soft)).l).toBeLessThan(rgbToOklch(seen(base)).l)
+  })
+})
+
+describe("component probe data", () => {
+  it("is current with the profiles: every probed recipe still exists, and every non-convention recipe was probed", () => {
+    for (const id of ["shadcn", "radix", "material"] as const)
+      for (const mode of ["light", "dark"] as const) {
+        const m = PROBES_DATA[id].modes[mode]
+        const ids = new Set(PROFILES[id].recipes.filter((r) => (!r.modes || r.modes.includes(mode)) && !r.convention).map((r) => r.id))
+        const probed = [...m.observed, ...m.unobserved.map((u) => u.id)]
+        for (const r of probed) expect(ids.has(r), `${id} ${mode} stale ${r}`).toBe(true)
+        for (const r of ids) expect(probed.includes(r), `${id} ${mode} unprobed ${r} — rerun npm run probe`).toBe(true)
+      }
+  })
+
+  it("sees most hand-written shadcn and Radix recipes in the real components", () => {
+    for (const id of ["shadcn", "radix"] as const) {
+      const m = PROBES_DATA[id].modes.light
+      expect(m.observed.length / (m.observed.length + m.unobserved.length), id).toBeGreaterThan(0.8)
+    }
   })
 })

@@ -49,7 +49,9 @@ const R: Recipe[] = [
   { id: "fg-card", label: "Text on card", source: "text-card-foreground", element: "text-primary", paint: v("--foreground"), over: [v("--card")], metric: "dL" },
   { id: "fg-muted", label: "Text on muted (hovered ghost)", source: "ghost: hover:bg-muted hover:text-foreground", element: "text-primary", paint: v("--foreground"), over: [v("--card"), v("--muted")], metric: "dL" },
   { id: "mfg-card", label: "Muted text on card", source: "card description: text-muted-foreground", element: "text-secondary", paint: v("--muted-foreground"), over: [v("--card")], metric: "lc" },
-  { id: "mfg-muted", label: "Muted text on muted", source: "tabs list: bg-muted + text-muted-foreground", element: "text-secondary", paint: v("--muted-foreground"), over: [v("--card"), v("--muted")], metric: "lc" },
+  { id: "mfg-muted", label: "Inactive tab text", source: "tabs: bg-muted + dark:text-muted-foreground", element: "text-secondary", modes: ["dark"], paint: v("--muted-foreground"), over: [v("--card"), v("--muted")], metric: "lc" },
+  // Probe-confirmed: light-mode inactive tabs fade the foreground instead of using muted text.
+  { id: "tab-inactive-light", label: "Inactive tab text", source: "tabs: bg-muted + text-foreground/60", element: "text-secondary", modes: ["light"], paint: a("--foreground", 0.6), over: [v("--card"), v("--muted")], metric: "lc" },
   { id: "destr-text", label: "Destructive text on card", source: "alert, form message: text-destructive", element: "text-secondary", paint: v("--destructive"), over: [v("--card")], metric: "lc" },
   { id: "destr-label-light", label: "Destructive button label", source: "button destructive: bg-destructive/10 text-destructive", element: "text-on-tint", modes: ["light"], paint: v("--destructive"), over: [v("--card"), a("--destructive", 0.1)], metric: "lc" },
   { id: "destr-label-dark", label: "Destructive button label", source: "button destructive: dark:bg-destructive/20 text-destructive", element: "text-on-tint", modes: ["dark"], paint: v("--destructive"), over: [v("--card"), a("--destructive", 0.2)], metric: "lc" },

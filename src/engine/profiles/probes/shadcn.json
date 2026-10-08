@@ -1,0 +1,1102 @@
+{
+ "profile": "shadcn",
+ "probedAt": "2026-10-08",
+ "source": "this app's preset components (b1sABueby, Base UI)",
+ "variables": 32,
+ "modes": {
+  "light": {
+   "samples": 542,
+   "recipes": 63,
+   "observed": [
+    "card",
+    "muted",
+    "secondary",
+    "fg-page",
+    "fg-card",
+    "fg-muted",
+    "mfg-card",
+    "tab-inactive-light",
+    "destr-text",
+    "destr-label-light",
+    "pfg",
+    "muted-50",
+    "secondary-hover",
+    "primary-hover",
+    "destr-tint-light",
+    "border-card",
+    "border-page",
+    "card-edge",
+    "input-card",
+    "input-page",
+    "ring-card",
+    "ring-page"
+   ],
+   "elsewhere": [
+    "item-highlight"
+   ],
+   "unobserved": [
+    {
+     "id": "accent",
+     "key": "--accent | --popover",
+     "source": "select item: bg-accent"
+    },
+    {
+     "id": "sidebar",
+     "key": "--sidebar | --background",
+     "source": "sidebar: bg-sidebar"
+    },
+    {
+     "id": "item-highlight",
+     "key": "--foreground/0.1 | --popover",
+     "source": "select: data-highlighted:bg-foreground/10"
+    }
+   ],
+   "candidates": [
+    {
+     "key": "--primary | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-default rest background-color",
+      "button-default focus background-color",
+      "button-link rest color",
+      "button-link hover color",
+      "button-link pressed color",
+      "button-link focus color",
+      "checkbox focus background-color",
+      "checkbox-checked rest background-color",
+      "checkbox-checked hover background-color",
+      "checkbox-checked pressed background-color",
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color",
+      "badge-default rest background-color",
+      "badge-default hover background-color",
+      "badge-default pressed background-color",
+      "badge-default focus background-color"
+     ]
+    },
+    {
+     "key": "--primary | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-default rest background-color",
+      "button-default focus background-color",
+      "button-link rest color",
+      "button-link hover color",
+      "button-link pressed color",
+      "button-link focus color",
+      "checkbox focus background-color",
+      "checkbox-checked rest background-color",
+      "checkbox-checked hover background-color",
+      "checkbox-checked pressed background-color",
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color",
+      "badge-default rest background-color",
+      "badge-default hover background-color",
+      "badge-default pressed background-color",
+      "badge-default focus background-color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background",
+     "prop": "placeholder",
+     "sources": [
+      "input rest placeholder",
+      "input hover placeholder",
+      "input pressed placeholder",
+      "input focus placeholder",
+      "select rest color",
+      "select rest stroke",
+      "select hover color",
+      "select hover stroke",
+      "select pressed color",
+      "select pressed stroke",
+      "select focus color",
+      "select focus stroke",
+      "text-muted rest color",
+      "text-muted hover color",
+      "text-muted pressed color",
+      "text-muted focus color"
+     ]
+    },
+    {
+     "key": "--muted | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-outline hover background-color",
+      "button-outline pressed background-color",
+      "button-ghost hover background-color",
+      "button-ghost pressed background-color",
+      "toggle hover background-color",
+      "toggle pressed background-color",
+      "toggle focus background-color",
+      "tabs rest background-color",
+      "tabs hover background-color",
+      "tabs pressed background-color",
+      "tabs focus background-color"
+     ]
+    },
+    {
+     "key": "--ring | --background",
+     "prop": "border",
+     "sources": [
+      "button-outline focus border",
+      "button-ghost focus border",
+      "button-link focus border",
+      "input pressed border",
+      "input focus border",
+      "checkbox-checked focus border",
+      "tabs focus border",
+      "tab-inactive focus border",
+      "select focus border"
+     ]
+    },
+    {
+     "key": "--secondary | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-secondary rest background-color",
+      "button-secondary focus background-color",
+      "badge-secondary rest background-color",
+      "badge-secondary hover background-color",
+      "badge-secondary pressed background-color",
+      "badge-secondary focus background-color"
+     ]
+    },
+    {
+     "key": "--secondary-foreground | --secondary",
+     "prop": "color",
+     "sources": [
+      "button-secondary rest color",
+      "button-secondary focus color",
+      "badge-secondary rest color",
+      "badge-secondary hover color",
+      "badge-secondary pressed color",
+      "badge-secondary focus color"
+     ]
+    },
+    {
+     "key": "--destructive/0.1 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive rest background-color",
+      "button-destructive focus background-color",
+      "badge-destructive rest background-color",
+      "badge-destructive hover background-color",
+      "badge-destructive pressed background-color",
+      "badge-destructive focus background-color"
+     ]
+    },
+    {
+     "key": "--destructive | --background > --destructive/0.1",
+     "prop": "color",
+     "sources": [
+      "button-destructive rest color",
+      "button-destructive focus color",
+      "badge-destructive rest color",
+      "badge-destructive hover color",
+      "badge-destructive pressed color",
+      "badge-destructive focus color"
+     ]
+    },
+    {
+     "key": "--ring | --card",
+     "prop": "border",
+     "sources": [
+      "button-ghost focus border",
+      "button-link focus border",
+      "input pressed border",
+      "input focus border",
+      "checkbox-checked focus border",
+      "select focus border"
+     ]
+    },
+    {
+     "key": "--background | --muted",
+     "prop": "background-color",
+     "sources": [
+      "tabs rest background-color",
+      "tabs hover background-color",
+      "tabs pressed background-color",
+      "tabs focus background-color",
+      "tab-inactive focus background-color"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --background",
+     "prop": "stroke",
+     "sources": [
+      "checkbox focus stroke",
+      "checkbox-checked rest stroke",
+      "checkbox-checked hover stroke",
+      "checkbox-checked pressed stroke"
+     ]
+    },
+    {
+     "key": "--background | --input",
+     "prop": "background-color",
+     "sources": [
+      "switch rest background-color",
+      "switch hover background-color",
+      "switch pressed background-color",
+      "switch-checked focus background-color"
+     ]
+    },
+    {
+     "key": "--background | --primary",
+     "prop": "background-color",
+     "sources": [
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--destructive/0.9 | --card",
+     "prop": "color",
+     "sources": [
+      "alert-destructive rest color",
+      "alert-destructive hover color",
+      "alert-destructive pressed color",
+      "alert-destructive focus color"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --card",
+     "prop": "stroke",
+     "sources": [
+      "checkbox focus stroke",
+      "checkbox-checked rest stroke",
+      "checkbox-checked hover stroke",
+      "checkbox-checked pressed stroke"
+     ]
+    },
+    {
+     "key": "--card | --card",
+     "prop": "background-color",
+     "sources": [
+      "alert-destructive rest background-color",
+      "alert-destructive hover background-color",
+      "alert-destructive pressed background-color",
+      "alert-destructive focus background-color"
+     ]
+    },
+    {
+     "key": "--ring | --primary",
+     "prop": "border",
+     "sources": [
+      "button-default focus border",
+      "checkbox focus border",
+      "switch focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.2 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive hover background-color",
+      "button-destructive pressed background-color",
+      "button-destructive focus ring"
+     ]
+    },
+    {
+     "key": "--primary | --primary",
+     "prop": "border",
+     "sources": [
+      "checkbox-checked rest border",
+      "checkbox-checked hover border",
+      "checkbox-checked pressed border"
+     ]
+    },
+    {
+     "key": "--destructive/0.2 | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive hover background-color",
+      "button-destructive pressed background-color",
+      "button-destructive focus ring"
+     ]
+    },
+    {
+     "key": "--primary/0.8 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-default hover background-color",
+      "button-default pressed background-color"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --background > --primary/0.8",
+     "prop": "color",
+     "sources": [
+      "button-default hover color",
+      "button-default pressed color"
+     ]
+    },
+    {
+     "key": "--background | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-outline rest background-color",
+      "button-outline focus background-color"
+     ]
+    },
+    {
+     "key": "--border | --muted",
+     "prop": "border",
+     "sources": [
+      "button-outline hover border",
+      "button-outline pressed border"
+     ]
+    },
+    {
+     "key": "mix(--secondary,--foreground,0.05) | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-secondary hover background-color",
+      "button-secondary pressed background-color"
+     ]
+    },
+    {
+     "key": "--secondary-foreground | mix(--secondary,--foreground,0.05)",
+     "prop": "color",
+     "sources": [
+      "button-secondary hover color",
+      "button-secondary pressed color"
+     ]
+    },
+    {
+     "key": "--destructive | --background > --destructive/0.2",
+     "prop": "color",
+     "sources": [
+      "button-destructive hover color",
+      "button-destructive pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --muted",
+     "prop": "outline",
+     "sources": [
+      "tabs focus outline",
+      "tab-inactive focus outline"
+     ]
+    },
+    {
+     "key": "--ring/0.5 | --muted",
+     "prop": "ring",
+     "sources": [
+      "tabs focus ring",
+      "tab-inactive focus ring"
+     ]
+    },
+    {
+     "key": "--muted/0.5 | --background",
+     "prop": "background-color",
+     "sources": [
+      "table-row hover background-color",
+      "table-row pressed background-color"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --card > --primary/0.8",
+     "prop": "color",
+     "sources": [
+      "button-default hover color",
+      "button-default pressed color"
+     ]
+    },
+    {
+     "key": "--background | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-outline rest background-color",
+      "button-outline focus background-color"
+     ]
+    },
+    {
+     "key": "--destructive | --card > --destructive/0.2",
+     "prop": "color",
+     "sources": [
+      "button-destructive hover color",
+      "button-destructive pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --secondary",
+     "prop": "border",
+     "sources": [
+      "button-secondary focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.4 | --background > --destructive/0.1",
+     "prop": "border",
+     "sources": [
+      "button-destructive focus border"
+     ]
+    },
+    {
+     "key": "--ring | --input",
+     "prop": "border",
+     "sources": [
+      "switch-checked focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.4 | --card > --destructive/0.1",
+     "prop": "border",
+     "sources": [
+      "button-destructive focus border"
+     ]
+    }
+   ]
+  },
+  "dark": {
+   "samples": 566,
+   "recipes": 84,
+   "observed": [
+    "card",
+    "muted",
+    "secondary",
+    "fg-page",
+    "fg-card",
+    "fg-muted",
+    "mfg-card",
+    "mfg-muted",
+    "destr-text",
+    "destr-label-dark",
+    "pfg",
+    "muted-50",
+    "outline-rest",
+    "outline-hover",
+    "switch-off",
+    "secondary-hover",
+    "primary-hover",
+    "destr-tint-dark",
+    "border-card",
+    "border-page",
+    "card-edge",
+    "ring-card",
+    "ring-page",
+    "primary-page"
+   ],
+   "elsewhere": [
+    "item-highlight",
+    "input-card",
+    "input-page"
+   ],
+   "unobserved": [
+    {
+     "id": "accent",
+     "key": "--accent | --popover",
+     "source": "select item: bg-accent"
+    },
+    {
+     "id": "sidebar",
+     "key": "--sidebar | --background",
+     "source": "sidebar: bg-sidebar"
+    },
+    {
+     "id": "item-highlight",
+     "key": "--foreground/0.1 | --popover",
+     "source": "select: data-highlighted:bg-foreground/10"
+    },
+    {
+     "id": "input-card",
+     "key": "--input | --card",
+     "source": "input, select, checkbox: border-input"
+    },
+    {
+     "id": "input-page",
+     "key": "--input | --background",
+     "source": "border-input"
+    }
+   ],
+   "candidates": [
+    {
+     "key": "--primary | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-default rest background-color",
+      "button-default focus background-color",
+      "button-link rest color",
+      "button-link hover color",
+      "button-link pressed color",
+      "button-link focus color",
+      "checkbox rest background-color",
+      "checkbox hover background-color",
+      "checkbox pressed background-color",
+      "checkbox-checked focus background-color",
+      "switch rest background-color",
+      "switch hover background-color",
+      "switch pressed background-color",
+      "switch-checked focus background-color",
+      "badge-default rest background-color",
+      "badge-default hover background-color",
+      "badge-default pressed background-color",
+      "badge-default focus background-color"
+     ]
+    },
+    {
+     "key": "--input/0.3 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-outline rest background-color",
+      "button-outline focus background-color",
+      "input rest background-color",
+      "input hover background-color",
+      "input pressed background-color",
+      "input focus background-color",
+      "checkbox focus background-color",
+      "checkbox-checked rest background-color",
+      "checkbox-checked hover background-color",
+      "checkbox-checked pressed background-color",
+      "select rest background-color",
+      "select focus background-color"
+     ]
+    },
+    {
+     "key": "--input | --background > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "button-outline rest border",
+      "button-outline focus border",
+      "input rest border",
+      "input hover border",
+      "checkbox-checked rest border",
+      "checkbox-checked hover border",
+      "checkbox-checked pressed border",
+      "select rest border"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background > --input/0.3",
+     "prop": "placeholder",
+     "sources": [
+      "input rest placeholder",
+      "input hover placeholder",
+      "input pressed placeholder",
+      "input focus placeholder",
+      "select rest color",
+      "select rest stroke",
+      "select focus color",
+      "select focus stroke"
+     ]
+    },
+    {
+     "key": "--input | --card > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "button-outline rest border",
+      "button-outline focus border",
+      "input rest border",
+      "input hover border",
+      "checkbox-checked rest border",
+      "checkbox-checked hover border",
+      "checkbox-checked pressed border",
+      "select rest border"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --card > --input/0.3",
+     "prop": "placeholder",
+     "sources": [
+      "input rest placeholder",
+      "input hover placeholder",
+      "input pressed placeholder",
+      "input focus placeholder",
+      "select rest color",
+      "select rest stroke",
+      "select focus color",
+      "select focus stroke"
+     ]
+    },
+    {
+     "key": "--muted | --background",
+     "prop": "background-color",
+     "sources": [
+      "toggle rest background-color",
+      "toggle hover background-color",
+      "toggle pressed background-color",
+      "tabs rest background-color",
+      "tabs hover background-color",
+      "tabs pressed background-color",
+      "tabs focus background-color"
+     ]
+    },
+    {
+     "key": "--foreground | --background > --input/0.3",
+     "prop": "color",
+     "sources": [
+      "button-outline rest color",
+      "button-outline focus color",
+      "input rest color",
+      "input hover color",
+      "input pressed color",
+      "input focus color"
+     ]
+    },
+    {
+     "key": "--secondary | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-secondary rest background-color",
+      "button-secondary focus background-color",
+      "badge-secondary rest background-color",
+      "badge-secondary hover background-color",
+      "badge-secondary pressed background-color",
+      "badge-secondary focus background-color"
+     ]
+    },
+    {
+     "key": "--secondary-foreground | --secondary",
+     "prop": "color",
+     "sources": [
+      "button-secondary rest color",
+      "button-secondary focus color",
+      "badge-secondary rest color",
+      "badge-secondary hover color",
+      "badge-secondary pressed color",
+      "badge-secondary focus color"
+     ]
+    },
+    {
+     "key": "--destructive/0.2 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive rest background-color",
+      "button-destructive focus background-color",
+      "badge-destructive rest background-color",
+      "badge-destructive hover background-color",
+      "badge-destructive pressed background-color",
+      "badge-destructive focus background-color"
+     ]
+    },
+    {
+     "key": "--destructive | --background > --destructive/0.2",
+     "prop": "color",
+     "sources": [
+      "button-destructive rest color",
+      "button-destructive focus color",
+      "badge-destructive rest color",
+      "badge-destructive hover color",
+      "badge-destructive pressed color",
+      "badge-destructive focus color"
+     ]
+    },
+    {
+     "key": "--card-foreground | --card > --input/0.3",
+     "prop": "color",
+     "sources": [
+      "button-outline rest color",
+      "button-outline focus color",
+      "input rest color",
+      "input hover color",
+      "input pressed color",
+      "input focus color"
+     ]
+    },
+    {
+     "key": "--input/0.3 | --muted",
+     "prop": "background-color",
+     "sources": [
+      "tabs focus background-color",
+      "tab-inactive focus background-color",
+      "tabs rest background-color",
+      "tabs hover background-color",
+      "tabs pressed background-color"
+     ]
+    },
+    {
+     "key": "--foreground | --muted > --input/0.3",
+     "prop": "color",
+     "sources": [
+      "tabs focus color",
+      "tab-inactive focus color",
+      "tabs rest color",
+      "tabs hover color",
+      "tabs pressed color"
+     ]
+    },
+    {
+     "key": "--input | --muted > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "tabs focus border",
+      "tab-inactive focus border",
+      "tabs rest border",
+      "tabs hover border",
+      "tabs pressed border"
+     ]
+    },
+    {
+     "key": "--input/0.5 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-outline hover background-color",
+      "button-outline pressed background-color",
+      "select hover background-color",
+      "select pressed background-color"
+     ]
+    },
+    {
+     "key": "--input | --background > --input/0.5",
+     "prop": "border",
+     "sources": [
+      "button-outline hover border",
+      "button-outline pressed border",
+      "select hover border",
+      "select pressed border"
+     ]
+    },
+    {
+     "key": "--muted/0.5 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-ghost hover background-color",
+      "button-ghost pressed background-color",
+      "table-row hover background-color",
+      "table-row pressed background-color"
+     ]
+    },
+    {
+     "key": "--ring | --background > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "input pressed border",
+      "input focus border",
+      "checkbox focus border",
+      "select focus border"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --background",
+     "prop": "stroke",
+     "sources": [
+      "checkbox rest stroke",
+      "checkbox hover stroke",
+      "checkbox pressed stroke",
+      "checkbox-checked focus stroke"
+     ]
+    },
+    {
+     "key": "--input/0.8 | --background",
+     "prop": "background-color",
+     "sources": [
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--foreground | --background > --input/0.8",
+     "prop": "background-color",
+     "sources": [
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background > --input/0.5",
+     "prop": "color",
+     "sources": [
+      "select hover color",
+      "select hover stroke",
+      "select pressed color",
+      "select pressed stroke"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background",
+     "prop": "color",
+     "sources": [
+      "text-muted rest color",
+      "text-muted hover color",
+      "text-muted pressed color",
+      "text-muted focus color"
+     ]
+    },
+    {
+     "key": "--destructive/0.9 | --card",
+     "prop": "color",
+     "sources": [
+      "alert-destructive rest color",
+      "alert-destructive hover color",
+      "alert-destructive pressed color",
+      "alert-destructive focus color"
+     ]
+    },
+    {
+     "key": "--input | --card > --input/0.5",
+     "prop": "border",
+     "sources": [
+      "button-outline hover border",
+      "button-outline pressed border",
+      "select hover border",
+      "select pressed border"
+     ]
+    },
+    {
+     "key": "--ring | --card > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "input pressed border",
+      "input focus border",
+      "checkbox focus border",
+      "select focus border"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --card",
+     "prop": "stroke",
+     "sources": [
+      "checkbox rest stroke",
+      "checkbox hover stroke",
+      "checkbox pressed stroke",
+      "checkbox-checked focus stroke"
+     ]
+    },
+    {
+     "key": "--foreground | --card > --input/0.8",
+     "prop": "background-color",
+     "sources": [
+      "switch focus background-color",
+      "switch-checked rest background-color",
+      "switch-checked hover background-color",
+      "switch-checked pressed background-color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --card > --input/0.5",
+     "prop": "color",
+     "sources": [
+      "select hover color",
+      "select hover stroke",
+      "select pressed color",
+      "select pressed stroke"
+     ]
+    },
+    {
+     "key": "--card | --card",
+     "prop": "background-color",
+     "sources": [
+      "alert-destructive rest background-color",
+      "alert-destructive hover background-color",
+      "alert-destructive pressed background-color",
+      "alert-destructive focus background-color"
+     ]
+    },
+    {
+     "key": "--ring | --primary",
+     "prop": "border",
+     "sources": [
+      "button-default focus border",
+      "checkbox-checked focus border",
+      "switch-checked focus border"
+     ]
+    },
+    {
+     "key": "--primary | --primary",
+     "prop": "border",
+     "sources": [
+      "checkbox rest border",
+      "checkbox hover border",
+      "checkbox pressed border"
+     ]
+    },
+    {
+     "key": "--primary/0.8 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-default hover background-color",
+      "button-default pressed background-color"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --background > --primary/0.8",
+     "prop": "color",
+     "sources": [
+      "button-default hover color",
+      "button-default pressed color"
+     ]
+    },
+    {
+     "key": "--foreground | --background > --input/0.5",
+     "prop": "color",
+     "sources": [
+      "button-outline hover color",
+      "button-outline pressed color"
+     ]
+    },
+    {
+     "key": "mix(--secondary,--foreground,0.05) | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-secondary hover background-color",
+      "button-secondary pressed background-color"
+     ]
+    },
+    {
+     "key": "--secondary-foreground | mix(--secondary,--foreground,0.05)",
+     "prop": "color",
+     "sources": [
+      "button-secondary hover color",
+      "button-secondary pressed color"
+     ]
+    },
+    {
+     "key": "--foreground | --background > --muted/0.5",
+     "prop": "color",
+     "sources": [
+      "button-ghost hover color",
+      "button-ghost pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --background",
+     "prop": "border",
+     "sources": [
+      "button-ghost focus border",
+      "button-link focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.3 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive hover background-color",
+      "button-destructive pressed background-color"
+     ]
+    },
+    {
+     "key": "--destructive | --background > --destructive/0.3",
+     "prop": "color",
+     "sources": [
+      "button-destructive hover color",
+      "button-destructive pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --muted",
+     "prop": "outline",
+     "sources": [
+      "tabs focus outline",
+      "tab-inactive focus outline"
+     ]
+    },
+    {
+     "key": "--ring/0.5 | --muted",
+     "prop": "ring",
+     "sources": [
+      "tabs focus ring",
+      "tab-inactive focus ring"
+     ]
+    },
+    {
+     "key": "--primary-foreground | --card > --primary/0.8",
+     "prop": "color",
+     "sources": [
+      "button-default hover color",
+      "button-default pressed color"
+     ]
+    },
+    {
+     "key": "--foreground | --card > --input/0.5",
+     "prop": "color",
+     "sources": [
+      "button-outline hover color",
+      "button-outline pressed color"
+     ]
+    },
+    {
+     "key": "--foreground | --card > --muted/0.5",
+     "prop": "color",
+     "sources": [
+      "button-ghost hover color",
+      "button-ghost pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --card",
+     "prop": "border",
+     "sources": [
+      "button-ghost focus border",
+      "button-link focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.3 | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive hover background-color",
+      "button-destructive pressed background-color"
+     ]
+    },
+    {
+     "key": "--destructive | --card > --destructive/0.3",
+     "prop": "color",
+     "sources": [
+      "button-destructive hover color",
+      "button-destructive pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --secondary",
+     "prop": "border",
+     "sources": [
+      "button-secondary focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.4 | --background > --destructive/0.2",
+     "prop": "border",
+     "sources": [
+      "button-destructive focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.4 | --background",
+     "prop": "ring",
+     "sources": [
+      "button-destructive focus ring"
+     ]
+    },
+    {
+     "key": "--ring | --background > --input/0.8",
+     "prop": "border",
+     "sources": [
+      "switch focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.4 | --card > --destructive/0.2",
+     "prop": "border",
+     "sources": [
+      "button-destructive focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.4 | --card",
+     "prop": "ring",
+     "sources": [
+      "button-destructive focus ring"
+     ]
+    },
+    {
+     "key": "--ring | --card > --input/0.8",
+     "prop": "border",
+     "sources": [
+      "switch focus border"
+     ]
+    }
+   ]
+  }
+ }
+}

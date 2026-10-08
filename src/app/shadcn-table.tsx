@@ -4,9 +4,17 @@ import { hex } from "@/engine/color"
 import { fmt, type Outcome } from "@/engine/profile"
 import { solveOutput } from "@/engine/outputs"
 import type { Mode } from "@/engine/settings"
+import { PROBES, probeStatus, type ProbeStatus } from "@/engine/probes"
 import type { System } from "@/engine/system"
 
 const SOURCE_LABEL = { reference: "stock", engine: "engine", accessibility: "forced" } as const
+
+const PROBE_LABEL: Record<ProbeStatus, string> = {
+  seen: "Seen",
+  elsewhere: "Seen on another surface",
+  unseen: "Not seen",
+  convention: "Convention",
+}
 
 function Pair({ o }: { o: Outcome }) {
   return (
@@ -21,6 +29,11 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
   const res = solveOutput(sys, sys.settings.output, mode)
   const unmet = res.outcomes.filter((o) => !o.recipe.check && !o.met).length
   const under = res.outcomes.filter((o) => o.spec && !o.spec.pass).length
+  const id = sys.settings.output
+  const probe = PROBES[id]?.modes[mode]
+  const status = (o: Outcome) => probeStatus(id, mode, o.recipe.id, o.recipe.convention)
+  const seen = res.outcomes.filter((o) => status(o) === "seen").length
+  const checkable = res.outcomes.filter((o) => { const st = status(o); return st && st !== "convention" }).length
   return (
     <section className="flex flex-col gap-3">
       <div>
@@ -30,6 +43,12 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
           {unmet === 0 ? "All targets met." : `${unmet} can't be met with one value per variable; shown in red.`}{" "}
           {under > 0 && `${under} sit under an accessibility floor; Force accessibility lifts them.`}
         </p>
+        {probe && (
+          <p className="text-sm text-muted-foreground">
+            Checked against the real components on {PROBES[id].probedAt} ({PROBES[id].source}): {seen} of {checkable} recipes seen exactly as written.{" "}
+            {probe.candidates.length > 0 && `${probe.candidates.length} more pairs the components paint aren't listed; most are the same paint on another surface.`}
+          </p>
+        )}
       </div>
       <div className="overflow-x-auto">
         <Table>
@@ -40,10 +59,11 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
               <TableHead>Target</TableHead>
               <TableHead>Rendered</TableHead>
               <TableHead>Accessibility</TableHead>
+              <TableHead>Components</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {res.outcomes.map((o) => (
+            {[...res.outcomes].sort((a, b) => Number(!!a.recipe.convention) - Number(!!b.recipe.convention)).map((o) => (
               <TableRow key={o.recipe.id}>
                 <TableCell>
                   <span className="flex items-center gap-2">
@@ -51,8 +71,8 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
                     <span>{o.recipe.label}</span>
                   </span>
                 </TableCell>
-                <TableCell>
-                  <code className="font-mono text-[11px] text-muted-foreground">{o.recipe.source}</code>
+                <TableCell className="max-w-64 whitespace-normal">
+                  <code className="font-mono text-[11px] break-words text-muted-foreground">{o.recipe.source}</code>
                 </TableCell>
                 <TableCell className="text-xs tabular-nums text-muted-foreground">
                   {o.recipe.check
@@ -68,7 +88,7 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
                     {o.capped && <span className="text-muted-foreground"> max</span>}
                   </span>
                 </TableCell>
-                <TableCell>
+                <TableCell className="max-w-56 whitespace-normal">
                   {o.spec ? (
                     <span className="flex items-center gap-1.5 text-xs">
                       {o.spec.pass ? (
@@ -83,6 +103,18 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
                   ) : (
                     <span className="text-xs text-muted-foreground">n/a</span>
                   )}
+                </TableCell>
+                <TableCell className="text-xs text-muted-foreground">
+                  {(() => {
+                    const st = status(o)
+                    return st ? (
+                      <span className={st === "unseen" ? "text-foreground" : ""} title={st === "unseen" ? "The probe didn't see this pair. The component may not be in the harness, or the recipe may be wrong." : undefined}>
+                        {PROBE_LABEL[st]}
+                      </span>
+                    ) : (
+                      "n/a"
+                    )
+                  })()}
                 </TableCell>
               </TableRow>
             ))}
