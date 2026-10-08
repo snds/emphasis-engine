@@ -46,6 +46,8 @@ import { BOUNDS, DEFAULT_SETTINGS, NEUTRALS, type A11y, type Mode, type NeutralI
 import { solveOutput } from "@/engine/outputs"
 import { PROFILES, PROFILE_IDS } from "@/engine/profiles"
 import { fmt } from "@/engine/profile"
+import { resolveNeutral } from "@/engine/system"
+import { hex, parseHex, rgbToOklch, toRgb } from "@/engine/color"
 
 type Option<T> = { value: T; label: string; swatch?: string }
 
@@ -63,6 +65,8 @@ type Param =
       format: (v: number) => string
       onChange: (v: number) => void
       major?: number
+      /** Color at a share t of the range, drawn as a strip under the ticks. */
+      track?: (t: number) => string
     }
   | { kind: "choice"; id: string; label: string; icon: Icon; value: string; options: Option<string>[]; onChange: (v: string) => void; note?: string }
   | { kind: "multi"; id: string; label: string; icon: Icon; value: string[]; options: Option<string>[]; onChange: (v: string[]) => void; note?: string }
@@ -121,9 +125,9 @@ function useTools(engine: Engine, out: Outputs): Tool[] {
       label: "Color",
       icon: IconPalette,
       params: [
-        { kind: "scrub", id: "hue", label: "Hue", icon: IconColorSwatch, value: Math.round(lsh.h), min: 0, max: 360, step: 1, defaultValue: Math.round(dl.h), format: (v) => `${Math.round(v)}°`, onChange: (h) => setLsh({ h }), major: 6 },
-        { kind: "scrub", id: "lightness", label: "Lightness", icon: IconBrightnessHalf, value: lsh.l, min: 0.2, max: 0.95, step: 0.005, defaultValue: dl.l, format: pct, onChange: (l) => setLsh({ l }) },
-        { kind: "scrub", id: "saturation", label: "Saturation", icon: IconDroplet, value: lsh.s, min: 0, max: 1, step: 0.01, defaultValue: dl.s, format: pct, onChange: (v) => setLsh({ s: v }) },
+        { kind: "scrub", id: "hue", label: "Hue", icon: IconColorSwatch, value: Math.round(lsh.h), min: 0, max: 360, step: 1, defaultValue: Math.round(dl.h), format: (v) => `${Math.round(v)}°`, onChange: (h) => setLsh({ h }), major: 6, track: (t) => hexFromLsh({ ...lsh, s: Math.max(lsh.s, 0.6), h: t * 360 }) },
+        { kind: "scrub", id: "lightness", label: "Lightness", icon: IconBrightnessHalf, value: lsh.l, min: 0.2, max: 0.95, step: 0.005, defaultValue: dl.l, format: pct, onChange: (l) => setLsh({ l }), track: (t) => hexFromLsh({ ...lsh, l: 0.2 + t * 0.75 }) },
+        { kind: "scrub", id: "saturation", label: "Saturation", icon: IconDroplet, value: lsh.s, min: 0, max: 1, step: 0.01, defaultValue: dl.s, format: pct, onChange: (v) => setLsh({ s: v }), track: (t) => hexFromLsh({ ...lsh, s: t }) },
         {
           kind: "choice",
           id: "presets",
@@ -157,6 +161,11 @@ function useTools(engine: Engine, out: Outputs): Tool[] {
           defaultValue: d.themeTint ? d.tintStrength : 0,
           format: (v) => (v < 0.05 ? "Off" : pct(v)),
           onChange: (v) => update(v < 0.05 ? { themeTint: false } : { themeTint: true, tintStrength: v }),
+          // The neutral at each strength, chroma exaggerated 3x so a lean of a few thousandths is visible on a phone.
+          track: (t) => {
+            const n = resolveNeutral({ ...s, themeTint: t > 0, tintStrength: t * (s.advanced ? 1 : 0.6) }, rgbToOklch(parseHex(s.theme) ?? [37, 99, 235]))
+            return hex(toRgb({ l: 0.7, c: n.chroma * 3, h: n.hue }))
+          },
         },
         {
           kind: "choice",
@@ -221,7 +230,7 @@ function useTools(engine: Engine, out: Outputs): Tool[] {
           : { kind: "toggle", id: "tighter", label: "Leash", icon: IconArrowsDiff, value: s.tighter, onChange: (tighter) => update({ tighter }), note: "Tighter hue leash: limits brand hue drift to ±2.5° instead of ±5°." },
         ...(s.advanced
           ? [
-              { kind: "scrub", id: "chroma", label: "Chroma", icon: IconDroplet, value: s.chromaScale, min: b("chromaScale")[0], max: b("chromaScale")[1], step: 0.05, defaultValue: d.chromaScale, format: pct, onChange: (chromaScale: number) => update({ chromaScale }) } satisfies Param,
+              { kind: "scrub", id: "chroma", label: "Chroma", icon: IconDroplet, value: s.chromaScale, min: b("chromaScale")[0], max: b("chromaScale")[1], step: 0.05, defaultValue: d.chromaScale, format: pct, onChange: (chromaScale: number) => update({ chromaScale }), track: (t) => hexFromLsh({ ...lsh, s: Math.min(1, lsh.s * (b("chromaScale")[0] + t * (b("chromaScale")[1] - b("chromaScale")[0]))) }) } satisfies Param,
               { kind: "sheet", id: "advanced", label: "Advanced", icon: IconDots, section: "advanced", title: "Advanced" } satisfies Param,
             ]
           : [{ kind: "sheet", id: "all-render", label: "All", icon: IconDots, section: "rendering", title: "Rendering" } satisfies Param]),
@@ -502,9 +511,9 @@ export function MobileDock({ engine }: { engine: Engine }) {
 
   return (
     <>
-      <div ref={dockRef} className="fixed inset-x-0 bottom-0 z-30 pb-[max(0.5rem,env(safe-area-inset-bottom))]">
+      <div ref={dockRef} className="fixed inset-x-0 bottom-0 z-30 border-t bg-background/85 pb-[max(0.5rem,env(safe-area-inset-bottom))] backdrop-blur-xl">
         {open && (
-          <div className="border-t bg-background/95 pt-2 backdrop-blur-xl" role="region" aria-label={`${tool.label} tools`}>
+          <div className="pt-2" role="region" aria-label={`${tool.label} tools`}>
             <div className="flex h-5 items-baseline justify-center gap-2 px-4 text-[11px] tracking-wide uppercase">
               <span className="font-medium text-muted-foreground">{param.label}</span>
               <span className="font-semibold tabular-nums normal-case">{param.kind === "choice" && param.options[0]?.swatch ? "" : value}</span>
@@ -527,8 +536,8 @@ export function MobileDock({ engine }: { engine: Engine }) {
             </div>
           </div>
         )}
-        <nav aria-label="Tools" className={cn("flex justify-center px-3", open ? "bg-background/95 backdrop-blur-xl" : "pt-2")}>
-          <div className="flex w-full max-w-md items-stretch rounded-full border bg-muted/80 p-1 shadow-lg backdrop-blur-xl">
+        <nav aria-label="Tools" className="flex justify-center px-3 pt-2">
+          <div className="flex w-full max-w-md items-stretch rounded-full border bg-muted/70 p-1 shadow-sm">
             {tools.map((t) => {
               const active = t.id === toolId
               return (

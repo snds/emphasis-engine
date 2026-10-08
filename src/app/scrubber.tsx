@@ -17,6 +17,7 @@ export function Scrubber({
   format,
   onChange,
   major = 5,
+  track,
 }: {
   label: string
   value: number
@@ -28,6 +29,8 @@ export function Scrubber({
   onChange: (v: number) => void
   /** Minor ticks per major tick. */
   major?: number
+  /** Color at a share t of the range; drawn as a swatch strip that slides with the ticks. */
+  track?: (t: number) => string
 }) {
   // One tick per step when that stays readable, else the smallest step multiple under 100 ticks.
   const range = max - min
@@ -120,19 +123,27 @@ export function Scrubber({
       onPointerUp={up}
       onPointerCancel={up}
       onKeyDown={key}
-      className="relative h-11 w-full cursor-grab touch-none overflow-hidden select-none outline-none active:cursor-grabbing focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring [mask-image:linear-gradient(to_right,transparent,black_22%,black_78%,transparent)]"
+      className={cn("relative w-full cursor-grab touch-none overflow-hidden select-none outline-none active:cursor-grabbing focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-ring [mask-image:linear-gradient(to_right,transparent,black_22%,black_78%,transparent)]", track ? "h-14" : "h-11")}
     >
       <div
         className="absolute inset-y-0 left-1/2 will-change-transform"
         style={{ width: ticks * gap + 1, transform: `translateX(${-offset(shown)}px)` }}
       >
+        {track && (
+          // The strip runs min to max under the ticks, so the color under the needle is the color you'd get.
+          <div
+            className="absolute inset-x-0 bottom-1.5 h-2.5 rounded-full ring-1 ring-foreground/10"
+            style={{ background: `linear-gradient(to right, ${Array.from({ length: 25 }, (_, i) => track(i / 24)).join(", ")})` }}
+            aria-hidden
+          />
+        )}
         {/* Minor ticks, then majors drawn taller over them. */}
         <div
-          className="absolute inset-x-0 top-1/2 h-3 -translate-y-1/2"
+          className={cn("absolute inset-x-0 h-3 -translate-y-1/2", track ? "top-[40%]" : "top-1/2")}
           style={{ background: `repeating-linear-gradient(to right, var(--muted-foreground) 0 1px, transparent 1px ${gap}px)`, opacity: 0.45 }}
         />
         <div
-          className="absolute inset-x-0 top-1/2 h-5 -translate-y-1/2"
+          className={cn("absolute inset-x-0 h-5 -translate-y-1/2", track ? "top-[40%]" : "top-1/2")}
           style={{ background: `repeating-linear-gradient(to right, var(--foreground) 0 1px, transparent 1px ${gap * major}px)`, opacity: 0.55 }}
         />
         <span
