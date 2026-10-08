@@ -11,6 +11,7 @@ import { BOUNDS, NEUTRALS, type NeutralId, type Settings } from "@/engine/settin
 import { resolveNeutral } from "@/engine/system"
 import { rgbToOklch } from "@/engine/color"
 import type { Engine } from "./use-engine"
+import { InfoTip } from "./info-tip"
 
 const THEME_PRESETS = ["#2563eb", "#f40009", "#7c3aed", "#059669", "#ea580c", "#0f172a"]
 
@@ -26,12 +27,32 @@ function Section({ title, children, hint }: { title: string; hint?: string; chil
   )
 }
 
-function Row({ label, children, htmlFor }: { label: string; htmlFor?: string; children: ReactNode }) {
+/** A control's label with its info tip beside it. */
+function FieldLabel({ label, tip, htmlFor, strong = true }: { label: string; tip: string; htmlFor?: string; strong?: boolean }) {
   return (
-    <div className="flex items-center justify-between gap-3">
-      <Label htmlFor={htmlFor} className="text-sm font-normal">
+    <div className="flex items-center gap-0.5">
+      <Label htmlFor={htmlFor} className={strong ? "" : "text-sm font-normal"}>
         {label}
       </Label>
+      <InfoTip label={label}>{tip}</InfoTip>
+    </div>
+  )
+}
+
+function Row({ label, tip, children, htmlFor }: { label: string; tip: string; htmlFor?: string; children: ReactNode }) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <FieldLabel label={label} tip={tip} htmlFor={htmlFor} strong={false} />
+      {children}
+    </div>
+  )
+}
+
+/** Labeled block for controls that sit under their label. */
+function Field({ label, tip, htmlFor, children }: { label: string; tip: string; htmlFor?: string; children: ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <FieldLabel label={label} tip={tip} htmlFor={htmlFor} />
       {children}
     </div>
   )
@@ -82,6 +103,7 @@ function ColorField({
 
 function Range({
   label,
+  tip,
   value,
   min,
   max,
@@ -90,6 +112,7 @@ function Range({
   onChange,
 }: {
   label: string
+  tip: string
   value: number
   min: number
   max: number
@@ -100,7 +123,7 @@ function Range({
   return (
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between text-sm">
-        <span>{label}</span>
+        <FieldLabel label={label} tip={tip} strong={false} />
         <span className="tabular-nums text-muted-foreground">{format(value)}</span>
       </div>
       <Slider
@@ -190,20 +213,19 @@ export function Controls({ engine }: { engine: Engine }) {
   return (
     <div className="flex flex-col">
       <Section title="Colors" hint="Three picks drive the whole system.">
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor="theme-color">Theme</Label>
+        <Field label="Theme" tip="Your brand color. Drives primary actions, focus, and links." htmlFor="theme-color">
           <ColorField id="theme-color" value={s.theme} onChange={(theme) => update({ theme })} presets={THEME_PRESETS} />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>Base neutral</Label>
+        </Field>
+        <Field label="Base neutral" tip="The gray family for surfaces, borders, and body text.">
           <NeutralPicker settings={s} update={update} />
-        </div>
-        <Row label="Theme tint" htmlFor="theme-tint">
+        </Field>
+        <Row label="Theme tint" tip="Leans the neutrals slightly toward the theme hue." htmlFor="theme-tint">
           <Switch id="theme-tint" checked={s.themeTint} onCheckedChange={(themeTint) => update({ themeTint })} />
         </Row>
         {s.themeTint && (
           <Range
             label="Tint strength"
+            tip="How far the neutrals lean toward the theme hue."
             value={s.tintStrength}
             min={0.1}
             max={s.advanced ? 1 : 0.6}
@@ -212,12 +234,12 @@ export function Controls({ engine }: { engine: Engine }) {
             onChange={(tintStrength) => update({ tintStrength })}
           />
         )}
-        <div className="flex flex-col gap-1.5">
-          <Label htmlFor="chart-color">Chart</Label>
+        <Field label="Chart" tip="Seed color for the chart palette." htmlFor="chart-color">
           <ColorField id="chart-color" value={s.chart} onChange={(chart) => update({ chart })} />
-        </div>
+        </Field>
         <Range
           label="Chart series"
+          tip="How many distinct chart colors to generate."
           value={s.categoricalCount}
           min={5}
           max={12}
@@ -228,54 +250,61 @@ export function Controls({ engine }: { engine: Engine }) {
       </Section>
       <Separator />
       <Section title="Rendering" hint="Flat is the base. Alpha keeps every ink translucent.">
-        <Choice
-          label="Layer"
-          value={s.layer}
-          onChange={(layer) => update({ layer })}
-          options={[
-            { value: "flat", label: "Flat" },
-            { value: "alpha", label: "Alpha" },
-          ]}
-        />
+        <Field label="Layer" tip="Flat paints solid colors. Alpha uses translucent ink that shows what's behind it.">
+          <Choice
+            label="Layer"
+            value={s.layer}
+            onChange={(layer) => update({ layer })}
+            options={[
+              { value: "flat", label: "Flat" },
+              { value: "alpha", label: "Alpha" },
+            ]}
+          />
+        </Field>
         {!s.advanced && (
-          <Row label="Tighter hue leash (±2.5°)" htmlFor="tighter">
+          <Row label="Tighter hue leash" tip="Limits brand hue drift to ±2.5° instead of ±5°." htmlFor="tighter">
             <Switch id="tighter" checked={s.tighter} onCheckedChange={(tighter) => update({ tighter })} />
           </Row>
         )}
       </Section>
       <Separator />
       <Section title="Interaction states">
-        <Choice
-          label="State strategy"
-          value={s.stateStrategy}
-          onChange={(stateStrategy) => update({ stateStrategy })}
-          options={[
-            { value: "step", label: "Step" },
-            { value: "overlay", label: "Overlay" },
-          ]}
-        />
-        {s.stateStrategy === "overlay" && (
+        <Field label="State strategy" tip="Step swaps to the next solved color. Overlay adds a translucent tint layer.">
           <Choice
-            label="Overlay source"
-            value={s.overlaySource}
-            onChange={(overlaySource) => update({ overlaySource })}
+            label="State strategy"
+            value={s.stateStrategy}
+            onChange={(stateStrategy) => update({ stateStrategy })}
             options={[
-              { value: "neutral", label: "Base ink" },
-              { value: "brand", label: "Role ink" },
+              { value: "step", label: "Step" },
+              { value: "overlay", label: "Overlay" },
             ]}
           />
+        </Field>
+        {s.stateStrategy === "overlay" && (
+          <Field label="Overlay source" tip="Tint states with the base neutral or the button's own color.">
+            <Choice
+              label="Overlay source"
+              value={s.overlaySource}
+              onChange={(overlaySource) => update({ overlaySource })}
+              options={[
+                { value: "neutral", label: "Base ink" },
+                { value: "brand", label: "Role ink" },
+              ]}
+            />
+          </Field>
         )}
-        <Choice
-          label="Pressed"
-          value={s.pressedMode}
-          onChange={(pressedMode) => update({ pressedMode })}
-          options={[
-            { value: "stacked", label: "Stack on hover" },
-            { value: "from-rest", label: "From rest" },
-          ]}
-        />
-        <div className="flex flex-col gap-1.5">
-          <Label>Secondary fill</Label>
+        <Field label="Pressed" tip="Build pressed on top of hover, or step straight from rest.">
+          <Choice
+            label="Pressed"
+            value={s.pressedMode}
+            onChange={(pressedMode) => update({ pressedMode })}
+            options={[
+              { value: "stacked", label: "Stack on hover" },
+              { value: "from-rest", label: "From rest" },
+            ]}
+          />
+        </Field>
+        <Field label="Secondary fill" tip="The fill secondary buttons use.">
           <Choice
             label="Secondary fill"
             value={s.secondarySource}
@@ -286,9 +315,8 @@ export function Controls({ engine }: { engine: Engine }) {
               { value: "role-tint", label: "Role tint" },
             ]}
           />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <Label>Neutral primary</Label>
+        </Field>
+        <Field label="Neutral primary" tip="The main neutral button: light gray with dark text, or solid gray with light text.">
           <Choice
             label="Neutral primary"
             value={s.neutralPrimary}
@@ -298,9 +326,10 @@ export function Controls({ engine }: { engine: Engine }) {
               { value: "solid", label: "Solid gray" },
             ]}
           />
-        </div>
+        </Field>
         <Range
           label="State step (ΔL)"
+          tip="How much lightness changes on hover and press."
           value={s.stateDelta}
           min={b("stateDelta")[0]}
           max={b("stateDelta")[1]}
@@ -315,6 +344,7 @@ export function Controls({ engine }: { engine: Engine }) {
           <Range
             key={ctx}
             label={`${ctx[0].toUpperCase()}${ctx.slice(1)} offset`}
+            tip={`Raises or lowers every ${ctx} contrast target.`}
             value={s.offsets[ctx]}
             min={b("offset")[0]}
             max={b("offset")[1]}
@@ -325,6 +355,7 @@ export function Controls({ engine }: { engine: Engine }) {
         ))}
         <Range
           label="Surface spacing"
+          tip="How far apart the surface levels sit in lightness."
           value={s.surfaceScale}
           min={b("surfaceScale")[0]}
           max={b("surfaceScale")[1]}
@@ -339,6 +370,7 @@ export function Controls({ engine }: { engine: Engine }) {
           <Section title="Advanced" hint="Every lever the solver pulls. Targets become warnings.">
             <Range
               label="Hue leash"
+              tip="The most the solver may shift a color's hue."
               value={s.leashDeg}
               min={2}
               max={8}
@@ -348,6 +380,7 @@ export function Controls({ engine }: { engine: Engine }) {
             />
             <Range
               label="Chroma scale"
+              tip="Scales color intensity across every role."
               value={s.chromaScale}
               min={b("chromaScale")[0]}
               max={b("chromaScale")[1]}
@@ -355,14 +388,13 @@ export function Controls({ engine }: { engine: Engine }) {
               format={(v) => `${Math.round(v * 100)}%`}
               onChange={(chromaScale) => update({ chromaScale })}
             />
-            <Row label="True-color solid fills" htmlFor="true-solids">
+            <Row label="True-color solid fills" tip="Keeps solid buttons the exact picked color when contrast allows." htmlFor="true-solids">
               <Switch id="true-solids" checked={s.trueSolids} onCheckedChange={(trueSolids) => update({ trueSolids })} />
             </Row>
-            <Row label="Hold saturation" htmlFor="hold-sat">
+            <Row label="Hold saturation" tip="Keeps colors vivid as they get lighter or darker." htmlFor="hold-sat">
               <Switch id="hold-sat" checked={s.holdSaturation} onCheckedChange={(holdSaturation) => update({ holdSaturation })} />
             </Row>
-            <div className="flex flex-col gap-1.5">
-              <Label>Alpha tie-break</Label>
+            <Field label="Alpha tie-break" tip="When several alphas fit: most transparent, or closest to the picked hue.">
               <Choice
                 label="Alpha tie-break"
                 value={s.tieBreak}
@@ -372,9 +404,10 @@ export function Controls({ engine }: { engine: Engine }) {
                   { value: "hue-fidelity", label: "Closest to hue" },
                 ]}
               />
-            </div>
+            </Field>
             <Range
               label="Family pull on charts"
+              tip="Nudges chart colors toward the brand hue."
               value={s.familyPull}
               min={0}
               max={1}

@@ -14,6 +14,7 @@ import { GridView } from "@/app/grid-view"
 import { ReportView } from "@/app/report-view"
 import { ExportView } from "@/app/export-view"
 import { CreditsView } from "@/app/credits-view"
+import { InfoTip } from "@/app/info-tip"
 import { extensionVars, shadcnVars } from "@/engine/export"
 import { advancedOverrides, type Mode } from "@/engine/settings"
 
@@ -62,6 +63,7 @@ export function App() {
             <h1 className="text-base font-semibold">Emphasis Engine</h1>
             <p className="text-xs text-muted-foreground">Perceptual color systems from three picks</p>
           </div>
+<div className="flex items-center gap-0.5">
           <ToggleGroup
             aria-label="Mode"
             variant="outline"
@@ -77,9 +79,12 @@ export function App() {
               <MoonIcon /> Dark
             </ToggleGroupItem>
           </ToggleGroup>
+            <InfoTip label="Mode">Light and dark are solved as separate systems, not inverted.</InfoTip>
+          </div>
           <div className="flex items-center gap-2">
             <Switch id="advanced" checked={settings.advanced} onCheckedChange={(advanced) => update({ advanced })} />
             <Label htmlFor="advanced">Advanced</Label>
+            <InfoTip label="Advanced">Shows every solver lever. Broken targets become warnings instead of limits.</InfoTip>
             {!settings.advanced && overrides.length > 0 && (
               <Badge variant="secondary" title={overrides.join(", ")}>
                 {overrides.length} override{overrides.length === 1 ? "" : "s"}
@@ -89,6 +94,7 @@ export function App() {
           <div className="flex items-center gap-2">
             <Switch id="theme-app" checked={themeApp} onCheckedChange={setThemeApp} />
             <Label htmlFor="theme-app">Theme this app</Label>
+            <InfoTip label="Theme this app">Applies the generated theme to this tool's own interface.</InfoTip>
           </div>
         </header>
 
