@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { converter } from "culori"
 import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch, toRgb } from "./color"
-import { buildTier, tierFindings } from "./shadcn"
+import { shadcnFindings, solveShadcn } from "./shadcn"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral, targetFor } from "./system"
@@ -299,7 +299,9 @@ describe("shadcn tier", () => {
   const PRESET: Record<"light" | "dark", Record<string, number>> = {
     light: {
       "--background": 1, "--foreground": 0.145, "--card": 1, "--muted": 0.96, "--muted-foreground": 0.542,
-      "--secondary": 0.967, "--accent": 0.96, "--primary": 0.488, "--destructive": 0.578,
+      "--secondary": 0.967, "--accent": 0.96, "--primary": 0.488,
+      // --destructive is left out in light mode: the engine's danger red carries less chroma than
+      // the preset's, so reproducing the preset's 10% tint takes a slightly deeper red (see below).
       "--border": 0.922, "--input": 0.922, "--ring": 0.711, "--sidebar": 0.985,
     },
     dark: {
@@ -314,21 +316,57 @@ describe("shadcn tier", () => {
     for (const layer of ["ink", "flat", "alpha"] as const) {
       const sy = generate(s({ theme: presetTheme, neutral: "mauve", layer }))
       for (const mode of ["light", "dark"] as const) {
-        const tier = buildTier(sy, mode)
-        for (const [name, l] of Object.entries(PRESET[mode]))
-          expect(Math.abs(rgbToOklch(tier[name].rgb).l - l), `${layer} ${mode} ${name}`).toBeLessThan(0.02)
+        const res = solveShadcn(sy, mode)
+        const card = res.values["--card"].rgb
+        for (const [name, l] of Object.entries(PRESET[mode])) {
+          const v = res.values[name]
+          const seen = v.a < 1 ? composite(v.rgb, v.a, card) : v.rgb
+          expect(Math.abs(rgbToOklch(seen).l - l), `${layer} ${mode} ${name}`).toBeLessThan(0.02)
+        }
       }
     }
   })
 
+  it("reproduces every rendered outcome of the reference, across themes and layers", () => {
+    for (const over of [
+      { theme: presetTheme },
+      { theme: "#f40009", neutral: "sand" as const },
+      { theme: "#059669", neutral: "slate" as const, layer: "flat" as const },
+      { theme: "#7c3aed", neutral: "gray" as const, layer: "alpha" as const },
+    ]) {
+      const sy = generate(s(over))
+      for (const mode of ["light", "dark"] as const)
+        for (const o of solveShadcn(sy, mode).outcomes) {
+          if (o.recipe.check) continue
+          expect(o.met, `${JSON.stringify(over)} ${mode} ${o.recipe.id} ${o.checks.map((c) => c.achieved.toFixed(3) + "/" + c.req.min.toFixed(3))}`).toBe(true)
+        }
+    }
+  })
+
+  it("solves through component opacity: the destructive tint drives the destructive color", () => {
+    const res = solveShadcn(generate(s()), "light")
+    const tint = res.outcomes.find((o) => o.recipe.id === "destr-tint-light")!
+    expect(tint.met).toBe(true)
+    expect(tint.achieved - tint.checks[0].req.min).toBeLessThan(0.004)
+  })
+
+  it("uses the engine's emphasis levels when asked", () => {
+    const sy = generate(s({ targetSource: "engine" }))
+    const res = solveShadcn(sy, "light")
+    const fg = res.outcomes.find((o) => o.recipe.id === "fg-page")!
+    expect(fg.checks[0].req.source).toBe("engine")
+    expect(fg.met).toBe(true)
+    expect(rgbToOklch(res.values["--card"].rgb).l).toBeCloseTo(rgbToOklch(sy.modes.light.bg).l, 3)
+  })
+
   it("ships opaque values for variables the components modify with opacity", () => {
-    const tier = buildTier(generate(s()), "dark")
+    const res = solveShadcn(generate(s()), "dark")
     for (const n of ["--muted", "--primary", "--secondary", "--destructive", "--ring", "--foreground"])
-      expect(tier[n].css.startsWith("#"), n).toBe(true)
+      expect(res.values[n].a, n).toBe(1)
   })
 
   it("names the specs parity misses", () => {
-    const f = tierFindings(generate(s()))
+    const f = shadcnFindings(generate(s()))
     expect(f.inputBorders.length).toBeGreaterThan(0)
     expect(f.secondaryText.some((x) => x.mode === "dark")).toBe(true)
   })
@@ -342,13 +380,13 @@ describe("shadcn tier", () => {
       { theme: "#0f172a", neutral: "gray" as const, layer: "flat" as const },
       { darkSolid: { mode: "custom" as const, l: 0.3, s: 0.8 } },
     ]) {
-      const f = tierFindings(generate(s({ ...over, a11y: all })))
+      const f = shadcnFindings(generate(s({ ...over, a11y: all })))
       for (const [k, list] of Object.entries(f)) expect(list, `${JSON.stringify(over)} ${k}`).toHaveLength(0)
     }
   })
 
   it("forces only the area whose switch is on", () => {
-    const f = tierFindings(generate(s({ a11y: { ...DEFAULT_SETTINGS.a11y, inputBorders: true } })))
+    const f = shadcnFindings(generate(s({ a11y: { ...DEFAULT_SETTINGS.a11y, inputBorders: true } })))
     expect(f.inputBorders).toHaveLength(0)
     expect(f.secondaryText.length).toBeGreaterThan(0)
   })

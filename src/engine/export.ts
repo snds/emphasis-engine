@@ -1,4 +1,4 @@
-import { buildTier } from "./shadcn"
+import { solveShadcn } from "./shadcn"
 // Exports. shadcn token names for compatibility, an extension set for what
 // shadcn cannot express, Radix-shaped scales, and DTCG JSON.
 import { hex, rgbToOklch, oklchCss, rgbaCss } from "./color"
@@ -8,9 +8,9 @@ import { active, tokenId, type System } from "./system"
 
 /** shadcn variable → value, per mode. Each traces to a grid cell. */
 export function shadcnVars(sys: System, mode: Mode): Record<string, string> {
-  // The shadcn component tier: each variable solved against its own job.
-  const tier = buildTier(sys, mode)
-  return Object.fromEntries(Object.values(tier).map((v) => [v.name, v.css]))
+  // The engine's intent, solved back through shadcn's own recipes.
+  const res = solveShadcn(sys, mode)
+  return Object.fromEntries(Object.entries(res.values).map(([k, v]) => [k, v.css]))
 }
 
 /** Extension set: every semantic token plus button component tokens. */

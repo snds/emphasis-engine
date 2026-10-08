@@ -157,6 +157,12 @@ export type Settings = {
   holdSaturation: boolean
   chromaScale: number
   a11y: A11y
+  /**
+   * Where output-system targets come from. Reference reads the system's stock
+   * theme through its own recipes (parity). Engine uses the engine's emphasis
+   * levels for each element kind.
+   */
+  targetSource: "reference" | "engine"
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -190,6 +196,7 @@ export const DEFAULT_SETTINGS: Settings = {
   holdSaturation: true,
   chromaScale: 1,
   a11y: { inputBorders: false, secondaryText: false, solids: false, focusRing: false },
+  targetSource: "reference",
 }
 
 /** Bounds per control. Basic clamps to the inner range; Advanced to outer. */
