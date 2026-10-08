@@ -12,3 +12,9 @@ createRoot(document.getElementById("root")!).render(
     </ThemeProvider>
   </StrictMode>
 )
+
+// Caches every system's native page after the first visit, so switching systems is instant.
+// Hosts that don't allow service workers (sandboxed previews) just skip it.
+if (import.meta.env.PROD && "serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch(() => {})
+}

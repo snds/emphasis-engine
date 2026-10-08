@@ -19,6 +19,8 @@ import { CreditsView } from "@/app/credits-view"
 import { InfoTip } from "@/app/info-tip"
 import { MobileDock, MobileHeader, MoreSheet, type View } from "@/app/mobile-editor"
 import { generate } from "@/engine/system"
+import { NativeStage, hasNative } from "@/app/native-frame"
+import { PROFILES } from "@/engine/profiles"
 import { extensionVars, shadcnVars } from "@/engine/export"
 import { DEFAULT_SETTINGS, advancedOverrides, type Mode } from "@/engine/settings"
 import type { System } from "@/engine/system"
@@ -52,18 +54,37 @@ function useResolvedMode(): [Mode, (m: Mode) => void] {
 
 /** The canvas for one view. Shared by the desktop tabs and the phone editor. */
 function Canvas({ view, sys, mode, previewVars }: { view: View; sys: System; mode: Mode; previewVars: CSSProperties }) {
-  if (view === "preview")
-    return (
-      <div style={previewVars} className="min-h-full bg-background p-4 text-foreground">
-        {sys.settings.output === "shadcn" ? (
+  const id = sys.settings.output
+  // Native: the system's own components in their own page. Pairs: every color pair the profile solves, measured.
+  const [show, setShow] = useState<"native" | "pairs">("native")
+  if (view === "preview") {
+    if (id === "shadcn")
+      return (
+        <div style={previewVars} className="min-h-full bg-background p-4 text-foreground">
           <Preview sys={sys} mode={mode} />
-        ) : sys.settings.output === "radix" || sys.settings.output === "material" ? (
-          <Specimens sys={sys} mode={mode} id={sys.settings.output} />
+        </div>
+      )
+    return (
+      <div className="flex flex-col">
+        <div className="flex items-center justify-between gap-3 border-b px-4 py-2">
+          <p className="min-w-0 truncate text-xs text-muted-foreground">
+            {show === "native" ? `${PROFILES[id].label}'s own components, wearing your colors` : "Each pair the profile solves, stock beside yours"}
+          </p>
+          <ToggleGroup aria-label="Preview kind" variant="outline" size="sm" spacing={0} value={[show]} onValueChange={(v) => v[0] && setShow(v[0] as "native" | "pairs")}>
+            <ToggleGroupItem value="native" className="text-xs">Native</ToggleGroupItem>
+            <ToggleGroupItem value="pairs" className="text-xs">Pairs</ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+        {show === "native" && hasNative(id) ? (
+          <NativeStage sys={sys} mode={mode} id={id} />
         ) : (
-          <RecipeBoard sys={sys} mode={mode} id={sys.settings.output} />
+          <div style={previewVars} className="bg-background p-4 text-foreground">
+            {id === "radix" || id === "material" ? <Specimens sys={sys} mode={mode} id={id} /> : <RecipeBoard sys={sys} mode={mode} id={id} />}
+          </div>
         )}
       </div>
     )
+  }
   return (
     <div className="p-4">
       {view === "grid" ? <GridView sys={sys} mode={mode} /> : view === "report" ? <ReportView sys={sys} mode={mode} /> : view === "export" ? <ExportView sys={sys} /> : <CreditsView />}

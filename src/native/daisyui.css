@@ -1,0 +1,9 @@
+/* daisyUI 5 is a Tailwind plugin: compile it with Tailwind so the page can use
+   Tailwind's layout utilities, the way daisyUI's docs do. Scanning is limited
+   to this page so the build doesn't pick up classes from other systems. */
+@import "tailwindcss" source(none);
+@source "./daisyui.tsx";
+/* Stock daisyUI themes; no prefers-dark switch so the page follows data-theme only. */
+@plugin "daisyui" {
+  themes: light --default, dark;
+}

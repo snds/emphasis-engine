@@ -107,3 +107,12 @@ export function outputJson(sys: System, id: ProfileId): string | null {
   )
   return JSON.stringify(out, null, 2)
 }
+
+/** The solved values for one mode, as a native page applies them: root or scoped, in each variable's own format. */
+export function nativeTheme(sys: System, id: ProfileId, mode: Mode): { name: string; selector: string | null; value: string }[] {
+  const p = PROFILES[id]
+  return Object.entries(solveOutput(sys, id, mode).values).map(([k, v]) => {
+    const scope = p.scopes?.[k]
+    return { name: scope ? scope.name : k, selector: scope ? scope.selector : null, value: valueAs(p, k, v) }
+  })
+}

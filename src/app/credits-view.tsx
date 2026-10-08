@@ -11,6 +11,22 @@ const REFS = [
   { name: "IBM Plex Sans", url: "https://github.com/IBM/plex", note: "Typeface. SIL Open Font License." },
 ]
 
+// Native examples bundle each system's own packages. Names and marks belong to their owners.
+const SYSTEMS = [
+  { name: "Radix Themes", url: "https://www.radix-ui.com/themes", license: "MIT" },
+  { name: "Material Web (@material/web)", url: "https://github.com/material-components/material-web", license: "Apache-2.0" },
+  { name: "Bootstrap", url: "https://getbootstrap.com", license: "MIT" },
+  { name: "daisyUI", url: "https://daisyui.com", license: "MIT" },
+  { name: "IBM Carbon", url: "https://carbondesignsystem.com", license: "Apache-2.0" },
+  { name: "Fluent UI React", url: "https://react.fluentui.dev", license: "MIT" },
+  { name: "Primer React", url: "https://primer.style/react", license: "MIT" },
+  { name: "Atlassian Design System (@atlaskit)", url: "https://atlassian.design", license: "Apache-2.0" },
+  { name: "Ant Design", url: "https://ant.design", license: "MIT" },
+  { name: "Chakra UI", url: "https://chakra-ui.com", license: "MIT" },
+  { name: "Mantine", url: "https://mantine.dev", license: "MIT" },
+  { name: "Coinbase Design System (@coinbase/cds-web)", url: "https://github.com/coinbase/cds", license: "Apache-2.0" },
+]
+
 export function CreditsView() {
   return (
     <div className="flex max-w-2xl flex-col gap-8 text-sm">
@@ -29,6 +45,23 @@ export function CreditsView() {
                 {r.name}
               </a>
               <span className="text-muted-foreground"> — {r.note}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="flex flex-col gap-2">
+        <h3 className="font-semibold">Design systems in the native examples</h3>
+        <p className="text-muted-foreground">
+          Each native example renders that system's own published packages, unmodified, under their licenses. Product names and marks belong
+          to their owners; their use here identifies the system and implies no endorsement.
+        </p>
+        <ul className="flex flex-col gap-1">
+          {SYSTEMS.map((r) => (
+            <li key={r.url}>
+              <a href={r.url} target="_blank" rel="noreferrer" className="font-medium underline underline-offset-2">
+                {r.name}
+              </a>
+              <span className="text-muted-foreground"> — {r.license}</span>
             </li>
           ))}
         </ul>
