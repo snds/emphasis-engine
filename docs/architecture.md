@@ -1,6 +1,6 @@
 # Emphasis Engine: system-agnostic architecture
 
-Status: Phases 1 and 2 built (October 8, 2026). Supersedes the plan's assumption that the engine exports directly to one design system.
+Status: Phases 1–3 built (October 8, 2026). Supersedes the plan's assumption that the engine exports directly to one design system.
 
 ## The problem this fixes
 
@@ -81,6 +81,15 @@ Material 3 and MUI state layers are the engine's ink overlay with fixed alphas, 
 - **Engine targets expose translation conflicts.** With Engine emphasis on, the one recipe nothing can satisfy is shadcn's `hover:bg-muted/50`: the engine wants a 0.04 lightness step, and half of the engine's muted surface can't give it. The Report flags it rather than hiding it.
 - **Every reference outcome is met** in all three profiles, for five themes, in Ink and Flat (tested).
 
+## What Phase 3 proved
+
+- **Any theme can be the reference.** Paste a system's CSS and its values replace stock as the targets. The parser reads oklch, hex (including 8-digit), rgb, hsl, shadcn v3's bare HSL channels, and `var()` references. It finds modes by selector (`:root`, `.light`, `.dark`, `.dark-theme`, `prefers-color-scheme: dark`) and Material's `-light` / `-dark` token suffixes. It skips Tailwind `@theme` mappings, display-p3 `@supports` duplicates, and Material's contrast variants.
+- **Radix palettes match by job, not name.** A pasted `--indigo-*` / `--slate-*` palette maps to accent and gray. Alpha steps the paste leaves out are derived from its own solid steps, never borrowed from stock.
+- **Missing values fall back to stock**, and the Reference panel says how many of each mode were read and which are missing. "Use its brand color" sets the Theme pick from the import.
+- **Re-solving is stable.** Export any profile's output, paste it back as the reference, and the solve reproduces itself within 0.012 lightness for every variable in all three systems (tested).
+- **Joint constraints are solved in one pass.** A recipe that constrains a color it doesn't paint (Material's 8% on-color layer over primary) now holds that color only to what its partner could reach at the far end of its path. That finds the minimal pair instead of iterating, and it's what made the output stable.
+- **Reading through recipes surfaces version mismatches.** A shadcn v3 theme read through the v4 base-nova recipes shows dark `--destructive` at Lc 12 as text, because v3 used it as a solid fill. The Report flags it; that is the theme and the components disagreeing, not the solver.
+
 ## Known limits
 
 - **Recipes live in code.** They were read by hand from the preset's class names. They drift when components change or new ones are added.
@@ -88,13 +97,15 @@ Material 3 and MUI state layers are the engine's ink overlay with fixed alphas, 
 - **Monotonic paths assumed.** Each recipe's measure must grow as a variable moves away from its parent. True for every shadcn recipe; a profile with recipes that pull in opposite directions would need a different search.
 - **Light-mode outline buttons** use `--border`, not `--input`, so the field-border switch does not reach them.
 - **Radix and Material previews are approximations.** The app ships shadcn components only, so those two render as small specimens painted with the system's own variables, stock beside yours. Recipes come from each system's documented usage and component styles, not from their source trees.
+- **Recipes are version-specific.** The shadcn profile models the base-nova (v4) components. Themes written for other component versions read through them faithfully, which can show up as misses.
+- **CSS only.** Imports read CSS custom properties. DTCG or Tokens Studio JSON aren't read yet.
 - **One accent per profile.** Radix and Material carry one brand scale and red for errors; other status roles aren't mapped yet.
 
 ## Phasing
 
 1. **Intent contract and shadcn as the first profile.** Done.
 2. **Radix Themes and Material 3 profiles.** Done. Output system picker, stock-beside-yours specimens, per-system Report and CSS export.
-3. **Reference reading from any theme.** Paste or point at an existing theme; read it through the profile to get starting targets.
+3. **Reference reading from any theme.** Done. Paste CSS per output system; coverage report; brand color pickup.
 4. **Browser probing.** Render real components headlessly, sample computed colors per state, and back-solve. Works for systems nobody has written a profile for, and validates hand-written profiles.
 
 ## Decisions

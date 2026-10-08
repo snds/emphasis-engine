@@ -1,6 +1,8 @@
 // Inputs and the starting targets. Every number here is a starting value
 // to be tuned on real screens (doc: Project risks, "Perception is not math").
 
+import type { ImportedTheme } from "./reference"
+
 export type Mode = "light" | "dark"
 export type Context = "text" | "fill" | "stroke" | "surface"
 export type Level = 1 | 2 | 3 | 4 | 5
@@ -165,6 +167,8 @@ export type Settings = {
   targetSource: "reference" | "engine"
   /** The downstream system the output is solved for. */
   output: "shadcn" | "radix" | "material"
+  /** Imported themes per output system; when present, they replace the stock reference. */
+  imports: Partial<Record<"shadcn" | "radix" | "material", ImportedTheme>>
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -200,6 +204,7 @@ export const DEFAULT_SETTINGS: Settings = {
   a11y: { inputBorders: false, secondaryText: false, solids: false, focusRing: false },
   targetSource: "reference",
   output: "shadcn",
+  imports: {},
 }
 
 /** Bounds per control. Basic clamps to the inner range; Advanced to outer. */

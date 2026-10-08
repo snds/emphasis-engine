@@ -24,6 +24,7 @@ import { resolveNeutral, targetFor } from "@/engine/system"
 import { rgbToOklch } from "@/engine/color"
 import type { Engine } from "./use-engine"
 import { InfoTip } from "./info-tip"
+import { ThemeImport } from "./theme-import"
 import { LshSliders, ThemeTune, lshFromHex } from "./tune"
 import {
   Tooltip,
@@ -855,6 +856,7 @@ export function Controls({ engine }: { engine: Engine }) {
             options={PROFILE_IDS.map((id) => ({ value: id, label: PROFILES[id].label.replace(" Themes", "").replace("/ui", "") }))}
           />
         </Field>
+        <ThemeImport settings={s} update={update} />
         <Field
           label="Targets"
           tip="Match stock reads the system's stock theme through its own recipes and reproduces what it renders, for your colors. Engine emphasis uses this tool's emphasis levels for each element kind instead."
@@ -864,7 +866,7 @@ export function Controls({ engine }: { engine: Engine }) {
             value={s.targetSource}
             onChange={(targetSource) => update({ targetSource })}
             options={[
-              { value: "reference", label: "Match stock" },
+              { value: "reference", label: s.imports?.[s.output] ? "Match import" : "Match stock" },
               { value: "engine", label: "Engine emphasis" },
             ]}
           />
@@ -889,7 +891,7 @@ export function Controls({ engine }: { engine: Engine }) {
           tip="WCAG 1.4.11 asks 3:1 for the edge that identifies a control. On: every control-border recipe in the system must reach 3:1. In shadcn that also strengthens the 30% field fill, since it shares --input."
         />
         <Readout
-          label="Muted text"
+          label="Secondary text"
           tip="Secondary text: descriptions, captions, links, error text. Weakest pair shown."
           light={weak("light", "text-secondary")}
           dark={weak("dark", "text-secondary")}

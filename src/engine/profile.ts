@@ -62,8 +62,8 @@ export type Recipe = {
   against?: Expr[]
   /**
    * Variables this recipe also constrains beyond what it paints: a fixed
-   * state layer over a color constrains that color. Solved by a second pass
-   * that holds the later variables at their first-pass values.
+   * state layer over a color constrains that color. The color is held only
+   * to what its painted partner could reach at the end of its path.
    */
   alsoDrives?: string[]
 }
@@ -146,8 +146,15 @@ export type ProfileResult = {
 // ── Color reading ───────────────────────────────────────────────────────────
 
 /** Parse the CSS a system ships: oklch() with optional alpha, hex, rgb(). */
+function hslToRgb(h: number, s: number, l: number): RGB {
+  const k = (n: number) => (n + h / 30) % 12
+  const a = s * Math.min(l, 1 - l)
+  const f = (n: number) => l - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))
+  return [Math.round(f(0) * 255), Math.round(f(8) * 255), Math.round(f(4) * 255)]
+}
+
 export function parseCss(css: string): Paint {
-  css = css.trim()
+  css = css.trim().replace(/(\d)deg\b/g, "$1")
   let m = css.match(
     /^oklch\(\s*([\d.]+)(%?)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+)(%?))?\s*\)$/
   )
@@ -164,6 +171,14 @@ export function parseCss(css: string): Paint {
       rgb: [+m[1], +m[2], +m[3]],
       a: m[4] === undefined ? 1 : m[5] ? +m[4] / 100 : +m[4],
     }
+  // hsl(), and shadcn v3's bare channels ("222.2 84% 4.9%").
+  m = css.match(/^(?:hsla?\(\s*)?([\d.]+)(?:deg)?[\s,]+([\d.]+)%[\s,]+([\d.]+)%(?:\s*[,/]\s*([\d.]+)(%?))?\s*\)?$/)
+  if (m) {
+    const a = m[4] === undefined ? 1 : m[5] ? +m[4] / 100 : +m[4]
+    return { rgb: hslToRgb(+m[1], +m[2] / 100, +m[3] / 100), a }
+  }
+  m = css.match(/^#([0-9a-f]{6})([0-9a-f]{2})$/i)
+  if (m) return { rgb: parseHex("#" + m[1])!, a: parseInt(m[2], 16) / 255 }
   const h = parseHex(css)
   if (h) return { rgb: h, a: 1 }
   throw new Error(`Unreadable color: ${css}`)
@@ -316,137 +331,125 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
   const { mode, settings: s } = intent
   const reference = readReference(profile, mode)
   const recipes = profile.recipes.filter((r) => appliesTo(r, mode))
-  let values: Record<string, Paint> = {}
-  let prev: Record<string, Paint> = {}
+  const byName = Object.fromEntries(profile.vars.map((v) => [v.name, v]))
+  const values: Record<string, Paint> = {}
   // Aliases and alpha forms resolve to the variable they derive from, so a
   // recipe painting --focus-8 or --gray-a7 drives --accent-8 or --gray-7.
   const derivedFrom = Object.fromEntries(
     profile.vars.flatMap((v) => (v.path.kind === "alias" || v.path.kind === "alphaOf" ? [[v.name, v.path]] : [])),
   ) as Record<string, Extract<Path, { kind: "alias" | "alphaOf" }>>
   const root = (n: string): string => (derivedFrom[n] ? root(derivedFrom[n].of) : n)
-  const derivedOf = (n: string) => profile.vars.filter((v) => derivedFrom[v.name] && root(v.name) === n).map((v) => v.name)
-  /** A derived variable's paint, given its source's paint and the solved surfaces. */
   const derive = (name: string, vals: Record<string, Paint>): Paint => {
     const d = derivedFrom[name]
     const src = derivedFrom[d.of] ? derive(d.of, vals) : vals[d.of]
     return d.kind === "alias" ? src : translucentOf(src.rgb, vals[d.over].rgb)
   }
   // Variables that reached the end of their path and still fell short.
-  let capped = new Set<string>()
-  // Up to three passes: the second and third let alsoDrives recipes reach
-  // back to a variable solved before the ones they paint.
-  for (let pass = 0; pass < 3; pass++) {
-    values = {}
-    capped = new Set()
-    // Solved, or derivable from something solved (an alpha form of a solved step).
-    const known = (v: string): boolean =>
-      !!(values[v] ?? prev[v]) || (!!derivedFrom[v] && known(derivedFrom[v].of) && (derivedFrom[v].kind === "alias" || known((derivedFrom[v] as { over: string }).over)))
-    for (const spec of profile.vars) {
-      const p = spec.path
-      if (p.kind === "page") {
-        // Reference targets keep the system's own page lightness, in the engine's neutral.
-        const ref = profile.reference[mode][spec.name]
-        if (s.targetSource === "reference" && ref) {
-          const l = rgbToOklch(parseCss(ref).rgb).l
-          const n = intent.palettes.neutral
-          values[spec.name] = {
-            rgb: toRgb({ l, c: n.chroma * 0.55, h: n.hue }),
-            a: 1,
-          }
-        } else values[spec.name] = { rgb: intent.surfaces.page, a: 1 }
-      } else if (p.kind === "solid")
-        values[spec.name] = { rgb: intent.solids[p.role], a: 1 }
-      else if (p.kind === "onSolid")
-        values[spec.name] = { rgb: intent.onSolid[p.role], a: 1 }
-      else if (p.kind === "alias" || p.kind === "alphaOf") values[spec.name] = derive(spec.name, { ...prev, ...values })
-      else if (p.kind === "series")
-        values[spec.name] = {
-          rgb: intent.series[p.index % intent.series.length],
-          a: 1,
-        }
-      else {
-        const surfaceKey =
-          s.targetSource === "engine" ? p.engineSurface?.[mode] : undefined
-        if (surfaceKey) {
-          values[spec.name] = { rgb: intent.surfaces[surfaceKey], a: 1 }
-          continue
-        }
-        const parent = values[p.from]
-        // Every recipe this variable paints, whose other inputs are solved.
-        const drivers = recipes.filter(
-          (r) =>
-            !r.check &&
-            (exprVars(r.paint).some((v) => root(v) === spec.name) ||
-              (pass > 0 && r.alsoDrives?.includes(spec.name))) &&
-            recipeVars(r).every((v) => root(v) === spec.name || known(v))
-        )
-        const reqs = drivers.map((r) => ({
-          r,
-          reqs: requirementsFor(r, intent, reference),
-        }))
-        const pal = intent.palettes[p.palette]
-        const rule: ChromaRule = {
-          hue: pal.hue,
-          baseChroma: pal.chroma,
-          baseL: pal.l,
-          factor: p.chroma ?? 1,
-          holdSaturation: pal.holdSaturation,
-        }
-        const translucent =
-          p.translucent === "always" ||
-          (p.translucent === true && s.layer !== "flat")
-        const parentL = rgbToOklch(parent.rgb).l
-        const pageAway = mode === "light" ? -1 : 1
-        const away =
-          p.dir === "back"
-            ? -pageAway
-            : p.dir === "contrast"
-              ? Math.abs(lc([255, 255, 255], parent.rgb)) >=
-                Math.abs(lc([0, 0, 0], parent.rgb))
-                ? 1
-                : -1
-              : pageAway
-        const candidate = (t: number): Paint => {
-          if (translucent)
-            return {
-              rgb:
-                away < 0
-                  ? intent.inkPair[p.palette].dark
-                  : intent.inkPair[p.palette].light,
-              a: t,
-            }
-          const l = Math.min(1, Math.max(0, parentL + away * t))
-          return { rgb: toRgb({ l, c: chromaAt(rule, l), h: pal.hue }), a: 1 }
-        }
-        const ok = (t: number) => {
-          const c = candidate(t)
-          const vals = { ...prev, ...values, [spec.name]: c }
-          for (const d of derivedOf(spec.name)) vals[d] = derive(d, vals)
-          // Derived inputs not yet reached in declaration order, from their solved sources.
-          for (const r of reqs) for (const x of recipeVars(r.r)) if (!vals[x] && derivedFrom[x]) vals[x] = derive(x, vals)
-          return reqs.every(({ r, reqs }) => {
-            const { fg, bg } = render(r, vals)
-            return reqs.every((q) => measure(q.metric, fg, bg) >= q.min - 1e-6)
-          })
-        }
-        const hi = translucent ? 1 : away < 0 ? parentL : 1 - parentL
-        let t = hi
-        if (!ok(hi)) capped.add(spec.name)
-        else {
-          let lo = 0
-          for (let i = 0; i < 24; i++) {
-            const mid = (lo + t) / 2
-            if (ok(mid)) t = mid
-            else lo = mid
-          }
-        }
-        // Translucent values ship rounded up to whole percents, like a designer would write them.
-        if (translucent) t = Math.min(1, Math.ceil(t * 100 - 1e-9) / 100)
-        values[spec.name] = candidate(t)
-      }
+  const capped = new Set<string>()
+
+  /** How a step variable moves: its candidate at distance t from its parent, and how far it can go. */
+  const walker = (spec: VarSpec, parent: Paint) => {
+    const p = spec.path as Extract<Path, { kind: "step" }>
+    const pal = intent.palettes[p.palette]
+    const rule: ChromaRule = { hue: pal.hue, baseChroma: pal.chroma, baseL: pal.l, factor: p.chroma ?? 1, holdSaturation: pal.holdSaturation }
+    const translucent = p.translucent === "always" || (p.translucent === true && s.layer !== "flat")
+    const parentL = rgbToOklch(parent.rgb).l
+    const pageAway = mode === "light" ? -1 : 1
+    const away =
+      p.dir === "back"
+        ? -pageAway
+        : p.dir === "contrast"
+          ? Math.abs(lc([255, 255, 255], parent.rgb)) >= Math.abs(lc([0, 0, 0], parent.rgb))
+            ? 1
+            : -1
+          : pageAway
+    const candidate = (t: number): Paint => {
+      if (translucent) return { rgb: away < 0 ? intent.inkPair[p.palette].dark : intent.inkPair[p.palette].light, a: t }
+      const l = Math.min(1, Math.max(0, parentL + away * t))
+      return { rgb: toRgb({ l, c: chromaAt(rule, l), h: pal.hue }), a: 1 }
     }
-    prev = values
-    if (!recipes.some((r) => r.alsoDrives)) break
+    const hi = translucent ? 1 : away < 0 ? parentL : 1 - parentL
+    return { candidate, hi, translucent }
+  }
+
+  /**
+   * The best a later variable could do: the far end of its path. A recipe
+   * that constrains a variable it doesn't paint (a fixed state layer over a
+   * color) holds that color only to what its painted partner can reach.
+   */
+  const extreme = (name: string, vals: Record<string, Paint>): Paint | null => {
+    const spec = byName[name]
+    if (spec?.path.kind !== "step" || !vals[spec.path.from]) return null
+    const w = walker(spec, vals[spec.path.from])
+    return w.candidate(w.hi)
+  }
+
+  for (const spec of profile.vars) {
+    const p = spec.path
+    if (p.kind === "page") {
+      // Reference targets keep the system's own page lightness, in the engine's neutral.
+      const ref = profile.reference[mode][spec.name]
+      if (s.targetSource === "reference" && ref) {
+        const l = rgbToOklch(parseCss(ref).rgb).l
+        const n = intent.palettes.neutral
+        values[spec.name] = { rgb: toRgb({ l, c: n.chroma * 0.55, h: n.hue }), a: 1 }
+      } else values[spec.name] = { rgb: intent.surfaces.page, a: 1 }
+    } else if (p.kind === "solid") values[spec.name] = { rgb: intent.solids[p.role], a: 1 }
+    else if (p.kind === "onSolid") values[spec.name] = { rgb: intent.onSolid[p.role], a: 1 }
+    else if (p.kind === "alias" || p.kind === "alphaOf") values[spec.name] = derive(spec.name, values)
+    else if (p.kind === "series") values[spec.name] = { rgb: intent.series[p.index % intent.series.length], a: 1 }
+    else {
+      const surfaceKey = s.targetSource === "engine" ? p.engineSurface?.[mode] : undefined
+      if (surfaceKey) {
+        values[spec.name] = { rgb: intent.surfaces[surfaceKey], a: 1 }
+        continue
+      }
+      // Solved, derivable from something solved, or (for alsoDrives) a later step whose parent is this variable.
+      const known = (v: string): boolean => {
+        if (values[v] || root(v) === spec.name) return true
+        const d = derivedFrom[v]
+        return !!d && known(d.of) && (d.kind === "alias" || known(d.over))
+      }
+      const later = (v: string) => byName[v]?.path.kind === "step" && (byName[v].path as { from: string }).from === spec.name
+      const drivers = recipes.filter((r) => {
+        if (r.check) return false
+        if (exprVars(r.paint).some((v) => root(v) === spec.name)) return recipeVars(r).every(known)
+        if (r.alsoDrives?.includes(spec.name)) return recipeVars(r).every((v) => known(v) || later(v))
+        return false
+      })
+      const reqs = drivers.map((r) => ({ r, reqs: requirementsFor(r, intent, reference) }))
+      const w = walker(spec, values[p.from])
+      const ok = (t: number) => {
+        const c = w.candidate(t)
+        const vals: Record<string, Paint> = { ...values, [spec.name]: c }
+        for (const { r } of reqs)
+          for (const x of recipeVars(r)) {
+            if (vals[x]) continue
+            if (derivedFrom[x]) vals[x] = derive(x, vals)
+            else {
+              const e = extreme(x, vals)
+              if (e) vals[x] = e
+            }
+          }
+        return reqs.every(({ r, reqs }) => {
+          const { fg, bg } = render(r, vals)
+          return reqs.every((q) => measure(q.metric, fg, bg) >= q.min - 1e-6)
+        })
+      }
+      let t = w.hi
+      if (!ok(w.hi)) capped.add(spec.name)
+      else {
+        let lo = 0
+        for (let i = 0; i < 24; i++) {
+          const mid = (lo + t) / 2
+          if (ok(mid)) t = mid
+          else lo = mid
+        }
+      }
+      // Translucent values ship rounded up to whole percents, like a designer would write them.
+      if (w.translucent) t = Math.min(1, Math.ceil(t * 100 - 1e-9) / 100)
+      values[spec.name] = w.candidate(t)
+    }
   }
 
   const outcomes: Outcome[] = recipes.map((r) => {

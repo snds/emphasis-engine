@@ -2,6 +2,7 @@
 import { buildIntent } from "./intent"
 import { solveProfile, type Outcome, type ProfileResult } from "./profile"
 import { PROFILES, type ProfileId } from "./profiles"
+import { withReference } from "./reference"
 import type { A11y, Mode } from "./settings"
 import type { System } from "./system"
 
@@ -12,9 +13,12 @@ export function solveOutput(sys: System, id: ProfileId, mode: Mode): ProfileResu
   if (!m) cache.set(sys, (m = new Map()))
   const key = id + mode
   let r = m.get(key)
-  if (!r) m.set(key, (r = solveProfile(PROFILES[id], buildIntent(sys, mode))))
+  if (!r) m.set(key, (r = solveProfile(profileFor(sys, id), buildIntent(sys, mode))))
   return r
 }
+
+/** The profile with its reference: an imported theme when there is one, stock otherwise. */
+export const profileFor = (sys: System, id: ProfileId) => withReference(PROFILES[id], sys.settings.imports?.[id])
 
 export type Finding = { mode: Mode; outcome: Outcome }
 

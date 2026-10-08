@@ -5,6 +5,7 @@ import { shadcnFindings, solveShadcn } from "./shadcn"
 import { outputCss, outputFindings, solveOutput } from "./outputs"
 import { PROFILES } from "./profiles"
 import { parseCss } from "./profile"
+import { brandOf, coverage, mergedReference, parseTheme } from "./reference"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral, targetFor } from "./system"
@@ -451,5 +452,85 @@ describe("system profiles", () => {
     expect(outputCss(sy, "radix")).toContain(".dark, .dark-theme {")
     expect(outputCss(sy, "radix")).toMatch(/--accent-a3: rgba?\(.*\//)
     expect(outputCss(sy, "material")).toContain("--md-sys-color-on-primary-container:")
+  })
+})
+
+describe("theme import", () => {
+  const block = (sel: string, vals: Record<string, string>) => `${sel} {\n${Object.entries(vals).map(([k, v]) => `  ${k}: ${v};`).join("\n")}\n}`
+
+  it("reads a shadcn v4 globals.css, skipping @theme mappings and comments", () => {
+    const css = [
+      "/* stock */",
+      "@theme inline { --color-background: var(--background); }",
+      block(":root", PROFILES.shadcn.reference.light),
+      block(".dark", PROFILES.shadcn.reference.dark),
+    ].join("\n")
+    const t = parseTheme(css, PROFILES.shadcn)
+    expect(t.values.light["--primary"]).toBe(PROFILES.shadcn.reference.light["--primary"])
+    expect(t.values.dark["--border"]).toBe("oklch(1 0 0 / 10%)")
+    expect(coverage(PROFILES.shadcn, t).dark.missing).toHaveLength(0)
+  })
+
+  it("reads shadcn v3 bare HSL channels and var() references", () => {
+    const css = `:root { --background: 0 0% 100%; --foreground: 240 10% 3.9%; --primary: 240 5.9% 10%; --ring: var(--primary); }
+.dark { --background: 240 10% 3.9%; --foreground: 0 0% 98%; }`
+    const t = parseTheme(css, PROFILES.shadcn)
+    expect(parseCss(t.values.light["--background"]).rgb).toEqual([255, 255, 255])
+    expect(rgbToOklch(parseCss(t.values.light["--foreground"]).rgb).l).toBeLessThan(0.2)
+    expect(t.values.light["--ring"]).toBe("240 5.9% 10%")
+    // Dark has no primary of its own; light's doesn't leak into it as a value.
+    expect(t.values.dark["--primary"]).toBeUndefined()
+  })
+
+  it("reads Material Theme Builder exports and skips contrast variants", () => {
+    const css = `.light { --md-sys-color-primary: rgb(65 95 145); --md-sys-color-surface: rgb(249 249 255); }
+.light-medium-contrast { --md-sys-color-primary: rgb(1 2 3); }
+.dark { --md-sys-color-primary: rgb(170 199 255); }`
+    const t = parseTheme(css, PROFILES.material)
+    expect(parseCss(t.values.light["--md-sys-color-primary"]).rgb).toEqual([65, 95, 145])
+    expect(parseCss(t.values.dark["--md-sys-color-primary"]).rgb).toEqual([170, 199, 255])
+    const tokens = parseTheme(`:root { --md-sys-color-primary-light: #415f91; --md-sys-color-primary-dark: #aac7ff; }`, PROFILES.material)
+    expect(tokens.values.dark["--md-sys-color-primary"]).toBe("#aac7ff")
+    expect(brandOf(PROFILES.material, t)).toBe("#415f91")
+  })
+
+  it("reads a Radix custom palette by scale name, skipping display-p3 duplicates", () => {
+    const css = `:root, .light, .light-theme { --indigo-1: #fdfdfe; --indigo-9: #3e63dd; --indigo-contrast: #fff; --slate-1: #fcfcfd; --slate-12: #1c2024; }
+@supports (color: color(display-p3 1 1 1)) { @media (color-gamut: p3) { :root, .light { --indigo-9: color(display-p3 0.25 0.38 0.84); } } }
+.dark, .dark-theme { --indigo-9: #3e63dd; --slate-12: #edeef0; }`
+    const t = parseTheme(css, PROFILES.radix)
+    expect(t.values.light["--accent-9"]).toBe("#3e63dd")
+    expect(t.values.light["--gray-12"]).toBe("#1c2024")
+    expect(t.values.light["--accent-contrast"]).toBe("#fff")
+    expect(brandOf(PROFILES.radix, t)).toBe("#3e63dd")
+    // Missing alpha steps come from the imported solids, not stock.
+    const ref = mergedReference(PROFILES.radix, t)
+    const a9 = parseCss(ref.light["--accent-a9"])
+    expect(hex(composite(a9.rgb, a9.a, [255, 255, 255]))).toBe("#3e63dd")
+  })
+
+  it("re-solving from its own output is stable, in every profile", () => {
+    for (const id of ["shadcn", "radix", "material"] as const) {
+      const sy = generate(s({ theme: "#7c3aed" }))
+      const t = parseTheme(outputCss(sy, id), PROFILES[id])
+      const again = generate(s({ theme: "#7c3aed", imports: { [id]: t } }))
+      for (const mode of ["light", "dark"] as const) {
+        const a = solveOutput(sy, id, mode).values
+        const b = solveOutput(again, id, mode).values
+        for (const k of Object.keys(a)) {
+          const pa = composite(a[k].rgb, a[k].a, [128, 128, 128])
+          const pb = composite(b[k].rgb, b[k].a, [128, 128, 128])
+          expect(Math.abs(rgbToOklch(pa).l - rgbToOklch(pb).l), `${id} ${mode} ${k}`).toBeLessThan(0.012)
+        }
+      }
+    }
+  })
+
+  it("targets follow the import: a lighter imported border solves to a lighter border", () => {
+    const css = `:root { --border: oklch(0.96 0 0); } .dark { --border: oklch(1 0 0 / 5%); }`
+    const base = solveOutput(generate(s()), "shadcn", "dark")
+    const soft = solveOutput(generate(s({ imports: { shadcn: parseTheme(css, PROFILES.shadcn) } })), "shadcn", "dark")
+    const seen = (r: typeof base) => composite(r.values["--border"].rgb, r.values["--border"].a, r.values["--card"].rgb)
+    expect(rgbToOklch(seen(soft)).l).toBeLessThan(rgbToOklch(seen(base)).l)
   })
 })

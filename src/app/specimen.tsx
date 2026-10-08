@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from "react"
-import { solveOutput } from "@/engine/outputs"
+import { profileFor, solveOutput } from "@/engine/outputs"
 import { PROFILES, type ProfileId } from "@/engine/profiles"
 import type { Mode } from "@/engine/settings"
 import type { System } from "@/engine/system"
@@ -13,8 +13,9 @@ import type { System } from "@/engine/system"
  */
 export function Specimens({ sys, mode, id }: { sys: System; mode: Mode; id: Exclude<ProfileId, "shadcn"> }) {
   const p = PROFILES[id]
+  const imported = !!sys.settings.imports?.[id]
   const solved = solveOutput(sys, id, mode)
-  const stock = p.reference[mode]
+  const stock = profileFor(sys, id).reference[mode]
   const yours = Object.fromEntries(Object.entries(solved.values).map(([k, v]) => [k, v.css]))
   const Spec = id === "radix" ? RadixSpecimen : MaterialSpecimen
   return (
@@ -22,11 +23,12 @@ export function Specimens({ sys, mode, id }: { sys: System; mode: Mode; id: Excl
       <div>
         <h2 className="text-base font-semibold">{p.label}</h2>
         <p className="text-sm text-muted-foreground">
-          {p.description} Approximate components, painted only with {p.label}'s own variables: stock on the left, yours on the right.
+          {p.description} Approximate components, painted only with {p.label}'s own variables: {imported ? "your imported theme" : "stock"} on the left, your colors
+          solved through it on the right.
         </p>
       </div>
       <div className="grid gap-4 lg:grid-cols-2">
-        <Column title={`Stock ${p.label}`}>
+        <Column title={imported ? "Imported reference" : `Stock ${p.label}`}>
           <Spec vars={stock} />
         </Column>
         <Column title="Your colors">
