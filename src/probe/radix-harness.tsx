@@ -49,6 +49,16 @@ function Set({ where }: { where: string }) {
   )
 }
 
+// The probe switches modes with the dark class; Radix scopes its variables to the Theme element.
+;(window as unknown as { __probe: unknown }).__probe = {
+  async setMode(m: "light" | "dark") {
+    document.documentElement.classList.toggle("dark", m === "dark")
+    document.documentElement.classList.toggle("light", m === "light")
+    await new Promise((r) => setTimeout(r, 100))
+  },
+  scopes: () => Array.from(document.querySelectorAll(".radix-themes")),
+}
+
 createRoot(document.getElementById("root")!).render(
   <Theme accentColor="blue" grayColor="gray" data-probe-theme>
     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, padding: 24 }} data-surface="page">

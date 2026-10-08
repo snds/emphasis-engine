@@ -6,7 +6,8 @@ import type { Settings } from "@/engine/settings"
 import type { Engine } from "./use-engine"
 import { InfoTip } from "./info-tip"
 
-const HINTS: Record<Settings["output"], string> = {
+const GENERIC_HINT = "Paste the system's theme CSS: the light and dark blocks that define its color variables."
+const HINTS: Record<string, string> = {
   shadcn: "Paste globals.css: the :root and .dark blocks. oklch, hsl, bare HSL channels (shadcn v3), hex, and var() references all read.",
   radix: "Paste a Radix custom palette (the light and dark blocks). Scales are matched by name: gray-family for gray, your accent, and red. Missing alpha steps are derived from the solid steps.",
   material: "Paste a Material Theme Builder CSS export (.light and .dark, or tokens.css with -light / -dark suffixes). Contrast variants are skipped.",
@@ -28,7 +29,7 @@ export function ThemeImport({ settings: s, update }: { settings: Settings; updat
     const t = parseTheme(text, profile)
     const found = Object.keys(t.values.light).length + Object.keys(t.values.dark).length
     if (!found) {
-      setError(`No ${profile.label} variables found. ${HINTS[s.output]}`)
+      setError(`No ${profile.label} variables found. ${(HINTS[s.output] ?? GENERIC_HINT)}`)
       return
     }
     setError(null)
@@ -97,7 +98,7 @@ export function ThemeImport({ settings: s, update }: { settings: Settings; updat
             aria-label={`${profile.label} theme CSS`}
             value={text}
             onChange={(e) => setText(e.target.value)}
-            placeholder={HINTS[s.output]}
+            placeholder={(HINTS[s.output] ?? GENERIC_HINT)}
             spellCheck={false}
             className="min-h-40 w-full rounded-md border border-input bg-transparent px-2.5 py-2 font-mono text-xs outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 dark:bg-input/30"
           />

@@ -2,11 +2,11 @@
  "profile": "radix",
  "probedAt": "2026-10-08",
  "source": "@radix-ui/themes ^3.3.0",
- "variables": 115,
+ "variables": 113,
  "modes": {
   "light": {
    "samples": 394,
-   "recipes": 69,
+   "recipes": 68,
    "observed": [
     "card",
     "field",
@@ -32,9 +32,6 @@
     "focus-panel",
     "callout"
    ],
-   "elsewhere": [
-    "error-text"
-   ],
    "unobserved": [
     {
      "id": "text-lo-panel",
@@ -54,445 +51,470 @@
    ],
    "candidates": [
     {
+     "key": "--accent-a11 | --accent-surface",
+     "prop": "color",
+     "sources": [
+      "button-surface@page rest color",
+      "button-surface@page hover color",
+      "button-surface@page focus color",
+      "badge-surface@page rest color",
+      "badge-surface@page hover color",
+      "badge-surface@page pressed color",
+      "badge-surface@page focus color",
+      "button-surface@card rest color",
+      "button-surface@card hover color",
+      "button-surface@card focus color",
+      "badge-surface@card rest color",
+      "badge-surface@card hover color",
+      "badge-surface@card pressed color",
+      "badge-surface@card focus color"
+     ]
+    },
+    {
      "key": "--accent-a11 | --color-background",
      "prop": "color",
      "sources": [
-      "button-outline rest color",
-      "button-outline focus color",
-      "button-ghost rest color",
-      "button-ghost focus color",
-      "badge-outline rest color",
-      "badge-outline hover color",
-      "badge-outline pressed color",
-      "badge-outline focus color",
-      "link rest color",
-      "link hover color",
-      "link pressed color",
-      "link focus color"
+      "button-outline@page rest color",
+      "button-outline@page focus color",
+      "button-ghost@page rest color",
+      "button-ghost@page focus color",
+      "badge-outline@page rest color",
+      "badge-outline@page hover color",
+      "badge-outline@page pressed color",
+      "badge-outline@page focus color",
+      "link@page rest color",
+      "link@page hover color",
+      "link@page pressed color",
+      "link@page focus color"
      ]
     },
     {
      "key": "--accent-a3 | --color-background",
      "prop": "background-color",
      "sources": [
-      "button-soft rest background-color",
-      "button-soft focus background-color",
-      "button-surface pressed background-color",
-      "button-outline pressed background-color",
-      "button-ghost hover background-color",
-      "badge-soft rest background-color",
-      "badge-soft hover background-color",
-      "badge-soft pressed background-color",
-      "badge-soft focus background-color"
+      "button-soft@page rest background-color",
+      "button-soft@page focus background-color",
+      "button-surface@page pressed background-color",
+      "button-outline@page pressed background-color",
+      "button-ghost@page hover background-color",
+      "badge-soft@page rest background-color",
+      "badge-soft@page hover background-color",
+      "badge-soft@page pressed background-color",
+      "badge-soft@page focus background-color"
      ]
     },
     {
      "key": "--accent-indicator | --color-background",
      "prop": "background-color",
      "sources": [
-      "checkbox focus background-color",
-      "checkbox-checked rest background-color",
-      "checkbox-checked hover background-color",
-      "checkbox-checked pressed background-color",
-      "tabs rest background-color",
-      "tabs hover background-color",
-      "tabs pressed background-color",
-      "tabs focus background-color"
-     ]
-    },
-    {
-     "key": "--gray-a11 | --color-background",
-     "prop": "color",
-     "sources": [
-      "tabs rest color",
-      "tabs hover color",
-      "tabs pressed color",
-      "tabs focus color",
-      "text-muted rest color",
-      "text-muted hover color",
-      "text-muted pressed color",
-      "text-muted focus color"
-     ]
-    },
-    {
-     "key": "--accent-indicator | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "checkbox focus background-color",
-      "checkbox-checked rest background-color",
-      "checkbox-checked hover background-color",
-      "checkbox-checked pressed background-color",
-      "tabs rest background-color",
-      "tabs hover background-color",
-      "tabs pressed background-color",
-      "tabs focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-surface | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "button-surface rest background-color",
-      "button-surface hover background-color",
-      "button-surface focus background-color",
-      "badge-surface rest background-color",
-      "badge-surface hover background-color",
-      "badge-surface pressed background-color",
-      "badge-surface focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-a11 | --accent-surface",
-     "prop": "color",
-     "sources": [
-      "button-surface rest color",
-      "button-surface hover color",
-      "button-surface focus color",
-      "badge-surface rest color",
-      "badge-surface hover color",
-      "badge-surface pressed color",
-      "badge-surface focus color"
-     ]
-    },
-    {
-     "key": "--accent-surface | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "button-surface rest background-color",
-      "button-surface hover background-color",
-      "button-surface focus background-color",
-      "badge-surface rest background-color",
-      "badge-surface hover background-color",
-      "badge-surface pressed background-color",
-      "badge-surface focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-9 | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "button-solid rest background-color",
-      "button-solid focus background-color",
-      "badge-solid rest background-color",
-      "badge-solid hover background-color",
-      "badge-solid pressed background-color",
-      "badge-solid focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-a8 | --color-background",
-     "prop": "inset-ring",
-     "sources": [
-      "button-outline rest inset-ring",
-      "button-outline focus inset-ring",
-      "badge-outline rest inset-ring",
-      "badge-outline hover inset-ring",
-      "badge-outline pressed inset-ring",
-      "badge-outline focus inset-ring"
-     ]
-    },
-    {
-     "key": "--gray-a3 | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "switch rest background-color",
-      "switch hover background-color",
-      "switch focus background-color",
-      "switch-checked rest background-color",
-      "switch-checked hover background-color",
-      "switch-checked focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-9 | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "button-solid rest background-color",
-      "button-solid focus background-color",
-      "badge-solid rest background-color",
-      "badge-solid hover background-color",
-      "badge-solid pressed background-color",
-      "badge-solid focus background-color"
-     ]
-    },
-    {
-     "key": "--gray-a3 | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "switch rest background-color",
-      "switch hover background-color",
-      "switch focus background-color",
-      "switch-checked rest background-color",
-      "switch-checked hover background-color",
-      "switch-checked focus background-color"
-     ]
-    },
-    {
-     "key": "--color-surface | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "checkbox rest background-color",
-      "checkbox hover background-color",
-      "checkbox pressed background-color",
-      "checkbox-checked focus background-color"
-     ]
-    },
-    {
-     "key": "--gray-a7 | --color-background",
-     "prop": "inset-ring",
-     "sources": [
-      "checkbox rest inset-ring",
-      "checkbox hover inset-ring",
-      "checkbox pressed inset-ring",
-      "checkbox-checked focus inset-ring"
+      "checkbox@page focus background-color",
+      "checkbox-checked@page rest background-color",
+      "checkbox-checked@page hover background-color",
+      "checkbox-checked@page pressed background-color",
+      "tabs@page rest background-color",
+      "tabs@page hover background-color",
+      "tabs@page pressed background-color",
+      "tabs@page focus background-color"
      ]
     },
     {
      "key": "--accent-a6 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
-      "badge-surface rest inset-ring",
-      "badge-surface hover inset-ring",
-      "badge-surface pressed inset-ring",
-      "badge-surface focus inset-ring"
+      "badge-surface@page rest inset-ring",
+      "badge-surface@page hover inset-ring",
+      "badge-surface@page pressed inset-ring",
+      "badge-surface@page focus inset-ring",
+      "badge-surface@card rest inset-ring",
+      "badge-surface@card hover inset-ring",
+      "badge-surface@card pressed inset-ring",
+      "badge-surface@card focus inset-ring"
      ]
     },
     {
-     "key": "--gray-12 | --color-background",
+     "key": "--gray-a11 | --color-background",
      "prop": "color",
      "sources": [
-      "text rest color",
-      "text hover color",
-      "text pressed color",
-      "text focus color"
+      "tabs@page rest color",
+      "tabs@page hover color",
+      "tabs@page pressed color",
+      "tabs@page focus color",
+      "text-muted@page rest color",
+      "text-muted@page hover color",
+      "text-muted@page pressed color",
+      "text-muted@page focus color"
      ]
     },
     {
-     "key": "--gray-a6 | --color-background",
+     "key": "--accent-indicator | --color-panel",
      "prop": "background-color",
      "sources": [
-      "separator rest background-color",
-      "separator hover background-color",
-      "separator pressed background-color",
-      "separator focus background-color"
+      "checkbox@card focus background-color",
+      "checkbox-checked@card rest background-color",
+      "checkbox-checked@card hover background-color",
+      "checkbox-checked@card pressed background-color",
+      "tabs@card rest background-color",
+      "tabs@card hover background-color",
+      "tabs@card pressed background-color",
+      "tabs@card focus background-color"
      ]
     },
     {
-     "key": "--red-a3 | --color-background",
+     "key": "--accent-surface | --color-background",
      "prop": "background-color",
      "sources": [
-      "callout-red rest background-color",
-      "callout-red hover background-color",
-      "callout-red pressed background-color",
-      "callout-red focus background-color"
+      "button-surface@page rest background-color",
+      "button-surface@page hover background-color",
+      "button-surface@page focus background-color",
+      "badge-surface@page rest background-color",
+      "badge-surface@page hover background-color",
+      "badge-surface@page pressed background-color",
+      "badge-surface@page focus background-color"
      ]
     },
     {
-     "key": "mix(--gray-a1,--red-10,0.331) | --color-background",
-     "prop": "ring",
+     "key": "--accent-surface | --color-panel",
+     "prop": "background-color",
      "sources": [
-      "card rest ring",
-      "card hover ring",
-      "card pressed ring",
-      "card focus ring"
+      "button-surface@card rest background-color",
+      "button-surface@card hover background-color",
+      "button-surface@card focus background-color",
+      "badge-surface@card rest background-color",
+      "badge-surface@card hover background-color",
+      "badge-surface@card pressed background-color",
+      "badge-surface@card focus background-color"
      ]
     },
     {
-     "key": "--gray-a7 | --color-panel",
+     "key": "--accent-9 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-solid@page rest background-color",
+      "button-solid@page focus background-color",
+      "badge-solid@page rest background-color",
+      "badge-solid@page hover background-color",
+      "badge-solid@page pressed background-color",
+      "badge-solid@page focus background-color"
+     ]
+    },
+    {
+     "key": "--accent-a8 | --color-background",
      "prop": "inset-ring",
      "sources": [
-      "checkbox rest inset-ring",
-      "checkbox hover inset-ring",
-      "checkbox pressed inset-ring",
-      "checkbox-checked focus inset-ring"
+      "button-outline@page rest inset-ring",
+      "button-outline@page focus inset-ring",
+      "badge-outline@page rest inset-ring",
+      "badge-outline@page hover inset-ring",
+      "badge-outline@page pressed inset-ring",
+      "badge-outline@page focus inset-ring"
      ]
     },
     {
-     "key": "--red-a3 | --color-panel",
+     "key": "--gray-a3 | --color-background",
      "prop": "background-color",
      "sources": [
-      "callout-red rest background-color",
-      "callout-red hover background-color",
-      "callout-red pressed background-color",
-      "callout-red focus background-color"
+      "switch@page rest background-color",
+      "switch@page hover background-color",
+      "switch@page focus background-color",
+      "switch-checked@page rest background-color",
+      "switch-checked@page hover background-color",
+      "switch-checked@page focus background-color"
      ]
     },
     {
      "key": "--accent-a4 | --gray-a3",
      "prop": "ring",
      "sources": [
-      "switch focus ring",
-      "switch-checked rest ring",
-      "switch-checked hover ring"
+      "switch@page focus ring",
+      "switch-checked@page rest ring",
+      "switch-checked@page hover ring",
+      "switch@card focus ring",
+      "switch-checked@card rest ring",
+      "switch-checked@card hover ring"
      ]
     },
     {
-     "key": "--accent-a4 | --color-background",
+     "key": "--accent-9 | --color-panel",
      "prop": "background-color",
      "sources": [
-      "button-soft hover background-color",
-      "button-ghost pressed background-color"
+      "button-solid@card rest background-color",
+      "button-solid@card focus background-color",
+      "badge-solid@card rest background-color",
+      "badge-solid@card hover background-color",
+      "badge-solid@card pressed background-color",
+      "badge-solid@card focus background-color"
+     ]
+    },
+    {
+     "key": "--gray-a3 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "switch@card rest background-color",
+      "switch@card hover background-color",
+      "switch@card focus background-color",
+      "switch-checked@card rest background-color",
+      "switch-checked@card hover background-color",
+      "switch-checked@card focus background-color"
      ]
     },
     {
      "key": "--accent-a11 | --accent-a4",
      "prop": "color",
      "sources": [
-      "button-soft hover color",
-      "button-ghost pressed color"
+      "button-soft@page hover color",
+      "button-ghost@page pressed color",
+      "button-soft@card hover color",
+      "button-ghost@card pressed color"
      ]
     },
     {
      "key": "--accent-a7 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
-      "button-surface rest inset-ring",
-      "button-surface focus inset-ring"
+      "button-surface@page rest inset-ring",
+      "button-surface@page focus inset-ring",
+      "button-surface@card rest inset-ring",
+      "button-surface@card focus inset-ring"
      ]
     },
     {
      "key": "--accent-a8 | --accent-a3",
      "prop": "inset-ring",
      "sources": [
-      "button-surface pressed inset-ring",
-      "button-outline pressed inset-ring"
+      "button-surface@page pressed inset-ring",
+      "button-outline@page pressed inset-ring",
+      "button-surface@card pressed inset-ring",
+      "button-outline@card pressed inset-ring"
      ]
     },
     {
-     "key": "--gray-a4 | --color-background",
+     "key": "--color-surface | --color-background",
      "prop": "background-color",
      "sources": [
-      "switch pressed background-color",
-      "switch-checked pressed background-color"
+      "checkbox@page rest background-color",
+      "checkbox@page hover background-color",
+      "checkbox@page pressed background-color",
+      "checkbox-checked@page focus background-color"
+     ]
+    },
+    {
+     "key": "--gray-a7 | --color-background",
+     "prop": "inset-ring",
+     "sources": [
+      "checkbox@page rest inset-ring",
+      "checkbox@page hover inset-ring",
+      "checkbox@page pressed inset-ring",
+      "checkbox-checked@page focus inset-ring"
      ]
     },
     {
      "key": "--gray-12 | --accent-indicator",
      "prop": "color",
      "sources": [
-      "tabs rest color",
-      "tabs focus color"
+      "tabs@page rest color",
+      "tabs@page focus color",
+      "tabs@card rest color",
+      "tabs@card focus color"
      ]
     },
     {
-     "key": "--accent-10 | --color-panel",
-     "prop": "background-color",
+     "key": "--gray-12 | --color-background",
+     "prop": "color",
      "sources": [
-      "button-solid hover background-color",
-      "button-solid pressed background-color"
+      "text@page rest color",
+      "text@page hover color",
+      "text@page pressed color",
+      "text@page focus color"
      ]
     },
     {
-     "key": "--gray-a4 | --color-panel",
+     "key": "--gray-a6 | --color-background",
      "prop": "background-color",
      "sources": [
-      "switch pressed background-color",
-      "switch-checked pressed background-color"
+      "separator@page rest background-color",
+      "separator@page hover background-color",
+      "separator@page pressed background-color",
+      "separator@page focus background-color"
      ]
     },
     {
-     "key": "--accent-a5 | --color-background",
+     "key": "--red-a3 | --color-background",
      "prop": "background-color",
      "sources": [
-      "button-soft pressed background-color"
+      "callout-red@page rest background-color",
+      "callout-red@page hover background-color",
+      "callout-red@page pressed background-color",
+      "callout-red@page focus background-color"
+     ]
+    },
+    {
+     "key": "--gray-a7 | --color-panel",
+     "prop": "inset-ring",
+     "sources": [
+      "checkbox@card rest inset-ring",
+      "checkbox@card hover inset-ring",
+      "checkbox@card pressed inset-ring",
+      "checkbox-checked@card focus inset-ring"
+     ]
+    },
+    {
+     "key": "--red-a3 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "callout-red@card rest background-color",
+      "callout-red@card hover background-color",
+      "callout-red@card pressed background-color",
+      "callout-red@card focus background-color"
+     ]
+    },
+    {
+     "key": "--accent-a4 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-soft@page hover background-color",
+      "button-ghost@page pressed background-color"
      ]
     },
     {
      "key": "--accent-a11 | --accent-a5",
      "prop": "color",
      "sources": [
-      "button-soft pressed color"
+      "button-soft@page pressed color",
+      "button-soft@card pressed color"
      ]
     },
     {
      "key": "--accent-a8 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
-      "button-surface hover inset-ring"
-     ]
-    },
-    {
-     "key": "--accent-a2 | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "button-outline hover background-color"
+      "button-surface@page hover inset-ring",
+      "button-surface@card hover inset-ring"
      ]
     },
     {
      "key": "--accent-a11 | --accent-a2",
      "prop": "color",
      "sources": [
-      "button-outline hover color"
+      "button-outline@page hover color",
+      "button-outline@card hover color"
      ]
     },
     {
      "key": "--accent-a8 | --accent-a2",
      "prop": "inset-ring",
      "sources": [
-      "button-outline hover inset-ring"
+      "button-outline@page hover inset-ring",
+      "button-outline@card hover inset-ring"
+     ]
+    },
+    {
+     "key": "--gray-a4 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "switch@page pressed background-color",
+      "switch-checked@page pressed background-color"
      ]
     },
     {
      "key": "--accent-a4 | --gray-a4",
      "prop": "ring",
      "sources": [
-      "switch-checked pressed ring"
+      "switch-checked@page pressed ring",
+      "switch-checked@card pressed ring"
      ]
     },
     {
      "key": "--gray-a3 | --accent-indicator",
      "prop": "background-color",
      "sources": [
-      "tabs hover background-color"
+      "tabs@page hover background-color",
+      "tabs@card hover background-color"
      ]
     },
     {
      "key": "--gray-12 | --gray-a3",
      "prop": "color",
      "sources": [
-      "tabs hover color"
+      "tabs@page hover color",
+      "tabs@card hover color"
      ]
     },
     {
      "key": "--accent-a3 | --accent-indicator",
      "prop": "background-color",
      "sources": [
-      "tabs pressed background-color"
+      "tabs@page pressed background-color",
+      "tabs@card pressed background-color"
      ]
     },
     {
      "key": "--gray-12 | --accent-a3",
      "prop": "color",
      "sources": [
-      "tabs pressed color"
+      "tabs@page pressed color",
+      "tabs@card pressed color"
      ]
     },
     {
      "key": "--focus-8 | --accent-indicator",
      "prop": "outline",
      "sources": [
-      "tabs pressed outline"
+      "tabs@page pressed outline",
+      "tabs@card pressed outline"
+     ]
+    },
+    {
+     "key": "--accent-10 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "button-solid@card hover background-color",
+      "button-solid@card pressed background-color"
+     ]
+    },
+    {
+     "key": "--gray-a4 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "switch@card pressed background-color",
+      "switch-checked@card pressed background-color"
+     ]
+    },
+    {
+     "key": "--accent-a5 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-soft@page pressed background-color"
+     ]
+    },
+    {
+     "key": "--accent-a2 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-outline@page hover background-color"
      ]
     },
     {
      "key": "--accent-a5 | --color-panel",
      "prop": "background-color",
      "sources": [
-      "button-soft pressed background-color"
+      "button-soft@card pressed background-color"
      ]
     },
     {
      "key": "--accent-a2 | --color-panel",
      "prop": "background-color",
      "sources": [
-      "button-outline hover background-color"
+      "button-outline@card hover background-color"
      ]
     }
+   ],
+   "elsewhere": [
+    "error-text"
    ]
   },
   "dark": {
    "samples": 394,
-   "recipes": 69,
+   "recipes": 68,
    "observed": [
     "card",
     "field",
@@ -519,9 +541,6 @@
     "focus-panel",
     "callout"
    ],
-   "elsewhere": [
-    "error-text"
-   ],
    "unobserved": [
     {
      "id": "text-lo-panel",
@@ -541,414 +560,439 @@
    ],
    "candidates": [
     {
+     "key": "--accent-a11 | --accent-surface",
+     "prop": "color",
+     "sources": [
+      "button-surface@page rest color",
+      "button-surface@page hover color",
+      "button-surface@page focus color",
+      "badge-surface@page rest color",
+      "badge-surface@page hover color",
+      "badge-surface@page pressed color",
+      "badge-surface@page focus color",
+      "button-surface@card rest color",
+      "button-surface@card hover color",
+      "button-surface@card focus color",
+      "badge-surface@card rest color",
+      "badge-surface@card hover color",
+      "badge-surface@card pressed color",
+      "badge-surface@card focus color"
+     ]
+    },
+    {
      "key": "--accent-a11 | --color-background",
      "prop": "color",
      "sources": [
-      "button-outline rest color",
-      "button-outline focus color",
-      "button-ghost rest color",
-      "button-ghost focus color",
-      "badge-outline rest color",
-      "badge-outline hover color",
-      "badge-outline pressed color",
-      "badge-outline focus color",
-      "link rest color",
-      "link hover color",
-      "link pressed color",
-      "link focus color"
+      "button-outline@page rest color",
+      "button-outline@page focus color",
+      "button-ghost@page rest color",
+      "button-ghost@page focus color",
+      "badge-outline@page rest color",
+      "badge-outline@page hover color",
+      "badge-outline@page pressed color",
+      "badge-outline@page focus color",
+      "link@page rest color",
+      "link@page hover color",
+      "link@page pressed color",
+      "link@page focus color"
      ]
     },
     {
      "key": "--accent-a3 | --color-background",
      "prop": "background-color",
      "sources": [
-      "button-soft rest background-color",
-      "button-soft focus background-color",
-      "button-surface pressed background-color",
-      "button-outline pressed background-color",
-      "button-ghost hover background-color",
-      "badge-soft rest background-color",
-      "badge-soft hover background-color",
-      "badge-soft pressed background-color",
-      "badge-soft focus background-color"
-     ]
-    },
-    {
-     "key": "--gray-a11 | --color-background",
-     "prop": "color",
-     "sources": [
-      "tabs rest color",
-      "tabs hover color",
-      "tabs pressed color",
-      "tabs focus color",
-      "text-muted rest color",
-      "text-muted hover color",
-      "text-muted pressed color",
-      "text-muted focus color"
-     ]
-    },
-    {
-     "key": "--accent-indicator | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "checkbox rest background-color",
-      "checkbox hover background-color",
-      "checkbox pressed background-color",
-      "checkbox-checked focus background-color",
-      "tabs rest background-color",
-      "tabs hover background-color",
-      "tabs pressed background-color",
-      "tabs focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-surface | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "button-surface rest background-color",
-      "button-surface hover background-color",
-      "button-surface focus background-color",
-      "badge-surface rest background-color",
-      "badge-surface hover background-color",
-      "badge-surface pressed background-color",
-      "badge-surface focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-a11 | --accent-surface",
-     "prop": "color",
-     "sources": [
-      "button-surface rest color",
-      "button-surface hover color",
-      "button-surface focus color",
-      "badge-surface rest color",
-      "badge-surface hover color",
-      "badge-surface pressed color",
-      "badge-surface focus color"
-     ]
-    },
-    {
-     "key": "--accent-surface | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "button-surface rest background-color",
-      "button-surface hover background-color",
-      "button-surface focus background-color",
-      "badge-surface rest background-color",
-      "badge-surface hover background-color",
-      "badge-surface pressed background-color",
-      "badge-surface focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-a8 | --color-background",
-     "prop": "inset-ring",
-     "sources": [
-      "button-outline rest inset-ring",
-      "button-outline focus inset-ring",
-      "badge-outline rest inset-ring",
-      "badge-outline hover inset-ring",
-      "badge-outline pressed inset-ring",
-      "badge-outline focus inset-ring"
-     ]
-    },
-    {
-     "key": "--gray-a3 | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "switch rest background-color",
-      "switch hover background-color",
-      "switch focus background-color",
-      "switch-checked rest background-color",
-      "switch-checked hover background-color",
-      "switch-checked focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-9 | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "button-solid rest background-color",
-      "button-solid focus background-color",
-      "badge-solid rest background-color",
-      "badge-solid hover background-color",
-      "badge-solid pressed background-color",
-      "badge-solid focus background-color"
-     ]
-    },
-    {
-     "key": "--gray-a3 | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "switch rest background-color",
-      "switch hover background-color",
-      "switch focus background-color",
-      "switch-checked rest background-color",
-      "switch-checked hover background-color",
-      "switch-checked focus background-color"
-     ]
-    },
-    {
-     "key": "--color-surface | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "checkbox focus background-color",
-      "checkbox-checked rest background-color",
-      "checkbox-checked hover background-color",
-      "checkbox-checked pressed background-color"
-     ]
-    },
-    {
-     "key": "--gray-a7 | --color-background",
-     "prop": "inset-ring",
-     "sources": [
-      "checkbox focus inset-ring",
-      "checkbox-checked rest inset-ring",
-      "checkbox-checked hover inset-ring",
-      "checkbox-checked pressed inset-ring"
+      "button-soft@page rest background-color",
+      "button-soft@page focus background-color",
+      "button-surface@page pressed background-color",
+      "button-outline@page pressed background-color",
+      "button-ghost@page hover background-color",
+      "badge-soft@page rest background-color",
+      "badge-soft@page hover background-color",
+      "badge-soft@page pressed background-color",
+      "badge-soft@page focus background-color"
      ]
     },
     {
      "key": "--accent-a6 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
-      "badge-surface rest inset-ring",
-      "badge-surface hover inset-ring",
-      "badge-surface pressed inset-ring",
-      "badge-surface focus inset-ring"
+      "badge-surface@page rest inset-ring",
+      "badge-surface@page hover inset-ring",
+      "badge-surface@page pressed inset-ring",
+      "badge-surface@page focus inset-ring",
+      "badge-surface@card rest inset-ring",
+      "badge-surface@card hover inset-ring",
+      "badge-surface@card pressed inset-ring",
+      "badge-surface@card focus inset-ring"
      ]
     },
     {
-     "key": "--gray-12 | --color-background",
+     "key": "--gray-a11 | --color-background",
      "prop": "color",
      "sources": [
-      "text rest color",
-      "text hover color",
-      "text pressed color",
-      "text focus color"
+      "tabs@page rest color",
+      "tabs@page hover color",
+      "tabs@page pressed color",
+      "tabs@page focus color",
+      "text-muted@page rest color",
+      "text-muted@page hover color",
+      "text-muted@page pressed color",
+      "text-muted@page focus color"
      ]
     },
     {
-     "key": "--gray-a6 | --color-background",
+     "key": "--accent-indicator | --color-panel",
      "prop": "background-color",
      "sources": [
-      "separator rest background-color",
-      "separator hover background-color",
-      "separator pressed background-color",
-      "separator focus background-color"
+      "checkbox@card rest background-color",
+      "checkbox@card hover background-color",
+      "checkbox@card pressed background-color",
+      "checkbox-checked@card focus background-color",
+      "tabs@card rest background-color",
+      "tabs@card hover background-color",
+      "tabs@card pressed background-color",
+      "tabs@card focus background-color"
      ]
     },
     {
-     "key": "--red-a3 | --color-background",
+     "key": "--accent-surface | --color-background",
      "prop": "background-color",
      "sources": [
-      "callout-red rest background-color",
-      "callout-red hover background-color",
-      "callout-red pressed background-color",
-      "callout-red focus background-color"
+      "button-surface@page rest background-color",
+      "button-surface@page hover background-color",
+      "button-surface@page focus background-color",
+      "badge-surface@page rest background-color",
+      "badge-surface@page hover background-color",
+      "badge-surface@page pressed background-color",
+      "badge-surface@page focus background-color"
      ]
     },
     {
-     "key": "mix(--gray-a1,--red-10,0.331) | --color-background",
-     "prop": "ring",
+     "key": "--accent-surface | --color-panel",
+     "prop": "background-color",
      "sources": [
-      "card rest ring",
-      "card hover ring",
-      "card pressed ring",
-      "card focus ring"
+      "button-surface@card rest background-color",
+      "button-surface@card hover background-color",
+      "button-surface@card focus background-color",
+      "badge-surface@card rest background-color",
+      "badge-surface@card hover background-color",
+      "badge-surface@card pressed background-color",
+      "badge-surface@card focus background-color"
      ]
     },
     {
-     "key": "--gray-a7 | --color-panel",
+     "key": "--accent-a8 | --color-background",
      "prop": "inset-ring",
      "sources": [
-      "checkbox focus inset-ring",
-      "checkbox-checked rest inset-ring",
-      "checkbox-checked hover inset-ring",
-      "checkbox-checked pressed inset-ring"
+      "button-outline@page rest inset-ring",
+      "button-outline@page focus inset-ring",
+      "badge-outline@page rest inset-ring",
+      "badge-outline@page hover inset-ring",
+      "badge-outline@page pressed inset-ring",
+      "badge-outline@page focus inset-ring"
      ]
     },
     {
-     "key": "--red-a3 | --color-panel",
+     "key": "--gray-a3 | --color-background",
      "prop": "background-color",
      "sources": [
-      "callout-red rest background-color",
-      "callout-red hover background-color",
-      "callout-red pressed background-color",
-      "callout-red focus background-color"
+      "switch@page rest background-color",
+      "switch@page hover background-color",
+      "switch@page focus background-color",
+      "switch-checked@page rest background-color",
+      "switch-checked@page hover background-color",
+      "switch-checked@page focus background-color"
      ]
     },
     {
      "key": "--accent-a4 | --gray-a3",
      "prop": "ring",
      "sources": [
-      "switch rest ring",
-      "switch hover ring",
-      "switch-checked focus ring"
+      "switch@page rest ring",
+      "switch@page hover ring",
+      "switch-checked@page focus ring",
+      "switch@card rest ring",
+      "switch@card hover ring",
+      "switch-checked@card focus ring"
      ]
     },
     {
-     "key": "--accent-a4 | --color-background",
+     "key": "--accent-9 | --color-panel",
      "prop": "background-color",
      "sources": [
-      "button-soft hover background-color",
-      "button-ghost pressed background-color"
+      "button-solid@card rest background-color",
+      "button-solid@card focus background-color",
+      "badge-solid@card rest background-color",
+      "badge-solid@card hover background-color",
+      "badge-solid@card pressed background-color",
+      "badge-solid@card focus background-color"
+     ]
+    },
+    {
+     "key": "--gray-a3 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "switch@card rest background-color",
+      "switch@card hover background-color",
+      "switch@card focus background-color",
+      "switch-checked@card rest background-color",
+      "switch-checked@card hover background-color",
+      "switch-checked@card focus background-color"
      ]
     },
     {
      "key": "--accent-a11 | --accent-a4",
      "prop": "color",
      "sources": [
-      "button-soft hover color",
-      "button-ghost pressed color"
+      "button-soft@page hover color",
+      "button-ghost@page pressed color",
+      "button-soft@card hover color",
+      "button-ghost@card pressed color"
      ]
     },
     {
      "key": "--accent-a7 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
-      "button-surface rest inset-ring",
-      "button-surface focus inset-ring"
+      "button-surface@page rest inset-ring",
+      "button-surface@page focus inset-ring",
+      "button-surface@card rest inset-ring",
+      "button-surface@card focus inset-ring"
      ]
     },
     {
      "key": "--accent-a8 | --accent-a3",
      "prop": "inset-ring",
      "sources": [
-      "button-surface pressed inset-ring",
-      "button-outline pressed inset-ring"
+      "button-surface@page pressed inset-ring",
+      "button-outline@page pressed inset-ring",
+      "button-surface@card pressed inset-ring",
+      "button-outline@card pressed inset-ring"
      ]
     },
     {
-     "key": "--gray-a4 | --color-background",
+     "key": "--color-surface | --color-background",
      "prop": "background-color",
      "sources": [
-      "switch pressed background-color",
-      "switch-checked pressed background-color"
+      "checkbox@page focus background-color",
+      "checkbox-checked@page rest background-color",
+      "checkbox-checked@page hover background-color",
+      "checkbox-checked@page pressed background-color"
+     ]
+    },
+    {
+     "key": "--gray-a7 | --color-background",
+     "prop": "inset-ring",
+     "sources": [
+      "checkbox@page focus inset-ring",
+      "checkbox-checked@page rest inset-ring",
+      "checkbox-checked@page hover inset-ring",
+      "checkbox-checked@page pressed inset-ring"
      ]
     },
     {
      "key": "--gray-12 | --accent-indicator",
      "prop": "color",
      "sources": [
-      "tabs rest color",
-      "tabs focus color"
+      "tabs@page rest color",
+      "tabs@page focus color",
+      "tabs@card rest color",
+      "tabs@card focus color"
      ]
     },
     {
-     "key": "--accent-10 | --color-panel",
-     "prop": "background-color",
+     "key": "--gray-12 | --color-background",
+     "prop": "color",
      "sources": [
-      "button-solid hover background-color",
-      "button-solid pressed background-color"
+      "text@page rest color",
+      "text@page hover color",
+      "text@page pressed color",
+      "text@page focus color"
      ]
     },
     {
-     "key": "--gray-a4 | --color-panel",
+     "key": "--gray-a6 | --color-background",
      "prop": "background-color",
      "sources": [
-      "switch pressed background-color",
-      "switch-checked pressed background-color"
+      "separator@page rest background-color",
+      "separator@page hover background-color",
+      "separator@page pressed background-color",
+      "separator@page focus background-color"
      ]
     },
     {
-     "key": "--accent-a5 | --color-background",
+     "key": "--red-a3 | --color-background",
      "prop": "background-color",
      "sources": [
-      "button-soft pressed background-color"
+      "callout-red@page rest background-color",
+      "callout-red@page hover background-color",
+      "callout-red@page pressed background-color",
+      "callout-red@page focus background-color"
+     ]
+    },
+    {
+     "key": "--gray-a7 | --color-panel",
+     "prop": "inset-ring",
+     "sources": [
+      "checkbox@card focus inset-ring",
+      "checkbox-checked@card rest inset-ring",
+      "checkbox-checked@card hover inset-ring",
+      "checkbox-checked@card pressed inset-ring"
+     ]
+    },
+    {
+     "key": "--red-a3 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "callout-red@card rest background-color",
+      "callout-red@card hover background-color",
+      "callout-red@card pressed background-color",
+      "callout-red@card focus background-color"
+     ]
+    },
+    {
+     "key": "--accent-a4 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-soft@page hover background-color",
+      "button-ghost@page pressed background-color"
      ]
     },
     {
      "key": "--accent-a11 | --accent-a5",
      "prop": "color",
      "sources": [
-      "button-soft pressed color"
+      "button-soft@page pressed color",
+      "button-soft@card pressed color"
      ]
     },
     {
      "key": "--accent-a8 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
-      "button-surface hover inset-ring"
-     ]
-    },
-    {
-     "key": "--accent-a2 | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "button-outline hover background-color"
+      "button-surface@page hover inset-ring",
+      "button-surface@card hover inset-ring"
      ]
     },
     {
      "key": "--accent-a11 | --accent-a2",
      "prop": "color",
      "sources": [
-      "button-outline hover color"
+      "button-outline@page hover color",
+      "button-outline@card hover color"
      ]
     },
     {
      "key": "--accent-a8 | --accent-a2",
      "prop": "inset-ring",
      "sources": [
-      "button-outline hover inset-ring"
+      "button-outline@page hover inset-ring",
+      "button-outline@card hover inset-ring"
+     ]
+    },
+    {
+     "key": "--gray-a4 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "switch@page pressed background-color",
+      "switch-checked@page pressed background-color"
      ]
     },
     {
      "key": "--accent-a4 | --gray-a4",
      "prop": "ring",
      "sources": [
-      "switch pressed ring"
+      "switch@page pressed ring",
+      "switch@card pressed ring"
      ]
     },
     {
      "key": "--gray-a3 | --accent-indicator",
      "prop": "background-color",
      "sources": [
-      "tabs hover background-color"
+      "tabs@page hover background-color",
+      "tabs@card hover background-color"
      ]
     },
     {
      "key": "--gray-12 | --gray-a3",
      "prop": "color",
      "sources": [
-      "tabs hover color"
+      "tabs@page hover color",
+      "tabs@card hover color"
      ]
     },
     {
      "key": "--accent-a3 | --accent-indicator",
      "prop": "background-color",
      "sources": [
-      "tabs pressed background-color"
+      "tabs@page pressed background-color",
+      "tabs@card pressed background-color"
      ]
     },
     {
      "key": "--gray-12 | --accent-a3",
      "prop": "color",
      "sources": [
-      "tabs pressed color"
+      "tabs@page pressed color",
+      "tabs@card pressed color"
      ]
     },
     {
      "key": "--focus-8 | --accent-indicator",
      "prop": "outline",
      "sources": [
-      "tabs pressed outline"
+      "tabs@page pressed outline",
+      "tabs@card pressed outline"
+     ]
+    },
+    {
+     "key": "--accent-10 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "button-solid@card hover background-color",
+      "button-solid@card pressed background-color"
+     ]
+    },
+    {
+     "key": "--gray-a4 | --color-panel",
+     "prop": "background-color",
+     "sources": [
+      "switch@card pressed background-color",
+      "switch-checked@card pressed background-color"
+     ]
+    },
+    {
+     "key": "--accent-a5 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-soft@page pressed background-color"
+     ]
+    },
+    {
+     "key": "--accent-a2 | --color-background",
+     "prop": "background-color",
+     "sources": [
+      "button-outline@page hover background-color"
      ]
     },
     {
      "key": "--accent-a5 | --color-panel",
      "prop": "background-color",
      "sources": [
-      "button-soft pressed background-color"
+      "button-soft@card pressed background-color"
      ]
     },
     {
      "key": "--accent-a2 | --color-panel",
      "prop": "background-color",
      "sources": [
-      "button-outline hover background-color"
+      "button-outline@card hover background-color"
      ]
     }
+   ],
+   "elsewhere": [
+    "error-text"
    ]
   }
  }

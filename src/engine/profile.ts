@@ -88,7 +88,7 @@ export type Path =
        * Which way to walk. Away from the page polarity (default), back toward
        * it, or toward whichever end gives the parent more contrast (labels).
        */
-      dir?: "away" | "back" | "contrast"
+      dir?: Dir | Partial<Record<Mode, Dir>>
       /** Under engine targets, adopt this engine surface as-is. */
       engineSurface?: Partial<Record<Mode, SurfaceKey>>
     }
@@ -98,6 +98,8 @@ export type Path =
   /** The exact translucent form of another variable over a surface (Radix alpha scales). */
   | { kind: "alphaOf"; of: string; over: string }
   | { kind: "series"; index: number }
+
+type Dir = "away" | "back" | "contrast"
 
 export type VarSpec = { name: string; path: Path; note?: string }
 
@@ -113,6 +115,14 @@ export type Profile = {
   recipes: Recipe[]
   /** The system's stock theme, as its own CSS values. */
   reference: Record<Mode, Record<string, string>>
+  /** Set on profiles built by the probe from the system's own components. */
+  generated?: { probedAt: string; source: string; docs?: string; page: string; samples: Record<string, number> }
+  /** Systems themed through a JS object export JSON keyed by token name. */
+  json?: { strip: string; camel?: boolean; note: string }
+  /** Variables the system stores as bare channels ("212 100% 47%"), written back that way. */
+  formats?: Record<string, "color" | "hsl-channels" | "rgb-channels">
+  /** Variables defined on a component selector rather than the root: key → name and selector. */
+  scopes?: Record<string, { name: string; selector: string }>
 }
 
 export type Paint = { rgb: RGB; a: number }
@@ -309,6 +319,31 @@ export function readReference(
   return out
 }
 
+/**
+ * Which way each reference pair points: the paint lighter (+1) or darker (-1)
+ * than what's under it. Contrast metrics are unsigned, so without this a
+ * white label on a blue button and a black one would both pass.
+ */
+export function readPolarity(profile: Profile, mode: Mode): Record<string, 1 | -1> {
+  const ref = Object.fromEntries(Object.entries(profile.reference[mode]).map(([k, v]) => [k, parseCss(v)]))
+  const out: Record<string, 1 | -1> = {}
+  for (const r of profile.recipes) {
+    if (!appliesTo(r, mode) || recipeVars(r).some((v) => !ref[v])) continue
+    const { fg, bg } = render(r, ref)
+    const d = rgbToOklch(fg).l - rgbToOklch(bg).l
+    if (Math.abs(d) > 0.02) out[r.id] = d > 0 ? 1 : -1
+  }
+  return out
+}
+
+/** A measure that counts as negative when the pair points the wrong way. */
+function signed(metric: Metric, fg: RGB, bg: RGB, polarity?: 1 | -1) {
+  const v = measure(metric, fg, bg)
+  if (!polarity) return v
+  const d = rgbToOklch(fg).l - rgbToOklch(bg).l
+  return Math.abs(d) > 0.005 && Math.sign(d) !== polarity ? -v : v
+}
+
 function requirementsFor(
   r: Recipe,
   intent: Intent,
@@ -332,6 +367,7 @@ function requirementsFor(
 export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
   const { mode, settings: s } = intent
   const reference = readReference(profile, mode)
+  const polarity = readPolarity(profile, mode)
   const recipes = profile.recipes.filter((r) => appliesTo(r, mode))
   const byName = Object.fromEntries(profile.vars.map((v) => [v.name, v]))
   const values: Record<string, Paint> = {}
@@ -341,6 +377,7 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
     profile.vars.flatMap((v) => (v.path.kind === "alias" || v.path.kind === "alphaOf" ? [[v.name, v.path]] : [])),
   ) as Record<string, Extract<Path, { kind: "alias" | "alphaOf" }>>
   const root = (n: string): string => (derivedFrom[n] ? root(derivedFrom[n].of) : n)
+  const derivedOf = (n: string) => profile.vars.filter((v) => derivedFrom[v.name] && root(v.name) === n).map((v) => v.name)
   const derive = (name: string, vals: Record<string, Paint>): Paint => {
     const d = derivedFrom[name]
     const src = derivedFrom[d.of] ? derive(d.of, vals) : vals[d.of]
@@ -357,10 +394,13 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
     const translucent = p.translucent === "always" || (p.translucent === true && s.layer !== "flat")
     const parentL = rgbToOklch(parent.rgb).l
     const pageAway = mode === "light" ? -1 : 1
+    // A direction can differ by mode (white text over a white page in light
+    // mode, over a dark one in dark mode).
+    const dir = typeof p.dir === "object" ? (p.dir[mode] ?? "away") : p.dir
     const away =
-      p.dir === "back"
+      dir === "back"
         ? -pageAway
-        : p.dir === "contrast"
+        : dir === "contrast"
           ? Math.abs(lc([255, 255, 255], parent.rgb)) >= Math.abs(lc([0, 0, 0], parent.rgb))
             ? 1
             : -1
@@ -386,6 +426,113 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
     return w.candidate(w.hi)
   }
 
+  /**
+   * Solve one step variable against its recipes. In relax passes every other
+   * variable already has a value, so recipes the first pass had to defer
+   * (cycles in a generated profile) drive it too.
+   */
+  const solveStep = (spec: VarSpec, relax: boolean) => {
+    const p = spec.path as Extract<Path, { kind: "step" }>
+    // Solved, derivable from something solved, or (for alsoDrives) a later step whose parent is this variable.
+    const known = (v: string): boolean => {
+      if (values[v] || root(v) === spec.name) return true
+      const d = derivedFrom[v]
+      return !!d && known(d.of) && (d.kind === "alias" || known(d.over))
+    }
+    const later = (v: string) => byName[v]?.path.kind === "step" && (byName[v].path as { from: string }).from === spec.name
+    const drivers = recipes.filter((r) => {
+      if (r.check) return false
+      if (exprVars(r.paint).some((v) => root(v) === spec.name)) return relax || recipeVars(r).every(known)
+      if (r.alsoDrives?.includes(spec.name)) return recipeVars(r).every((v) => known(v) || later(v))
+      return false
+    })
+    const reqs = drivers.map((r) => ({ r, reqs: requirementsFor(r, intent, reference) }))
+    // A parent not solved yet (a cycle a generated profile couldn't order) falls back to the page.
+    const w = walker(spec, values[p.from] ?? Object.values(values)[0])
+    // How close a candidate comes: the worst requirement's margin, in units of its metric's range.
+    const SCALE: Record<Metric, number> = { lc: 100, dL: 1, ratio: 20 }
+    const score = (t: number) => {
+      const c = w.candidate(t)
+      const vals: Record<string, Paint> = { ...values, [spec.name]: c }
+      for (const d of derivedOf(spec.name)) vals[d] = derive(d, vals)
+      let worst = Infinity
+      for (const { r, reqs: rq } of reqs) {
+        if (recipeVars(r).some((x) => !vals[x] && !derivedFrom[x])) continue
+        for (const x of recipeVars(r)) if (!vals[x] && derivedFrom[x]) vals[x] = derive(x, vals)
+        const { fg, bg } = render(r, vals)
+        for (const q of rq) worst = Math.min(worst, (signed(q.metric, fg, bg, polarity[r.id]) - q.min) / SCALE[q.metric])
+      }
+      return worst
+    }
+    const ok = (t: number) => {
+      const c = w.candidate(t)
+      const vals: Record<string, Paint> = { ...values, [spec.name]: c }
+      for (const d of derivedOf(spec.name)) vals[d] = derive(d, vals)
+      for (const { r } of reqs)
+        for (const x of recipeVars(r)) {
+          if (vals[x]) continue
+          if (derivedFrom[x]) vals[x] = derive(x, vals)
+          else {
+            const e = extreme(x, vals)
+            if (e) vals[x] = e
+          }
+        }
+      return reqs.every(({ r, reqs }) => {
+        const { fg, bg } = render(r, vals)
+        return reqs.every((q) => signed(q.metric, fg, bg, polarity[r.id]) >= q.min - 1e-6)
+      })
+    }
+    let t = w.hi
+    if (ok(w.hi)) {
+      let lo = 0
+      for (let i = 0; i < 24; i++) {
+        const mid = (lo + t) / 2
+        if (ok(mid)) t = mid
+        else lo = mid
+      }
+      capped.delete(spec.name)
+    } else {
+      // Pairs pointing both ways (a focus ring lighter than a button but darker
+      // than the page) make the feasible range an interval, not a ray. Scan for it.
+      const n = 48
+      let found = -1
+      for (let i = 1; i <= n; i++) if (ok((w.hi * i) / n)) {
+        found = i
+        break
+      }
+      if (found > 0) {
+        let lo = (w.hi * (found - 1)) / n
+        t = (w.hi * found) / n
+        for (let i = 0; i < 20; i++) {
+          const mid = (lo + t) / 2
+          if (ok(mid)) t = mid
+          else lo = mid
+        }
+        capped.delete(spec.name)
+      } else {
+        // Nothing satisfies every pair (the engine's colors moved a neighbor):
+        // take the closest compromise rather than the end of the range.
+        capped.add(spec.name)
+        let best = w.hi
+        let bestScore = -Infinity
+        for (let i = 0; i <= 64; i++) {
+          const tt = (w.hi * i) / 64
+          const sc = score(tt)
+          if (sc > bestScore + 1e-9) {
+            bestScore = sc
+            best = tt
+          }
+        }
+        t = best
+      }
+    }
+    // Translucent values ship rounded up to whole percents, like a designer would write them.
+    // A layer the targets don't need at all ships fully transparent, not at 1%.
+    if (w.translucent) t = t < 0.005 ? 0 : Math.min(1, Math.ceil(t * 100 - 1e-9) / 100)
+    return w.candidate(t)
+  }
+
+  const stepVars: VarSpec[] = []
   for (const spec of profile.vars) {
     const p = spec.path
     if (p.kind === "page") {
@@ -406,52 +553,25 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
         values[spec.name] = { rgb: intent.surfaces[surfaceKey], a: 1 }
         continue
       }
-      // Solved, derivable from something solved, or (for alsoDrives) a later step whose parent is this variable.
-      const known = (v: string): boolean => {
-        if (values[v] || root(v) === spec.name) return true
-        const d = derivedFrom[v]
-        return !!d && known(d.of) && (d.kind === "alias" || known(d.over))
+      values[spec.name] = solveStep(spec, false)
+      stepVars.push(spec)
+    }
+  }
+
+  // Relax: generated profiles can carry cycles (text over a fill that is itself
+  // measured against that text). Re-solve each step against all of its recipes
+  // until nothing moves.
+  if (profile.generated) {
+    for (let pass = 0; pass < 6; pass++) {
+      let moved = 0
+      for (const spec of stepVars) {
+        const before = values[spec.name]
+        const next = solveStep(spec, true)
+        moved = Math.max(moved, Math.abs(rgbToOklch(next.rgb).l - rgbToOklch(before.rgb).l), Math.abs(next.a - before.a))
+        values[spec.name] = next
+        for (const d of derivedOf(spec.name)) values[d] = derive(d, values)
       }
-      const later = (v: string) => byName[v]?.path.kind === "step" && (byName[v].path as { from: string }).from === spec.name
-      const drivers = recipes.filter((r) => {
-        if (r.check) return false
-        if (exprVars(r.paint).some((v) => root(v) === spec.name)) return recipeVars(r).every(known)
-        if (r.alsoDrives?.includes(spec.name)) return recipeVars(r).every((v) => known(v) || later(v))
-        return false
-      })
-      const reqs = drivers.map((r) => ({ r, reqs: requirementsFor(r, intent, reference) }))
-      const w = walker(spec, values[p.from])
-      const ok = (t: number) => {
-        const c = w.candidate(t)
-        const vals: Record<string, Paint> = { ...values, [spec.name]: c }
-        for (const { r } of reqs)
-          for (const x of recipeVars(r)) {
-            if (vals[x]) continue
-            if (derivedFrom[x]) vals[x] = derive(x, vals)
-            else {
-              const e = extreme(x, vals)
-              if (e) vals[x] = e
-            }
-          }
-        return reqs.every(({ r, reqs }) => {
-          const { fg, bg } = render(r, vals)
-          return reqs.every((q) => measure(q.metric, fg, bg) >= q.min - 1e-6)
-        })
-      }
-      let t = w.hi
-      if (!ok(w.hi)) capped.add(spec.name)
-      else {
-        let lo = 0
-        for (let i = 0; i < 24; i++) {
-          const mid = (lo + t) / 2
-          if (ok(mid)) t = mid
-          else lo = mid
-        }
-      }
-      // Translucent values ship rounded up to whole percents, like a designer would write them.
-      // A layer the targets don't need at all ships fully transparent, not at 1%.
-      if (w.translucent) t = t < 0.005 ? 0 : Math.min(1, Math.ceil(t * 100 - 1e-9) / 100)
-      values[spec.name] = w.candidate(t)
+      if (moved < 1e-3) break
     }
   }
 
@@ -459,7 +579,7 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
     const { fg, bg } = render(r, values)
     const reqs = requirementsFor(r, intent, reference)
     const checks = reqs.map((req) => {
-      const achieved = measure(req.metric, fg, bg)
+      const achieved = signed(req.metric, fg, bg, polarity[r.id])
       return {
         req,
         achieved,

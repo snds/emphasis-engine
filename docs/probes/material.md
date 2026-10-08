@@ -36,19 +36,19 @@ Probed 2026-10-08 from @material/web ^2.5.0. 22 color variables set to sentinel 
 
 | Pair | Seen in |
 | --- | --- |
-| `--md-sys-color-on-surface | --md-sys-color-surface-container-low` | textfield rest color, textfield rest placeholder, textfield hover border, textfield hover color, +27 |
-| `--md-sys-color-primary | --md-sys-color-surface-container-low` | button-filled rest background-color, button-filled hover background-color, button-filled pressed background-color, button-filled focus background-color, +14 |
-| `--md-sys-color-outline | --md-sys-color-surface-container-low` | button-outlined rest border, button-outlined hover border, button-outlined pressed border, button-outlined focus border, +9 |
-| `--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low` | textfield rest color, textfield-filled rest color, textfield-filled hover color, checkbox rest border, +5 |
-| `--md-sys-color-secondary-container | --md-sys-color-surface-container-low` | button-tonal rest background-color, button-tonal hover background-color, button-tonal pressed background-color, button-tonal focus background-color, +4 |
-| `--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low` | textfield-filled rest background-color, textfield-filled hover background-color, textfield-filled pressed background-color, textfield-filled focus background-color, +4 |
-| `--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container-low` | textfield-filled hover background-color, textfield-filled pressed background-color, chip hover background-color, chip pressed background-color, +4 |
-| `--md-sys-color-primary/0.08 | --md-sys-color-surface-container-low` | button-outlined hover background-color, button-outlined pressed background-color, button-text hover background-color, button-text pressed background-color |
-| `--md-sys-color-primary-container | --md-sys-color-surface-container-low` | fab-primary rest background-color, fab-primary hover background-color, fab-primary pressed background-color, fab-primary focus background-color |
-| `--md-sys-color-primary-container | --md-sys-color-primary` | switch focus background-color, switch-checked hover background-color, switch-checked pressed background-color |
-| `--md-sys-color-primary/0.08 | --md-sys-color-primary` | checkbox-checked hover background-color, checkbox-checked pressed background-color |
-| `--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant` | switch hover background-color, switch pressed background-color |
-| `--md-sys-color-primary/0.08 | --md-sys-color-primary-container` | switch-checked hover background-color, switch-checked pressed background-color |
+| `--md-sys-color-on-surface | --md-sys-color-surface-container-low` | textfield@card rest color, textfield@card rest placeholder, textfield@card hover border, textfield@card hover color, +27 |
+| `--md-sys-color-primary | --md-sys-color-surface-container-low` | button-filled@card rest background-color, button-filled@card hover background-color, button-filled@card pressed background-color, button-filled@card focus background-color, +14 |
+| `--md-sys-color-outline | --md-sys-color-surface-container-low` | button-outlined@card rest border, button-outlined@card hover border, button-outlined@card pressed border, button-outlined@card focus border, +9 |
+| `--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low` | textfield@card rest color, textfield-filled@card rest color, textfield-filled@card hover color, checkbox@card rest border, +5 |
+| `--md-sys-color-secondary-container | --md-sys-color-surface-container-low` | button-tonal@card rest background-color, button-tonal@card hover background-color, button-tonal@card pressed background-color, button-tonal@card focus background-color, +4 |
+| `--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low` | textfield-filled@card rest background-color, textfield-filled@card hover background-color, textfield-filled@card pressed background-color, textfield-filled@card focus background-color, +4 |
+| `--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container-low` | textfield-filled@card hover background-color, textfield-filled@card pressed background-color, chip@card hover background-color, chip@card pressed background-color, +4 |
+| `--md-sys-color-primary-container | --md-sys-color-primary` | switch@page focus background-color, switch-checked@page hover background-color, switch-checked@page pressed background-color, switch@card focus background-color, +2 |
+| `--md-sys-color-primary/0.08 | --md-sys-color-primary` | checkbox-checked@page hover background-color, checkbox-checked@page pressed background-color, checkbox-checked@card hover background-color, checkbox-checked@card pressed background-color |
+| `--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant` | switch@page hover background-color, switch@page pressed background-color, switch@card hover background-color, switch@card pressed background-color |
+| `--md-sys-color-primary/0.08 | --md-sys-color-primary-container` | switch-checked@page hover background-color, switch-checked@page pressed background-color, switch-checked@card hover background-color, switch-checked@card pressed background-color |
+| `--md-sys-color-primary/0.08 | --md-sys-color-surface-container-low` | button-outlined@card hover background-color, button-outlined@card pressed background-color, button-text@card hover background-color, button-text@card pressed background-color |
+| `--md-sys-color-primary-container | --md-sys-color-surface-container-low` | fab-primary@card rest background-color, fab-primary@card hover background-color, fab-primary@card pressed background-color, fab-primary@card focus background-color |
 
 ## Dark mode
 
@@ -84,16 +84,16 @@ Probed 2026-10-08 from @material/web ^2.5.0. 22 color variables set to sentinel 
 
 | Pair | Seen in |
 | --- | --- |
-| `--md-sys-color-on-surface | --md-sys-color-surface-container-low` | textfield rest color, textfield rest placeholder, textfield hover border, textfield hover color, +27 |
-| `--md-sys-color-primary | --md-sys-color-surface-container-low` | button-filled rest background-color, button-filled hover background-color, button-filled pressed background-color, button-filled focus background-color, +14 |
-| `--md-sys-color-outline | --md-sys-color-surface-container-low` | button-outlined rest border, button-outlined hover border, button-outlined pressed border, button-outlined focus border, +9 |
-| `--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low` | textfield rest color, textfield-filled rest color, textfield-filled hover color, checkbox rest border, +5 |
-| `--md-sys-color-secondary-container | --md-sys-color-surface-container-low` | button-tonal rest background-color, button-tonal hover background-color, button-tonal pressed background-color, button-tonal focus background-color, +4 |
-| `--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low` | textfield-filled rest background-color, textfield-filled hover background-color, textfield-filled pressed background-color, textfield-filled focus background-color, +4 |
-| `--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container-low` | textfield-filled hover background-color, textfield-filled pressed background-color, chip hover background-color, chip pressed background-color, +4 |
-| `--md-sys-color-primary/0.08 | --md-sys-color-surface-container-low` | button-outlined hover background-color, button-outlined pressed background-color, button-text hover background-color, button-text pressed background-color |
-| `--md-sys-color-primary-container | --md-sys-color-surface-container-low` | fab-primary rest background-color, fab-primary hover background-color, fab-primary pressed background-color, fab-primary focus background-color |
-| `--md-sys-color-primary-container | --md-sys-color-primary` | switch hover background-color, switch pressed background-color, switch-checked focus background-color |
-| `--md-sys-color-primary/0.08 | --md-sys-color-primary` | checkbox hover background-color, checkbox pressed background-color |
-| `--md-sys-color-primary/0.08 | --md-sys-color-primary-container` | switch hover background-color, switch pressed background-color |
-| `--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant` | switch-checked hover background-color, switch-checked pressed background-color |
+| `--md-sys-color-on-surface | --md-sys-color-surface-container-low` | textfield@card rest color, textfield@card rest placeholder, textfield@card hover border, textfield@card hover color, +27 |
+| `--md-sys-color-primary | --md-sys-color-surface-container-low` | button-filled@card rest background-color, button-filled@card hover background-color, button-filled@card pressed background-color, button-filled@card focus background-color, +14 |
+| `--md-sys-color-outline | --md-sys-color-surface-container-low` | button-outlined@card rest border, button-outlined@card hover border, button-outlined@card pressed border, button-outlined@card focus border, +9 |
+| `--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low` | textfield@card rest color, textfield-filled@card rest color, textfield-filled@card hover color, checkbox@card rest border, +5 |
+| `--md-sys-color-secondary-container | --md-sys-color-surface-container-low` | button-tonal@card rest background-color, button-tonal@card hover background-color, button-tonal@card pressed background-color, button-tonal@card focus background-color, +4 |
+| `--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low` | textfield-filled@card rest background-color, textfield-filled@card hover background-color, textfield-filled@card pressed background-color, textfield-filled@card focus background-color, +4 |
+| `--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container-low` | textfield-filled@card hover background-color, textfield-filled@card pressed background-color, chip@card hover background-color, chip@card pressed background-color, +4 |
+| `--md-sys-color-primary-container | --md-sys-color-primary` | switch@page hover background-color, switch@page pressed background-color, switch-checked@page focus background-color, switch@card hover background-color, +2 |
+| `--md-sys-color-primary/0.08 | --md-sys-color-primary` | checkbox@page hover background-color, checkbox@page pressed background-color, checkbox@card hover background-color, checkbox@card pressed background-color |
+| `--md-sys-color-primary/0.08 | --md-sys-color-primary-container` | switch@page hover background-color, switch@page pressed background-color, switch@card hover background-color, switch@card pressed background-color |
+| `--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant` | switch-checked@page hover background-color, switch-checked@page pressed background-color, switch-checked@card hover background-color, switch-checked@card pressed background-color |
+| `--md-sys-color-primary/0.08 | --md-sys-color-surface-container-low` | button-outlined@card hover background-color, button-outlined@card pressed background-color, button-text@card hover background-color, button-text@card pressed background-color |
+| `--md-sys-color-primary-container | --md-sys-color-surface-container-low` | fab-primary@card rest background-color, fab-primary@card hover background-color, fab-primary@card pressed background-color, fab-primary@card focus background-color |

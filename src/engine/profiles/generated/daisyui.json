@@ -1,0 +1,577 @@
+{
+ "id": "daisyui",
+ "label": "daisyUI",
+ "description": "A handful of theme colors (base-100 to 300, primary, secondary, accent, neutral, status) with matching content colors.",
+ "selectors": {
+  "light": ":root, [data-theme=\"light\"]",
+  "dark": "[data-theme=\"dark\"]"
+ },
+ "generated": {
+  "probedAt": "2026-10-08",
+  "source": "daisyui ^5.7.47",
+  "docs": "https://daisyui.com/docs/themes/",
+  "page": "--color-base-100",
+  "samples": {
+   "light": 540,
+   "dark": 536
+  }
+ },
+ "formats": {},
+ "scopes": {},
+ "vars": [
+  {
+   "name": "--color-base-100",
+   "path": {
+    "kind": "page"
+   }
+  },
+  {
+   "name": "--color-base-200",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--color-base-100",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--color-base-content",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--color-base-100"
+   }
+  },
+  {
+   "name": "--color-error",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--color-base-100"
+   }
+  },
+  {
+   "name": "--color-error-content",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--color-error",
+    "chroma": 0.97,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--color-info",
+   "path": {
+    "kind": "step",
+    "palette": "info",
+    "from": "--color-base-100"
+   }
+  },
+  {
+   "name": "--color-info-content",
+   "path": {
+    "kind": "step",
+    "palette": "info",
+    "from": "--color-info",
+    "chroma": 0.94,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--color-primary",
+   "path": {
+    "kind": "solid",
+    "role": "brand"
+   }
+  },
+  {
+   "name": "--color-primary-content",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--color-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--color-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--color-base-100",
+    "chroma": 0.9
+   }
+  },
+  {
+   "name": "--color-secondary-content",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--color-secondary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  }
+ ],
+ "recipes": [
+  {
+   "id": "button-ghost-color",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus outline; button-neutral focus outline; +60",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-base-content"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color; button-primary focus outline; +36",
+   "element": "solid",
+   "paint": {
+    "v": "--color-primary"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "input-placeholder",
+   "label": "Input placeholder",
+   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +37",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-2",
+   "label": "Button ghost color",
+   "source": "button-ghost focus color; button-neutral rest color; button-neutral focus color; +37",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-base-content"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-color",
+   "label": "Button primary color",
+   "source": "button-primary rest color; button-primary focus color; button-outline focus color; +16",
+   "element": "on-solid",
+   "paint": {
+    "v": "--color-primary-content"
+   },
+   "over": [
+    {
+     "v": "--color-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "switch-color",
+   "label": "Switch color",
+   "source": "switch rest color; switch rest placeholder; switch rest border; +33",
+   "element": "text-primary",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-2",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color; button-primary focus outline; +20",
+   "element": "solid",
+   "paint": {
+    "v": "--color-primary"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-ghost-background-color",
+   "label": "Button ghost background",
+   "source": "button-ghost focus background-color; button-neutral rest background-color; button-neutral focus background-color; +8",
+   "element": "surface",
+   "paint": {
+    "v": "--color-base-200"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-color",
+   "label": "Button danger color",
+   "source": "button-danger rest color; button-danger focus color; alert-danger rest color; +3",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--color-error-content"
+   },
+   "over": [
+    {
+     "v": "--color-error"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-border",
+   "label": "Input border",
+   "source": "input rest border; input hover border; checkbox rest border; +3",
+   "element": "border-control",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.2
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-color",
+   "label": "Alert info color",
+   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--color-info-content"
+   },
+   "over": [
+    {
+     "v": "--color-info"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-checked-color",
+   "label": "Checkbox checked color",
+   "source": "checkbox-checked focus color; checkbox-checked focus placeholder; checkbox-checked rest color; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-primary-content"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-checked-color-2",
+   "label": "Checkbox checked color",
+   "source": "checkbox-checked focus color; checkbox-checked focus placeholder; checkbox-checked rest color; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-primary-content"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color; button-danger focus background-color; button-danger focus outline; +4",
+   "element": "surface",
+   "paint": {
+    "v": "--color-error"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-2",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color; button-danger focus background-color; button-danger focus outline; +4",
+   "element": "surface",
+   "paint": {
+    "v": "--color-error"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color",
+   "label": "Button secondary color",
+   "source": "button-secondary rest color; button-secondary focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-secondary-content"
+   },
+   "over": [
+    {
+     "v": "--color-secondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "text-muted-color",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.6
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "divider-background-color",
+   "label": "Divider background",
+   "source": "divider rest background-color; divider hover background-color; divider pressed background-color; +1",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.1
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--color-info"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-border",
+   "label": "Checkbox border",
+   "source": "checkbox rest border; checkbox hover border; checkbox pressed border; +1",
+   "element": "border-control",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.2
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color-2",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.6
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "divider-background-color-2",
+   "label": "Divider background",
+   "source": "divider rest background-color; divider hover background-color; divider pressed background-color; +1",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--color-base-content"
+    },
+    "k": 0.1
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color-2",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--color-info"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color; button-secondary focus outline",
+   "element": "surface",
+   "paint": {
+    "v": "--color-secondary"
+   },
+   "over": [
+    {
+     "v": "--color-base-100"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-2",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color; button-secondary focus outline",
+   "element": "surface",
+   "paint": {
+    "v": "--color-secondary"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color-2",
+   "label": "Button ghost background",
+   "source": "button-ghost focus background-color; button-neutral rest background-color; button-neutral focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--color-base-200"
+   },
+   "over": [
+    {
+     "v": "--color-base-200"
+    }
+   ],
+   "metric": "dL"
+  }
+ ],
+ "reference": {
+  "light": {
+   "--color-base-100": "#ffffff",
+   "--color-base-200": "#f8f8f8",
+   "--color-base-content": "#18181b",
+   "--color-error": "#ff667f",
+   "--color-error-content": "#4d0218",
+   "--color-info": "#00b9fa",
+   "--color-info-content": "#042e49",
+   "--color-primary": "#422ad5",
+   "--color-primary-content": "#e0e7ff",
+   "--color-secondary": "#f43098",
+   "--color-secondary-content": "#f9e4f0"
+  },
+  "dark": {
+   "--color-base-100": "#1d232a",
+   "--color-base-200": "#191e24",
+   "--color-base-content": "#f3f8ff",
+   "--color-error": "#ff667f",
+   "--color-error-content": "#4d0218",
+   "--color-info": "#00b9fa",
+   "--color-info-content": "#042e49",
+   "--color-primary": "#605dff",
+   "--color-primary-content": "#edf1fe",
+   "--color-secondary": "#f43098",
+   "--color-secondary-content": "#f9e4f0"
+  }
+ }
+}

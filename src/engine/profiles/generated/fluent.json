@@ -1,0 +1,1756 @@
+{
+ "id": "fluent",
+ "label": "Fluent 2",
+ "description": "Alias tokens (neutral, brand, status) per state, written by FluentProvider from a theme object.",
+ "selectors": {
+  "light": ".fui-FluentProvider",
+  "dark": ".fui-FluentProvider"
+ },
+ "generated": {
+  "probedAt": "2026-10-08",
+  "source": "@fluentui/react-components ^9.74.9",
+  "docs": "https://react.fluentui.dev/?path=/docs/theme-color--docs",
+  "page": "--colorNeutralBackground2",
+  "samples": {
+   "light": 444,
+   "dark": 438
+  }
+ },
+ "json": {
+  "strip": "--",
+  "note": "Pass as a partial theme to FluentProvider: { ...webLightTheme, ...light }."
+ },
+ "formats": {},
+ "scopes": {},
+ "vars": [
+  {
+   "name": "--colorNeutralBackground2",
+   "path": {
+    "kind": "page"
+   }
+  },
+  {
+   "name": "--colorNeutralBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--colorBrandBackground",
+   "path": {
+    "kind": "solid",
+    "role": "brand"
+   }
+  },
+  {
+   "name": "--colorBrandBackground2",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.8
+   }
+  },
+  {
+   "name": "--colorBrandBackgroundHover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--colorBrandBackgroundPressed",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.93
+   }
+  },
+  {
+   "name": "--colorBrandForeground2",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorBrandBackground2",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--colorBrandForegroundLink",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--colorBrandForegroundLinkHover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.97
+   }
+  },
+  {
+   "name": "--colorBrandForegroundLinkPressed",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.93
+   }
+  },
+  {
+   "name": "--colorBrandStroke2",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorBrandBackground2",
+    "chroma": 0.92
+   }
+  },
+  {
+   "name": "--colorCompoundBrandBackground",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorCompoundBrandStroke",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorCompoundBrandStrokeHover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--colorCompoundBrandStrokePressed",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.97
+   }
+  },
+  {
+   "name": "--colorNeutralBackground1Hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralBackground1Pressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorNeutralBackground3",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorStatusDangerBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.8,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorNeutralForeground1",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground1Hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1Hover"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground1Pressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1Pressed"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground2",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground2BrandHover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground2BrandPressed",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--colorNeutralStroke1Hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorSubtleBackgroundHover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground2Hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralStroke1Hover"
+   }
+  },
+  {
+   "name": "--colorNeutralStroke1Pressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorSubtleBackgroundPressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground2Pressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralStroke1Pressed"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground3",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralForeground4",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorNeutralForegroundInverted",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1",
+    "dir": "back"
+   }
+  },
+  {
+   "name": "--colorNeutralForegroundOnBrand",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorBrandBackground",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--colorNeutralStroke1",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground3"
+   }
+  },
+  {
+   "name": "--colorNeutralStroke2",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground2"
+   }
+  },
+  {
+   "name": "--colorNeutralStrokeAccessible",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorStatusDangerBorder1",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorStatusDangerBackground1",
+    "chroma": 0.73
+   }
+  },
+  {
+   "name": "--colorStatusDangerForeground1",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorStatusDangerBackground1"
+   }
+  },
+  {
+   "name": "--colorStrokeFocus2",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  }
+ ],
+ "recipes": [
+  {
+   "id": "button-secondary-color",
+   "label": "Button secondary color",
+   "source": "button-secondary rest color; button-secondary focus color; input rest color; +9",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-color",
+   "label": "Button primary color",
+   "source": "button-primary rest color; button-primary focus color; button-primary focus inset-ring; +4",
+   "element": "on-solid",
+   "paint": {
+    "v": "--colorNeutralForegroundOnBrand"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackground"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-border",
+   "label": "Button secondary border (focus)",
+   "source": "button-secondary focus border; button-secondary focus inset-ring; button-outline focus border; +7",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border",
+   "label": "Button outline border (focus)",
+   "source": "button-outline focus border; button-outline focus inset-ring; button-ghost focus border; +5",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-placeholder",
+   "label": "Input placeholder",
+   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +1",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralForeground4"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-tint-color",
+   "label": "Badge tint color",
+   "source": "badge-tint rest color; badge-tint hover color; badge-tint pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--colorBrandForeground2"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-tint-border",
+   "label": "Badge tint border",
+   "source": "badge-tint rest border; badge-tint hover border; badge-tint pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorBrandStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-border",
+   "label": "Alert danger border",
+   "source": "alert-danger rest border; alert-danger hover border; alert-danger pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorStatusDangerBorder1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusDangerBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-fill",
+   "label": "Alert danger fill",
+   "source": "alert-danger rest fill; alert-danger hover fill; alert-danger pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--colorStatusDangerForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusDangerBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-color",
+   "label": "Alert danger color",
+   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusDangerBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-info-border",
+   "label": "Alert info border",
+   "source": "alert-info rest border; alert-info hover border; alert-info pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground3"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-border",
+   "label": "Card border",
+   "source": "card rest border; card rest fill; card hover border; +5",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStrokeAccessible"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-border-2",
+   "label": "Button secondary border",
+   "source": "button-secondary rest border; card rest border; card hover border; +3",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-border-2",
+   "label": "Card border",
+   "source": "card rest border; card hover border; card pressed border; +4",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorCompoundBrandStroke"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color; badge rest background-color; +3",
+   "element": "solid",
+   "paint": {
+    "v": "--colorBrandBackground"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-secondary-background-color",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color; card rest background-color; +3",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color",
+   "label": "Button outline color",
+   "source": "button-outline rest color; button-outline focus color; text rest color; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-color",
+   "label": "Tabs color",
+   "source": "tabs rest color; tabs focus color; tab-inactive focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorCompoundBrandStroke"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "card-background-color",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +3",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-2",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color; badge rest background-color; +3",
+   "element": "solid",
+   "paint": {
+    "v": "--colorBrandBackground"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-ghost-color",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus color; button-transparent rest color; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-2",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus color; button-transparent rest color; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-border",
+   "label": "Button primary border (focus)",
+   "source": "button-primary focus border; button-primary focus inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackground"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-tint-background-color",
+   "label": "Badge tint background",
+   "source": "badge-tint rest background-color; badge-tint hover background-color; badge-tint pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorBrandBackground2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "divider-border",
+   "label": "Divider border",
+   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-background-color",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorStatusDangerBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color-2",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorCompoundBrandBackground"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-fill",
+   "label": "Card fill",
+   "source": "card rest fill; card hover fill; card pressed fill; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForegroundInverted"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-tint-background-color-2",
+   "label": "Badge tint background",
+   "source": "badge-tint rest background-color; badge-tint hover background-color; badge-tint pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorBrandBackground2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color-2",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "divider-border-2",
+   "label": "Divider border",
+   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-background-color-2",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorStatusDangerBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-fill",
+   "label": "Alert info fill",
+   "source": "alert-info rest fill; alert-info hover fill; alert-info pressed fill; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground3"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-info-color",
+   "label": "Alert info color",
+   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground3"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-inactive-color",
+   "label": "Tab inactive color (hover)",
+   "source": "tab-inactive hover color; tabs hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralStroke1Hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-inactive-color-2",
+   "label": "Tab inactive color (pressed)",
+   "source": "tab-inactive pressed color; tabs pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralStroke1Pressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-border-2",
+   "label": "Button outline border (hover)",
+   "source": "button-outline hover border; tabs hover background-color; tab-inactive hover background-color",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border-3",
+   "label": "Button outline border (pressed)",
+   "source": "button-outline pressed border; tabs pressed background-color; tab-inactive pressed background-color",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-background-color",
+   "label": "Tabs background",
+   "source": "tabs rest background-color; tabs focus background-color; tab-inactive focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--colorCompoundBrandStroke"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border-4",
+   "label": "Button outline border (hover)",
+   "source": "button-outline hover border; tabs hover background-color; tab-inactive hover background-color",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border-5",
+   "label": "Button outline border (pressed)",
+   "source": "button-outline pressed border; tabs pressed background-color; tab-inactive pressed background-color",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-color-2",
+   "label": "Button primary color (hover)",
+   "source": "button-primary hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForegroundOnBrand"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackgroundHover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-color-3",
+   "label": "Button primary color (pressed)",
+   "source": "button-primary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForegroundOnBrand"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackgroundPressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-color-2",
+   "label": "Button secondary color (hover)",
+   "source": "button-secondary hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1Hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-border-3",
+   "label": "Button secondary border (hover)",
+   "source": "button-secondary hover border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1Hover"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color-3",
+   "label": "Button secondary color (pressed)",
+   "source": "button-secondary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1Pressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-border-4",
+   "label": "Button secondary border (pressed)",
+   "source": "button-secondary pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1Pressed"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-color-3",
+   "label": "Button ghost color (hover)",
+   "source": "button-ghost hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2Hover"
+   },
+   "over": [
+    {
+     "v": "--colorSubtleBackgroundHover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-4",
+   "label": "Button ghost color (pressed)",
+   "source": "button-ghost pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorSubtleBackgroundPressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-color-2",
+   "label": "Tabs color (hover)",
+   "source": "tabs hover color",
+   "element": "text-primary",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--colorNeutralForeground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorCompoundBrandStrokeHover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-color-3",
+   "label": "Tabs color (pressed)",
+   "source": "tabs pressed color",
+   "element": "text-primary",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--colorNeutralForeground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorCompoundBrandStrokePressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color",
+   "label": "Link color",
+   "source": "link rest color; link focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorBrandForegroundLink"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color-2",
+   "label": "Link color",
+   "source": "link rest color; link focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorBrandForegroundLink"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-3",
+   "label": "Button primary background (hover)",
+   "source": "button-primary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorBrandBackgroundHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-4",
+   "label": "Button primary background (pressed)",
+   "source": "button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorBrandBackgroundPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-2",
+   "label": "Button secondary background (hover)",
+   "source": "button-secondary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralBackground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-3",
+   "label": "Button secondary background (pressed)",
+   "source": "button-secondary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralBackground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border-6",
+   "label": "Button outline border",
+   "source": "button-outline rest border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color-2",
+   "label": "Button outline color (hover)",
+   "source": "button-outline hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-color-3",
+   "label": "Button outline color (pressed)",
+   "source": "button-outline pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-background-color",
+   "label": "Button ghost background (hover)",
+   "source": "button-ghost hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color-2",
+   "label": "Button ghost background (pressed)",
+   "source": "button-ghost pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-transparent-color",
+   "label": "Button transparent color (hover)",
+   "source": "button-transparent hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorNeutralForeground2BrandHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-transparent-color-2",
+   "label": "Button transparent color (pressed)",
+   "source": "button-transparent pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorNeutralForeground2BrandPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-background-color-2",
+   "label": "Tabs background (hover)",
+   "source": "tabs hover background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--colorCompoundBrandStrokeHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-background-color-3",
+   "label": "Tabs background (pressed)",
+   "source": "tabs pressed background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--colorCompoundBrandStrokePressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-color-3",
+   "label": "Link color (hover)",
+   "source": "link hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorBrandForegroundLinkHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color-4",
+   "label": "Link color (pressed)",
+   "source": "link pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorBrandForegroundLinkPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-5",
+   "label": "Button primary background (hover)",
+   "source": "button-primary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorBrandBackgroundHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-6",
+   "label": "Button primary background (pressed)",
+   "source": "button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorBrandBackgroundPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-4",
+   "label": "Button secondary background (hover)",
+   "source": "button-secondary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralBackground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-5",
+   "label": "Button secondary background (pressed)",
+   "source": "button-secondary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralBackground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color-4",
+   "label": "Button outline color (hover)",
+   "source": "button-outline hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-color-5",
+   "label": "Button outline color (pressed)",
+   "source": "button-outline pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-background-color-3",
+   "label": "Button ghost background (hover)",
+   "source": "button-ghost hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color-4",
+   "label": "Button ghost background (pressed)",
+   "source": "button-ghost pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-transparent-color-3",
+   "label": "Button transparent color (hover)",
+   "source": "button-transparent hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorNeutralForeground2BrandHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-transparent-color-4",
+   "label": "Button transparent color (pressed)",
+   "source": "button-transparent pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorNeutralForeground2BrandPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-background-color-4",
+   "label": "Tabs background (hover)",
+   "source": "tabs hover background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--colorCompoundBrandStrokeHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-background-color-5",
+   "label": "Tabs background (pressed)",
+   "source": "tabs pressed background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--colorCompoundBrandStrokePressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-color-5",
+   "label": "Link color (hover)",
+   "source": "link hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorBrandForegroundLinkHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color-6",
+   "label": "Link color (pressed)",
+   "source": "link pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorBrandForegroundLinkPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  }
+ ],
+ "reference": {
+  "light": {
+   "--colorNeutralBackground2": "#fafafa",
+   "--colorNeutralBackground1": "#ffffff",
+   "--colorBrandBackground": "#0f6cbd",
+   "--colorBrandBackground2": "#ebf3fc",
+   "--colorBrandBackgroundHover": "#115ea3",
+   "--colorBrandBackgroundPressed": "#0c3b5e",
+   "--colorBrandForeground2": "#115ea3",
+   "--colorBrandForegroundLink": "#115ea3",
+   "--colorBrandForegroundLinkHover": "#0f548c",
+   "--colorBrandForegroundLinkPressed": "#0c3b5e",
+   "--colorBrandStroke2": "#b4d6fa",
+   "--colorCompoundBrandBackground": "#0f6cbd",
+   "--colorCompoundBrandStroke": "#0f6cbd",
+   "--colorCompoundBrandStrokeHover": "#115ea3",
+   "--colorCompoundBrandStrokePressed": "#0f548c",
+   "--colorNeutralBackground1Hover": "#f5f5f5",
+   "--colorNeutralBackground1Pressed": "#e0e0e0",
+   "--colorNeutralBackground3": "#f5f5f5",
+   "--colorStatusDangerBackground1": "#fdf3f4",
+   "--colorNeutralForeground1": "#242424",
+   "--colorNeutralForeground1Hover": "#242424",
+   "--colorNeutralForeground1Pressed": "#242424",
+   "--colorNeutralForeground2": "#424242",
+   "--colorNeutralForeground2BrandHover": "#0f6cbd",
+   "--colorNeutralForeground2BrandPressed": "#115ea3",
+   "--colorNeutralStroke1Hover": "#c7c7c7",
+   "--colorSubtleBackgroundHover": "#f5f5f5",
+   "--colorNeutralForeground2Hover": "#242424",
+   "--colorNeutralStroke1Pressed": "#b3b3b3",
+   "--colorSubtleBackgroundPressed": "#e0e0e0",
+   "--colorNeutralForeground2Pressed": "#242424",
+   "--colorNeutralForeground3": "#616161",
+   "--colorNeutralForeground4": "#707070",
+   "--colorNeutralForegroundInverted": "#ffffff",
+   "--colorNeutralForegroundOnBrand": "#ffffff",
+   "--colorNeutralStroke1": "#d1d1d1",
+   "--colorNeutralStroke2": "#e0e0e0",
+   "--colorNeutralStrokeAccessible": "#616161",
+   "--colorStatusDangerBorder1": "#eeacb2",
+   "--colorStatusDangerForeground1": "#b10e1c",
+   "--colorStrokeFocus2": "#000000"
+  },
+  "dark": {
+   "--colorNeutralBackground2": "#1f1f1f",
+   "--colorNeutralBackground1": "#292929",
+   "--colorBrandBackground": "#115ea3",
+   "--colorBrandBackground2": "#082338",
+   "--colorBrandBackgroundHover": "#0f6cbd",
+   "--colorBrandBackgroundPressed": "#0c3b5e",
+   "--colorBrandForeground2": "#62abf5",
+   "--colorBrandForegroundLink": "#479ef5",
+   "--colorBrandForegroundLinkHover": "#62abf5",
+   "--colorBrandForegroundLinkPressed": "#2886de",
+   "--colorBrandStroke2": "#0e4775",
+   "--colorCompoundBrandBackground": "#479ef5",
+   "--colorCompoundBrandStroke": "#479ef5",
+   "--colorCompoundBrandStrokeHover": "#62abf5",
+   "--colorCompoundBrandStrokePressed": "#2886de",
+   "--colorNeutralBackground1Hover": "#3d3d3d",
+   "--colorNeutralBackground1Pressed": "#1f1f1f",
+   "--colorNeutralBackground3": "#141414",
+   "--colorStatusDangerBackground1": "#3b0509",
+   "--colorNeutralForeground1": "#ffffff",
+   "--colorNeutralForeground1Hover": "#ffffff",
+   "--colorNeutralForeground1Pressed": "#ffffff",
+   "--colorNeutralForeground2": "#d6d6d6",
+   "--colorNeutralForeground2BrandHover": "#479ef5",
+   "--colorNeutralForeground2BrandPressed": "#2886de",
+   "--colorNeutralStroke1Hover": "#757575",
+   "--colorSubtleBackgroundHover": "#383838",
+   "--colorNeutralForeground2Hover": "#ffffff",
+   "--colorNeutralStroke1Pressed": "#6b6b6b",
+   "--colorSubtleBackgroundPressed": "#2e2e2e",
+   "--colorNeutralForeground2Pressed": "#ffffff",
+   "--colorNeutralForeground3": "#adadad",
+   "--colorNeutralForeground4": "#999999",
+   "--colorNeutralForegroundInverted": "#242424",
+   "--colorNeutralForegroundOnBrand": "#ffffff",
+   "--colorNeutralStroke1": "#666666",
+   "--colorNeutralStroke2": "#525252",
+   "--colorNeutralStrokeAccessible": "#adadad",
+   "--colorStatusDangerBorder1": "#c50f1f",
+   "--colorStatusDangerForeground1": "#dc626d",
+   "--colorStrokeFocus2": "#ffffff"
+  }
+ }
+}

@@ -166,9 +166,9 @@ export type Settings = {
    */
   targetSource: "reference" | "engine"
   /** The downstream system the output is solved for. */
-  output: "shadcn" | "radix" | "material"
+  output: string
   /** Imported themes per output system; when present, they replace the stock reference. */
-  imports: Partial<Record<"shadcn" | "radix" | "material", ImportedTheme>>
+  imports: Partial<Record<string, ImportedTheme>>
 }
 
 export const DEFAULT_SETTINGS: Settings = {

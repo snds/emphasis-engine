@@ -3,7 +3,7 @@ import { IconCheck, IconCopy, IconDownload } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cssExport, dtcgJson, radixCss } from "@/engine/export"
-import { outputCss } from "@/engine/outputs"
+import { outputCss, outputJson } from "@/engine/outputs"
 import { PROFILES } from "@/engine/profiles"
 import type { System } from "@/engine/system"
 
@@ -23,7 +23,7 @@ export function ExportView({ sys }: { sys: System }) {
   const text = useMemo(
     () =>
       fmt === "system"
-        ? `/* Emphasis Engine · ${PROFILES[sys.settings.output].label} */\n` + outputCss(sys, sys.settings.output)
+        ? (outputJson(sys, sys.settings.output) ?? `/* Emphasis Engine · ${PROFILES[sys.settings.output].label} */\n` + outputCss(sys, sys.settings.output))
         : fmt === "css"
           ? cssExport(sys)
           : fmt === "radix"
@@ -32,7 +32,13 @@ export function ExportView({ sys }: { sys: System }) {
     [fmt, sys],
   )
   const base = FORMATS.find((x) => x.id === fmt)!
-  const f = fmt === "system" ? { ...base, file: `emphasis-${sys.settings.output}.css`, note: `${PROFILES[sys.settings.output].label} variables, solved through its recipes.` } : base
+  const sysP = PROFILES[sys.settings.output]
+  const f =
+    fmt === "system"
+      ? sysP.json
+        ? { ...base, file: `emphasis-${sys.settings.output}.json`, note: `${sysP.label} tokens, solved through its recipes. ${sysP.json.note}` }
+        : { ...base, file: `emphasis-${sys.settings.output}.css`, note: `${sysP.label} variables, solved through its recipes.` }
+      : base
 
   const copy = async () => {
     try {
@@ -51,7 +57,7 @@ export function ExportView({ sys }: { sys: System }) {
     }
   }
   const download = () => {
-    const url = URL.createObjectURL(new Blob([text], { type: fmt === "dtcg" ? "application/json" : "text/css" }))
+    const url = URL.createObjectURL(new Blob([text], { type: f.file.endsWith(".json") ? "application/json" : "text/css" }))
     const a = document.createElement("a")
     a.href = url
     a.download = f.file

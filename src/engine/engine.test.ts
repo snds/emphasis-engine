@@ -2,8 +2,8 @@ import { describe, expect, it } from "vitest"
 import { converter } from "culori"
 import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch, toRgb } from "./color"
 import { shadcnFindings, solveShadcn } from "./shadcn"
-import { outputCss, outputFindings, solveOutput } from "./outputs"
-import { PROFILES } from "./profiles"
+import { outputCss, outputFindings, outputJson, solveOutput } from "./outputs"
+import { GENERATED_IDS, PROFILES } from "./profiles"
 import { parseCss } from "./profile"
 import { brandOf, coverage, mergedReference, parseTheme } from "./reference"
 import { PROBES as PROBES_DATA } from "./probes"
@@ -554,4 +554,89 @@ describe("component probe data", () => {
       expect(m.observed.length / (m.observed.length + m.unobserved.length), id).toBeGreaterThan(0.8)
     }
   })
+})
+
+describe("generated profiles", () => {
+  const themes = ["#2563eb", "#f40009", "#059669", "#7c3aed", "#eab308", "#0f172a"]
+
+  it("exist for every popular system the probe covers", () => {
+    expect(GENERATED_IDS.sort()).toEqual(["antd", "atlassian", "bootstrap", "carbon", "cds", "chakra", "daisyui", "fluent", "mantine", "primer"])
+  })
+
+  it("reproduce every outcome of the stock theme, across themes and layers", () => {
+    for (const id of GENERATED_IDS)
+      for (const theme of themes)
+        for (const layer of ["ink", "flat"] as const) {
+          const sy = generate(s({ theme, layer }))
+          for (const mode of ["light", "dark"] as const)
+            for (const o of solveOutput(sy, id, mode).outcomes) if (!o.recipe.check) expect(o.met, `${id} ${theme} ${layer} ${mode} ${o.recipe.id}`).toBe(true)
+        }
+  }, 120_000)
+
+  it("solve fast enough to follow a slider", () => {
+    const sy = generate(s({ theme: "#0ea5e9" }))
+    const t0 = performance.now()
+    for (const id of GENERATED_IDS) solveOutput(sy, id, "light")
+    expect((performance.now() - t0) / GENERATED_IDS.length).toBeLessThan(150)
+  })
+
+  it("land near the stock values when given the system's own brand color", () => {
+    let within = 0
+    let total = 0
+    for (const id of GENERATED_IDS) {
+      const P = PROFILES[id]
+      const solid = P.vars.find((v) => v.path.kind === "solid")
+      const theme = solid ? hex(parseCss(P.reference.light[solid.name]).rgb) : "#2563eb"
+      const sy = generate(s({ theme, neutral: "gray", themeTint: false }))
+      let w = 0
+      let t = 0
+      for (const mode of ["light", "dark"] as const) {
+        const r = solveOutput(sy, id, mode)
+        const page = r.values[P.generated!.page].rgb
+        const refPage = parseCss(P.reference[mode][P.generated!.page]).rgb
+        for (const v of P.vars) {
+          // The brand solid follows the engine's dark-mode policy, not the stock value.
+          if (v.path.kind === "solid" && mode === "dark") continue
+          const ref = P.reference[mode][v.name]
+          const got = r.values[v.name]
+          if (!ref || !got) continue
+          const pr = parseCss(ref)
+          const a = rgbToOklch(pr.a < 1 ? composite(pr.rgb, pr.a, refPage) : pr.rgb).l
+          const b = rgbToOklch(got.a < 1 ? composite(got.rgb, got.a, page) : got.rgb).l
+          t++
+          if (Math.abs(a - b) < 0.03) w++
+        }
+      }
+      expect(w / t, id).toBeGreaterThan(0.85)
+      within += w
+      total += t
+    }
+    expect(within / total).toBeGreaterThan(0.95)
+  }, 60_000)
+
+  it("write component-scoped variables under their component, and JSON for object-themed systems", () => {
+    const sy = generate(s())
+    const css = outputCss(sy, "bootstrap")
+    expect(css).toMatch(/\[data-bs-theme="dark"\] \.btn-primary \{[^}]*--bs-btn-bg:/)
+    expect(JSON.parse(outputJson(sy, "fluent")!).light.colorNeutralBackground1).toMatch(/^#|^rgba/)
+    expect(Object.keys(JSON.parse(outputJson(sy, "antd")!).light)).toContain("colorPrimary")
+    expect(outputJson(sy, "bootstrap")).toBeNull()
+  })
+
+  it("re-solving from their own CSS output is stable", () => {
+    for (const id of GENERATED_IDS.filter((x) => !PROFILES[x].json)) {
+      const sy = generate(s({ theme: "#7c3aed" }))
+      const t = parseTheme(outputCss(sy, id), PROFILES[id])
+      const again = generate(s({ theme: "#7c3aed", imports: { [id]: t } }))
+      for (const mode of ["light", "dark"] as const) {
+        const a = solveOutput(sy, id, mode).values
+        const b = solveOutput(again, id, mode).values
+        for (const k of Object.keys(a)) {
+          const pa = composite(a[k].rgb, a[k].a, [128, 128, 128])
+          const pb = composite(b[k].rgb, b[k].a, [128, 128, 128])
+          expect(Math.abs(rgbToOklch(pa).l - rgbToOklch(pb).l), `${id} ${mode} ${k}`).toBeLessThan(0.03)
+        }
+      }
+    }
+  }, 60_000)
 })

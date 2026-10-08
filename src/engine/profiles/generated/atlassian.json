@@ -1,0 +1,1089 @@
+{
+ "id": "atlassian",
+ "label": "Atlassian",
+ "description": "Design tokens by role and emphasis (background.brand.bold, text.subtle), with hovered and pressed variants.",
+ "selectors": {
+  "light": "html[data-color-mode=\"light\"]",
+  "dark": "html[data-color-mode=\"dark\"]"
+ },
+ "generated": {
+  "probedAt": "2026-10-08",
+  "source": "@atlaskit/tokens ^20.4.0",
+  "docs": "https://atlassian.design/foundations/color",
+  "page": "--ds-surface",
+  "samples": {
+   "light": 314,
+   "dark": 314
+  }
+ },
+ "formats": {},
+ "scopes": {},
+ "vars": [
+  {
+   "name": "--ds-surface",
+   "path": {
+    "kind": "page"
+   }
+  },
+  {
+   "name": "--ds-surface-raised",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-danger",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-information",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-input",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-input-hovered",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-input-pressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-neutral-bold",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-neutral-bold-hovered",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-selected-bold",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-selected-bold-hovered",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-success-bold",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-background-success-bold-hovered",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--ds-surface",
+    "chroma": 0.94
+   }
+  },
+  {
+   "name": "--ds-border",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--ds-border-focused",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--ds-background-input-pressed",
+    "chroma": 0.91
+   }
+  },
+  {
+   "name": "--ds-border-input",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-icon-inverse",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface",
+    "dir": "back"
+   }
+  },
+  {
+   "name": "--ds-link",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-text",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-text-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--ds-background-danger",
+    "chroma": 0.9
+   }
+  },
+  {
+   "name": "--ds-text-information",
+   "path": {
+    "kind": "step",
+    "palette": "info",
+    "from": "--ds-background-information"
+   }
+  },
+  {
+   "name": "--ds-text-subtle",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-surface"
+   }
+  },
+  {
+   "name": "--ds-text-subtlest",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ds-background-input-pressed"
+   }
+  }
+ ],
+ "recipes": [
+  {
+   "id": "switch-fill",
+   "label": "Switch fill",
+   "source": "switch rest fill; switch hover fill; switch pressed fill; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-icon-inverse"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-color",
+   "label": "Checkbox color",
+   "source": "checkbox rest color; checkbox hover color; checkbox pressed color; +9",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-text"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-color-2",
+   "label": "Checkbox color",
+   "source": "checkbox rest color; checkbox hover color; checkbox pressed color; +9",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-text"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-border",
+   "label": "Input border (pressed, focus)",
+   "source": "input pressed border; input pressed inset-ring; input focus border; +1",
+   "element": "focus",
+   "paint": {
+    "v": "--ds-border-focused"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input-pressed"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-color",
+   "label": "Badge color",
+   "source": "badge rest color; badge hover color; badge pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-text-information"
+   },
+   "over": [
+    {
+     "v": "--ds-background-information"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-color",
+   "label": "Alert danger color",
+   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-text-danger"
+   },
+   "over": [
+    {
+     "v": "--ds-background-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-fill",
+   "label": "Checkbox fill",
+   "source": "checkbox focus fill; checkbox-checked rest fill; checkbox-checked hover fill; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-fill-2",
+   "label": "Checkbox fill",
+   "source": "checkbox focus fill; checkbox focus stroke; checkbox-checked rest fill; +5",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-background-selected-bold"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "switch-background-color",
+   "label": "Switch background",
+   "source": "switch rest background-color; switch-checked focus background-color; switch focus background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-background-neutral-bold"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-background-color-2",
+   "label": "Switch background (hover, pressed)",
+   "source": "switch hover background-color; switch pressed background-color; switch-checked hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-background-neutral-bold-hovered"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-background-color-3",
+   "label": "Switch background",
+   "source": "switch focus background-color; switch-checked rest background-color; switch rest background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-background-success-bold"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-checked-background-color",
+   "label": "Switch checked background (hover, pressed)",
+   "source": "switch-checked hover background-color; switch-checked pressed background-color; switch hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-background-success-bold-hovered"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-fill-3",
+   "label": "Checkbox fill",
+   "source": "checkbox focus fill; checkbox-checked rest fill; checkbox-checked hover fill; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-fill-4",
+   "label": "Checkbox fill",
+   "source": "checkbox focus fill; checkbox focus stroke; checkbox-checked rest fill; +5",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-background-selected-bold"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-stroke",
+   "label": "Checkbox stroke",
+   "source": "checkbox pressed stroke; checkbox-checked pressed stroke; divider rest border; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-border"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-stroke-2",
+   "label": "Checkbox stroke",
+   "source": "checkbox pressed stroke; checkbox-checked pressed stroke; divider rest border; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-border"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-stroke-3",
+   "label": "Checkbox stroke",
+   "source": "checkbox rest stroke; checkbox hover stroke; checkbox-checked focus stroke; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-border-input"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-stroke-4",
+   "label": "Checkbox stroke",
+   "source": "checkbox rest stroke; checkbox hover stroke; checkbox-checked focus stroke; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-border-input"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-background-color",
+   "label": "Input background",
+   "source": "input rest background-color; checkbox rest fill; checkbox-checked focus fill; +2",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-input"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color-2",
+   "label": "Input background",
+   "source": "input rest background-color; checkbox rest fill; checkbox-checked focus fill; +2",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-input"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color-3",
+   "label": "Input background (pressed, focus)",
+   "source": "input pressed background-color; input focus background-color; checkbox pressed fill; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-input-pressed"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-color",
+   "label": "Input color (pressed, focus)",
+   "source": "input pressed color; input focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-text"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input-pressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-placeholder",
+   "label": "Input placeholder (pressed, focus)",
+   "source": "input pressed placeholder; input focus placeholder",
+   "element": "state",
+   "paint": {
+    "v": "--ds-text-subtlest"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input-pressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-background-color",
+   "label": "Badge background",
+   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-information"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-text-subtle"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color",
+   "label": "Link color",
+   "source": "link rest color; link hover color; link pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-link"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-background-color",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-danger"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-surface-raised"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color-4",
+   "label": "Input background (pressed, focus)",
+   "source": "input pressed background-color; input focus background-color; checkbox pressed fill; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-input-pressed"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-background-color-2",
+   "label": "Badge background",
+   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-information"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color-2",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-text-subtle"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color-2",
+   "label": "Link color",
+   "source": "link rest color; link hover color; link pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-link"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-background-color-2",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-danger"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-checked-fill",
+   "label": "Checkbox checked fill (hover)",
+   "source": "checkbox-checked hover fill; checkbox-checked hover stroke; checkbox hover fill; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-background-selected-bold-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "switch-background-color-4",
+   "label": "Switch background",
+   "source": "switch rest background-color; switch-checked focus background-color; switch focus background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-neutral-bold"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-background-color-5",
+   "label": "Switch background (hover, pressed)",
+   "source": "switch hover background-color; switch pressed background-color; switch-checked hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-neutral-bold-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-background-color-6",
+   "label": "Switch background",
+   "source": "switch focus background-color; switch-checked rest background-color; switch rest background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-success-bold"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-border",
+   "label": "Switch border (focus)",
+   "source": "switch focus border; switch-checked focus border",
+   "element": "focus",
+   "paint": {
+    "v": "--ds-border-focused"
+   },
+   "over": [
+    {
+     "v": "--ds-background-success-bold"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-checked-background-color-2",
+   "label": "Switch checked background (hover, pressed)",
+   "source": "switch-checked hover background-color; switch-checked pressed background-color; switch hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-success-bold-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-checked-border",
+   "label": "Switch checked border (focus)",
+   "source": "switch-checked focus border; switch focus border",
+   "element": "focus",
+   "paint": {
+    "v": "--ds-border-focused"
+   },
+   "over": [
+    {
+     "v": "--ds-background-neutral-bold"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-checked-fill-2",
+   "label": "Checkbox checked fill (hover)",
+   "source": "checkbox-checked hover fill; checkbox-checked hover stroke; checkbox hover fill; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ds-background-selected-bold-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "switch-background-color-7",
+   "label": "Switch background",
+   "source": "switch rest background-color; switch-checked focus background-color; switch focus background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-neutral-bold"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-background-color-8",
+   "label": "Switch background (hover, pressed)",
+   "source": "switch hover background-color; switch pressed background-color; switch-checked hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-neutral-bold-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-background-color-9",
+   "label": "Switch background",
+   "source": "switch focus background-color; switch-checked rest background-color; switch rest background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ds-background-success-bold"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-checked-background-color-3",
+   "label": "Switch checked background (hover, pressed)",
+   "source": "switch-checked hover background-color; switch-checked pressed background-color; switch hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-success-bold-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color-5",
+   "label": "Input background (hover)",
+   "source": "input hover background-color; checkbox hover fill; checkbox-checked hover fill",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-input-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color-6",
+   "label": "Input background (hover)",
+   "source": "input hover background-color; checkbox hover fill; checkbox-checked hover fill",
+   "element": "state",
+   "paint": {
+    "v": "--ds-background-input-hovered"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-border-2",
+   "label": "Input border",
+   "source": "input rest border",
+   "element": "border-control",
+   "paint": {
+    "v": "--ds-border-input"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-color-2",
+   "label": "Input color",
+   "source": "input rest color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-text"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-placeholder-2",
+   "label": "Input placeholder",
+   "source": "input rest placeholder",
+   "element": "state",
+   "paint": {
+    "v": "--ds-text-subtlest"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-border-3",
+   "label": "Input border (hover)",
+   "source": "input hover border",
+   "element": "border-control",
+   "paint": {
+    "v": "--ds-border-input"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input-hovered"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-color-3",
+   "label": "Input color (hover)",
+   "source": "input hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ds-text"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input-hovered"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-placeholder-3",
+   "label": "Input placeholder (hover)",
+   "source": "input hover placeholder",
+   "element": "state",
+   "paint": {
+    "v": "--ds-text-subtlest"
+   },
+   "over": [
+    {
+     "v": "--ds-background-input-hovered"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-outline",
+   "label": "Checkbox outline (focus)",
+   "source": "checkbox focus outline; checkbox-checked focus outline",
+   "element": "focus",
+   "paint": {
+    "v": "--ds-border-focused"
+   },
+   "over": [
+    {
+     "v": "--ds-surface"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-outline-2",
+   "label": "Checkbox outline (focus)",
+   "source": "checkbox focus outline; checkbox-checked focus outline",
+   "element": "focus",
+   "paint": {
+    "v": "--ds-border-focused"
+   },
+   "over": [
+    {
+     "v": "--ds-surface-raised"
+    }
+   ],
+   "metric": "dL"
+  }
+ ],
+ "reference": {
+  "light": {
+   "--ds-surface": "#ffffff",
+   "--ds-surface-raised": "#ffffff",
+   "--ds-background-danger": "#ffeceb",
+   "--ds-background-information": "#e9f2fe",
+   "--ds-background-input": "#ffffff",
+   "--ds-background-input-hovered": "#f8f8f8",
+   "--ds-background-input-pressed": "#ffffff",
+   "--ds-background-neutral-bold": "#292a2e",
+   "--ds-background-neutral-bold-hovered": "#3b3d42",
+   "--ds-background-selected-bold": "#1868db",
+   "--ds-background-selected-bold-hovered": "#1558bc",
+   "--ds-background-success-bold": "#5b7f24",
+   "--ds-background-success-bold-hovered": "#4c6b1f",
+   "--ds-border": "rgb(11 18 14 / 14.1%)",
+   "--ds-border-focused": "#4688ec",
+   "--ds-border-input": "#8c8f97",
+   "--ds-icon-inverse": "#ffffff",
+   "--ds-link": "#1868db",
+   "--ds-text": "#292a2e",
+   "--ds-text-danger": "#ae2e24",
+   "--ds-text-information": "#1558bc",
+   "--ds-text-subtle": "#505258",
+   "--ds-text-subtlest": "#6b6e76"
+  },
+  "dark": {
+   "--ds-surface": "#1f1f21",
+   "--ds-surface-raised": "#242528",
+   "--ds-background-danger": "#42221f",
+   "--ds-background-information": "#1c2b42",
+   "--ds-background-input": "#242528",
+   "--ds-background-input-hovered": "#2b2c2f",
+   "--ds-background-input-pressed": "#242528",
+   "--ds-background-neutral-bold": "#cecfd2",
+   "--ds-background-neutral-bold-hovered": "#bfc1c4",
+   "--ds-background-selected-bold": "#669df1",
+   "--ds-background-selected-bold-hovered": "#8fb8f6",
+   "--ds-background-success-bold": "#94c748",
+   "--ds-background-success-bold-hovered": "#b3df72",
+   "--ds-border": "rgb(227 228 242 / 12.2%)",
+   "--ds-border-focused": "#8fb8f6",
+   "--ds-border-input": "#7e8188",
+   "--ds-icon-inverse": "#1f1f21",
+   "--ds-link": "#669df1",
+   "--ds-text": "#cecfd2",
+   "--ds-text-danger": "#fd9891",
+   "--ds-text-information": "#8fb8f6",
+   "--ds-text-subtle": "#a9abaf",
+   "--ds-text-subtlest": "#96999e"
+  }
+ }
+}

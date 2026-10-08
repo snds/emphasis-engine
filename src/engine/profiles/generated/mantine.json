@@ -1,0 +1,1105 @@
+{
+ "id": "mantine",
+ "label": "Mantine",
+ "description": "Per-color variants (filled, light, outline, text) and body, text, dimmed, and default colors.",
+ "selectors": {
+  "light": ":root[data-mantine-color-scheme=\"light\"]",
+  "dark": ":root[data-mantine-color-scheme=\"dark\"]"
+ },
+ "generated": {
+  "probedAt": "2026-10-08",
+  "source": "@mantine/core ^9.7.1",
+  "docs": "https://mantine.dev/styles/css-variables/",
+  "page": "--mantine-color-body",
+  "samples": {
+   "light": 488,
+   "dark": 486
+  }
+ },
+ "formats": {},
+ "scopes": {},
+ "vars": [
+  {
+   "name": "--mantine-color-body",
+   "path": {
+    "kind": "page"
+   }
+  },
+  {
+   "name": "--mantine-color-blue-filled",
+   "path": {
+    "kind": "solid",
+    "role": "brand"
+   }
+  },
+  {
+   "name": "--mantine-color-blue-filled-hover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-body",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--mantine-color-red-filled",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--mantine-color-body",
+    "chroma": 0.95
+   }
+  },
+  {
+   "name": "--mantine-color-red-filled-hover",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--mantine-color-body",
+    "chroma": 0.85
+   }
+  },
+  {
+   "name": "--mantine-color-white",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-body",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--mantine-color-anchor",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-body"
+   }
+  },
+  {
+   "name": "--mantine-color-blue-light",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-body",
+    "chroma": 1.08
+   }
+  },
+  {
+   "name": "--mantine-color-blue-light-hover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-body",
+    "chroma": 1.08
+   }
+  },
+  {
+   "name": "--mantine-color-blue-light-color",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-blue-light",
+    "chroma": 0.99
+   }
+  },
+  {
+   "name": "--mantine-color-blue-outline-hover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-body",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--mantine-color-blue-outline",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-blue-outline-hover"
+   }
+  },
+  {
+   "name": "--mantine-color-default",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-body"
+   }
+  },
+  {
+   "name": "--mantine-color-default-hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-body"
+   }
+  },
+  {
+   "name": "--mantine-color-default-border",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-default"
+   }
+  },
+  {
+   "name": "--mantine-color-default-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-default"
+   }
+  },
+  {
+   "name": "--mantine-color-dimmed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-body"
+   }
+  },
+  {
+   "name": "--mantine-color-gray-light",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-body",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--mantine-color-gray-light-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-gray-light"
+   }
+  },
+  {
+   "name": "--mantine-color-placeholder",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-white",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--mantine-color-red-light",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--mantine-color-body"
+   }
+  },
+  {
+   "name": "--mantine-color-red-light-color",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--mantine-color-red-light",
+    "chroma": 0.88
+   }
+  },
+  {
+   "name": "--mantine-color-text",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--mantine-color-white",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--mantine-primary-color-filled",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--mantine-color-white",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  }
+ ],
+ "recipes": [
+  {
+   "id": "input-border",
+   "label": "Input border",
+   "source": "input pressed border; input focus border; card rest background-color; +18",
+   "element": "border-control",
+   "paint": {
+    "v": "--mantine-primary-color-filled"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-color",
+   "label": "Input color",
+   "source": "input rest color; input hover color; input pressed color; +9",
+   "element": "text-primary",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-text"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-outline",
+   "label": "Button primary outline",
+   "source": "button-primary focus outline; button-secondary focus outline; button-outline focus outline; +12",
+   "element": "border-control",
+   "paint": {
+    "v": "--mantine-primary-color-filled"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color; checkbox focus background-color; +10",
+   "element": "solid",
+   "paint": {
+    "v": "--mantine-color-blue-filled"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-secondary-color",
+   "label": "Button secondary color",
+   "source": "button-secondary rest color; button-secondary focus color; alert-info rest color; +3",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--mantine-color-blue-light-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-blue-light"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-background-color",
+   "label": "Input background",
+   "source": "input rest background-color; input hover background-color; input pressed background-color; +9",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-color",
+   "label": "Badge color",
+   "source": "badge rest color; badge hover color; badge pressed color; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-primary-color-filled"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-2",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color; checkbox focus background-color; +6",
+   "element": "solid",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-filled"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-primary-color",
+   "label": "Button primary color",
+   "source": "button-primary rest color; button-primary focus color; card rest fill; +3",
+   "element": "on-solid",
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-blue-filled"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-color-2",
+   "label": "Button secondary color (hover, pressed)",
+   "source": "button-secondary hover color; button-secondary pressed color; button-ghost hover color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--mantine-color-blue-light-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-blue-light-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-placeholder",
+   "label": "Input placeholder",
+   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +1",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-placeholder"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-neutral-color",
+   "label": "Badge neutral color",
+   "source": "badge-neutral rest color; badge-neutral hover color; badge-neutral pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-gray-light-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-gray-light"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-color",
+   "label": "Tabs color",
+   "source": "tabs rest color; tabs focus color; tab-inactive rest color; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-text"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-color",
+   "label": "Alert danger color",
+   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--mantine-color-red-light-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-red-light"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-background-color-2",
+   "label": "Input background",
+   "source": "input rest background-color; input hover background-color; input pressed background-color; +5",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color; alert-info rest background-color; +3",
+   "element": "surface",
+   "paint": {
+    "v": "--mantine-color-blue-light"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-2",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color; alert-info rest background-color; +3",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-light"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-color-2",
+   "label": "Button primary color (hover, pressed)",
+   "source": "button-primary hover color; button-primary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-blue-filled-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-background-color-3",
+   "label": "Button secondary background (hover, pressed)",
+   "source": "button-secondary hover background-color; button-secondary pressed background-color; button-ghost hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--mantine-color-blue-light-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border",
+   "label": "Button outline border",
+   "source": "button-outline rest border; button-outline rest color; button-outline focus border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--mantine-color-blue-outline"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-color",
+   "label": "Button danger color",
+   "source": "button-danger rest color; button-danger focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-red-filled"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-color-2",
+   "label": "Button danger color (hover, pressed)",
+   "source": "button-danger hover color; button-danger pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-white"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-red-filled-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-neutral-border",
+   "label": "Button neutral border",
+   "source": "button-neutral rest border; button-neutral focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--mantine-color-default-border"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-default"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-neutral-color",
+   "label": "Button neutral color",
+   "source": "button-neutral rest color; button-neutral focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-default-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-default"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-neutral-border-2",
+   "label": "Button neutral border (hover, pressed)",
+   "source": "button-neutral hover border; button-neutral pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--mantine-color-default-border"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-default-hover"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-neutral-color-2",
+   "label": "Button neutral color (hover, pressed)",
+   "source": "button-neutral hover color; button-neutral pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--mantine-color-default-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-default-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-neutral-background-color",
+   "label": "Badge neutral background",
+   "source": "badge-neutral rest background-color; badge-neutral hover background-color; badge-neutral pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--mantine-color-gray-light"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--mantine-color-dimmed"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color",
+   "label": "Link color",
+   "source": "link rest color; link hover color; link pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--mantine-color-anchor"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-background-color",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--mantine-color-red-light"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-4",
+   "label": "Button secondary background (hover, pressed)",
+   "source": "button-secondary hover background-color; button-secondary pressed background-color; button-ghost hover background-color; +1",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-light-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-border-2",
+   "label": "Button outline border",
+   "source": "button-outline rest border; button-outline rest color; button-outline focus border; +1",
+   "element": "border-decorative",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-outline"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-neutral-background-color-2",
+   "label": "Badge neutral background",
+   "source": "badge-neutral rest background-color; badge-neutral hover background-color; badge-neutral pressed background-color; +1",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-gray-light"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-muted-color-2",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-secondary",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-dimmed"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color-2",
+   "label": "Link color",
+   "source": "link rest color; link hover color; link pressed color; +1",
+   "element": "text-secondary",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-anchor"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-background-color-2",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-red-light"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-3",
+   "label": "Button primary background (hover, pressed)",
+   "source": "button-primary hover background-color; button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--mantine-color-blue-filled-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color",
+   "label": "Button outline background (hover, pressed)",
+   "source": "button-outline hover background-color; button-outline pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--mantine-color-blue-outline-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-color",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--mantine-color-blue-light-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color; button-danger focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--mantine-color-red-filled"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-2",
+   "label": "Button danger background (hover, pressed)",
+   "source": "button-danger hover background-color; button-danger pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--mantine-color-red-filled-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-neutral-background-color",
+   "label": "Button neutral background",
+   "source": "button-neutral rest background-color; button-neutral focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--mantine-color-default"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-neutral-background-color-2",
+   "label": "Button neutral background (hover, pressed)",
+   "source": "button-neutral hover background-color; button-neutral pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--mantine-color-default-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-body"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-4",
+   "label": "Button primary background (hover, pressed)",
+   "source": "button-primary hover background-color; button-primary pressed background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-filled-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-2",
+   "label": "Button outline background (hover, pressed)",
+   "source": "button-outline hover background-color; button-outline pressed background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-outline-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-color-2",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus color",
+   "element": "text-secondary",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-blue-light-color"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color-3",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color; button-danger focus background-color",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-red-filled"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-4",
+   "label": "Button danger background (hover, pressed)",
+   "source": "button-danger hover background-color; button-danger pressed background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-red-filled-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-neutral-background-color-3",
+   "label": "Button neutral background",
+   "source": "button-neutral rest background-color; button-neutral focus background-color",
+   "element": "surface",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-default"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-neutral-background-color-4",
+   "label": "Button neutral background (hover, pressed)",
+   "source": "button-neutral hover background-color; button-neutral pressed background-color",
+   "element": "state",
+   "modes": [
+    "light"
+   ],
+   "paint": {
+    "v": "--mantine-color-default-hover"
+   },
+   "over": [
+    {
+     "v": "--mantine-color-white"
+    }
+   ],
+   "metric": "dL"
+  }
+ ],
+ "reference": {
+  "light": {
+   "--mantine-color-body": "#ffffff",
+   "--mantine-color-blue-filled": "#228be6",
+   "--mantine-color-blue-filled-hover": "#1c7ed6",
+   "--mantine-color-red-filled": "#fa5252",
+   "--mantine-color-red-filled-hover": "#f03e3e",
+   "--mantine-color-white": "#ffffff",
+   "--mantine-color-anchor": "#228be6",
+   "--mantine-color-blue-light": "#d0ebff",
+   "--mantine-color-blue-light-hover": "#a5d8ff",
+   "--mantine-color-blue-light-color": "#1864ab",
+   "--mantine-color-blue-outline-hover": "rgb(34 139 230 / 5%)",
+   "--mantine-color-blue-outline": "#228be6",
+   "--mantine-color-default": "#ffffff",
+   "--mantine-color-default-hover": "#f8f9fa",
+   "--mantine-color-default-border": "#ced4da",
+   "--mantine-color-default-color": "#000000",
+   "--mantine-color-dimmed": "#868e96",
+   "--mantine-color-gray-light": "#f1f3f5",
+   "--mantine-color-gray-light-color": "#212529",
+   "--mantine-color-placeholder": "#adb5bd",
+   "--mantine-color-red-light": "#ffe3e3",
+   "--mantine-color-red-light-color": "#c92a2a",
+   "--mantine-color-text": "#000000",
+   "--mantine-primary-color-filled": "#228be6"
+  },
+  "dark": {
+   "--mantine-color-body": "#242424",
+   "--mantine-color-blue-filled": "#1971c2",
+   "--mantine-color-blue-filled-hover": "#1864ab",
+   "--mantine-color-red-filled": "#e03131",
+   "--mantine-color-red-filled-hover": "#c92a2a",
+   "--mantine-color-white": "#ffffff",
+   "--mantine-color-anchor": "#4dabf7",
+   "--mantine-color-blue-light": "#0c3256",
+   "--mantine-color-blue-light-hover": "#114678",
+   "--mantine-color-blue-light-color": "#e7f5ff",
+   "--mantine-color-blue-outline-hover": "rgb(77 171 247 / 5%)",
+   "--mantine-color-blue-outline": "#4dabf7",
+   "--mantine-color-default": "#2e2e2e",
+   "--mantine-color-default-hover": "#3b3b3b",
+   "--mantine-color-default-border": "#424242",
+   "--mantine-color-default-color": "#ffffff",
+   "--mantine-color-dimmed": "#828282",
+   "--mantine-color-gray-light": "#111315",
+   "--mantine-color-gray-light-color": "#f8f9fa",
+   "--mantine-color-placeholder": "#696969",
+   "--mantine-color-red-light": "#651515",
+   "--mantine-color-red-light-color": "#fff5f5",
+   "--mantine-color-text": "#c9c9c9",
+   "--mantine-primary-color-filled": "#1971c2"
+  }
+ }
+}

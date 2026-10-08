@@ -86,7 +86,15 @@ function renameRadix(decls: Record<string, string>): Record<string, string> {
 export function parseTheme(source: string, profile: Profile): ImportedTheme {
   const css = source.replace(/\/\*[\s\S]*?\*\//g, "")
   const raw: Record<Mode, Record<string, string>> = { light: {}, dark: {} }
+  const scopeSelectors = [...new Set(Object.values(profile.scopes ?? {}).map((x) => x.selector))]
   for (const b of blocks(css)) {
+    // Component-scoped variables (Bootstrap's .btn-primary { --bs-btn-bg }) key as name@selector.
+    for (const part of b.selector.split(",").map((x) => x.trim())) {
+      const sel = scopeSelectors.find((S) => part === S || part.endsWith(` ${S}`))
+      if (!sel) continue
+      const target: Mode = b.forceDark || /dark/.test(part) ? "dark" : "light"
+      for (const m of b.body.matchAll(/(--[\w-]+)\s*:\s*([^;}]+)/g)) raw[target][`${m[1]}@${sel}`] = m[2].trim()
+    }
     const mode = modeOf(b)
     if (!mode) continue
     for (const m of b.body.matchAll(/(--[\w-]+)\s*:\s*([^;}]+)/g)) {

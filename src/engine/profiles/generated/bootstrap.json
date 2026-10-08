@@ -1,0 +1,2355 @@
+{
+ "id": "bootstrap",
+ "label": "Bootstrap",
+ "description": "Root variables for page, text, and borders; each component class carries its own variables (--bs-btn-bg on .btn-primary).",
+ "selectors": {
+  "light": ":root, [data-bs-theme=\"light\"]",
+  "dark": "[data-bs-theme=\"dark\"]"
+ },
+ "generated": {
+  "probedAt": "2026-10-08",
+  "source": "bootstrap ^5.3.8",
+  "docs": "https://getbootstrap.com/docs/5.3/customize/css-variables/",
+  "page": "--bs-body-bg",
+  "samples": {
+   "light": 488,
+   "dark": 488
+  }
+ },
+ "formats": {},
+ "scopes": {
+  "--bs-card-bg@.card": {
+   "name": "--bs-card-bg",
+   "selector": ".card"
+  },
+  "--bs-alert-bg@.alert-danger": {
+   "name": "--bs-alert-bg",
+   "selector": ".alert-danger"
+  },
+  "--bs-alert-bg@.alert-primary": {
+   "name": "--bs-alert-bg",
+   "selector": ".alert-primary"
+  },
+  "--bs-alert-border-color@.alert-danger": {
+   "name": "--bs-alert-border-color",
+   "selector": ".alert-danger"
+  },
+  "--bs-alert-border-color@.alert-primary": {
+   "name": "--bs-alert-border-color",
+   "selector": ".alert-primary"
+  },
+  "--bs-alert-color@.alert-danger": {
+   "name": "--bs-alert-color",
+   "selector": ".alert-danger"
+  },
+  "--bs-alert-color@.alert-primary": {
+   "name": "--bs-alert-color",
+   "selector": ".alert-primary"
+  },
+  "--bs-form-check-bg@.form-check-input": {
+   "name": "--bs-form-check-bg",
+   "selector": ".form-check-input"
+  },
+  "--bs-nav-tabs-link-active-bg@.nav-tabs": {
+   "name": "--bs-nav-tabs-link-active-bg",
+   "selector": ".nav-tabs"
+  },
+  "--bs-btn-active-bg@.btn-danger": {
+   "name": "--bs-btn-active-bg",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-active-bg@.btn-outline-primary": {
+   "name": "--bs-btn-active-bg",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-active-bg@.btn-primary": {
+   "name": "--bs-btn-active-bg",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-active-bg@.btn-secondary": {
+   "name": "--bs-btn-active-bg",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-active-border-color@.btn-danger": {
+   "name": "--bs-btn-active-border-color",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-active-border-color@.btn-outline-primary": {
+   "name": "--bs-btn-active-border-color",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-active-border-color@.btn-primary": {
+   "name": "--bs-btn-active-border-color",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-active-border-color@.btn-secondary": {
+   "name": "--bs-btn-active-border-color",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-active-color@.btn-danger": {
+   "name": "--bs-btn-active-color",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-active-color@.btn-link": {
+   "name": "--bs-btn-active-color",
+   "selector": ".btn-link"
+  },
+  "--bs-btn-active-color@.btn-outline-primary": {
+   "name": "--bs-btn-active-color",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-active-color@.btn-primary": {
+   "name": "--bs-btn-active-color",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-active-color@.btn-secondary": {
+   "name": "--bs-btn-active-color",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-bg@.btn": {
+   "name": "--bs-btn-bg",
+   "selector": ".btn"
+  },
+  "--bs-btn-bg@.btn-danger": {
+   "name": "--bs-btn-bg",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-bg@.btn-primary": {
+   "name": "--bs-btn-bg",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-bg@.btn-secondary": {
+   "name": "--bs-btn-bg",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-border-color@.btn": {
+   "name": "--bs-btn-border-color",
+   "selector": ".btn"
+  },
+  "--bs-btn-border-color@.btn-danger": {
+   "name": "--bs-btn-border-color",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-border-color@.btn-outline-primary": {
+   "name": "--bs-btn-border-color",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-border-color@.btn-primary": {
+   "name": "--bs-btn-border-color",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-border-color@.btn-secondary": {
+   "name": "--bs-btn-border-color",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-color@.btn-danger": {
+   "name": "--bs-btn-color",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-color@.btn-link": {
+   "name": "--bs-btn-color",
+   "selector": ".btn-link"
+  },
+  "--bs-btn-color@.btn-outline-primary": {
+   "name": "--bs-btn-color",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-color@.btn-primary": {
+   "name": "--bs-btn-color",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-color@.btn-secondary": {
+   "name": "--bs-btn-color",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-hover-bg@.btn-danger": {
+   "name": "--bs-btn-hover-bg",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-hover-bg@.btn-outline-primary": {
+   "name": "--bs-btn-hover-bg",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-hover-bg@.btn-primary": {
+   "name": "--bs-btn-hover-bg",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-hover-bg@.btn-secondary": {
+   "name": "--bs-btn-hover-bg",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-hover-border-color@.btn": {
+   "name": "--bs-btn-hover-border-color",
+   "selector": ".btn"
+  },
+  "--bs-btn-hover-border-color@.btn-danger": {
+   "name": "--bs-btn-hover-border-color",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-hover-border-color@.btn-outline-primary": {
+   "name": "--bs-btn-hover-border-color",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-hover-border-color@.btn-primary": {
+   "name": "--bs-btn-hover-border-color",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-hover-border-color@.btn-secondary": {
+   "name": "--bs-btn-hover-border-color",
+   "selector": ".btn-secondary"
+  },
+  "--bs-btn-hover-color@.btn-danger": {
+   "name": "--bs-btn-hover-color",
+   "selector": ".btn-danger"
+  },
+  "--bs-btn-hover-color@.btn-link": {
+   "name": "--bs-btn-hover-color",
+   "selector": ".btn-link"
+  },
+  "--bs-btn-hover-color@.btn-outline-primary": {
+   "name": "--bs-btn-hover-color",
+   "selector": ".btn-outline-primary"
+  },
+  "--bs-btn-hover-color@.btn-primary": {
+   "name": "--bs-btn-hover-color",
+   "selector": ".btn-primary"
+  },
+  "--bs-btn-hover-color@.btn-secondary": {
+   "name": "--bs-btn-hover-color",
+   "selector": ".btn-secondary"
+  },
+  "--bs-card-border-color@.card": {
+   "name": "--bs-card-border-color",
+   "selector": ".card"
+  },
+  "--bs-card-cap-bg@.card": {
+   "name": "--bs-card-cap-bg",
+   "selector": ".card"
+  },
+  "--bs-nav-link-color@.nav": {
+   "name": "--bs-nav-link-color",
+   "selector": ".nav"
+  },
+  "--bs-nav-link-hover-color@.nav": {
+   "name": "--bs-nav-link-hover-color",
+   "selector": ".nav"
+  },
+  "--bs-nav-tabs-border-color@.nav-tabs": {
+   "name": "--bs-nav-tabs-border-color",
+   "selector": ".nav-tabs"
+  },
+  "--bs-nav-tabs-link-active-color@.nav-tabs": {
+   "name": "--bs-nav-tabs-link-active-color",
+   "selector": ".nav-tabs"
+  }
+ },
+ "vars": [
+  {
+   "name": "--bs-body-bg",
+   "path": {
+    "kind": "page"
+   }
+  },
+  {
+   "name": "--bs-card-bg@.card",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-alert-bg@.alert-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-body-bg",
+    "chroma": 0.89,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-alert-bg@.alert-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 1.04,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-alert-border-color@.alert-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-alert-bg@.alert-danger",
+    "chroma": 0.88
+   }
+  },
+  {
+   "name": "--bs-alert-border-color@.alert-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-alert-bg@.alert-primary",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-alert-color@.alert-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-alert-bg@.alert-danger",
+    "chroma": 0.92
+   }
+  },
+  {
+   "name": "--bs-alert-color@.alert-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-alert-bg@.alert-primary",
+    "chroma": 0.96
+   }
+  },
+  {
+   "name": "--bs-body-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-form-check-bg@.form-check-input",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-nav-tabs-link-active-bg@.nav-tabs",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-border-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-form-check-bg@.form-check-input"
+   }
+  },
+  {
+   "name": "--bs-btn-active-bg@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-body-bg",
+    "chroma": 0.99
+   }
+  },
+  {
+   "name": "--bs-btn-active-bg@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-active-bg@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-active-bg@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-active-border-color@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-btn-active-bg@.btn-danger",
+    "chroma": 0.98,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-active-border-color@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-active-bg@.btn-outline-primary",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-active-border-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-active-bg@.btn-primary",
+    "chroma": 0.99,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-active-border-color@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-active-bg@.btn-secondary",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-active-color@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-active-bg@.btn-danger",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-active-color@.btn-link",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-active-color@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-active-bg@.btn-outline-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-active-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-active-bg@.btn-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-active-color@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-active-bg@.btn-secondary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-bg@.btn",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-bg@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-bg@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-bg@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-border-color@.btn",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-bg@.btn",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-border-color@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-btn-bg@.btn-danger"
+   }
+  },
+  {
+   "name": "--bs-btn-border-color@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-bg@.btn",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-border-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-bg@.btn-primary",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-border-color@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-bg@.btn-secondary"
+   }
+  },
+  {
+   "name": "--bs-btn-color@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-bg@.btn-danger",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-color@.btn-link",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-bg@.btn",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-color@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-bg@.btn",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-bg@.btn-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-color@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-bg@.btn-secondary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-bg@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-body-bg",
+    "chroma": 0.99
+   }
+  },
+  {
+   "name": "--bs-btn-hover-bg@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-hover-bg@.btn-primary",
+   "path": {
+    "kind": "solid",
+    "role": "brand"
+   }
+  },
+  {
+   "name": "--bs-btn-hover-bg@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-hover-border-color@.btn",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-hover-border-color@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-btn-hover-bg@.btn-danger",
+    "chroma": 0.99,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-border-color@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-hover-bg@.btn-outline-primary",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-btn-hover-border-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-hover-bg@.btn-primary",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-border-color@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-hover-bg@.btn-secondary",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-color@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-hover-bg@.btn-danger",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-color@.btn-link",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-hover-color@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-hover-bg@.btn-outline-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-hover-bg@.btn-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-hover-color@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-hover-bg@.btn-secondary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-card-border-color@.card",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-card-bg@.card",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--bs-card-cap-bg@.card",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-form-check-bg@.form-check-input",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--bs-nav-link-color@.nav",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 1.02
+   }
+  },
+  {
+   "name": "--bs-nav-link-hover-color@.nav",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-nav-tabs-border-color@.nav-tabs",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-nav-tabs-link-active-color@.nav-tabs",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+   }
+  },
+  {
+   "name": "--bs-secondary-bg",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-secondary-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--bs-success-border-subtle",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--bs-form-check-bg@.form-check-input"
+   }
+  },
+  {
+   "name": "--bs-warning-text-emphasis",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--bs-body-bg"
+   }
+  }
+ ],
+ "recipes": [
+  {
+   "id": "checkbox-background-color",
+   "label": "Checkbox background",
+   "source": "checkbox rest background-color; checkbox hover background-color; checkbox pressed background-color; +13",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-form-check-bg@.form-check-input"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-border",
+   "label": "Checkbox border",
+   "source": "checkbox rest border; checkbox hover border; switch rest border; +5",
+   "element": "border-control",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-form-check-bg@.form-check-input"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-border-2",
+   "label": "Checkbox border (pressed, focus)",
+   "source": "checkbox pressed border; checkbox-checked focus border; switch pressed border; +5",
+   "element": "border-control",
+   "paint": {
+    "mix": [
+     {
+      "v": "--bs-success-border-subtle"
+     },
+     {
+      "v": "--bs-card-cap-bg@.card"
+     }
+    ],
+    "k": 0.47,
+    "space": "oklch"
+   },
+   "over": [
+    {
+     "v": "--bs-form-check-bg@.form-check-input"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "checkbox-background-color-2",
+   "label": "Checkbox background",
+   "source": "checkbox rest background-color; checkbox hover background-color; checkbox pressed background-color; +13",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-form-check-bg@.form-check-input"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-color",
+   "label": "Input color",
+   "source": "input rest color; input hover color; input pressed color; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-body-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-placeholder",
+   "label": "Input placeholder",
+   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +5",
+   "element": "state",
+   "paint": {
+    "v": "--bs-secondary-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-color",
+   "label": "Tabs color",
+   "source": "tabs rest color; tabs hover color; tabs pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-nav-tabs-link-active-color@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-border",
+   "label": "Tabs border",
+   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-color",
+   "label": "Alert danger color",
+   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-alert-color@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-border",
+   "label": "Alert danger border",
+   "source": "alert-danger rest border; alert-danger hover border; alert-danger pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-alert-border-color@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-danger"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-color",
+   "label": "Alert info color",
+   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-alert-color@.alert-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-info-border",
+   "label": "Alert info border",
+   "source": "alert-info rest border; alert-info hover border; alert-info pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-alert-border-color@.alert-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-primary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-border",
+   "label": "Input border",
+   "source": "input rest border; input hover border; tab-inactive hover border; +2",
+   "element": "border-control",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-color",
+   "label": "Button primary color (hover, focus)",
+   "source": "button-primary hover color; button-primary focus color",
+   "element": "on-solid",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-border",
+   "label": "Button primary border (hover, focus)",
+   "source": "button-primary hover border; button-primary focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-primary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color",
+   "label": "Button secondary color (hover, focus)",
+   "source": "button-secondary hover color; button-secondary focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-secondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-border",
+   "label": "Button secondary border (hover, focus)",
+   "source": "button-secondary hover border; button-secondary focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-secondary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color",
+   "label": "Button outline color (hover, focus)",
+   "source": "button-outline hover color; button-outline focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-outline-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-color",
+   "label": "Button danger color (hover, focus)",
+   "source": "button-danger hover color; button-danger focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-border",
+   "label": "Button danger border (hover, focus)",
+   "source": "button-danger hover border; button-danger focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-danger"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-border-2",
+   "label": "Input border (pressed, focus)",
+   "source": "input pressed border; input focus border",
+   "element": "border-control",
+   "paint": {
+    "mix": [
+     {
+      "v": "--bs-success-border-subtle"
+     },
+     {
+      "v": "--bs-card-cap-bg@.card"
+     }
+    ],
+    "k": 0.47,
+    "space": "oklch"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-border-2",
+   "label": "Tabs border",
+   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-nav-tabs-border-color@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-background-color",
+   "label": "Tabs background",
+   "source": "tabs rest background-color; tabs hover background-color; tabs pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "divider-border",
+   "label": "Divider border",
+   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "alpha": {
+     "v": "--bs-body-color"
+    },
+    "k": 0.25
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-background-color",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-card-bg@.card"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-border",
+   "label": "Card border",
+   "source": "card rest border; card hover border; card pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-card-border-color@.card"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-border-3",
+   "label": "Tabs border",
+   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-nav-tabs-border-color@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-background-color-2",
+   "label": "Tabs background",
+   "source": "tabs rest background-color; tabs hover background-color; tabs pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-color",
+   "label": "Text color",
+   "source": "text rest color; text hover color; text pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-body-color"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "text-muted-color",
+   "label": "Text muted color",
+   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-secondary-color"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "divider-border-2",
+   "label": "Divider border",
+   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "alpha": {
+     "v": "--bs-body-color"
+    },
+    "k": 0.25
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-background-color-2",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color-2",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-color",
+   "label": "Tab inactive color (hover, pressed, focus)",
+   "source": "tab-inactive hover color; tab-inactive pressed color; tab-inactive focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-nav-link-hover-color@.nav"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-inactive-border",
+   "label": "Tab inactive border (hover, pressed, focus)",
+   "source": "tab-inactive hover border; tab-inactive pressed border; tab-inactive focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-secondary-bg"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-color-2",
+   "label": "Tab inactive color (hover, pressed, focus)",
+   "source": "tab-inactive hover color; tab-inactive pressed color; tab-inactive focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-nav-link-hover-color@.nav"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-inactive-border-2",
+   "label": "Tab inactive border (hover, pressed, focus)",
+   "source": "tab-inactive hover border; tab-inactive pressed border; tab-inactive focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-secondary-bg"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-border-3",
+   "label": "Tab inactive border (hover, pressed, focus)",
+   "source": "tab-inactive hover border; tab-inactive pressed border; tab-inactive focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-color-2",
+   "label": "Button primary color",
+   "source": "button-primary rest color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-bg@.btn-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color",
+   "label": "Button primary background (hover, focus)",
+   "source": "button-primary hover background-color; button-primary focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-primary-color-3",
+   "label": "Button primary color (pressed)",
+   "source": "button-primary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-border-2",
+   "label": "Button primary border (pressed)",
+   "source": "button-primary pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-active-border-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-primary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color-2",
+   "label": "Button secondary color",
+   "source": "button-secondary rest color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-bg@.btn-secondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-background-color",
+   "label": "Button secondary background (hover, focus)",
+   "source": "button-secondary hover background-color; button-secondary focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color-3",
+   "label": "Button secondary color (pressed)",
+   "source": "button-secondary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-secondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-border-2",
+   "label": "Button secondary border (pressed)",
+   "source": "button-secondary pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-active-border-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-secondary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color",
+   "label": "Button outline background",
+   "source": "button-outline rest background-color; button-ghost rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color-2",
+   "label": "Button outline color",
+   "source": "button-outline rest color",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-btn-color@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-bg@.btn"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-background-color-2",
+   "label": "Button outline background (hover, focus)",
+   "source": "button-outline hover background-color; button-outline focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color-3",
+   "label": "Button outline color (pressed)",
+   "source": "button-outline pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-outline-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-btn-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-bg@.btn"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-border",
+   "label": "Button ghost border (hover, focus)",
+   "source": "button-ghost hover border; button-ghost focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-color-2",
+   "label": "Button danger color",
+   "source": "button-danger rest color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-bg@.btn-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color",
+   "label": "Button danger background (hover, focus)",
+   "source": "button-danger hover background-color; button-danger focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-color-3",
+   "label": "Button danger color (pressed)",
+   "source": "button-danger pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-border-2",
+   "label": "Button danger border (pressed)",
+   "source": "button-danger pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-active-border-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-active-bg@.btn-danger"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-2",
+   "label": "Button primary background (hover, focus)",
+   "source": "button-primary hover background-color; button-primary focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-secondary-background-color-2",
+   "label": "Button secondary background (hover, focus)",
+   "source": "button-secondary hover background-color; button-secondary focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-3",
+   "label": "Button outline background",
+   "source": "button-outline rest background-color; button-ghost rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-4",
+   "label": "Button outline background (hover, focus)",
+   "source": "button-outline hover background-color; button-outline focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-border-2",
+   "label": "Button ghost border (hover, focus)",
+   "source": "button-ghost hover border; button-ghost focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-2",
+   "label": "Button danger background (hover, focus)",
+   "source": "button-danger hover background-color; button-danger focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-color",
+   "label": "Link color (hover, pressed)",
+   "source": "link hover color; link pressed color",
+   "element": "text-primary",
+   "modes": [
+    "dark"
+   ],
+   "paint": {
+    "mix": [
+     {
+      "v": "--bs-card-cap-bg@.card"
+     },
+     {
+      "v": "--bs-warning-text-emphasis"
+     }
+    ],
+    "k": 0.48,
+    "space": "oklch"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-color-2",
+   "label": "Link color (hover, pressed)",
+   "source": "link hover color; link pressed color",
+   "element": "text-primary",
+   "modes": [
+    "dark"
+   ],
+   "paint": {
+    "mix": [
+     {
+      "v": "--bs-card-cap-bg@.card"
+     },
+     {
+      "v": "--bs-warning-text-emphasis"
+     }
+    ],
+    "k": 0.48,
+    "space": "oklch"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-3",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-4",
+   "label": "Button primary background (pressed)",
+   "source": "button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-3",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-4",
+   "label": "Button secondary background (pressed)",
+   "source": "button-secondary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-5",
+   "label": "Button outline background (pressed)",
+   "source": "button-outline pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-color-2",
+   "label": "Button ghost color (hover)",
+   "source": "button-ghost hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-3",
+   "label": "Button ghost color (pressed)",
+   "source": "button-ghost pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-4",
+   "label": "Button ghost color (focus)",
+   "source": "button-ghost focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color-3",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-4",
+   "label": "Button danger background (pressed)",
+   "source": "button-danger pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-color-3",
+   "label": "Tab inactive color",
+   "source": "tab-inactive rest color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-nav-link-color@.nav"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-5",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-6",
+   "label": "Button primary background (pressed)",
+   "source": "button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-5",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-6",
+   "label": "Button secondary background (pressed)",
+   "source": "button-secondary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-6",
+   "label": "Button outline background (pressed)",
+   "source": "button-outline pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-color-5",
+   "label": "Button ghost color (hover)",
+   "source": "button-ghost hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-6",
+   "label": "Button ghost color (pressed)",
+   "source": "button-ghost pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-7",
+   "label": "Button ghost color (focus)",
+   "source": "button-ghost focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color-5",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-6",
+   "label": "Button danger background (pressed)",
+   "source": "button-danger pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-color-4",
+   "label": "Tab inactive color",
+   "source": "tab-inactive rest color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-nav-link-color@.nav"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "lc"
+  }
+ ],
+ "reference": {
+  "light": {
+   "--bs-body-bg": "#ffffff",
+   "--bs-card-bg@.card": "#ffffff",
+   "--bs-alert-bg@.alert-danger": "#f8d7da",
+   "--bs-alert-bg@.alert-primary": "#cfe2ff",
+   "--bs-alert-border-color@.alert-danger": "#f1aeb5",
+   "--bs-alert-border-color@.alert-primary": "#9ec5fe",
+   "--bs-alert-color@.alert-danger": "#58151c",
+   "--bs-alert-color@.alert-primary": "#052c65",
+   "--bs-body-color": "#212529",
+   "--bs-form-check-bg@.form-check-input": "#ffffff",
+   "--bs-nav-tabs-link-active-bg@.nav-tabs": "#ffffff",
+   "--bs-border-color": "#dee2e6",
+   "--bs-btn-active-bg@.btn-danger": "#b02a37",
+   "--bs-btn-active-bg@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-active-bg@.btn-primary": "#0a58ca",
+   "--bs-btn-active-bg@.btn-secondary": "#565e64",
+   "--bs-btn-active-border-color@.btn-danger": "#a52834",
+   "--bs-btn-active-border-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-active-border-color@.btn-primary": "#0a53be",
+   "--bs-btn-active-border-color@.btn-secondary": "#51585e",
+   "--bs-btn-active-color@.btn-danger": "#ffffff",
+   "--bs-btn-active-color@.btn-link": "#0a58ca",
+   "--bs-btn-active-color@.btn-outline-primary": "#ffffff",
+   "--bs-btn-active-color@.btn-primary": "#ffffff",
+   "--bs-btn-active-color@.btn-secondary": "#ffffff",
+   "--bs-btn-bg@.btn": "#0d6efd",
+   "--bs-btn-bg@.btn-danger": "#dc3545",
+   "--bs-btn-bg@.btn-primary": "#0d6efd",
+   "--bs-btn-bg@.btn-secondary": "#6c757d",
+   "--bs-btn-border-color@.btn": "#0d6efd",
+   "--bs-btn-border-color@.btn-danger": "#dc3545",
+   "--bs-btn-border-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-border-color@.btn-primary": "#0d6efd",
+   "--bs-btn-border-color@.btn-secondary": "#6c757d",
+   "--bs-btn-color@.btn-danger": "#ffffff",
+   "--bs-btn-color@.btn-link": "#0d6efd",
+   "--bs-btn-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-color@.btn-primary": "#ffffff",
+   "--bs-btn-color@.btn-secondary": "#ffffff",
+   "--bs-btn-hover-bg@.btn-danger": "#bb2d3b",
+   "--bs-btn-hover-bg@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-hover-bg@.btn-primary": "#0b5ed7",
+   "--bs-btn-hover-bg@.btn-secondary": "#5c636a",
+   "--bs-btn-hover-border-color@.btn": "#0a58ca",
+   "--bs-btn-hover-border-color@.btn-danger": "#b02a37",
+   "--bs-btn-hover-border-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-hover-border-color@.btn-primary": "#0a58ca",
+   "--bs-btn-hover-border-color@.btn-secondary": "#565e64",
+   "--bs-btn-hover-color@.btn-danger": "#ffffff",
+   "--bs-btn-hover-color@.btn-link": "#0a58ca",
+   "--bs-btn-hover-color@.btn-outline-primary": "#ffffff",
+   "--bs-btn-hover-color@.btn-primary": "#ffffff",
+   "--bs-btn-hover-color@.btn-secondary": "#ffffff",
+   "--bs-card-border-color@.card": "rgb(0 0 0 / 17.5%)",
+   "--bs-card-cap-bg@.card": "rgb(33 37 41 / 3%)",
+   "--bs-nav-link-color@.nav": "#0d6efd",
+   "--bs-nav-link-hover-color@.nav": "#0a58ca",
+   "--bs-nav-tabs-border-color@.nav-tabs": "#dee2e6",
+   "--bs-nav-tabs-link-active-color@.nav-tabs": "#000000",
+   "--bs-secondary-bg": "#e9ecef",
+   "--bs-secondary-color": "rgb(33 37 41 / 75%)",
+   "--bs-success-border-subtle": "#a3cfbb",
+   "--bs-warning-text-emphasis": "#664d03"
+  },
+  "dark": {
+   "--bs-body-bg": "#212529",
+   "--bs-card-bg@.card": "#212529",
+   "--bs-alert-bg@.alert-danger": "#2c0b0e",
+   "--bs-alert-bg@.alert-primary": "#031633",
+   "--bs-alert-border-color@.alert-danger": "#842029",
+   "--bs-alert-border-color@.alert-primary": "#084298",
+   "--bs-alert-color@.alert-danger": "#ea868f",
+   "--bs-alert-color@.alert-primary": "#6ea8fe",
+   "--bs-body-color": "#dee2e6",
+   "--bs-form-check-bg@.form-check-input": "#212529",
+   "--bs-nav-tabs-link-active-bg@.nav-tabs": "#212529",
+   "--bs-border-color": "#495057",
+   "--bs-btn-active-bg@.btn-danger": "#b02a37",
+   "--bs-btn-active-bg@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-active-bg@.btn-primary": "#0a58ca",
+   "--bs-btn-active-bg@.btn-secondary": "#565e64",
+   "--bs-btn-active-border-color@.btn-danger": "#a52834",
+   "--bs-btn-active-border-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-active-border-color@.btn-primary": "#0a53be",
+   "--bs-btn-active-border-color@.btn-secondary": "#51585e",
+   "--bs-btn-active-color@.btn-danger": "#ffffff",
+   "--bs-btn-active-color@.btn-link": "#8bb9fe",
+   "--bs-btn-active-color@.btn-outline-primary": "#ffffff",
+   "--bs-btn-active-color@.btn-primary": "#ffffff",
+   "--bs-btn-active-color@.btn-secondary": "#ffffff",
+   "--bs-btn-bg@.btn": "#0d6efd",
+   "--bs-btn-bg@.btn-danger": "#dc3545",
+   "--bs-btn-bg@.btn-primary": "#0d6efd",
+   "--bs-btn-bg@.btn-secondary": "#6c757d",
+   "--bs-btn-border-color@.btn": "#0d6efd",
+   "--bs-btn-border-color@.btn-danger": "#dc3545",
+   "--bs-btn-border-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-border-color@.btn-primary": "#0d6efd",
+   "--bs-btn-border-color@.btn-secondary": "#6c757d",
+   "--bs-btn-color@.btn-danger": "#ffffff",
+   "--bs-btn-color@.btn-link": "#6ea8fe",
+   "--bs-btn-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-color@.btn-primary": "#ffffff",
+   "--bs-btn-color@.btn-secondary": "#ffffff",
+   "--bs-btn-hover-bg@.btn-danger": "#bb2d3b",
+   "--bs-btn-hover-bg@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-hover-bg@.btn-primary": "#0b5ed7",
+   "--bs-btn-hover-bg@.btn-secondary": "#5c636a",
+   "--bs-btn-hover-border-color@.btn": "#0a58ca",
+   "--bs-btn-hover-border-color@.btn-danger": "#b02a37",
+   "--bs-btn-hover-border-color@.btn-outline-primary": "#0d6efd",
+   "--bs-btn-hover-border-color@.btn-primary": "#0a58ca",
+   "--bs-btn-hover-border-color@.btn-secondary": "#565e64",
+   "--bs-btn-hover-color@.btn-danger": "#ffffff",
+   "--bs-btn-hover-color@.btn-link": "#8bb9fe",
+   "--bs-btn-hover-color@.btn-outline-primary": "#ffffff",
+   "--bs-btn-hover-color@.btn-primary": "#ffffff",
+   "--bs-btn-hover-color@.btn-secondary": "#ffffff",
+   "--bs-card-border-color@.card": "rgb(255 255 255 / 15%)",
+   "--bs-card-cap-bg@.card": "rgb(222 226 230 / 3%)",
+   "--bs-nav-link-color@.nav": "#6ea8fe",
+   "--bs-nav-link-hover-color@.nav": "#8bb9fe",
+   "--bs-nav-tabs-border-color@.nav-tabs": "#495057",
+   "--bs-nav-tabs-link-active-color@.nav-tabs": "#ffffff",
+   "--bs-secondary-bg": "#343a40",
+   "--bs-secondary-color": "rgb(222 226 230 / 75%)",
+   "--bs-success-border-subtle": "#0f5132",
+   "--bs-warning-text-emphasis": "#ffda6a"
+  }
+ }
+}

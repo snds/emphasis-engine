@@ -1,6 +1,6 @@
 # Probe: shadcn/ui
 
-Probed 2026-10-08 from this app's preset components (b1sABueby, Base UI). 32 color variables set to sentinel colors; real hover, press, and keyboard focus; every painted color traced back to its variable, opacity, or mix, and to the surfaces underneath.
+Probed 2026-10-08 from this app's preset (b1sABueby). 31 color variables set to sentinel colors; real hover, press, and keyboard focus; every painted color traced back to its variable, opacity, or mix, and to the surfaces underneath.
 
 ## Light mode
 
@@ -18,44 +18,44 @@ Probed 2026-10-08 from this app's preset components (b1sABueby, Base UI). 32 col
 
 | Pair | Seen in |
 | --- | --- |
-| `--primary | --background` | button-default rest background-color, button-default focus background-color, button-link rest color, button-link hover color, +14 |
-| `--primary | --card` | button-default rest background-color, button-default focus background-color, button-link rest color, button-link hover color, +14 |
-| `--muted-foreground | --background` | input rest placeholder, input hover placeholder, input pressed placeholder, input focus placeholder, +12 |
-| `--muted | --background` | button-outline hover background-color, button-outline pressed background-color, button-ghost hover background-color, button-ghost pressed background-color, +7 |
-| `--ring | --background` | button-outline focus border, button-ghost focus border, button-link focus border, input pressed border, +5 |
-| `--secondary | --background` | button-secondary rest background-color, button-secondary focus background-color, badge-secondary rest background-color, badge-secondary hover background-color, +2 |
-| `--secondary-foreground | --secondary` | button-secondary rest color, button-secondary focus color, badge-secondary rest color, badge-secondary hover color, +2 |
-| `--destructive/0.1 | --background` | button-destructive rest background-color, button-destructive focus background-color, badge-destructive rest background-color, badge-destructive hover background-color, +2 |
-| `--destructive | --background > --destructive/0.1` | button-destructive rest color, button-destructive focus color, badge-destructive rest color, badge-destructive hover color, +2 |
-| `--ring | --card` | button-ghost focus border, button-link focus border, input pressed border, input focus border, +2 |
-| `--background | --muted` | tabs rest background-color, tabs hover background-color, tabs pressed background-color, tabs focus background-color, +1 |
-| `--primary-foreground | --background` | checkbox focus stroke, checkbox-checked rest stroke, checkbox-checked hover stroke, checkbox-checked pressed stroke |
-| `--background | --input` | switch rest background-color, switch hover background-color, switch pressed background-color, switch-checked focus background-color |
-| `--background | --primary` | switch focus background-color, switch-checked rest background-color, switch-checked hover background-color, switch-checked pressed background-color |
-| `--destructive/0.9 | --card` | alert-destructive rest color, alert-destructive hover color, alert-destructive pressed color, alert-destructive focus color |
-| `--primary-foreground | --card` | checkbox focus stroke, checkbox-checked rest stroke, checkbox-checked hover stroke, checkbox-checked pressed stroke |
-| `--card | --card` | alert-destructive rest background-color, alert-destructive hover background-color, alert-destructive pressed background-color, alert-destructive focus background-color |
-| `--ring | --primary` | button-default focus border, checkbox focus border, switch focus border |
-| `--destructive/0.2 | --background` | button-destructive hover background-color, button-destructive pressed background-color, button-destructive focus ring |
-| `--primary | --primary` | checkbox-checked rest border, checkbox-checked hover border, checkbox-checked pressed border |
-| `--destructive/0.2 | --card` | button-destructive hover background-color, button-destructive pressed background-color, button-destructive focus ring |
-| `--primary/0.8 | --background` | button-default hover background-color, button-default pressed background-color |
-| `--primary-foreground | --background > --primary/0.8` | button-default hover color, button-default pressed color |
-| `--background | --background` | button-outline rest background-color, button-outline focus background-color |
-| `--border | --muted` | button-outline hover border, button-outline pressed border |
-| `mix(--secondary,--foreground,0.05) | --background` | button-secondary hover background-color, button-secondary pressed background-color |
-| `--secondary-foreground | mix(--secondary,--foreground,0.05)` | button-secondary hover color, button-secondary pressed color |
-| `--destructive | --background > --destructive/0.2` | button-destructive hover color, button-destructive pressed color |
-| `--ring | --muted` | tabs focus outline, tab-inactive focus outline |
-| `--ring/0.5 | --muted` | tabs focus ring, tab-inactive focus ring |
-| `--muted/0.5 | --background` | table-row hover background-color, table-row pressed background-color |
-| `--primary-foreground | --card > --primary/0.8` | button-default hover color, button-default pressed color |
-| `--background | --card` | button-outline rest background-color, button-outline focus background-color |
-| `--destructive | --card > --destructive/0.2` | button-destructive hover color, button-destructive pressed color |
-| `--ring | --secondary` | button-secondary focus border |
-| `--destructive/0.4 | --background > --destructive/0.1` | button-destructive focus border |
-| `--ring | --input` | switch-checked focus border |
-| `--destructive/0.4 | --card > --destructive/0.1` | button-destructive focus border |
+| `--primary | --background` | button-default@page rest background-color, button-default@page focus background-color, button-link@page rest color, button-link@page hover color, +14 |
+| `--primary | --card` | button-default@card rest background-color, button-default@card focus background-color, button-link@card rest color, button-link@card hover color, +14 |
+| `--muted-foreground | --background` | input@page rest placeholder, input@page hover placeholder, input@page pressed placeholder, input@page focus placeholder, +12 |
+| `--ring | --background` | button-outline@page focus border, button-ghost@page focus border, button-link@page focus border, input@page pressed border, +8 |
+| `--secondary-foreground | --secondary` | button-secondary@page rest color, button-secondary@page focus color, badge-secondary@page rest color, badge-secondary@page hover color, +8 |
+| `--muted | --background` | button-outline@page hover background-color, button-outline@page pressed background-color, button-ghost@page hover background-color, button-ghost@page pressed background-color, +7 |
+| `--background | --muted` | tabs@page rest background-color, tabs@page hover background-color, tabs@page pressed background-color, tabs@page focus background-color, +6 |
+| `--background | --input` | switch@page rest background-color, switch@page hover background-color, switch@page pressed background-color, switch-checked@page focus background-color, +4 |
+| `--background | --primary` | switch@page focus background-color, switch-checked@page rest background-color, switch-checked@page hover background-color, switch-checked@page pressed background-color, +4 |
+| `--destructive/0.9 | --card` | alert-destructive@page rest color, alert-destructive@page hover color, alert-destructive@page pressed color, alert-destructive@page focus color, +4 |
+| `--ring | --primary` | button-default@page focus border, checkbox@page focus border, switch@page focus border, button-default@card focus border, +2 |
+| `--secondary | --background` | button-secondary@page rest background-color, button-secondary@page focus background-color, badge-secondary@page rest background-color, badge-secondary@page hover background-color, +2 |
+| `--destructive/0.1 | --background` | button-destructive@page rest background-color, button-destructive@page focus background-color, badge-destructive@page rest background-color, badge-destructive@page hover background-color, +2 |
+| `--destructive | --background > --destructive/0.1` | button-destructive@page rest color, button-destructive@page focus color, badge-destructive@page rest color, badge-destructive@page hover color, +2 |
+| `--primary | --primary` | checkbox-checked@page rest border, checkbox-checked@page hover border, checkbox-checked@page pressed border, checkbox-checked@card rest border, +2 |
+| `--ring | --card` | button-ghost@card focus border, button-link@card focus border, input@card pressed border, input@card focus border, +2 |
+| `--border | --muted` | button-outline@page hover border, button-outline@page pressed border, button-outline@card hover border, button-outline@card pressed border |
+| `--secondary-foreground | mix(--secondary,--foreground,0.05)` | button-secondary@page hover color, button-secondary@page pressed color, button-secondary@card hover color, button-secondary@card pressed color |
+| `--primary-foreground | --background` | checkbox@page focus stroke, checkbox-checked@page rest stroke, checkbox-checked@page hover stroke, checkbox-checked@page pressed stroke |
+| `--ring | --muted` | tabs@page focus outline, tab-inactive@page focus outline, tabs@card focus outline, tab-inactive@card focus outline |
+| `--ring/0.5 | --muted` | tabs@page focus ring, tab-inactive@page focus ring, tabs@card focus ring, tab-inactive@card focus ring |
+| `--primary-foreground | --card` | checkbox@card focus stroke, checkbox-checked@card rest stroke, checkbox-checked@card hover stroke, checkbox-checked@card pressed stroke |
+| `--card | --card` | alert-destructive@card rest background-color, alert-destructive@card hover background-color, alert-destructive@card pressed background-color, alert-destructive@card focus background-color |
+| `--destructive/0.2 | --background` | button-destructive@page hover background-color, button-destructive@page pressed background-color, button-destructive@page focus ring |
+| `--destructive/0.2 | --card` | button-destructive@card hover background-color, button-destructive@card pressed background-color, button-destructive@card focus ring |
+| `--primary/0.8 | --background` | button-default@page hover background-color, button-default@page pressed background-color |
+| `--primary-foreground | --background > --primary/0.8` | button-default@page hover color, button-default@page pressed color |
+| `--background | --background` | button-outline@page rest background-color, button-outline@page focus background-color |
+| `mix(--secondary,--foreground,0.05) | --background` | button-secondary@page hover background-color, button-secondary@page pressed background-color |
+| `--ring | --secondary` | button-secondary@page focus border, button-secondary@card focus border |
+| `--destructive | --background > --destructive/0.2` | button-destructive@page hover color, button-destructive@page pressed color |
+| `--ring | --input` | switch-checked@page focus border, switch-checked@card focus border |
+| `--muted/0.5 | --background` | table-row@page hover background-color, table-row@page pressed background-color |
+| `--primary-foreground | --card > --primary/0.8` | button-default@card hover color, button-default@card pressed color |
+| `--background | --card` | button-outline@card rest background-color, button-outline@card focus background-color |
+| `--destructive | --card > --destructive/0.2` | button-destructive@card hover color, button-destructive@card pressed color |
+| `--destructive/0.4 | --background > --destructive/0.1` | button-destructive@page focus border |
+| `--destructive/0.4 | --card > --destructive/0.1` | button-destructive@card focus border |
 
 ## Dark mode
 
@@ -75,61 +75,61 @@ Probed 2026-10-08 from this app's preset components (b1sABueby, Base UI). 32 col
 
 | Pair | Seen in |
 | --- | --- |
-| `--primary | --card` | button-default rest background-color, button-default focus background-color, button-link rest color, button-link hover color, +14 |
-| `--input/0.3 | --background` | button-outline rest background-color, button-outline focus background-color, input rest background-color, input hover background-color, +8 |
-| `--input | --background > --input/0.3` | button-outline rest border, button-outline focus border, input rest border, input hover border, +4 |
-| `--muted-foreground | --background > --input/0.3` | input rest placeholder, input hover placeholder, input pressed placeholder, input focus placeholder, +4 |
-| `--input | --card > --input/0.3` | button-outline rest border, button-outline focus border, input rest border, input hover border, +4 |
-| `--muted-foreground | --card > --input/0.3` | input rest placeholder, input hover placeholder, input pressed placeholder, input focus placeholder, +4 |
-| `--muted | --background` | toggle rest background-color, toggle hover background-color, toggle pressed background-color, tabs rest background-color, +3 |
-| `--foreground | --background > --input/0.3` | button-outline rest color, button-outline focus color, input rest color, input hover color, +2 |
-| `--secondary | --background` | button-secondary rest background-color, button-secondary focus background-color, badge-secondary rest background-color, badge-secondary hover background-color, +2 |
-| `--secondary-foreground | --secondary` | button-secondary rest color, button-secondary focus color, badge-secondary rest color, badge-secondary hover color, +2 |
-| `--destructive/0.2 | --background` | button-destructive rest background-color, button-destructive focus background-color, badge-destructive rest background-color, badge-destructive hover background-color, +2 |
-| `--destructive | --background > --destructive/0.2` | button-destructive rest color, button-destructive focus color, badge-destructive rest color, badge-destructive hover color, +2 |
-| `--card-foreground | --card > --input/0.3` | button-outline rest color, button-outline focus color, input rest color, input hover color, +2 |
-| `--input/0.3 | --muted` | tabs focus background-color, tab-inactive focus background-color, tabs rest background-color, tabs hover background-color, +1 |
-| `--foreground | --muted > --input/0.3` | tabs focus color, tab-inactive focus color, tabs rest color, tabs hover color, +1 |
-| `--input | --muted > --input/0.3` | tabs focus border, tab-inactive focus border, tabs rest border, tabs hover border, +1 |
-| `--input/0.5 | --background` | button-outline hover background-color, button-outline pressed background-color, select hover background-color, select pressed background-color |
-| `--input | --background > --input/0.5` | button-outline hover border, button-outline pressed border, select hover border, select pressed border |
-| `--muted/0.5 | --background` | button-ghost hover background-color, button-ghost pressed background-color, table-row hover background-color, table-row pressed background-color |
-| `--ring | --background > --input/0.3` | input pressed border, input focus border, checkbox focus border, select focus border |
-| `--primary-foreground | --background` | checkbox rest stroke, checkbox hover stroke, checkbox pressed stroke, checkbox-checked focus stroke |
-| `--input/0.8 | --background` | switch focus background-color, switch-checked rest background-color, switch-checked hover background-color, switch-checked pressed background-color |
-| `--foreground | --background > --input/0.8` | switch focus background-color, switch-checked rest background-color, switch-checked hover background-color, switch-checked pressed background-color |
-| `--muted-foreground | --background > --input/0.5` | select hover color, select hover stroke, select pressed color, select pressed stroke |
-| `--muted-foreground | --background` | text-muted rest color, text-muted hover color, text-muted pressed color, text-muted focus color |
-| `--destructive/0.9 | --card` | alert-destructive rest color, alert-destructive hover color, alert-destructive pressed color, alert-destructive focus color |
-| `--input | --card > --input/0.5` | button-outline hover border, button-outline pressed border, select hover border, select pressed border |
-| `--ring | --card > --input/0.3` | input pressed border, input focus border, checkbox focus border, select focus border |
-| `--primary-foreground | --card` | checkbox rest stroke, checkbox hover stroke, checkbox pressed stroke, checkbox-checked focus stroke |
-| `--foreground | --card > --input/0.8` | switch focus background-color, switch-checked rest background-color, switch-checked hover background-color, switch-checked pressed background-color |
-| `--muted-foreground | --card > --input/0.5` | select hover color, select hover stroke, select pressed color, select pressed stroke |
-| `--card | --card` | alert-destructive rest background-color, alert-destructive hover background-color, alert-destructive pressed background-color, alert-destructive focus background-color |
-| `--ring | --primary` | button-default focus border, checkbox-checked focus border, switch-checked focus border |
-| `--primary | --primary` | checkbox rest border, checkbox hover border, checkbox pressed border |
-| `--primary/0.8 | --background` | button-default hover background-color, button-default pressed background-color |
-| `--primary-foreground | --background > --primary/0.8` | button-default hover color, button-default pressed color |
-| `--foreground | --background > --input/0.5` | button-outline hover color, button-outline pressed color |
-| `mix(--secondary,--foreground,0.05) | --background` | button-secondary hover background-color, button-secondary pressed background-color |
-| `--secondary-foreground | mix(--secondary,--foreground,0.05)` | button-secondary hover color, button-secondary pressed color |
-| `--foreground | --background > --muted/0.5` | button-ghost hover color, button-ghost pressed color |
-| `--ring | --background` | button-ghost focus border, button-link focus border |
-| `--destructive/0.3 | --background` | button-destructive hover background-color, button-destructive pressed background-color |
-| `--destructive | --background > --destructive/0.3` | button-destructive hover color, button-destructive pressed color |
-| `--ring | --muted` | tabs focus outline, tab-inactive focus outline |
-| `--ring/0.5 | --muted` | tabs focus ring, tab-inactive focus ring |
-| `--primary-foreground | --card > --primary/0.8` | button-default hover color, button-default pressed color |
-| `--foreground | --card > --input/0.5` | button-outline hover color, button-outline pressed color |
-| `--foreground | --card > --muted/0.5` | button-ghost hover color, button-ghost pressed color |
-| `--ring | --card` | button-ghost focus border, button-link focus border |
-| `--destructive/0.3 | --card` | button-destructive hover background-color, button-destructive pressed background-color |
-| `--destructive | --card > --destructive/0.3` | button-destructive hover color, button-destructive pressed color |
-| `--ring | --secondary` | button-secondary focus border |
-| `--destructive/0.4 | --background > --destructive/0.2` | button-destructive focus border |
-| `--destructive/0.4 | --background` | button-destructive focus ring |
-| `--ring | --background > --input/0.8` | switch focus border |
-| `--destructive/0.4 | --card > --destructive/0.2` | button-destructive focus border |
-| `--destructive/0.4 | --card` | button-destructive focus ring |
-| `--ring | --card > --input/0.8` | switch focus border |
+| `--primary | --card` | button-default@card rest background-color, button-default@card focus background-color, button-link@card rest color, button-link@card hover color, +14 |
+| `--input/0.3 | --background` | button-outline@page rest background-color, button-outline@page focus background-color, input@page rest background-color, input@page hover background-color, +8 |
+| `--secondary-foreground | --secondary` | button-secondary@page rest color, button-secondary@page focus color, badge-secondary@page rest color, badge-secondary@page hover color, +8 |
+| `--input | --background > --input/0.3` | button-outline@page rest border, button-outline@page focus border, input@page rest border, input@page hover border, +4 |
+| `--muted-foreground | --background > --input/0.3` | input@page rest placeholder, input@page hover placeholder, input@page pressed placeholder, input@page focus placeholder, +4 |
+| `--destructive/0.9 | --card` | alert-destructive@page rest color, alert-destructive@page hover color, alert-destructive@page pressed color, alert-destructive@page focus color, +4 |
+| `--input | --card > --input/0.3` | button-outline@card rest border, button-outline@card focus border, input@card rest border, input@card hover border, +4 |
+| `--muted-foreground | --card > --input/0.3` | input@card rest placeholder, input@card hover placeholder, input@card pressed placeholder, input@card focus placeholder, +4 |
+| `--muted | --background` | toggle@page rest background-color, toggle@page hover background-color, toggle@page pressed background-color, tabs@page rest background-color, +3 |
+| `--input/0.3 | --muted` | tabs@page focus background-color, tab-inactive@page focus background-color, tabs@card rest background-color, tabs@card hover background-color, +3 |
+| `--foreground | --muted > --input/0.3` | tabs@page focus color, tab-inactive@page focus color, tabs@card rest color, tabs@card hover color, +3 |
+| `--input | --muted > --input/0.3` | tabs@page focus border, tab-inactive@page focus border, tabs@card rest border, tabs@card hover border, +3 |
+| `--ring | --primary` | button-default@page focus border, checkbox-checked@page focus border, switch-checked@page focus border, button-default@card focus border, +2 |
+| `--foreground | --background > --input/0.3` | button-outline@page rest color, button-outline@page focus color, input@page rest color, input@page hover color, +2 |
+| `--secondary | --background` | button-secondary@page rest background-color, button-secondary@page focus background-color, badge-secondary@page rest background-color, badge-secondary@page hover background-color, +2 |
+| `--destructive/0.2 | --background` | button-destructive@page rest background-color, button-destructive@page focus background-color, badge-destructive@page rest background-color, badge-destructive@page hover background-color, +2 |
+| `--destructive | --background > --destructive/0.2` | button-destructive@page rest color, button-destructive@page focus color, badge-destructive@page rest color, badge-destructive@page hover color, +2 |
+| `--primary | --primary` | checkbox@page rest border, checkbox@page hover border, checkbox@page pressed border, checkbox@card rest border, +2 |
+| `--card-foreground | --card > --input/0.3` | button-outline@card rest color, button-outline@card focus color, input@card rest color, input@card hover color, +2 |
+| `--input/0.5 | --background` | button-outline@page hover background-color, button-outline@page pressed background-color, select@page hover background-color, select@page pressed background-color |
+| `--input | --background > --input/0.5` | button-outline@page hover border, button-outline@page pressed border, select@page hover border, select@page pressed border |
+| `--secondary-foreground | mix(--secondary,--foreground,0.05)` | button-secondary@page hover color, button-secondary@page pressed color, button-secondary@card hover color, button-secondary@card pressed color |
+| `--muted/0.5 | --background` | button-ghost@page hover background-color, button-ghost@page pressed background-color, table-row@page hover background-color, table-row@page pressed background-color |
+| `--ring | --background > --input/0.3` | input@page pressed border, input@page focus border, checkbox@page focus border, select@page focus border |
+| `--primary-foreground | --background` | checkbox@page rest stroke, checkbox@page hover stroke, checkbox@page pressed stroke, checkbox-checked@page focus stroke |
+| `--input/0.8 | --background` | switch@page focus background-color, switch-checked@page rest background-color, switch-checked@page hover background-color, switch-checked@page pressed background-color |
+| `--foreground | --background > --input/0.8` | switch@page focus background-color, switch-checked@page rest background-color, switch-checked@page hover background-color, switch-checked@page pressed background-color |
+| `--ring | --muted` | tabs@page focus outline, tab-inactive@page focus outline, tabs@card focus outline, tab-inactive@card focus outline |
+| `--ring/0.5 | --muted` | tabs@page focus ring, tab-inactive@page focus ring, tabs@card focus ring, tab-inactive@card focus ring |
+| `--muted-foreground | --background > --input/0.5` | select@page hover color, select@page hover stroke, select@page pressed color, select@page pressed stroke |
+| `--muted-foreground | --background` | text-muted@page rest color, text-muted@page hover color, text-muted@page pressed color, text-muted@page focus color |
+| `--input | --card > --input/0.5` | button-outline@card hover border, button-outline@card pressed border, select@card hover border, select@card pressed border |
+| `--ring | --card > --input/0.3` | input@card pressed border, input@card focus border, checkbox@card focus border, select@card focus border |
+| `--primary-foreground | --card` | checkbox@card rest stroke, checkbox@card hover stroke, checkbox@card pressed stroke, checkbox-checked@card focus stroke |
+| `--foreground | --card > --input/0.8` | switch@card focus background-color, switch-checked@card rest background-color, switch-checked@card hover background-color, switch-checked@card pressed background-color |
+| `--muted-foreground | --card > --input/0.5` | select@card hover color, select@card hover stroke, select@card pressed color, select@card pressed stroke |
+| `--card | --card` | alert-destructive@card rest background-color, alert-destructive@card hover background-color, alert-destructive@card pressed background-color, alert-destructive@card focus background-color |
+| `--primary/0.8 | --background` | button-default@page hover background-color, button-default@page pressed background-color |
+| `--primary-foreground | --background > --primary/0.8` | button-default@page hover color, button-default@page pressed color |
+| `--foreground | --background > --input/0.5` | button-outline@page hover color, button-outline@page pressed color |
+| `mix(--secondary,--foreground,0.05) | --background` | button-secondary@page hover background-color, button-secondary@page pressed background-color |
+| `--ring | --secondary` | button-secondary@page focus border, button-secondary@card focus border |
+| `--foreground | --background > --muted/0.5` | button-ghost@page hover color, button-ghost@page pressed color |
+| `--ring | --background` | button-ghost@page focus border, button-link@page focus border |
+| `--destructive/0.3 | --background` | button-destructive@page hover background-color, button-destructive@page pressed background-color |
+| `--destructive | --background > --destructive/0.3` | button-destructive@page hover color, button-destructive@page pressed color |
+| `--primary-foreground | --card > --primary/0.8` | button-default@card hover color, button-default@card pressed color |
+| `--foreground | --card > --input/0.5` | button-outline@card hover color, button-outline@card pressed color |
+| `--foreground | --card > --muted/0.5` | button-ghost@card hover color, button-ghost@card pressed color |
+| `--ring | --card` | button-ghost@card focus border, button-link@card focus border |
+| `--destructive/0.3 | --card` | button-destructive@card hover background-color, button-destructive@card pressed background-color |
+| `--destructive | --card > --destructive/0.3` | button-destructive@card hover color, button-destructive@card pressed color |
+| `--destructive/0.4 | --background > --destructive/0.2` | button-destructive@page focus border |
+| `--destructive/0.4 | --background` | button-destructive@page focus ring |
+| `--ring | --background > --input/0.8` | switch@page focus border |
+| `--destructive/0.4 | --card > --destructive/0.2` | button-destructive@card focus border |
+| `--destructive/0.4 | --card` | button-destructive@card focus ring |
+| `--ring | --card > --input/0.8` | switch@card focus border |

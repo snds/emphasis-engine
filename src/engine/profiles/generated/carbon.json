@@ -1,0 +1,1935 @@
+{
+ "id": "carbon",
+ "label": "IBM Carbon",
+ "description": "Role tokens (layer, field, border, text, interactive) set per theme zone: white, g10, g90, g100.",
+ "selectors": {
+  "light": ":root, .cds--white",
+  "dark": ".cds--g100"
+ },
+ "generated": {
+  "probedAt": "2026-10-08",
+  "source": "@carbon/react ^1.118.0",
+  "docs": "https://carbondesignsystem.com/elements/color/tokens/",
+  "page": "--cds-background",
+  "samples": {
+   "light": 548,
+   "dark": 548
+  }
+ },
+ "formats": {},
+ "scopes": {},
+ "vars": [
+  {
+   "name": "--cds-background",
+   "path": {
+    "kind": "page"
+   }
+  },
+  {
+   "name": "--cds-layer",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-background-active",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--cds-background-hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--cds-border-interactive",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-field",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-border-strong",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-field"
+   }
+  },
+  {
+   "name": "--cds-border-subtle",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-border-subtle-01",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-button-danger-active",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--cds-background",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--cds-button-danger-hover",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--cds-background",
+    "chroma": 0.99
+   }
+  },
+  {
+   "name": "--cds-button-danger-primary",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-button-primary",
+   "path": {
+    "kind": "solid",
+    "role": "brand"
+   }
+  },
+  {
+   "name": "--cds-button-primary-active",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--cds-button-primary-hover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--cds-button-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-button-secondary-active",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-button-secondary-hover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-button-tertiary-hover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--cds-button-tertiary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-button-tertiary-active",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--cds-focus",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-icon-inverse",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-layer",
+    "dir": "back"
+   }
+  },
+  {
+   "name": "--cds-toggle-off",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-layer"
+   }
+  },
+  {
+   "name": "--cds-support-success",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--cds-layer"
+   }
+  },
+  {
+   "name": "--cds-icon-on-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-toggle-off",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--cds-icon-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-layer"
+   }
+  },
+  {
+   "name": "--cds-link-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-link-primary-hover",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background-hover",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--cds-notification-background-error",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-notification-background-info",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-support-error",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--cds-notification-background-error"
+   }
+  },
+  {
+   "name": "--cds-support-info",
+   "path": {
+    "kind": "step",
+    "palette": "info",
+    "from": "--cds-notification-background-info"
+   }
+  },
+  {
+   "name": "--cds-tag-background-blue",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-tag-background-gray",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-background"
+   }
+  },
+  {
+   "name": "--cds-tag-color-blue",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--cds-tag-background-blue",
+    "chroma": 1.01
+   }
+  },
+  {
+   "name": "--cds-tag-color-gray",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-tag-background-gray"
+   }
+  },
+  {
+   "name": "--cds-text-inverse",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-button-tertiary-hover",
+    "dir": "back"
+   }
+  },
+  {
+   "name": "--cds-text-on-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-button-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--cds-text-placeholder",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-field",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--cds-text-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-layer"
+   }
+  },
+  {
+   "name": "--cds-text-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--cds-layer"
+   }
+  }
+ ],
+ "recipes": [
+  {
+   "id": "alert-danger-border",
+   "label": "Alert danger border",
+   "source": "alert-danger rest border; alert-danger rest fill; alert-danger hover border; +5",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-support-error"
+   },
+   "over": [
+    {
+     "v": "--cds-notification-background-error"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-border",
+   "label": "Alert info border",
+   "source": "alert-info rest border; alert-info rest fill; alert-info hover border; +5",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-support-info"
+   },
+   "over": [
+    {
+     "v": "--cds-notification-background-info"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-color",
+   "label": "Card color",
+   "source": "card rest color; card hover color; card pressed color; +12",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "card-border",
+   "label": "Card border",
+   "source": "card rest border; card rest background-color; card hover border; +9",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-icon-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-color",
+   "label": "Tabs color",
+   "source": "tabs rest color; tabs hover color; tabs pressed color; +8",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-border",
+   "label": "Button ghost border (focus, pressed)",
+   "source": "button-ghost focus border; button-ghost focus inset-ring; input pressed outline; +7",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-border-2",
+   "label": "Button ghost border (focus, pressed)",
+   "source": "button-ghost focus border; button-ghost focus inset-ring; input pressed outline; +7",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-color-2",
+   "label": "Card color",
+   "source": "card rest color; card hover color; card pressed color; +7",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-text-secondary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-color",
+   "label": "Input color",
+   "source": "input rest color; input hover color; input pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-field"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-placeholder",
+   "label": "Input placeholder",
+   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +1",
+   "element": "state",
+   "paint": {
+    "v": "--cds-text-placeholder"
+   },
+   "over": [
+    {
+     "v": "--cds-field"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-border",
+   "label": "Input border",
+   "source": "input rest border; input hover border; input pressed border; +1",
+   "element": "border-control",
+   "paint": {
+    "v": "--cds-border-strong"
+   },
+   "over": [
+    {
+     "v": "--cds-field"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-color",
+   "label": "Badge color",
+   "source": "badge rest color; badge hover color; badge pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--cds-tag-color-blue"
+   },
+   "over": [
+    {
+     "v": "--cds-tag-background-blue"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "badge-neutral-color",
+   "label": "Badge neutral color",
+   "source": "badge-neutral rest color; badge-neutral hover color; badge-neutral pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-tag-color-gray"
+   },
+   "over": [
+    {
+     "v": "--cds-tag-background-gray"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-danger-color",
+   "label": "Alert danger color",
+   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-notification-background-error"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-info-color",
+   "label": "Alert info color",
+   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-notification-background-info"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-inactive-color",
+   "label": "Tab inactive color",
+   "source": "tab-inactive rest color; text-muted rest color; text-muted hover color; +3",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-text-secondary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus color; link rest color; +2",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-link-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-border",
+   "label": "Tabs border",
+   "source": "tabs rest border; tabs hover border; tabs pressed border; +2",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-interactive"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-color-2",
+   "label": "Button ghost color",
+   "source": "button-ghost rest color; button-ghost focus color; link rest color; +2",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-link-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tabs-border-2",
+   "label": "Tabs border",
+   "source": "tabs rest border; tabs hover border; tabs pressed border; +2",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-interactive"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-color",
+   "label": "Button primary color",
+   "source": "button-primary rest color; button-primary focus color",
+   "element": "on-solid",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-border",
+   "label": "Button primary border (pressed)",
+   "source": "button-primary pressed border; button-primary pressed inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-primary-active"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-border-2",
+   "label": "Button primary border (focus)",
+   "source": "button-primary focus border; button-primary focus inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-primary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color",
+   "label": "Button secondary color",
+   "source": "button-secondary rest color; button-secondary focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-secondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-border",
+   "label": "Button secondary border (pressed)",
+   "source": "button-secondary pressed border; button-secondary pressed inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-secondary-active"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-border-2",
+   "label": "Button secondary border (focus)",
+   "source": "button-secondary focus border; button-secondary focus inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-secondary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-border-3",
+   "label": "Button ghost border (pressed)",
+   "source": "button-ghost pressed border; button-ghost pressed inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    },
+    {
+     "v": "--cds-background-active"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-color",
+   "label": "Button danger color",
+   "source": "button-danger rest color; button-danger focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-danger-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-border",
+   "label": "Button danger border (pressed)",
+   "source": "button-danger pressed border; button-danger pressed inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-danger-active"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-border-2",
+   "label": "Button danger border (focus)",
+   "source": "button-danger focus border; button-danger focus inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-danger-primary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color",
+   "label": "Input background",
+   "source": "input rest background-color; input hover background-color; input pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-field"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-background-color",
+   "label": "Badge background",
+   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-tag-background-blue"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-neutral-background-color",
+   "label": "Badge neutral background",
+   "source": "badge-neutral rest background-color; badge-neutral hover background-color; badge-neutral pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-tag-background-gray"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tabs-fill",
+   "label": "Tabs fill",
+   "source": "tabs rest fill; tabs hover fill; tabs pressed fill; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-icon-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "divider-border",
+   "label": "Divider border",
+   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-subtle-01"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-background-color",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-notification-background-error"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-notification-background-info"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-layer"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-border-2",
+   "label": "Card border",
+   "source": "card rest border; card hover border; card pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-icon-inverse"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-color-3",
+   "label": "Card color",
+   "source": "card rest color; card hover color; card pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-icon-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "card-background-color-2",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-toggle-off"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color-3",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-icon-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-toggle-off"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color-4",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-support-success"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "card-background-color-5",
+   "label": "Card background",
+   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-icon-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-support-success"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-background-color-2",
+   "label": "Input background",
+   "source": "input rest background-color; input hover background-color; input pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-field"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-background-color-2",
+   "label": "Badge background",
+   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-tag-background-blue"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "badge-neutral-background-color-2",
+   "label": "Badge neutral background",
+   "source": "badge-neutral rest background-color; badge-neutral hover background-color; badge-neutral pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-tag-background-gray"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "divider-border-2",
+   "label": "Divider border",
+   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-subtle-01"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-danger-background-color-2",
+   "label": "Alert danger background",
+   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-notification-background-error"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-info-background-color-2",
+   "label": "Alert info background",
+   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-notification-background-info"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-border",
+   "label": "Tab inactive border (hover, pressed)",
+   "source": "tab-inactive hover border; tab-inactive pressed border; tabs hover border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-strong"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-border-2",
+   "label": "Tab inactive border (hover, pressed)",
+   "source": "tab-inactive hover border; tab-inactive pressed border; tabs hover border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-strong"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color",
+   "label": "Button outline color",
+   "source": "button-outline rest color; button-outline rest border; button-outline focus background-color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-button-tertiary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-color-2",
+   "label": "Button outline color",
+   "source": "button-outline rest color; button-outline rest border; button-outline focus background-color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-button-tertiary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color",
+   "element": "solid",
+   "paint": {
+    "v": "--cds-button-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-primary-color-2",
+   "label": "Button primary color (hover)",
+   "source": "button-primary hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-primary-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-color-3",
+   "label": "Button primary color (pressed)",
+   "source": "button-primary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-primary-active"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-background-color",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-button-secondary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-color-2",
+   "label": "Button secondary color (hover)",
+   "source": "button-secondary hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-secondary-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-secondary-color-3",
+   "label": "Button secondary color (pressed)",
+   "source": "button-secondary pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-secondary-active"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-color-3",
+   "label": "Button outline color (hover)",
+   "source": "button-outline hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-inverse"
+   },
+   "over": [
+    {
+     "v": "--cds-button-tertiary-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-border",
+   "label": "Button outline border (hover)",
+   "source": "button-outline hover border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-button-tertiary"
+   },
+   "over": [
+    {
+     "v": "--cds-button-tertiary-hover"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color-4",
+   "label": "Button outline color (pressed)",
+   "source": "button-outline pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-inverse"
+   },
+   "over": [
+    {
+     "v": "--cds-button-tertiary-active"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-outline-inset-ring",
+   "label": "Button outline inset-ring (pressed)",
+   "source": "button-outline pressed inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--cds-focus"
+   },
+   "over": [
+    {
+     "v": "--cds-button-tertiary-active"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-color-5",
+   "label": "Button outline color (focus)",
+   "source": "button-outline focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-inverse"
+   },
+   "over": [
+    {
+     "v": "--cds-button-tertiary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-3",
+   "label": "Button ghost color (hover)",
+   "source": "button-ghost hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-link-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    },
+    {
+     "v": "--cds-background-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-ghost-color-4",
+   "label": "Button ghost color (pressed)",
+   "source": "button-ghost pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-link-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    },
+    {
+     "v": "--cds-background-active"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-background-color",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color; button-danger focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-button-danger-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-color-2",
+   "label": "Button danger color (hover)",
+   "source": "button-danger hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-danger-hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-danger-color-3",
+   "label": "Button danger color (pressed)",
+   "source": "button-danger pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--cds-text-on-color"
+   },
+   "over": [
+    {
+     "v": "--cds-button-danger-active"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-2",
+   "label": "Button primary background",
+   "source": "button-primary rest background-color; button-primary focus background-color",
+   "element": "solid",
+   "paint": {
+    "v": "--cds-button-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-secondary-background-color-2",
+   "label": "Button secondary background",
+   "source": "button-secondary rest background-color; button-secondary focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-button-secondary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-2",
+   "label": "Button danger background",
+   "source": "button-danger rest background-color; button-danger focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--cds-button-danger-primary"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-border-3",
+   "label": "Tab inactive border",
+   "source": "tab-inactive rest border; tabs rest border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-subtle"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-inactive-border-4",
+   "label": "Tab inactive border",
+   "source": "tab-inactive rest border; tabs rest border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--cds-border-subtle"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-3",
+   "label": "Button primary background (hover)",
+   "source": "button-primary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-4",
+   "label": "Button primary background (pressed)",
+   "source": "button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-primary-active"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-3",
+   "label": "Button secondary background (hover)",
+   "source": "button-secondary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-secondary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-4",
+   "label": "Button secondary background (pressed)",
+   "source": "button-secondary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-secondary-active"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color",
+   "label": "Button outline background (hover)",
+   "source": "button-outline hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-tertiary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-2",
+   "label": "Button outline background (pressed)",
+   "source": "button-outline pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-tertiary-active"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color",
+   "label": "Button ghost background (hover)",
+   "source": "button-ghost hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-background-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color-2",
+   "label": "Button ghost background (pressed)",
+   "source": "button-ghost pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-background-active"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-3",
+   "label": "Button danger background (hover)",
+   "source": "button-danger hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-danger-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-4",
+   "label": "Button danger background (pressed)",
+   "source": "button-danger pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-danger-active"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-color",
+   "label": "Link color (hover)",
+   "source": "link hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-link-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-background"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-primary-background-color-5",
+   "label": "Button primary background (hover)",
+   "source": "button-primary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-primary-background-color-6",
+   "label": "Button primary background (pressed)",
+   "source": "button-primary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-primary-active"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-5",
+   "label": "Button secondary background (hover)",
+   "source": "button-secondary hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-secondary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-secondary-background-color-6",
+   "label": "Button secondary background (pressed)",
+   "source": "button-secondary pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-secondary-active"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-3",
+   "label": "Button outline background (hover)",
+   "source": "button-outline hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-tertiary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-outline-background-color-4",
+   "label": "Button outline background (pressed)",
+   "source": "button-outline pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-tertiary-active"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color-3",
+   "label": "Button ghost background (hover)",
+   "source": "button-ghost hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-background-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-ghost-background-color-4",
+   "label": "Button ghost background (pressed)",
+   "source": "button-ghost pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-background-active"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-5",
+   "label": "Button danger background (hover)",
+   "source": "button-danger hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-danger-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-danger-background-color-6",
+   "label": "Button danger background (pressed)",
+   "source": "button-danger pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--cds-button-danger-active"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-color-2",
+   "label": "Link color (hover)",
+   "source": "link hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--cds-link-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--cds-layer"
+    }
+   ],
+   "metric": "lc"
+  }
+ ],
+ "reference": {
+  "light": {
+   "--cds-background": "#ffffff",
+   "--cds-layer": "#f4f4f4",
+   "--cds-background-active": "rgb(141 141 141 / 50%)",
+   "--cds-background-hover": "rgb(141 141 141 / 12%)",
+   "--cds-border-interactive": "#0f62fe",
+   "--cds-field": "#f4f4f4",
+   "--cds-border-strong": "#8d8d8d",
+   "--cds-border-subtle": "#e0e0e0",
+   "--cds-border-subtle-01": "#c6c6c6",
+   "--cds-button-danger-active": "#750e13",
+   "--cds-button-danger-hover": "#b81921",
+   "--cds-button-danger-primary": "#da1e28",
+   "--cds-button-primary": "#0f62fe",
+   "--cds-button-primary-active": "#002d9c",
+   "--cds-button-primary-hover": "#0050e6",
+   "--cds-button-secondary": "#393939",
+   "--cds-button-secondary-active": "#6f6f6f",
+   "--cds-button-secondary-hover": "#474747",
+   "--cds-button-tertiary-hover": "#0050e6",
+   "--cds-button-tertiary": "#0f62fe",
+   "--cds-button-tertiary-active": "#002d9c",
+   "--cds-focus": "#0f62fe",
+   "--cds-icon-inverse": "#ffffff",
+   "--cds-toggle-off": "#8d8d8d",
+   "--cds-support-success": "#24a148",
+   "--cds-icon-on-color": "#ffffff",
+   "--cds-icon-primary": "#161616",
+   "--cds-link-primary": "#0f62fe",
+   "--cds-link-primary-hover": "#0043ce",
+   "--cds-notification-background-error": "#fff1f1",
+   "--cds-notification-background-info": "#edf5ff",
+   "--cds-support-error": "#da1e28",
+   "--cds-support-info": "#0043ce",
+   "--cds-tag-background-blue": "#d0e2ff",
+   "--cds-tag-background-gray": "#e0e0e0",
+   "--cds-tag-color-blue": "#0043ce",
+   "--cds-tag-color-gray": "#161616",
+   "--cds-text-inverse": "#ffffff",
+   "--cds-text-on-color": "#ffffff",
+   "--cds-text-placeholder": "rgb(22 22 22 / 40%)",
+   "--cds-text-primary": "#161616",
+   "--cds-text-secondary": "#525252"
+  },
+  "dark": {
+   "--cds-background": "#161616",
+   "--cds-layer": "#262626",
+   "--cds-background-active": "rgb(141 141 141 / 40%)",
+   "--cds-background-hover": "rgb(141 141 141 / 16%)",
+   "--cds-border-interactive": "#4589ff",
+   "--cds-field": "#262626",
+   "--cds-border-strong": "#6f6f6f",
+   "--cds-border-subtle": "#393939",
+   "--cds-border-subtle-01": "#525252",
+   "--cds-button-danger-active": "#750e13",
+   "--cds-button-danger-hover": "#b81921",
+   "--cds-button-danger-primary": "#da1e28",
+   "--cds-button-primary": "#0f62fe",
+   "--cds-button-primary-active": "#002d9c",
+   "--cds-button-primary-hover": "#0050e6",
+   "--cds-button-secondary": "#6f6f6f",
+   "--cds-button-secondary-active": "#393939",
+   "--cds-button-secondary-hover": "#5e5e5e",
+   "--cds-button-tertiary-hover": "#f4f4f4",
+   "--cds-button-tertiary": "#ffffff",
+   "--cds-button-tertiary-active": "#c6c6c6",
+   "--cds-focus": "#ffffff",
+   "--cds-icon-inverse": "#161616",
+   "--cds-toggle-off": "#6f6f6f",
+   "--cds-support-success": "#42be65",
+   "--cds-icon-on-color": "#ffffff",
+   "--cds-icon-primary": "#f4f4f4",
+   "--cds-link-primary": "#78a9ff",
+   "--cds-link-primary-hover": "#a6c8ff",
+   "--cds-notification-background-error": "#262626",
+   "--cds-notification-background-info": "#262626",
+   "--cds-support-error": "#fa4d56",
+   "--cds-support-info": "#4589ff",
+   "--cds-tag-background-blue": "#0043ce",
+   "--cds-tag-background-gray": "#525252",
+   "--cds-tag-color-blue": "#d0e2ff",
+   "--cds-tag-color-gray": "#f4f4f4",
+   "--cds-text-inverse": "#161616",
+   "--cds-text-on-color": "#ffffff",
+   "--cds-text-placeholder": "rgb(244 244 244 / 40%)",
+   "--cds-text-primary": "#f4f4f4",
+   "--cds-text-secondary": "#c6c6c6"
+  }
+ }
+}
