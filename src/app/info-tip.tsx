@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { InfoIcon } from "@phosphor-icons/react"
+import { IconInfoCircle } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
 
@@ -17,7 +17,7 @@ export function InfoTip({ label, children }: { label: string; children: ReactNod
           />
         }
       >
-        <InfoIcon />
+        <IconInfoCircle />
       </TooltipTrigger>
       <TooltipContent className="max-w-60 leading-snug">{children}</TooltipContent>
     </Tooltip>

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CheckIcon, WarningIcon } from "@phosphor-icons/react"
+import { IconAlertTriangleFilled, IconCheck } from "@tabler/icons-react"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { hex } from "@/engine/color"
 import { CONTEXTS, LEVELS, LEVEL_NAMES, ROLES, type Context, type Mode, type RoleId } from "@/engine/settings"
@@ -80,9 +80,9 @@ export function GridView({ sys, mode }: { sys: System; mode: Mode }) {
                             of {isLc ? `Lc ${t.target.value}` : `ΔL ${t.target.value.toFixed(3)}`}
                           </span>
                           {a.met ? (
-                            <CheckIcon className="ml-auto size-4 text-muted-foreground" aria-label="Target met" />
+                            <IconCheck className="ml-auto size-4 text-muted-foreground" aria-label="Target met" />
                           ) : (
-                            <WarningIcon className="ml-auto size-4" weight="fill" aria-label="Below target" style={{ color: "var(--destructive)" }} />
+                            <IconAlertTriangleFilled className="ml-auto size-4" aria-label="Below target" style={{ color: "var(--destructive)" }} />
                           )}
                         </div>
                         <span className="truncate font-mono text-[11px] text-muted-foreground" title={a.css}>

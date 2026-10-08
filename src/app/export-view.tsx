@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react"
-import { CopyIcon, DownloadSimpleIcon, CheckIcon } from "@phosphor-icons/react"
+import { IconCheck, IconCopy, IconDownload } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cssExport, dtcgJson, radixCss } from "@/engine/export"
@@ -61,12 +61,12 @@ export function ExportView({ sys }: { sys: System }) {
             ))}
           </ToggleGroup>
           <Button variant="outline" size="sm" onClick={copy}>
-            {copied ? <CheckIcon /> : <CopyIcon />}
+            {copied ? <IconCheck /> : <IconCopy />}
             {copied ? "Copied" : "Copy"}
           </Button>
           {!embedded && (
             <Button size="sm" onClick={download}>
-              <DownloadSimpleIcon />
+              <IconDownload />
               Download
             </Button>
           )}

@@ -7,15 +7,51 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { hex, parseHex, toRgb } from "@/engine/color"
-import { BOUNDS, NEUTRALS, type NeutralId, type Settings } from "@/engine/settings"
-import { resolveNeutral } from "@/engine/system"
+import {
+  BOUNDS,
+  NEUTRALS,
+  RAMPS,
+  type Context,
+  type NeutralId,
+  type Ramp,
+  type Settings,
+} from "@/engine/settings"
+import { resolveNeutral, targetFor } from "@/engine/system"
 import { rgbToOklch } from "@/engine/color"
 import type { Engine } from "./use-engine"
 import { InfoTip } from "./info-tip"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+import {
+  IconEaseIn,
+  IconEaseInOut,
+  IconEaseOut,
+  IconSlash,
+  IconStairs,
+  type Icon,
+} from "@tabler/icons-react"
 
-const THEME_PRESETS = ["#2563eb", "#f40009", "#7c3aed", "#059669", "#ea580c", "#0f172a"]
+const THEME_PRESETS = [
+  "#2563eb",
+  "#f40009",
+  "#7c3aed",
+  "#059669",
+  "#ea580c",
+  "#0f172a",
+]
 
-function Section({ title, children, hint }: { title: string; hint?: string; children: ReactNode }) {
+function Section({
+  title,
+  children,
+  hint,
+}: {
+  title: string
+  hint?: string
+  children: ReactNode
+}) {
   return (
     <section className="flex flex-col gap-3 px-4 py-4">
       <div>
@@ -28,7 +64,17 @@ function Section({ title, children, hint }: { title: string; hint?: string; chil
 }
 
 /** A control's label with its info tip beside it. */
-function FieldLabel({ label, tip, htmlFor, strong = true }: { label: string; tip: string; htmlFor?: string; strong?: boolean }) {
+function FieldLabel({
+  label,
+  tip,
+  htmlFor,
+  strong = true,
+}: {
+  label: string
+  tip: string
+  htmlFor?: string
+  strong?: boolean
+}) {
   return (
     <div className="flex items-center gap-0.5">
       <Label htmlFor={htmlFor} className={strong ? "" : "text-sm font-normal"}>
@@ -39,7 +85,17 @@ function FieldLabel({ label, tip, htmlFor, strong = true }: { label: string; tip
   )
 }
 
-function Row({ label, tip, children, htmlFor }: { label: string; tip: string; htmlFor?: string; children: ReactNode }) {
+function Row({
+  label,
+  tip,
+  children,
+  htmlFor,
+}: {
+  label: string
+  tip: string
+  htmlFor?: string
+  children: ReactNode
+}) {
   return (
     <div className="flex items-center justify-between gap-3">
       <FieldLabel label={label} tip={tip} htmlFor={htmlFor} strong={false} />
@@ -49,7 +105,17 @@ function Row({ label, tip, children, htmlFor }: { label: string; tip: string; ht
 }
 
 /** Labeled block for controls that sit under their label. */
-function Field({ label, tip, htmlFor, children }: { label: string; tip: string; htmlFor?: string; children: ReactNode }) {
+function Field({
+  label,
+  tip,
+  htmlFor,
+  children,
+}: {
+  label: string
+  tip: string
+  htmlFor?: string
+  children: ReactNode
+}) {
   return (
     <div className="flex flex-col gap-1.5">
       <FieldLabel label={label} tip={tip} htmlFor={htmlFor} />
@@ -83,7 +149,14 @@ function ColorField({
           disabled={disabled}
           className="size-8 shrink-0 cursor-pointer rounded-md border bg-transparent p-0.5 disabled:cursor-not-allowed disabled:opacity-50"
         />
-        <Input id={id} value={value} onChange={(e) => onChange(e.target.value)} className="font-mono text-xs" aria-invalid={!valid} disabled={disabled} />
+        <Input
+          id={id}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className="font-mono text-xs"
+          aria-invalid={!valid}
+          disabled={disabled}
+        />
       </div>
       {presets && (
         <div className="flex gap-1.5">
@@ -127,7 +200,9 @@ function Range({
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-between text-sm">
         <FieldLabel label={label} tip={tip} strong={false} />
-        <span className="tabular-nums text-muted-foreground">{format(value)}</span>
+        <span className="text-muted-foreground tabular-nums">
+          {format(value)}
+        </span>
       </div>
       <Slider
         aria-label={label}
@@ -167,7 +242,11 @@ function Choice<T extends string>({
       className="w-full"
     >
       {options.map((o) => (
-        <ToggleGroupItem key={o.value} value={o.value} className="flex-1 text-xs">
+        <ToggleGroupItem
+          key={o.value}
+          value={o.value}
+          className="flex-1 text-xs"
+        >
           {o.label}
         </ToggleGroupItem>
       ))}
@@ -175,16 +254,117 @@ function Choice<T extends string>({
   )
 }
 
-function NeutralPicker({ settings, update }: { settings: Settings; update: Engine["update"] }) {
+const RAMP_META: Record<Ramp, { label: string; icon: Icon; note: string }> = {
+  stepped: { label: "Stepped", icon: IconStairs, note: "APCA landmark values" },
+  linear: { label: "Linear", icon: IconSlash, note: "Even steps" },
+  "ease-in": {
+    label: "Ease in",
+    icon: IconEaseIn,
+    note: "Tight low levels, wide top",
+  },
+  "ease-out": {
+    label: "Ease out",
+    icon: IconEaseOut,
+    note: "Wide low levels, tight top",
+  },
+  "ease-in-out": {
+    label: "Ease in-out",
+    icon: IconEaseInOut,
+    note: "Tight at both ends",
+  },
+}
+
+/** Ramp picker: icon toggle group, each item tipped with the levels it yields. */
+function RampPicker({
+  context,
+  settings,
+  update,
+}: {
+  context: Context
+  settings: Settings
+  update: Engine["update"]
+}) {
+  const levels = (ramp: Ramp) => {
+    const sim = { ...settings, ramps: { ...settings.ramps, [context]: ramp } }
+    return ([1, 2, 3, 4, 5] as const)
+      .map((l) => {
+        const t = targetFor(sim, "light", context, l)
+        return t.kind === "lc"
+          ? Math.round(t.value).toString()
+          : t.value.toFixed(3)
+      })
+      .join(", ")
+  }
+  return (
+    <ToggleGroup
+      aria-label={`${context} ramp`}
+      variant="outline"
+      size="sm"
+      spacing={0}
+      value={[settings.ramps[context]]}
+      onValueChange={(v) =>
+        v[0] &&
+        update({ ramps: { ...settings.ramps, [context]: v[0] as Ramp } })
+      }
+      className="w-full"
+    >
+      {RAMPS.map((ramp) => {
+        const { label, icon: RampIcon, note } = RAMP_META[ramp]
+        return (
+          <Tooltip key={ramp}>
+            <TooltipTrigger
+              render={
+                <ToggleGroupItem
+                  value={ramp}
+                  aria-label={label}
+                  className="flex-1"
+                />
+              }
+            >
+              <RampIcon />
+            </TooltipTrigger>
+            <TooltipContent className="flex-col items-start gap-0.5">
+              <span className="font-medium">
+                {label}: {note}
+              </span>
+              <span className="tabular-nums opacity-80">
+                Light mode levels: {levels(ramp)}
+              </span>
+            </TooltipContent>
+          </Tooltip>
+        )
+      })}
+    </ToggleGroup>
+  )
+}
+
+function NeutralPicker({
+  settings,
+  update,
+}: {
+  settings: Settings
+  update: Engine["update"]
+}) {
   const theme = rgbToOklch(parseHex(settings.theme) ?? [37, 99, 235])
   return (
-    <div className="grid grid-cols-3 gap-2" role="radiogroup" aria-label="Base neutral">
+    <div
+      className="grid grid-cols-3 gap-2"
+      role="radiogroup"
+      aria-label="Base neutral"
+    >
       {(Object.keys(NEUTRALS) as NeutralId[]).map((id) => {
-        const plain = resolveNeutral({ ...settings, neutral: id, themeTint: false }, theme)
-        const tinted = resolveNeutral({ ...settings, neutral: id, themeTint: true }, theme)
+        const plain = resolveNeutral(
+          { ...settings, neutral: id, themeTint: false },
+          theme
+        )
+        const tinted = resolveNeutral(
+          { ...settings, neutral: id, themeTint: true },
+          theme
+        )
         // Each neutral shown untinted (left) and tinted (right), at a surface
         // and a text lightness, so the choice is made by looking.
-        const chip = (n: { hue: number; chroma: number }, l: number) => hex(toRgb({ l, c: n.chroma * 2.2, h: n.hue }))
+        const chip = (n: { hue: number; chroma: number }, l: number) =>
+          hex(toRgb({ l, c: n.chroma * 2.2, h: n.hue }))
         const selected = settings.neutral === id
         return (
           <button
@@ -196,10 +376,22 @@ function NeutralPicker({ settings, update }: { settings: Settings; update: Engin
             className="flex flex-col items-start gap-1.5 rounded-md border p-1.5 text-left text-xs transition-colors hover:bg-accent focus-visible:outline-2 focus-visible:outline-ring aria-checked:border-foreground/50 aria-checked:bg-accent"
           >
             <span className="flex w-full overflow-hidden rounded-sm">
-              <span className="h-5 flex-1" style={{ background: chip(plain, 0.9) }} />
-              <span className="h-5 flex-1" style={{ background: chip(tinted, 0.9) }} />
-              <span className="h-5 flex-1" style={{ background: chip(plain, 0.45) }} />
-              <span className="h-5 flex-1" style={{ background: chip(tinted, 0.45) }} />
+              <span
+                className="h-5 flex-1"
+                style={{ background: chip(plain, 0.9) }}
+              />
+              <span
+                className="h-5 flex-1"
+                style={{ background: chip(tinted, 0.9) }}
+              />
+              <span
+                className="h-5 flex-1"
+                style={{ background: chip(plain, 0.45) }}
+              />
+              <span
+                className="h-5 flex-1"
+                style={{ background: chip(tinted, 0.45) }}
+              />
             </span>
             {NEUTRALS[id].label}
           </button>
@@ -212,18 +404,39 @@ function NeutralPicker({ settings, update }: { settings: Settings; update: Engin
 export function Controls({ engine }: { engine: Engine }) {
   const { settings: s, update } = engine
   const tier = s.advanced ? "advanced" : "basic"
-  const b = (k: keyof typeof BOUNDS) => BOUNDS[k][tier] as readonly [number, number]
+  const b = (k: keyof typeof BOUNDS) =>
+    BOUNDS[k][tier] as readonly [number, number]
   return (
     <div className="flex flex-col">
       <Section title="Colors" hint="Three picks drive the whole system.">
-        <Field label="Theme" tip="Your brand color. Drives primary actions, focus, and links." htmlFor="theme-color">
-          <ColorField id="theme-color" value={s.theme} onChange={(theme) => update({ theme })} presets={THEME_PRESETS} />
+        <Field
+          label="Theme"
+          tip="Your brand color. Drives primary actions, focus, and links."
+          htmlFor="theme-color"
+        >
+          <ColorField
+            id="theme-color"
+            value={s.theme}
+            onChange={(theme) => update({ theme })}
+            presets={THEME_PRESETS}
+          />
         </Field>
-        <Field label="Base neutral" tip="The gray family for surfaces, borders, and body text.">
+        <Field
+          label="Base neutral"
+          tip="The gray family for surfaces, borders, and body text."
+        >
           <NeutralPicker settings={s} update={update} />
         </Field>
-        <Row label="Theme tint" tip="Leans the neutrals slightly toward the theme hue." htmlFor="theme-tint">
-          <Switch id="theme-tint" checked={s.themeTint} onCheckedChange={(themeTint) => update({ themeTint })} />
+        <Row
+          label="Theme tint"
+          tip="Leans the neutrals slightly toward the theme hue."
+          htmlFor="theme-tint"
+        >
+          <Switch
+            id="theme-tint"
+            checked={s.themeTint}
+            onCheckedChange={(themeTint) => update({ themeTint })}
+          />
         </Row>
         {s.themeTint && (
           <Range
@@ -237,7 +450,11 @@ export function Controls({ engine }: { engine: Engine }) {
             onChange={(tintStrength) => update({ tintStrength })}
           />
         )}
-        <Field label="Chart" tip="Seed color for the chart palette." htmlFor="chart-color">
+        <Field
+          label="Chart"
+          tip="Seed color for the chart palette."
+          htmlFor="chart-color"
+        >
           <ColorField
             id="chart-color"
             value={s.chartUseTheme ? s.theme : s.chart}
@@ -245,8 +462,16 @@ export function Controls({ engine }: { engine: Engine }) {
             disabled={s.chartUseTheme}
           />
         </Field>
-        <Row label="Use theme color" tip="Seeds the chart palette from the theme color instead of a separate pick." htmlFor="chart-use-theme">
-          <Switch id="chart-use-theme" checked={s.chartUseTheme} onCheckedChange={(chartUseTheme) => update({ chartUseTheme })} />
+        <Row
+          label="Use theme color"
+          tip="Seeds the chart palette from the theme color instead of a separate pick."
+          htmlFor="chart-use-theme"
+        >
+          <Switch
+            id="chart-use-theme"
+            checked={s.chartUseTheme}
+            onCheckedChange={(chartUseTheme) => update({ chartUseTheme })}
+          />
         </Row>
         <Range
           label="Chart series"
@@ -260,8 +485,14 @@ export function Controls({ engine }: { engine: Engine }) {
         />
       </Section>
       <Separator />
-      <Section title="Rendering" hint="Flat is the base. Alpha keeps every ink translucent.">
-        <Field label="Layer" tip="Flat paints solid colors. Alpha uses translucent ink that shows what's behind it.">
+      <Section
+        title="Rendering"
+        hint="Flat is the base. Alpha keeps every ink translucent."
+      >
+        <Field
+          label="Layer"
+          tip="Flat paints solid colors. Alpha uses translucent ink that shows what's behind it."
+        >
           <Choice
             label="Layer"
             value={s.layer}
@@ -273,14 +504,25 @@ export function Controls({ engine }: { engine: Engine }) {
           />
         </Field>
         {!s.advanced && (
-          <Row label="Tighter hue leash" tip="Limits brand hue drift to ±2.5° instead of ±5°." htmlFor="tighter">
-            <Switch id="tighter" checked={s.tighter} onCheckedChange={(tighter) => update({ tighter })} />
+          <Row
+            label="Tighter hue leash"
+            tip="Limits brand hue drift to ±2.5° instead of ±5°."
+            htmlFor="tighter"
+          >
+            <Switch
+              id="tighter"
+              checked={s.tighter}
+              onCheckedChange={(tighter) => update({ tighter })}
+            />
           </Row>
         )}
       </Section>
       <Separator />
       <Section title="Interaction states">
-        <Field label="State strategy" tip="Step swaps to the next solved color. Overlay adds a translucent tint layer.">
+        <Field
+          label="State strategy"
+          tip="Step swaps to the next solved color. Overlay adds a translucent tint layer."
+        >
           <Choice
             label="State strategy"
             value={s.stateStrategy}
@@ -292,7 +534,10 @@ export function Controls({ engine }: { engine: Engine }) {
           />
         </Field>
         {s.stateStrategy === "overlay" && (
-          <Field label="Overlay source" tip="Tint states with the base neutral or the button's own color.">
+          <Field
+            label="Overlay source"
+            tip="Tint states with the base neutral or the button's own color."
+          >
             <Choice
               label="Overlay source"
               value={s.overlaySource}
@@ -304,7 +549,10 @@ export function Controls({ engine }: { engine: Engine }) {
             />
           </Field>
         )}
-        <Field label="Pressed" tip="Build pressed on top of hover, or step straight from rest.">
+        <Field
+          label="Pressed"
+          tip="Build pressed on top of hover, or step straight from rest."
+        >
           <Choice
             label="Pressed"
             value={s.pressedMode}
@@ -327,7 +575,10 @@ export function Controls({ engine }: { engine: Engine }) {
             ]}
           />
         </Field>
-        <Field label="Neutral primary" tip="The main neutral button: light gray with dark text, or solid gray with light text.">
+        <Field
+          label="Neutral primary"
+          tip="The main neutral button: light gray with dark text, or solid gray with light text."
+        >
           <Choice
             label="Neutral primary"
             value={s.neutralPrimary}
@@ -350,19 +601,24 @@ export function Controls({ engine }: { engine: Engine }) {
         />
       </Section>
       <Separator />
-      <Section title="Thresholds" hint="Shift every level of a context. Basic clamps at ±5 Lc.">
+      <Section
+        title="Thresholds"
+        hint="Offset shifts every level. Ramp sets how the levels spread between the ends."
+      >
         {(["text", "fill", "stroke"] as const).map((ctx) => (
-          <Range
-            key={ctx}
-            label={`${ctx[0].toUpperCase()}${ctx.slice(1)} offset`}
-            tip={`Raises or lowers every ${ctx} contrast target.`}
-            value={s.offsets[ctx]}
-            min={b("offset")[0]}
-            max={b("offset")[1]}
-            step={1}
-            format={(v) => `${v > 0 ? "+" : ""}${v} Lc`}
-            onChange={(v) => update({ offsets: { ...s.offsets, [ctx]: v } })}
-          />
+          <div key={ctx} className="flex flex-col gap-2">
+            <Range
+              label={`${ctx[0].toUpperCase()}${ctx.slice(1)} offset`}
+              tip={`Raises or lowers every ${ctx} contrast target.`}
+              value={s.offsets[ctx]}
+              min={b("offset")[0]}
+              max={b("offset")[1]}
+              step={1}
+              format={(v) => `${v > 0 ? "+" : ""}${v} Lc`}
+              onChange={(v) => update({ offsets: { ...s.offsets, [ctx]: v } })}
+            />
+            <RampPicker context={ctx} settings={s} update={update} />
+          </div>
         ))}
         <Range
           label="Surface spacing"
@@ -374,11 +630,15 @@ export function Controls({ engine }: { engine: Engine }) {
           format={(v) => `${Math.round(v * 100)}%`}
           onChange={(surfaceScale) => update({ surfaceScale })}
         />
+        <RampPicker context="surface" settings={s} update={update} />
       </Section>
       {s.advanced && (
         <>
           <Separator />
-          <Section title="Advanced" hint="Every lever the solver pulls. Targets become warnings.">
+          <Section
+            title="Advanced"
+            hint="Every lever the solver pulls. Targets become warnings."
+          >
             <Range
               label="Hue leash"
               tip="The most the solver may shift a color's hue."
@@ -399,13 +659,32 @@ export function Controls({ engine }: { engine: Engine }) {
               format={(v) => `${Math.round(v * 100)}%`}
               onChange={(chromaScale) => update({ chromaScale })}
             />
-            <Row label="True-color solid fills" tip="Keeps solid buttons the exact picked color when contrast allows." htmlFor="true-solids">
-              <Switch id="true-solids" checked={s.trueSolids} onCheckedChange={(trueSolids) => update({ trueSolids })} />
+            <Row
+              label="True-color solid fills"
+              tip="Keeps solid buttons the exact picked color when contrast allows."
+              htmlFor="true-solids"
+            >
+              <Switch
+                id="true-solids"
+                checked={s.trueSolids}
+                onCheckedChange={(trueSolids) => update({ trueSolids })}
+              />
             </Row>
-            <Row label="Hold saturation" tip="Keeps colors vivid as they get lighter or darker." htmlFor="hold-sat">
-              <Switch id="hold-sat" checked={s.holdSaturation} onCheckedChange={(holdSaturation) => update({ holdSaturation })} />
+            <Row
+              label="Hold saturation"
+              tip="Keeps colors vivid as they get lighter or darker."
+              htmlFor="hold-sat"
+            >
+              <Switch
+                id="hold-sat"
+                checked={s.holdSaturation}
+                onCheckedChange={(holdSaturation) => update({ holdSaturation })}
+              />
             </Row>
-            <Field label="Alpha tie-break" tip="When several alphas fit: most transparent, or closest to the picked hue.">
+            <Field
+              label="Alpha tie-break"
+              tip="When several alphas fit: most transparent, or closest to the picked hue."
+            >
               <Choice
                 label="Alpha tie-break"
                 value={s.tieBreak}

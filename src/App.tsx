@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState, type CSSProperties } from "react"
-import { MoonIcon, SunIcon } from "@phosphor-icons/react"
+import { IconMoon, IconSun } from "@tabler/icons-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Switch } from "@/components/ui/switch"
@@ -73,10 +73,10 @@ export function App() {
             onValueChange={(v) => v[0] && setMode(v[0] as Mode)}
           >
             <ToggleGroupItem value="light" aria-label="Light mode">
-              <SunIcon /> Light
+              <IconSun /> Light
             </ToggleGroupItem>
             <ToggleGroupItem value="dark" aria-label="Dark mode">
-              <MoonIcon /> Dark
+              <IconMoon /> Dark
             </ToggleGroupItem>
           </ToggleGroup>
             <InfoTip label="Mode">Light and dark are solved as separate systems, not inverted.</InfoTip>

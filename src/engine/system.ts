@@ -25,6 +25,7 @@ import {
   STATUS_ANCHORS,
   STATUS_ROLES,
   effectiveLeash,
+  easeRamp,
   type Context,
   type Level,
   type Mode,
@@ -176,7 +177,16 @@ function ruleFor(role: Role, context: Context, s: Settings): ChromaRule {
 }
 
 export function targetFor(s: Settings, mode: Mode, context: Context, level: Level): Target {
-  const base = BASE_TARGETS[mode][context][level - 1]
+  const set = BASE_TARGETS[mode][context]
+  const ramp = s.ramps?.[context] ?? "stepped"
+  let value = set[level - 1].value
+  if (ramp !== "stepped") {
+    // Endpoints stay put; the ramp redistributes levels 2 to 4 between them.
+    const lo = set[0].value
+    const hi = set[4].value
+    value = lo + (hi - lo) * easeRamp(ramp, (level - 1) / 4)
+  }
+  const base = { kind: set[level - 1].kind, value } as Target
   if (base.kind === "dL") return { kind: "dL", value: base.value * s.surfaceScale }
   const offset = context === "surface" ? 0 : s.offsets[context as "text" | "fill" | "stroke"]
   return { kind: "lc", value: Math.max(5, base.value + offset) }

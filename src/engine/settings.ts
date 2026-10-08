@@ -37,6 +37,27 @@ export const STATUS_ANCHORS: Record<string, { l: number; c: number; h: number; l
   info: { l: 0.6, c: 0.15, h: 245, label: "Info" },
 }
 
+/**
+ * How a context's five levels are spread between its level 1 and level 5
+ * targets. Stepped keeps APCA's landmark values (45, 60, 75, 90 for text).
+ * The others interpolate between the endpoints, which stay fixed.
+ */
+export type Ramp = "stepped" | "linear" | "ease-in" | "ease-out" | "ease-in-out"
+export const RAMPS: Ramp[] = ["stepped", "linear", "ease-in", "ease-out", "ease-in-out"]
+
+export function easeRamp(ramp: Exclude<Ramp, "stepped">, t: number): number {
+  switch (ramp) {
+    case "linear":
+      return t
+    case "ease-in":
+      return t * t
+    case "ease-out":
+      return 1 - (1 - t) * (1 - t)
+    case "ease-in-out":
+      return t * t * (3 - 2 * t)
+  }
+}
+
 export type Target = { kind: "lc"; value: number } | { kind: "dL"; value: number }
 
 /**
@@ -95,6 +116,7 @@ export type Settings = {
   chartUseTheme: boolean
   familyPull: number
   offsets: { text: number; fill: number; stroke: number }
+  ramps: Record<Context, Ramp>
   surfaceScale: number
   holdSaturation: boolean
   chromaScale: number
@@ -122,6 +144,7 @@ export const DEFAULT_SETTINGS: Settings = {
   chartUseTheme: false,
   familyPull: 0.5,
   offsets: { text: 0, fill: 0, stroke: 0 },
+  ramps: { text: "stepped", fill: "stepped", stroke: "stepped", surface: "stepped" },
   surfaceScale: 1,
   holdSaturation: true,
   chromaScale: 1,

@@ -3,7 +3,7 @@ import { converter } from "culori"
 import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch } from "./color"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
-import { active, generate, resolveNeutral } from "./system"
+import { active, generate, resolveNeutral, targetFor } from "./system"
 import { BUTTON_ROLES, VARIANTS, buildButton } from "./components"
 import { cssExport, dtcgJson } from "./export"
 
@@ -157,6 +157,23 @@ describe("generate", () => {
     const first = rgbToOklch(sy.modes.light.categorical.colors[0].rgb)
     expect(Math.abs(hueDelta(first.h, sy.roles.brand.named.h))).toBeLessThan(6)
     expect(cssExport(sy)).not.toBe(cssExport(generate(s({ theme: "#7c3aed" }))))
+  })
+
+  it("ramps redistribute the middle levels and keep the endpoints", () => {
+    const at = (ramp: Settings["ramps"]["text"]) =>
+      ([1, 2, 3, 4, 5] as const).map((l) => targetFor(s({ ramps: { ...DEFAULT_SETTINGS.ramps, text: ramp } }), "light", "text", l).value)
+    expect(at("stepped")).toEqual([45, 60, 75, 90, 100])
+    expect(at("linear")).toEqual([45, 58.75, 72.5, 86.25, 100])
+    const easeIn = at("ease-in")
+    const easeOut = at("ease-out")
+    expect(easeIn[0]).toBe(45)
+    expect(easeIn[4]).toBe(100)
+    expect(easeIn[1]).toBeLessThan(58.75)
+    expect(easeOut[1]).toBeGreaterThan(58.75)
+    for (const ramp of ["linear", "ease-in", "ease-out", "ease-in-out"] as const) {
+      const sy = generate(s({ ramps: { text: ramp, fill: ramp, stroke: ramp, surface: ramp } }))
+      expect(Object.values(sy.modes.dark.tokens).filter((t) => !t.flat.met && !(t.role === "caution" && t.level === 5))).toHaveLength(0)
+    }
   })
 
   it("paints the light neutral primary as a light fill with dark text in both modes", () => {

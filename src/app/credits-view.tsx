@@ -7,7 +7,7 @@ const REFS = [
   { name: "shadcn/ui", url: "https://ui.shadcn.com", note: "Component kit and token names. MIT license." },
   { name: "Base UI", url: "https://base-ui.com", note: "Unstyled primitives under the components. MIT license." },
   { name: "OKLab and OKLCH", url: "https://bottosson.github.io/posts/oklab/", note: "Perceptual color space by Björn Ottosson." },
-  { name: "Phosphor Icons", url: "https://phosphoricons.com", note: "Icons. MIT license." },
+  { name: "Tabler Icons", url: "https://tabler.io/icons", note: "Icons. MIT license." },
   { name: "IBM Plex Sans", url: "https://github.com/IBM/plex", note: "Typeface. SIL Open Font License." },
 ]
 

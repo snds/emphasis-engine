@@ -7,7 +7,7 @@ import { Switch } from "@/components/ui/switch"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Badge } from "@/components/ui/badge"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { CheckCircleIcon, InfoIcon, WarningIcon, WarningOctagonIcon, ArrowDownRightIcon, ArrowUpRightIcon } from "@phosphor-icons/react"
+import { IconAlertOctagonFilled, IconAlertTriangleFilled, IconArrowDownRight, IconArrowUpRight, IconCircleCheckFilled, IconInfoCircleFilled } from "@tabler/icons-react"
 import { BUTTON_ROLES, VARIANTS, buildButton, overlayImage, type ButtonSpec } from "@/engine/components"
 import { active, tokenId, type System } from "@/engine/system"
 import type { Mode, RoleId } from "@/engine/settings"
@@ -124,10 +124,10 @@ function FormCard() {
 }
 
 const STATUS = [
-  { role: "success" as const, icon: CheckCircleIcon, title: "Samples approved", body: "All six colorways passed lab dip review." },
-  { role: "info" as const, icon: InfoIcon, title: "New supplier added", body: "Mill 14 can now receive tech packs." },
-  { role: "caution" as const, icon: WarningIcon, title: "Costing pending", body: "Two styles are missing trim prices." },
-  { role: "danger" as const, icon: WarningOctagonIcon, title: "Sync failed", body: "The ERP export stopped at line 212. Retry or contact support." },
+  { role: "success" as const, icon: IconCircleCheckFilled, title: "Samples approved", body: "All six colorways passed lab dip review." },
+  { role: "info" as const, icon: IconInfoCircleFilled, title: "New supplier added", body: "Mill 14 can now receive tech packs." },
+  { role: "caution" as const, icon: IconAlertTriangleFilled, title: "Costing pending", body: "Two styles are missing trim prices." },
+  { role: "danger" as const, icon: IconAlertOctagonFilled, title: "Sync failed", body: "The ERP export stopped at line 212. Retry or contact support." },
 ]
 
 function StatusCard(c: Ctx) {
@@ -145,7 +145,7 @@ function StatusCard(c: Ctx) {
             className="flex gap-2.5 rounded-md border p-3"
             style={{ background: tk(c, role, "surface", 3), borderColor: tk(c, role, "stroke", 2) }}
           >
-            <Icon className="mt-0.5 size-4 shrink-0" weight="fill" style={{ color: tk(c, role, "stroke", 4) }} />
+            <Icon className="mt-0.5 size-4 shrink-0" style={{ color: tk(c, role, "stroke", 4) }} />
             <div>
               <p className="text-sm font-medium" style={{ color: tk(c, role, "text", 5) }}>
                 {title}
@@ -266,10 +266,10 @@ function ChartCard(c: Ctx) {
           <div className="rounded-md border p-2.5">
             <p className="text-xs text-muted-foreground">Chart trend</p>
             <p className="flex items-center gap-1 font-medium" style={{ color: ms.trend.down.css }}>
-              <ArrowDownRightIcon className="size-4" /> Returns −4.2%
+              <IconArrowDownRight className="size-4" /> Returns −4.2%
             </p>
             <p className="flex items-center gap-1 font-medium" style={{ color: ms.trend.up.css }}>
-              <ArrowUpRightIcon className="size-4" /> Sell-through +8.1%
+              <IconArrowUpRight className="size-4" /> Sell-through +8.1%
             </p>
           </div>
           <div className="rounded-md border p-2.5">

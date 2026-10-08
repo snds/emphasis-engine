@@ -35,7 +35,7 @@ npm run build    # static build in dist/
 | `src/engine/components.ts` | Button recipes and state strategies |
 | `src/engine/export.ts` | shadcn CSS, Radix-shaped scales, DTCG JSON |
 | `src/app/` | Controls, preview, grid, report, export, credits |
-| `src/components/ui/` | shadcn components from preset `b1sABueby` (Base UI, mauve, blue, cyan, IBM Plex Sans) |
+| `src/components/ui/` | shadcn components from preset `b1sABueby` (Base UI, mauve, blue, cyan, IBM Plex Sans), icons switched from Phosphor to Tabler for its easing-curve set |
 
 ## Status
 
