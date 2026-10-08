@@ -10,10 +10,10 @@
   "probedAt": "2026-10-08",
   "source": "antd ^6.6.5",
   "docs": "https://ant.design/docs/react/customize-theme",
-  "page": "--ant-color-bg-layout",
+  "page": "--ant-color-bg-container",
   "samples": {
-   "light": 388,
-   "dark": 388
+   "light": 909,
+   "dark": 929
   }
  },
  "json": {
@@ -25,21 +25,26 @@
  "scopes": {},
  "vars": [
   {
-   "name": "--ant-color-bg-layout",
+   "name": "--ant-color-bg-container",
    "path": {
     "kind": "page"
    }
   },
   {
-   "name": "--ant-color-bg-container",
+   "name": "--ant-color-bg-container-disabled",
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--ant-color-bg-layout",
-    "dir": {
-     "light": "back",
-     "dark": "away"
-    }
+    "from": "--ant-color-bg-container",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--ant-color-bg-elevated",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ant-color-bg-container"
    }
   },
   {
@@ -59,11 +64,20 @@
    }
   },
   {
+   "name": "--ant-color-error-bg",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--ant-color-bg-container",
+    "chroma": 0.99
+   }
+  },
+  {
    "name": "--ant-color-error",
    "path": {
     "kind": "step",
     "palette": "danger",
-    "from": "--ant-color-bg-layout"
+    "from": "--ant-color-error-bg"
    }
   },
   {
@@ -71,16 +85,8 @@
    "path": {
     "kind": "step",
     "palette": "danger",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
     "chroma": 0.84
-   }
-  },
-  {
-   "name": "--ant-color-error-bg",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--ant-color-bg-layout"
    }
   },
   {
@@ -96,7 +102,7 @@
    "path": {
     "kind": "step",
     "palette": "danger",
-    "from": "--ant-color-bg-layout"
+    "from": "--ant-color-bg-container"
    }
   },
   {
@@ -104,7 +110,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
     "translucent": "always"
    }
   },
@@ -112,8 +118,9 @@
    "name": "--ant-color-info-bg",
    "path": {
     "kind": "step",
-    "palette": "neutral",
-    "from": "--ant-color-bg-layout"
+    "palette": "info",
+    "from": "--ant-color-bg-container",
+    "chroma": 0.99
    }
   },
   {
@@ -137,7 +144,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--ant-color-bg-layout"
+    "from": "--ant-color-bg-container"
    }
   },
   {
@@ -145,7 +152,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
     "chroma": 0.96
    }
   },
@@ -154,15 +161,14 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--ant-color-bg-layout"
+    "from": "--ant-color-bg-container"
    }
   },
   {
    "name": "--ant-color-primary",
    "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--ant-color-bg-container"
+    "kind": "solid",
+    "role": "brand"
    }
   },
   {
@@ -170,7 +176,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
     "chroma": 0.96
    }
   },
@@ -179,7 +185,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--ant-color-bg-layout"
+    "from": "--ant-color-bg-container"
    }
   },
   {
@@ -187,16 +193,41 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--ant-color-bg-layout"
+    "from": "--ant-color-bg-container"
    }
   },
   {
-   "name": "--ant-color-split",
+   "name": "--ant-color-success-bg",
    "path": {
     "kind": "step",
-    "palette": "neutral",
-    "from": "--ant-color-bg-layout",
-    "translucent": "always"
+    "palette": "success",
+    "from": "--ant-color-bg-container"
+   }
+  },
+  {
+   "name": "--ant-color-success",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--ant-color-success-bg"
+   }
+  },
+  {
+   "name": "--ant-color-success-border",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--ant-color-success-bg",
+    "chroma": 0.55
+   }
+  },
+  {
+   "name": "--ant-color-warning-bg",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--ant-color-bg-container",
+    "chroma": 0.98
    }
   },
   {
@@ -213,7 +244,16 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--ant-color-text-disabled",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ant-color-bg-container",
     "translucent": "always"
    }
   },
@@ -222,7 +262,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--ant-color-error-bg",
+    "from": "--ant-color-bg-container",
     "translucent": "always"
    }
   },
@@ -236,11 +276,23 @@
    }
   },
   {
+   "name": "--ant-color-text-light-solid",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--ant-color-bg-container",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
    "name": "--ant-color-text-quaternary",
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
     "translucent": "always"
    }
   },
@@ -249,193 +301,33 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--ant-color-bg-layout",
+    "from": "--ant-color-bg-container",
     "translucent": "always"
    }
   },
   {
-   "name": "--ant-color-white",
+   "name": "--ant-color-warning",
    "path": {
     "kind": "step",
-    "palette": "neutral",
-    "from": "--ant-color-primary",
-    "dir": {
-     "light": "back",
-     "dark": "away"
-    }
+    "palette": "warning",
+    "from": "--ant-color-warning-bg",
+    "chroma": 0.99
+   }
+  },
+  {
+   "name": "--ant-color-warning-border",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--ant-color-warning-bg"
    }
   }
  ],
  "recipes": [
   {
-   "id": "card-background-color",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +7",
-   "element": "surface",
-   "paint": {
-    "v": "--ant-color-primary"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-outline",
-   "label": "Button primary outline (focus)",
-   "source": "button-primary focus outline; button-secondary focus outline; button-outline focus outline; +5",
-   "element": "focus",
-   "paint": {
-    "v": "--ant-color-primary-border"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "badge-background-color",
-   "label": "Badge background",
-   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--ant-color-info-bg"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "badge-color",
-   "label": "Badge color",
-   "source": "badge rest color; badge hover color; badge pressed color; +1",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-info"
-   },
-   "over": [
-    {
-     "v": "--ant-color-info-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "alert-danger-border",
-   "label": "Alert danger border",
-   "source": "alert-danger rest border; alert-danger hover border; alert-danger pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--ant-color-error-border"
-   },
-   "over": [
-    {
-     "v": "--ant-color-error-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-danger-color",
-   "label": "Alert danger color",
-   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--ant-color-text-heading"
-   },
-   "over": [
-    {
-     "v": "--ant-color-error-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "alert-info-border",
-   "label": "Alert info border",
-   "source": "alert-info rest border; alert-info hover border; alert-info pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--ant-color-info-border"
-   },
-   "over": [
-    {
-     "v": "--ant-color-info-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-info-color",
-   "label": "Alert info color",
-   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--ant-color-text-heading"
-   },
-   "over": [
-    {
-     "v": "--ant-color-info-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "card-border",
-   "label": "Card border",
-   "source": "card rest border; card hover border; card pressed border; +5",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--ant-color-border-secondary"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-outline-2",
-   "label": "Button primary outline (focus)",
-   "source": "button-primary focus outline; button-secondary focus outline; button-outline focus outline; +5",
-   "element": "focus",
-   "paint": {
-    "v": "--ant-color-primary-border"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "badge-background-color-2",
-   "label": "Badge background",
-   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--ant-color-info-bg"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-color",
-   "label": "Input color",
-   "source": "input rest color; text rest color; text hover color; +2",
+   "id": "input-spring-2027-collection-color",
+   "label": "Input spring 2027 collection color",
+   "source": "input-spring-2027-collection rest color; input-team-example-com rest color; input-sp-27x rest color; +28",
    "element": "text-primary",
    "paint": {
     "v": "--ant-color-text"
@@ -448,9 +340,85 @@
    "metric": "lc"
   },
   {
-   "id": "input-border",
-   "label": "Input border",
-   "source": "input rest border; card rest border; card hover border; +2",
+   "id": "surface-open-orders24-3-color",
+   "label": "Surface open orders24 3 color",
+   "source": "surface-open-orders24-3 rest color; surface-open-orders24-3 hover color; surface-open-orders24-3 pressed color; +25",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text-heading"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-open-orders24-3-color-2",
+   "label": "Surface open orders24 3 color",
+   "source": "surface-open-orders24-3 rest color; surface-open-orders24-3 hover color; surface-open-orders24-3 pressed color; +21",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ant-color-text-description"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-generalworkspace-namenotification-emailu-border",
+   "label": "Surface generalworkspace namenotification emailu border",
+   "source": "surface-generalworkspace-namenotification-emailu rest border; surface-generalworkspace-namenotification-emailu hover border; surface-generalworkspace-namenotification-emailu pressed border; +13",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--ant-color-border-secondary"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "switch-outline",
+   "label": "Switch outline (focus)",
+   "source": "switch focus outline; checkbox-email-me-a focus outline; radio-private focus outline; +11",
+   "element": "focus",
+   "paint": {
+    "v": "--ant-color-primary-border"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "radio-private-border",
+   "label": "Radio private border (hover, pressed)",
+   "source": "radio-private hover border; radio-private pressed border; radio-team hover border; +3",
+   "element": "border-control",
+   "paint": {
+    "v": "--ant-color-primary"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "input-spring-2027-collection-border",
+   "label": "Input spring 2027 collection border",
+   "source": "input-spring-2027-collection rest border; input-team-example-com rest border; radio-private rest border; +2",
    "element": "border-control",
    "paint": {
     "v": "--ant-color-border"
@@ -463,177 +431,334 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-background-color",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; switch focus background-color; +3",
-   "element": "surface",
+   "id": "button-save-changes-background-color",
+   "label": "Button save changes background",
+   "source": "button-save-changes rest background-color; button-save-changes focus background-color; button-save-changes-2 rest background-color; +2",
+   "element": "solid",
    "paint": {
     "v": "--ant-color-primary"
    },
    "over": [
     {
-     "v": "--ant-color-bg-layout"
+     "v": "--ant-color-bg-container"
     }
    ],
-   "metric": "dL"
+   "metric": "dL",
+   "check": true
   },
   {
-   "id": "input-background-color",
-   "label": "Input background",
-   "source": "input rest background-color; card rest background-color; card hover background-color; +2",
-   "element": "surface",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-2-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli 2 color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli-2 rest color; surface-atelier-plmoverviewstylesmaterialssuppli-2 hover color; surface-atelier-plmoverviewstylesmaterialssuppli-2 pressed color; +1",
+   "element": "text-primary",
    "paint": {
-    "v": "--ant-color-bg-container"
+    "v": "--ant-color-text-light-solid"
    },
    "over": [
     {
-     "v": "--ant-color-bg-layout"
+     "v": "--ant-color-bg-container"
+    },
+    {
+     "v": "--ant-color-text-placeholder"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "card-background-color-2",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +2",
-   "element": "surface",
+   "id": "surface-generalworkspace-namenotification-emailu-color",
+   "label": "Surface generalworkspace namenotification emailu color",
+   "source": "surface-generalworkspace-namenotification-emailu rest color; surface-generalworkspace-namenotification-emailu hover color; surface-generalworkspace-namenotification-emailu pressed color; +1",
+   "element": "text-secondary",
    "paint": {
-    "v": "--ant-color-bg-container"
+    "v": "--ant-color-error"
    },
    "over": [
     {
      "v": "--ant-color-bg-container"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "button-primary-background-color-2",
-   "label": "Button primary background (hover, pressed)",
-   "source": "button-primary hover background-color; switch-checked hover background-color; switch-checked pressed background-color; +2",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-primary-hover"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-background-color-3",
-   "label": "Button primary background (hover, pressed)",
-   "source": "button-primary hover background-color; switch-checked hover background-color; switch-checked pressed background-color; +2",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-primary-hover"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tabs-border",
-   "label": "Tabs border",
-   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
+   "id": "alert-samples-approvedall-six-border",
+   "label": "Alert samples approvedall six border",
+   "source": "alert-samples-approvedall-six rest border; alert-samples-approvedall-six hover border; alert-samples-approvedall-six pressed border; +1",
    "element": "border-decorative",
    "paint": {
-    "v": "--ant-color-border-secondary"
+    "v": "--ant-color-success-border"
    },
    "over": [
     {
-     "v": "--ant-color-bg-layout"
+     "v": "--ant-color-success-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "text-color",
-   "label": "Text color",
-   "source": "text rest color; text hover color; text pressed color; +1",
+   "id": "alert-samples-approvedall-six-fill",
+   "label": "Alert samples approvedall six fill",
+   "source": "alert-samples-approvedall-six rest fill; alert-samples-approvedall-six hover fill; alert-samples-approvedall-six pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-success"
+   },
+   "over": [
+    {
+     "v": "--ant-color-success-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-samples-approvedall-six-color",
+   "label": "Alert samples approvedall six color",
+   "source": "alert-samples-approvedall-six rest color; alert-samples-approvedall-six hover color; alert-samples-approvedall-six pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text-heading"
+   },
+   "over": [
+    {
+     "v": "--ant-color-success-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-samples-approvedall-six-color-2",
+   "label": "Alert samples approvedall six color",
+   "source": "alert-samples-approvedall-six rest color; alert-samples-approvedall-six hover color; alert-samples-approvedall-six pressed color; +1",
    "element": "text-primary",
    "paint": {
     "v": "--ant-color-text"
    },
    "over": [
     {
-     "v": "--ant-color-bg-layout"
+     "v": "--ant-color-success-bg"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "text-muted-color",
-   "label": "Text muted color",
-   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-text-description"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "divider-border",
-   "label": "Divider border",
-   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "id": "alert-new-supplier-addedmill-border",
+   "label": "Alert new supplier addedmill border",
+   "source": "alert-new-supplier-addedmill rest border; alert-new-supplier-addedmill hover border; alert-new-supplier-addedmill pressed border; +1",
    "element": "border-decorative",
    "paint": {
-    "v": "--ant-color-split"
+    "v": "--ant-color-info-border"
    },
    "over": [
     {
-     "v": "--ant-color-bg-layout"
+     "v": "--ant-color-info-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "alert-danger-background-color",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "id": "alert-new-supplier-addedmill-fill",
+   "label": "Alert new supplier addedmill fill",
+   "source": "alert-new-supplier-addedmill rest fill; alert-new-supplier-addedmill hover fill; alert-new-supplier-addedmill pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-info"
+   },
+   "over": [
+    {
+     "v": "--ant-color-info-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-new-supplier-addedmill-color",
+   "label": "Alert new supplier addedmill color",
+   "source": "alert-new-supplier-addedmill rest color; alert-new-supplier-addedmill hover color; alert-new-supplier-addedmill pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text-heading"
+   },
+   "over": [
+    {
+     "v": "--ant-color-info-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-new-supplier-addedmill-color-2",
+   "label": "Alert new supplier addedmill color",
+   "source": "alert-new-supplier-addedmill rest color; alert-new-supplier-addedmill hover color; alert-new-supplier-addedmill pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text"
+   },
+   "over": [
+    {
+     "v": "--ant-color-info-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-border",
+   "label": "Alert costing pendingtwo styles border",
+   "source": "alert-costing-pendingtwo-styles rest border; alert-costing-pendingtwo-styles hover border; alert-costing-pendingtwo-styles pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--ant-color-warning-border"
+   },
+   "over": [
+    {
+     "v": "--ant-color-warning-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-fill",
+   "label": "Alert costing pendingtwo styles fill",
+   "source": "alert-costing-pendingtwo-styles rest fill; alert-costing-pendingtwo-styles hover fill; alert-costing-pendingtwo-styles pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-warning"
+   },
+   "over": [
+    {
+     "v": "--ant-color-warning-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-color",
+   "label": "Alert costing pendingtwo styles color",
+   "source": "alert-costing-pendingtwo-styles rest color; alert-costing-pendingtwo-styles hover color; alert-costing-pendingtwo-styles pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text-heading"
+   },
+   "over": [
+    {
+     "v": "--ant-color-warning-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-color-2",
+   "label": "Alert costing pendingtwo styles color",
+   "source": "alert-costing-pendingtwo-styles rest color; alert-costing-pendingtwo-styles hover color; alert-costing-pendingtwo-styles pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text"
+   },
+   "over": [
+    {
+     "v": "--ant-color-warning-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-border",
+   "label": "Alert sync failedthe erp border",
+   "source": "alert-sync-failedthe-erp rest border; alert-sync-failedthe-erp hover border; alert-sync-failedthe-erp pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--ant-color-error-border"
+   },
+   "over": [
+    {
+     "v": "--ant-color-error-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-fill",
+   "label": "Alert sync failedthe erp fill",
+   "source": "alert-sync-failedthe-erp rest fill; alert-sync-failedthe-erp hover fill; alert-sync-failedthe-erp pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-error"
+   },
+   "over": [
+    {
+     "v": "--ant-color-error-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-color",
+   "label": "Alert sync failedthe erp color",
+   "source": "alert-sync-failedthe-erp rest color; alert-sync-failedthe-erp hover color; alert-sync-failedthe-erp pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text-heading"
+   },
+   "over": [
+    {
+     "v": "--ant-color-error-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-color-2",
+   "label": "Alert sync failedthe erp color",
+   "source": "alert-sync-failedthe-erp rest color; alert-sync-failedthe-erp hover color; alert-sync-failedthe-erp pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--ant-color-text"
+   },
+   "over": [
+    {
+     "v": "--ant-color-error-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-publish-background-color",
+   "label": "Button publish background",
+   "source": "button-publish rest background-color; button-publish hover background-color; button-publish pressed background-color; +1",
    "element": "surface",
    "paint": {
-    "v": "--ant-color-error-bg"
+    "v": "--ant-color-bg-container-disabled"
    },
    "over": [
     {
-     "v": "--ant-color-bg-layout"
+     "v": "--ant-color-bg-container"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "card-border-2",
-   "label": "Card border",
-   "source": "card rest border; card hover border; card pressed border; +1",
-   "element": "border-decorative",
+   "id": "button-publish-color",
+   "label": "Button publish color",
+   "source": "button-publish rest color; button-publish hover color; button-publish pressed color; +1",
+   "element": "state",
    "paint": {
-    "v": "--ant-color-white"
+    "v": "--ant-color-text-disabled"
    },
    "over": [
     {
-     "v": "--ant-color-primary"
+     "v": "--ant-color-bg-container"
+    },
+    {
+     "v": "--ant-color-bg-container-disabled"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "text-muted-color-2",
-   "label": "Text muted color",
-   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
-   "element": "text-secondary",
+   "id": "surface-text-emphasisprimary-text-color",
+   "label": "Surface text emphasisprimary text color",
+   "source": "surface-text-emphasisprimary-text rest color; surface-text-emphasisprimary-text hover color; surface-text-emphasisprimary-text pressed color; +1",
+   "element": "state",
    "paint": {
-    "v": "--ant-color-text-description"
+    "v": "--ant-color-text-disabled"
    },
    "over": [
     {
@@ -643,12 +768,12 @@
    "metric": "lc"
   },
   {
-   "id": "divider-border-2",
-   "label": "Divider border",
-   "source": "divider rest border; divider hover border; divider pressed border; +1",
-   "element": "border-decorative",
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-background-color",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline background",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed background-color; +1",
+   "element": "surface",
    "paint": {
-    "v": "--ant-color-split"
+    "v": "--ant-color-success-bg"
    },
    "over": [
     {
@@ -658,12 +783,225 @@
    "metric": "dL"
   },
   {
-   "id": "alert-danger-background-color-2",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-color",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline color",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-success"
+   },
+   "over": [
+    {
+     "v": "--ant-color-success-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-background-color-2",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline background",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--ant-color-warning-bg"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-color-2",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline color",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-warning"
+   },
+   "over": [
+    {
+     "v": "--ant-color-warning-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-color-3",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline color",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-info"
+   },
+   "over": [
+    {
+     "v": "--ant-color-info-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-background-color-3",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline background",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed background-color; +1",
    "element": "surface",
    "paint": {
     "v": "--ant-color-error-bg"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-color-4",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline color",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline hover color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--ant-color-error"
+   },
+   "over": [
+    {
+     "v": "--ant-color-error-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-north-americaeuropenorth-americaeuropeas-background-color",
+   "label": "Surface north americaeuropenorth americaeuropeas background",
+   "source": "surface-north-americaeuropenorth-americaeuropeas rest background-color; surface-north-americaeuropenorth-americaeuropeas hover background-color; surface-north-americaeuropenorth-americaeuropeas pressed background-color; +1",
+   "element": "surface",
+   "modes": [
+    "dark"
+   ],
+   "paint": {
+    "v": "--ant-color-bg-elevated"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-view-supplier-scorecard-color",
+   "label": "Button view supplier scorecard color",
+   "source": "button-view-supplier-scorecard rest color; button-view-supplier-scorecard focus color; link-view-supplier-scorecard rest color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ant-color-link"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-view-supplier-scorecard-color-2",
+   "label": "Button view supplier scorecard color (hover, focus)",
+   "source": "button-view-supplier-scorecard hover color; link-view-supplier-scorecard hover color; link-view-supplier-scorecard focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ant-color-link-hover"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-spring-2027-collection-placeholder",
+   "label": "Input spring 2027 collection placeholder",
+   "source": "input-spring-2027-collection rest placeholder; input-sp-27x rest placeholder",
+   "element": "state",
+   "paint": {
+    "v": "--ant-color-text"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-save-changes-background-color-2",
+   "label": "Button save changes background (hover)",
+   "source": "button-save-changes hover background-color; button-save-changes-2 hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--ant-color-primary-hover"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-background-color-3",
+   "label": "Button save changes background (pressed)",
+   "source": "button-save-changes pressed background-color; button-save-changes-2 pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--ant-color-primary-active"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-view-supplier-scorecard-color-3",
+   "label": "Button view supplier scorecard color (pressed)",
+   "source": "button-view-supplier-scorecard pressed color; link-view-supplier-scorecard pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--ant-color-link-active"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-delete-workspace-background-color",
+   "label": "Button delete workspace background",
+   "source": "button-delete-workspace rest background-color; button-delete-workspace focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--ant-color-error"
+   },
+   "over": [
+    {
+     "v": "--ant-color-bg-container"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline-background-color-4",
+   "label": "Row orderstylesupplierunitsstatuspo 4471linen overshirtcoastline background",
+   "source": "row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline rest background-color; row-orderstylesupplierunitsstatuspo-4471linen-overshirtcoastline focus background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--ant-color-info-bg"
    },
    "over": [
     {
@@ -674,54 +1012,12 @@
   },
   {
    "id": "switch-background-color",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch-checked focus background-color; switch focus background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--ant-color-text-quaternary"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-2",
    "label": "Switch background (hover, pressed)",
-   "source": "switch hover background-color; switch pressed background-color; switch-checked hover background-color; +1",
+   "source": "switch hover background-color; switch pressed background-color",
    "element": "state",
-   "paint": {
-    "v": "--ant-color-text-tertiary"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
+   "modes": [
+    "dark"
    ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-3",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch-checked focus background-color; switch focus background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--ant-color-text-quaternary"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-4",
-   "label": "Switch background (hover, pressed)",
-   "source": "switch hover background-color; switch pressed background-color; switch-checked hover background-color; +1",
-   "element": "state",
    "paint": {
     "v": "--ant-color-text-tertiary"
    },
@@ -733,24 +1029,9 @@
    "metric": "dL"
   },
   {
-   "id": "button-danger-background-color",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color; button-danger focus background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--ant-color-error"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-placeholder",
-   "label": "Input placeholder",
-   "source": "input rest placeholder",
+   "id": "input-team-example-com-placeholder",
+   "label": "Input team example com placeholder",
+   "source": "input-team-example-com rest placeholder",
    "element": "state",
    "paint": {
     "v": "--ant-color-text-placeholder"
@@ -763,25 +1044,10 @@
    "metric": "lc"
   },
   {
-   "id": "link-color",
-   "label": "Link color (hover, focus)",
-   "source": "link hover color; link focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-link-hover"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-danger-background-color-2",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color; button-danger focus background-color",
-   "element": "surface",
+   "id": "input-sp-27x-border",
+   "label": "Input sp 27x border",
+   "source": "input-sp-27x rest border",
+   "element": "border-control",
    "paint": {
     "v": "--ant-color-error"
    },
@@ -793,129 +1059,9 @@
    "metric": "dL"
   },
   {
-   "id": "link-color-2",
-   "label": "Link color (hover, focus)",
-   "source": "link hover color; link focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-link-hover"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-background-color-4",
-   "label": "Button primary background (pressed)",
-   "source": "button-primary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-primary-active"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-background-color",
-   "label": "Button ghost background (pressed)",
-   "source": "button-ghost pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-fill"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-3",
-   "label": "Button danger background (hover)",
-   "source": "button-danger hover background-color",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-error-hover"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-4",
-   "label": "Button danger background (pressed)",
-   "source": "button-danger pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-error-active"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-color-3",
-   "label": "Link color",
-   "source": "link rest color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-link"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "link-color-4",
-   "label": "Link color (pressed)",
-   "source": "link pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-link-active"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-layout"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-background-color-5",
-   "label": "Button primary background (pressed)",
-   "source": "button-primary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--ant-color-primary-active"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-background-color-2",
-   "label": "Button ghost background (pressed)",
-   "source": "button-ghost pressed background-color",
+   "id": "button-cancel-2-background-color",
+   "label": "Button cancel 2 background (pressed)",
+   "source": "button-cancel-2 pressed background-color",
    "element": "state",
    "paint": {
     "v": "--ant-color-fill"
@@ -928,9 +1074,9 @@
    "metric": "dL"
   },
   {
-   "id": "button-danger-background-color-5",
-   "label": "Button danger background (hover)",
-   "source": "button-danger hover background-color",
+   "id": "button-delete-workspace-background-color-2",
+   "label": "Button delete workspace background (hover)",
+   "source": "button-delete-workspace hover background-color",
    "element": "state",
    "paint": {
     "v": "--ant-color-error-hover"
@@ -943,9 +1089,9 @@
    "metric": "dL"
   },
   {
-   "id": "button-danger-background-color-6",
-   "label": "Button danger background (pressed)",
-   "source": "button-danger pressed background-color",
+   "id": "button-delete-workspace-background-color-3",
+   "label": "Button delete workspace background (pressed)",
+   "source": "button-delete-workspace pressed background-color",
    "element": "state",
    "paint": {
     "v": "--ant-color-error-active"
@@ -958,45 +1104,34 @@
    "metric": "dL"
   },
   {
-   "id": "link-color-5",
-   "label": "Link color",
-   "source": "link rest color",
-   "element": "text-secondary",
+   "id": "switch-background-color-2",
+   "label": "Switch background",
+   "source": "switch rest background-color",
+   "element": "surface",
+   "modes": [
+    "dark"
+   ],
    "paint": {
-    "v": "--ant-color-link"
+    "v": "--ant-color-text-quaternary"
    },
    "over": [
     {
      "v": "--ant-color-bg-container"
     }
    ],
-   "metric": "lc"
-  },
-  {
-   "id": "link-color-6",
-   "label": "Link color (pressed)",
-   "source": "link pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--ant-color-link-active"
-   },
-   "over": [
-    {
-     "v": "--ant-color-bg-container"
-    }
-   ],
-   "metric": "lc"
+   "metric": "dL"
   }
  ],
  "reference": {
   "light": {
-   "--ant-color-bg-layout": "#f5f5f5",
    "--ant-color-bg-container": "#ffffff",
+   "--ant-color-bg-container-disabled": "rgb(0 0 0 / 4%)",
+   "--ant-color-bg-elevated": "#ffffff",
    "--ant-color-border": "#d9d9d9",
    "--ant-color-border-secondary": "#f0f0f0",
+   "--ant-color-error-bg": "#fff2f0",
    "--ant-color-error": "#ff4d4f",
    "--ant-color-error-active": "#d9363e",
-   "--ant-color-error-bg": "#fff2f0",
    "--ant-color-error-border": "#ffccc7",
    "--ant-color-error-hover": "#ff7875",
    "--ant-color-fill": "rgb(0 0 0 / 15%)",
@@ -1010,23 +1145,30 @@
    "--ant-color-primary-active": "#0958d9",
    "--ant-color-primary-border": "#91caff",
    "--ant-color-primary-hover": "#4096ff",
-   "--ant-color-split": "rgb(5 5 5 / 6%)",
+   "--ant-color-success-bg": "#f6ffed",
+   "--ant-color-success": "#52c41a",
+   "--ant-color-success-border": "#b7eb8f",
+   "--ant-color-warning-bg": "#fffbe6",
    "--ant-color-text": "rgb(0 0 0 / 88%)",
    "--ant-color-text-description": "rgb(0 0 0 / 45%)",
+   "--ant-color-text-disabled": "rgb(0 0 0 / 25%)",
    "--ant-color-text-heading": "rgb(0 0 0 / 88%)",
    "--ant-color-text-placeholder": "rgb(0 0 0 / 25%)",
+   "--ant-color-text-light-solid": "#ffffff",
    "--ant-color-text-quaternary": "rgb(0 0 0 / 25%)",
    "--ant-color-text-tertiary": "rgb(0 0 0 / 45%)",
-   "--ant-color-white": "#ffffff"
+   "--ant-color-warning": "#faad14",
+   "--ant-color-warning-border": "#ffe58f"
   },
   "dark": {
-   "--ant-color-bg-layout": "#000000",
    "--ant-color-bg-container": "#141414",
+   "--ant-color-bg-container-disabled": "rgb(255 255 255 / 8%)",
+   "--ant-color-bg-elevated": "#1f1f1f",
    "--ant-color-border": "#424242",
    "--ant-color-border-secondary": "#303030",
+   "--ant-color-error-bg": "#2c1618",
    "--ant-color-error": "#dc4446",
    "--ant-color-error-active": "#ad393a",
-   "--ant-color-error-bg": "#2c1618",
    "--ant-color-error-border": "#5b2526",
    "--ant-color-error-hover": "#e86e6b",
    "--ant-color-fill": "rgb(255 255 255 / 18%)",
@@ -1040,14 +1182,20 @@
    "--ant-color-primary-active": "#1554ad",
    "--ant-color-primary-border": "#15325b",
    "--ant-color-primary-hover": "#3c89e8",
-   "--ant-color-split": "rgb(253 253 253 / 12%)",
+   "--ant-color-success-bg": "#162312",
+   "--ant-color-success": "#49aa19",
+   "--ant-color-success-border": "#274916",
+   "--ant-color-warning-bg": "#2b2111",
    "--ant-color-text": "rgb(255 255 255 / 85%)",
    "--ant-color-text-description": "rgb(255 255 255 / 45%)",
+   "--ant-color-text-disabled": "rgb(255 255 255 / 25%)",
    "--ant-color-text-heading": "rgb(255 255 255 / 85%)",
    "--ant-color-text-placeholder": "rgb(255 255 255 / 25%)",
+   "--ant-color-text-light-solid": "#ffffff",
    "--ant-color-text-quaternary": "rgb(255 255 255 / 25%)",
    "--ant-color-text-tertiary": "rgb(255 255 255 / 45%)",
-   "--ant-color-white": "#ffffff"
+   "--ant-color-warning": "#d89614",
+   "--ant-color-warning-border": "#594214"
   }
  }
 }

@@ -12,8 +12,8 @@
   "docs": "https://react.fluentui.dev/?path=/docs/theme-color--docs",
   "page": "--colorNeutralBackground2",
   "samples": {
-   "light": 444,
-   "dark": 438
+   "light": 830,
+   "dark": 827
   }
  },
  "json": {
@@ -49,20 +49,11 @@
    }
   },
   {
-   "name": "--colorBrandBackground2",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--colorNeutralBackground2",
-    "chroma": 0.8
-   }
-  },
-  {
    "name": "--colorBrandBackgroundHover",
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "chroma": 0.98
    }
   },
@@ -71,17 +62,8 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "chroma": 0.93
-   }
-  },
-  {
-   "name": "--colorBrandForeground2",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--colorBrandBackground2",
-    "chroma": 0.98
    }
   },
   {
@@ -89,7 +71,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "chroma": 0.98
    }
   },
@@ -98,7 +80,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "chroma": 0.97
    }
   },
@@ -107,21 +89,12 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "chroma": 0.93
    }
   },
   {
-   "name": "--colorBrandStroke2",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--colorBrandBackground2",
-    "chroma": 0.92
-   }
-  },
-  {
-   "name": "--colorCompoundBrandBackground",
+   "name": "--colorCompoundBrandForeground1",
    "path": {
     "kind": "step",
     "palette": "brand",
@@ -137,20 +110,11 @@
    }
   },
   {
-   "name": "--colorCompoundBrandStrokeHover",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--colorNeutralBackground2",
-    "chroma": 0.98
-   }
-  },
-  {
    "name": "--colorCompoundBrandStrokePressed",
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "chroma": 0.97
    }
   },
@@ -159,7 +123,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -167,7 +131,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorNeutralBackground1",
     "dir": {
      "light": "away",
      "dark": "back"
@@ -179,11 +143,65 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
+    "from": "--colorNeutralBackground2",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorNeutralBackground4",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
     "from": "--colorNeutralBackground1",
     "dir": {
      "light": "away",
      "dark": "back"
     }
+   }
+  },
+  {
+   "name": "--colorNeutralBackground6",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorNeutralBackgroundDisabled",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1",
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorStatusSuccessBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.38,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorStatusWarningBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--colorNeutralBackground2",
+    "chroma": 0.97
    }
   },
   {
@@ -212,7 +230,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground1Hover"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -220,7 +238,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground1Pressed"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -228,7 +246,15 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorSubtleBackgroundHover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -236,7 +262,15 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorSubtleBackgroundHover"
+   }
+  },
+  {
+   "name": "--colorSubtleBackgroundPressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -244,7 +278,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--colorNeutralBackground2",
+    "from": "--colorSubtleBackgroundPressed",
     "chroma": 0.98
    }
   },
@@ -253,15 +287,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2"
-   }
-  },
-  {
-   "name": "--colorSubtleBackgroundHover",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -277,15 +303,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2"
-   }
-  },
-  {
-   "name": "--colorSubtleBackgroundPressed",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -301,7 +319,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -313,12 +331,11 @@
    }
   },
   {
-   "name": "--colorNeutralForegroundInverted",
+   "name": "--colorNeutralForegroundDisabled",
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground1",
-    "dir": "back"
+    "from": "--colorNeutralBackgroundDisabled"
    }
   },
   {
@@ -338,7 +355,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground3"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -346,7 +363,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--colorNeutralBackground2"
+    "from": "--colorNeutralBackground1"
    }
   },
   {
@@ -355,6 +372,118 @@
     "kind": "step",
     "palette": "neutral",
     "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorNeutralStrokeAccessibleHover",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorNeutralStrokeAccessiblePressed",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--colorNeutralBackground1"
+   }
+  },
+  {
+   "name": "--colorPaletteGreenBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--colorNeutralBackground1",
+    "chroma": 0.38,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorPaletteGreenBorder1",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--colorPaletteGreenBackground1",
+    "chroma": 0.39
+   }
+  },
+  {
+   "name": "--colorPaletteGreenForeground1",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--colorPaletteGreenBackground1"
+   }
+  },
+  {
+   "name": "--colorPaletteRedBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorNeutralBackground1",
+    "chroma": 0.73,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--colorPaletteRedBorder1",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorPaletteRedBackground1",
+    "chroma": 0.73
+   }
+  },
+  {
+   "name": "--colorPaletteRedBorder2",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorNeutralBackground1",
+    "chroma": 0.87
+   }
+  },
+  {
+   "name": "--colorPaletteRedForeground1",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--colorNeutralBackground1",
+    "chroma": 0.86
+   }
+  },
+  {
+   "name": "--colorPaletteYellowBackground1",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--colorNeutralBackground1",
+    "chroma": 0.93
+   }
+  },
+  {
+   "name": "--colorPaletteYellowBorder1",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--colorPaletteYellowBackground1",
+    "chroma": 0.91
+   }
+  },
+  {
+   "name": "--colorPaletteYellowForeground1",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--colorPaletteYellowBackground1"
    }
   },
   {
@@ -375,6 +504,41 @@
    }
   },
   {
+   "name": "--colorStatusSuccessBorder1",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--colorStatusSuccessBackground1",
+    "chroma": 0.39
+   }
+  },
+  {
+   "name": "--colorStatusSuccessForeground1",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--colorStatusSuccessBackground1"
+   }
+  },
+  {
+   "name": "--colorStatusWarningBorder1",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--colorStatusWarningBackground1",
+    "chroma": 0.94
+   }
+  },
+  {
+   "name": "--colorStatusWarningForeground3",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--colorStatusWarningBackground1",
+    "chroma": 0.98
+   }
+  },
+  {
    "name": "--colorStrokeFocus2",
    "path": {
     "kind": "step",
@@ -385,9 +549,9 @@
  ],
  "recipes": [
   {
-   "id": "button-secondary-color",
-   "label": "Button secondary color",
-   "source": "button-secondary rest color; button-secondary focus color; input rest color; +9",
+   "id": "surface-atelier-plmoverviewoverviewstylesstylesm-3-color",
+   "label": "Surface atelier plmoverviewoverviewstylesstylesm 3 color",
+   "source": "surface-atelier-plmoverviewoverviewstylesstylesm-3 rest color; surface-atelier-plmoverviewoverviewstylesstylesm-3 hover color; surface-atelier-plmoverviewoverviewstylesstylesm-3 pressed color; +80",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground1"
@@ -400,220 +564,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-primary-color",
-   "label": "Button primary color",
-   "source": "button-primary rest color; button-primary focus color; button-primary focus inset-ring; +4",
-   "element": "on-solid",
-   "paint": {
-    "v": "--colorNeutralForegroundOnBrand"
-   },
-   "over": [
-    {
-     "v": "--colorBrandBackground"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-secondary-border",
-   "label": "Button secondary border (focus)",
-   "source": "button-secondary focus border; button-secondary focus inset-ring; button-outline focus border; +7",
-   "element": "focus",
-   "paint": {
-    "v": "--colorStrokeFocus2"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-border",
-   "label": "Button outline border (focus)",
-   "source": "button-outline focus border; button-outline focus inset-ring; button-ghost focus border; +5",
-   "element": "focus",
-   "paint": {
-    "v": "--colorStrokeFocus2"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-placeholder",
-   "label": "Input placeholder",
-   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +1",
-   "element": "state",
-   "paint": {
-    "v": "--colorNeutralForeground4"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "badge-tint-color",
-   "label": "Badge tint color",
-   "source": "badge-tint rest color; badge-tint hover color; badge-tint pressed color; +1",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--colorBrandForeground2"
-   },
-   "over": [
-    {
-     "v": "--colorBrandBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "badge-tint-border",
-   "label": "Badge tint border",
-   "source": "badge-tint rest border; badge-tint hover border; badge-tint pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorBrandStroke2"
-   },
-   "over": [
-    {
-     "v": "--colorBrandBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-danger-border",
-   "label": "Alert danger border",
-   "source": "alert-danger rest border; alert-danger hover border; alert-danger pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorStatusDangerBorder1"
-   },
-   "over": [
-    {
-     "v": "--colorStatusDangerBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-danger-fill",
-   "label": "Alert danger fill",
-   "source": "alert-danger rest fill; alert-danger hover fill; alert-danger pressed fill; +1",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--colorStatusDangerForeground1"
-   },
-   "over": [
-    {
-     "v": "--colorStatusDangerBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "alert-danger-color",
-   "label": "Alert danger color",
-   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground1"
-   },
-   "over": [
-    {
-     "v": "--colorStatusDangerBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "alert-info-border",
-   "label": "Alert info border",
-   "source": "alert-info rest border; alert-info hover border; alert-info pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorNeutralStroke1"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground3"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-border",
-   "label": "Card border",
-   "source": "card rest border; card rest fill; card hover border; +5",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorNeutralStrokeAccessible"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-border-2",
-   "label": "Button secondary border",
-   "source": "button-secondary rest border; card rest border; card hover border; +3",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorNeutralStroke1"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-border-2",
-   "label": "Card border",
-   "source": "card rest border; card hover border; card pressed border; +4",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorCompoundBrandStroke"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-background-color",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; badge rest background-color; +3",
-   "element": "solid",
-   "paint": {
-    "v": "--colorBrandBackground"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL",
-   "check": true
-  },
-  {
-   "id": "button-secondary-background-color",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color; button-secondary focus background-color; card rest background-color; +3",
+   "id": "surface-atelier-plmoverviewoverviewstylesstylesm-3-background-color",
+   "label": "Surface atelier plmoverviewoverviewstylesstylesm 3 background",
+   "source": "surface-atelier-plmoverviewoverviewstylesstylesm-3 rest background-color; surface-atelier-plmoverviewoverviewstylesstylesm-3 hover background-color; surface-atelier-plmoverviewoverviewstylesstylesm-3 pressed background-color; +29",
    "element": "surface",
    "paint": {
     "v": "--colorNeutralBackground1"
@@ -626,12 +579,57 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-color",
-   "label": "Button outline color",
-   "source": "button-outline rest color; button-outline focus color; text rest color; +3",
+   "id": "tab-overview-color",
+   "label": "Tab overview color",
+   "source": "tab-overview rest color; tab-styles rest color; tab-materials rest color; +27",
    "element": "text-primary",
    "paint": {
-    "v": "--colorNeutralForeground1"
+    "v": "--colorNeutralForeground2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-box-background-color",
+   "label": "Surface box background",
+   "source": "surface-box rest background-color; surface-box hover background-color; surface-box pressed background-color; +19",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-atelier-plmoverviewoverviewstylesstylesm-3-border",
+   "label": "Surface atelier plmoverviewoverviewstylesstylesm 3 border",
+   "source": "surface-atelier-plmoverviewoverviewstylesstylesm-3 rest border; surface-atelier-plmoverviewoverviewstylesstylesm-3 hover border; surface-atelier-plmoverviewoverviewstylesstylesm-3 pressed border; +13",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-workspaces-color",
+   "label": "Link workspaces color",
+   "source": "link-workspaces rest color; link-workspaces focus color; button-spring-2027-collection rest color; +11",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2"
    },
    "over": [
     {
@@ -641,9 +639,24 @@
    "metric": "lc"
   },
   {
-   "id": "tabs-color",
-   "label": "Tabs color",
-   "source": "tabs rest color; tabs focus color; tab-inactive focus color",
+   "id": "surface-box-border",
+   "label": "Surface box border",
+   "source": "surface-box rest border; surface-box hover border; surface-box focus border; +9",
+   "element": "border-control",
+   "paint": {
+    "v": "--colorCompoundBrandStroke"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-overview-color-2",
+   "label": "Tab overview color (focus)",
+   "source": "tab-overview focus color; tab-styles focus color; tab-materials focus color; +6",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground1"
@@ -656,12 +669,12 @@
    "metric": "lc"
   },
   {
-   "id": "card-background-color",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +3",
-   "element": "surface",
+   "id": "surface-box-border-2",
+   "label": "Surface box border",
+   "source": "surface-box rest border; surface-box-2 rest border; select-north-america rest border; +6",
+   "element": "border-control",
    "paint": {
-    "v": "--colorNeutralBackground1"
+    "v": "--colorNeutralStrokeAccessible"
    },
    "over": [
     {
@@ -671,9 +684,429 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-background-color-2",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; badge rest background-color; +3",
+   "id": "surface-box-border-3",
+   "label": "Surface box border (pressed, focus)",
+   "source": "surface-box pressed border; surface-box focus border; surface-box-2 pressed border; +6",
+   "element": "border-control",
+   "paint": {
+    "v": "--colorNeutralStrokeAccessiblePressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-overview-color-3",
+   "label": "Tab overview color (hover)",
+   "source": "tab-overview hover color; tab-styles hover color; tab-materials hover color; +6",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralStroke1Hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-overview-color-4",
+   "label": "Tab overview color (pressed)",
+   "source": "tab-overview pressed color; tab-styles pressed color; tab-materials pressed color; +6",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralStroke1Pressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-spring-2027-collection-placeholder",
+   "label": "Input spring 2027 collection placeholder",
+   "source": "input-spring-2027-collection rest placeholder; input-spring-2027-collection hover placeholder; input-spring-2027-collection pressed placeholder; +5",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-generalworkspace-namenotification-emailu-color",
+   "label": "Surface generalworkspace namenotification emailu color",
+   "source": "surface-generalworkspace-namenotification-emailu rest color; surface-generalworkspace-namenotification-emailu hover color; surface-generalworkspace-namenotification-emailu pressed color; +4",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-notifications-background-color",
+   "label": "Button notifications background (hover)",
+   "source": "button-notifications hover background-color; button-cancel-2 hover background-color; row-po-4471linen-overshirtcoastline hover background-color; +3",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-notifications-background-color-2",
+   "label": "Button notifications background (pressed)",
+   "source": "button-notifications pressed background-color; button-cancel-2 pressed background-color; row-po-4471linen-overshirtcoastline pressed background-color; +3",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-notifications-border",
+   "label": "Button notifications border (focus)",
+   "source": "button-notifications focus border; button-cancel focus border; button-duplicate focus border; +3",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-notifications-inset-ring",
+   "label": "Button notifications inset-ring (focus)",
+   "source": "button-notifications focus inset-ring; button-cancel focus inset-ring; button-duplicate focus inset-ring; +3",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-overview-background-color",
+   "label": "Tab overview background (hover)",
+   "source": "tab-overview hover background-color; tab-styles hover background-color; tab-materials hover background-color; +2",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralStroke1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-overview-background-color-2",
+   "label": "Tab overview background (pressed)",
+   "source": "tab-overview pressed background-color; tab-styles pressed background-color; tab-materials pressed background-color; +2",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralStroke1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-overview-ring",
+   "label": "Tab overview ring (focus)",
+   "source": "tab-overview focus ring; tab-styles focus ring; tab-materials focus ring; +2",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-overview-background-color-3",
+   "label": "Tab overview background (focus)",
+   "source": "tab-overview focus background-color; tab-styles focus background-color; tab-materials focus background-color; +2",
+   "element": "state",
+   "paint": {
+    "v": "--colorCompoundBrandStroke"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-box-border-4",
+   "label": "Surface box border (hover)",
+   "source": "surface-box hover border; surface-box-2 hover border; radio-private hover border; +2",
+   "element": "border-control",
+   "paint": {
+    "v": "--colorNeutralStrokeAccessibleHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-preview-color",
+   "label": "Button preview color (hover)",
+   "source": "button-preview hover color; row-po-4471linen-overshirtcoastline hover color; row-po-4472wool-topcoatatelier hover color; +2",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-preview-color-2",
+   "label": "Button preview color (pressed)",
+   "source": "button-preview pressed color; row-po-4471linen-overshirtcoastline pressed color; row-po-4472wool-topcoatatelier pressed color; +2",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewoverviewstylesstylesm-2-fill",
+   "label": "Surface atelier plmoverviewoverviewstylesstylesm 2 fill",
+   "source": "surface-atelier-plmoverviewoverviewstylesstylesm-2 rest fill; surface-atelier-plmoverviewoverviewstylesstylesm-2 hover fill; surface-atelier-plmoverviewoverviewstylesstylesm-2 pressed fill; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewoverviewstylesstylesm-3-background-color-2",
+   "label": "Surface atelier plmoverviewoverviewstylesstylesm 3 background",
+   "source": "surface-atelier-plmoverviewoverviewstylesstylesm-3 rest background-color; surface-atelier-plmoverviewoverviewstylesstylesm-3 hover background-color; surface-atelier-plmoverviewoverviewstylesstylesm-3 pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackground6"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-atelier-plmoverviewoverviewstylesstylesm-3-color-2",
+   "label": "Surface atelier plmoverviewoverviewstylesstylesm 3 color",
+   "source": "surface-atelier-plmoverviewoverviewstylesstylesm-3 rest color; surface-atelier-plmoverviewoverviewstylesstylesm-3 hover color; surface-atelier-plmoverviewoverviewstylesstylesm-3 pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground6"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "heading-workspace-settings-color",
+   "label": "Heading workspace settings color",
+   "source": "heading-workspace-settings rest color; heading-workspace-settings hover color; heading-workspace-settings pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-general-background-color",
+   "label": "Tab general background (hover)",
+   "source": "tab-general hover background-color; tab-suppliers-2 hover background-color; tab-notifications hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralStroke1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-general-background-color-2",
+   "label": "Tab general background (pressed)",
+   "source": "tab-general pressed background-color; tab-suppliers-2 pressed background-color; tab-notifications pressed background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralStroke1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-general-ring",
+   "label": "Tab general ring (focus)",
+   "source": "tab-general focus ring; tab-suppliers-2 focus ring; tab-notifications focus ring; +1",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "tab-general-background-color-3",
+   "label": "Tab general background (focus)",
+   "source": "tab-general focus background-color; tab-suppliers-2 focus background-color; tab-notifications focus background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--colorCompoundBrandStroke"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-generalworkspace-namenotification-emailu-fill",
+   "label": "Surface generalworkspace namenotification emailu fill",
+   "source": "surface-generalworkspace-namenotification-emailu rest fill; surface-generalworkspace-namenotification-emailu hover fill; surface-generalworkspace-namenotification-emailu pressed fill; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralStrokeAccessible"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-team-example-com-placeholder",
+   "label": "Input team example com placeholder",
+   "source": "input-team-example-com rest placeholder; input-team-example-com hover placeholder; input-team-example-com pressed placeholder; +1",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralForeground4"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-season-codes-are-color",
+   "label": "Alert season codes are color",
+   "source": "alert-season-codes-are rest color; alert-season-codes-are hover color; alert-season-codes-are pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorPaletteRedForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-season-codes-are-fill",
+   "label": "Alert season codes are fill",
+   "source": "alert-season-codes-are rest fill; alert-season-codes-are hover fill; alert-season-codes-are pressed fill; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--colorPaletteRedForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-save-changes-background-color",
+   "label": "Button save changes background",
+   "source": "button-save-changes rest background-color; button-save-changes focus background-color; button-save-changes-2 rest background-color; +1",
    "element": "solid",
    "paint": {
     "v": "--colorBrandBackground"
@@ -687,87 +1120,42 @@
    "check": true
   },
   {
-   "id": "button-ghost-color",
-   "label": "Button ghost color",
-   "source": "button-ghost rest color; button-ghost focus color; button-transparent rest color; +3",
-   "element": "text-primary",
+   "id": "button-save-changes-color",
+   "label": "Button save changes color",
+   "source": "button-save-changes rest color; button-save-changes focus color; button-save-changes-2 rest color; +1",
+   "element": "on-solid",
    "paint": {
-    "v": "--colorNeutralForeground2"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-color-2",
-   "label": "Button ghost color",
-   "source": "button-ghost rest color; button-ghost focus color; button-transparent rest color; +3",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground2"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-border",
-   "label": "Button primary border (focus)",
-   "source": "button-primary focus border; button-primary focus inset-ring",
-   "element": "focus",
-   "paint": {
-    "v": "--colorStrokeFocus2"
+    "v": "--colorNeutralForegroundOnBrand"
    },
    "over": [
     {
      "v": "--colorBrandBackground"
     }
    ],
-   "metric": "dL"
-  },
-  {
-   "id": "badge-tint-background-color",
-   "label": "Badge tint background",
-   "source": "badge-tint rest background-color; badge-tint hover background-color; badge-tint pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--colorBrandBackground2"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "text-muted-color",
-   "label": "Text muted color",
-   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground3"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
    "metric": "lc"
   },
   {
-   "id": "divider-border",
-   "label": "Divider border",
-   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "id": "button-cancel-border",
+   "label": "Button cancel border",
+   "source": "button-cancel rest border; button-duplicate rest border; button-preview rest border; +1",
    "element": "border-decorative",
    "paint": {
-    "v": "--colorNeutralStroke2"
+    "v": "--colorNeutralStroke1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-samples-approvedall-six-background-color",
+   "label": "Surface samples approvedall six background",
+   "source": "surface-samples-approvedall-six rest background-color; surface-samples-approvedall-six hover background-color; surface-samples-approvedall-six pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorStatusSuccessBackground1"
    },
    "over": [
     {
@@ -777,129 +1165,84 @@
    "metric": "dL"
   },
   {
-   "id": "alert-danger-background-color",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--colorStatusDangerBackground1"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-background-color-2",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--colorCompoundBrandBackground"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-fill",
-   "label": "Card fill",
-   "source": "card rest fill; card hover fill; card pressed fill; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForegroundInverted"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "badge-tint-background-color-2",
-   "label": "Badge tint background",
-   "source": "badge-tint rest background-color; badge-tint hover background-color; badge-tint pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--colorBrandBackground2"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "text-muted-color-2",
-   "label": "Text muted color",
-   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground3"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "divider-border-2",
-   "label": "Divider border",
-   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "id": "surface-samples-approvedall-six-border",
+   "label": "Surface samples approvedall six border",
+   "source": "surface-samples-approvedall-six rest border; surface-samples-approvedall-six hover border; surface-samples-approvedall-six pressed border; +1",
    "element": "border-decorative",
    "paint": {
-    "v": "--colorNeutralStroke2"
+    "v": "--colorStatusSuccessBorder1"
    },
    "over": [
     {
-     "v": "--colorNeutralBackground1"
+     "v": "--colorStatusSuccessBackground1"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "alert-danger-background-color-2",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
+   "id": "surface-samples-approvedall-six-fill",
+   "label": "Surface samples approvedall six fill",
+   "source": "surface-samples-approvedall-six rest fill; surface-samples-approvedall-six hover fill; surface-samples-approvedall-six pressed fill; +1",
+   "element": "text-on-tint",
    "paint": {
-    "v": "--colorStatusDangerBackground1"
+    "v": "--colorStatusSuccessForeground1"
    },
    "over": [
     {
-     "v": "--colorNeutralBackground1"
+     "v": "--colorStatusSuccessBackground1"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "alert-info-background-color",
-   "label": "Alert info background",
-   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
+   "id": "surface-samples-approvedall-six-color",
+   "label": "Surface samples approvedall six color",
+   "source": "surface-samples-approvedall-six rest color; surface-samples-approvedall-six hover color; surface-samples-approvedall-six pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusSuccessBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-background-color",
+   "label": "Surface new supplier addedmill background",
+   "source": "surface-new-supplier-addedmill rest background-color; surface-new-supplier-addedmill hover background-color; surface-new-supplier-addedmill pressed background-color; +1",
    "element": "surface",
    "paint": {
     "v": "--colorNeutralBackground3"
    },
    "over": [
     {
-     "v": "--colorNeutralBackground1"
+     "v": "--colorNeutralBackground2"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "alert-info-fill",
-   "label": "Alert info fill",
-   "source": "alert-info rest fill; alert-info hover fill; alert-info pressed fill; +1",
+   "id": "surface-new-supplier-addedmill-border",
+   "label": "Surface new supplier addedmill border",
+   "source": "surface-new-supplier-addedmill rest border; surface-new-supplier-addedmill hover border; surface-new-supplier-addedmill pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground3"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-fill",
+   "label": "Surface new supplier addedmill fill",
+   "source": "surface-new-supplier-addedmill rest fill; surface-new-supplier-addedmill hover fill; surface-new-supplier-addedmill pressed fill; +1",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground3"
@@ -912,9 +1255,9 @@
    "metric": "lc"
   },
   {
-   "id": "alert-info-color",
-   "label": "Alert info color",
-   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
+   "id": "surface-new-supplier-addedmill-color",
+   "label": "Surface new supplier addedmill color",
+   "source": "surface-new-supplier-addedmill rest color; surface-new-supplier-addedmill hover color; surface-new-supplier-addedmill pressed color; +1",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground1"
@@ -927,72 +1270,12 @@
    "metric": "lc"
   },
   {
-   "id": "tab-inactive-color",
-   "label": "Tab inactive color (hover)",
-   "source": "tab-inactive hover color; tabs hover color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground2Hover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralStroke1Hover"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "tab-inactive-color-2",
-   "label": "Tab inactive color (pressed)",
-   "source": "tab-inactive pressed color; tabs pressed color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground2Pressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralStroke1Pressed"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-outline-border-2",
-   "label": "Button outline border (hover)",
-   "source": "button-outline hover border; tabs hover background-color; tab-inactive hover background-color",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorNeutralStroke1Hover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-border-3",
-   "label": "Button outline border (pressed)",
-   "source": "button-outline pressed border; tabs pressed background-color; tab-inactive pressed background-color",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--colorNeutralStroke1Pressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tabs-background-color",
-   "label": "Tabs background",
-   "source": "tabs rest background-color; tabs focus background-color; tab-inactive focus background-color",
+   "id": "surface-costing-pendingtwo-styles-background-color",
+   "label": "Surface costing pendingtwo styles background",
+   "source": "surface-costing-pendingtwo-styles rest background-color; surface-costing-pendingtwo-styles hover background-color; surface-costing-pendingtwo-styles pressed background-color; +1",
    "element": "surface",
    "paint": {
-    "v": "--colorCompoundBrandStroke"
+    "v": "--colorStatusWarningBackground1"
    },
    "over": [
     {
@@ -1002,12 +1285,117 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-border-4",
-   "label": "Button outline border (hover)",
-   "source": "button-outline hover border; tabs hover background-color; tab-inactive hover background-color",
+   "id": "surface-costing-pendingtwo-styles-border",
+   "label": "Surface costing pendingtwo styles border",
+   "source": "surface-costing-pendingtwo-styles rest border; surface-costing-pendingtwo-styles hover border; surface-costing-pendingtwo-styles pressed border; +1",
    "element": "border-decorative",
    "paint": {
-    "v": "--colorNeutralStroke1Hover"
+    "v": "--colorStatusWarningBorder1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusWarningBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-fill",
+   "label": "Surface costing pendingtwo styles fill",
+   "source": "surface-costing-pendingtwo-styles rest fill; surface-costing-pendingtwo-styles hover fill; surface-costing-pendingtwo-styles pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--colorStatusWarningForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorStatusWarningBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-color",
+   "label": "Surface costing pendingtwo styles color",
+   "source": "surface-costing-pendingtwo-styles rest color; surface-costing-pendingtwo-styles hover color; surface-costing-pendingtwo-styles pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusWarningBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-background-color",
+   "label": "Surface sync failedthe erp background",
+   "source": "surface-sync-failedthe-erp rest background-color; surface-sync-failedthe-erp hover background-color; surface-sync-failedthe-erp pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorStatusDangerBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-border",
+   "label": "Surface sync failedthe erp border",
+   "source": "surface-sync-failedthe-erp rest border; surface-sync-failedthe-erp hover border; surface-sync-failedthe-erp pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorStatusDangerBorder1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusDangerBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-fill",
+   "label": "Surface sync failedthe erp fill",
+   "source": "surface-sync-failedthe-erp rest fill; surface-sync-failedthe-erp hover fill; surface-sync-failedthe-erp pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--colorStatusDangerForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusDangerBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-color",
+   "label": "Surface sync failedthe erp color",
+   "source": "surface-sync-failedthe-erp rest color; surface-sync-failedthe-erp hover color; surface-sync-failedthe-erp pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorStatusDangerBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-publish-background-color",
+   "label": "Button publish background",
+   "source": "button-publish rest background-color; button-publish hover background-color; button-publish pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackgroundDisabled"
    },
    "over": [
     {
@@ -1017,12 +1405,42 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-border-5",
-   "label": "Button outline border (pressed)",
-   "source": "button-outline pressed border; tabs pressed background-color; tab-inactive pressed background-color",
-   "element": "border-decorative",
+   "id": "button-publish-color",
+   "label": "Button publish color",
+   "source": "button-publish rest color; button-publish hover color; button-publish pressed color; +1",
+   "element": "state",
    "paint": {
-    "v": "--colorNeutralStroke1Pressed"
+    "v": "--colorNeutralForegroundDisabled"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackgroundDisabled"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-text-emphasisprimary-text-color",
+   "label": "Surface text emphasisprimary text color",
+   "source": "surface-text-emphasisprimary-text rest color; surface-text-emphasisprimary-text hover color; surface-text-emphasisprimary-text pressed color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralForegroundDisabled"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "row-po-4471linen-overshirtcoastline-background-color",
+   "label": "Row po 4471linen overshirtcoastline background",
+   "source": "row-po-4471linen-overshirtcoastline rest background-color; row-po-4471linen-overshirtcoastline hover background-color; row-po-4471linen-overshirtcoastline pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorPaletteGreenBackground1"
    },
    "over": [
     {
@@ -1032,39 +1450,249 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-color-2",
-   "label": "Button primary color (hover)",
-   "source": "button-primary hover color",
-   "element": "text-primary",
+   "id": "row-po-4471linen-overshirtcoastline-color",
+   "label": "Row po 4471linen overshirtcoastline color",
+   "source": "row-po-4471linen-overshirtcoastline rest color; row-po-4471linen-overshirtcoastline hover color; row-po-4471linen-overshirtcoastline pressed color; +1",
+   "element": "text-on-tint",
    "paint": {
-    "v": "--colorNeutralForegroundOnBrand"
+    "v": "--colorPaletteGreenForeground1"
    },
    "over": [
     {
-     "v": "--colorBrandBackgroundHover"
+     "v": "--colorPaletteGreenBackground1"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "button-primary-color-3",
-   "label": "Button primary color (pressed)",
-   "source": "button-primary pressed color",
-   "element": "text-primary",
+   "id": "row-po-4471linen-overshirtcoastline-border",
+   "label": "Row po 4471linen overshirtcoastline border",
+   "source": "row-po-4471linen-overshirtcoastline rest border; row-po-4471linen-overshirtcoastline hover border; row-po-4471linen-overshirtcoastline pressed border; +1",
+   "element": "border-decorative",
    "paint": {
-    "v": "--colorNeutralForegroundOnBrand"
+    "v": "--colorPaletteGreenBorder1"
    },
    "over": [
     {
-     "v": "--colorBrandBackgroundPressed"
+     "v": "--colorPaletteGreenBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4471linen-overshirtcoastline-border-2",
+   "label": "Row po 4471linen overshirtcoastline border (hover)",
+   "source": "row-po-4471linen-overshirtcoastline hover border; row-po-4472wool-topcoatatelier hover border; row-po-4473cotton-chinomonsoon hover border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorSubtleBackgroundHover"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4471linen-overshirtcoastline-border-3",
+   "label": "Row po 4471linen overshirtcoastline border (pressed)",
+   "source": "row-po-4471linen-overshirtcoastline pressed border; row-po-4472wool-topcoatatelier pressed border; row-po-4473cotton-chinomonsoon pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorSubtleBackgroundPressed"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4472wool-topcoatatelier-background-color",
+   "label": "Row po 4472wool topcoatatelier background",
+   "source": "row-po-4472wool-topcoatatelier rest background-color; row-po-4472wool-topcoatatelier hover background-color; row-po-4472wool-topcoatatelier pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorPaletteYellowBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4472wool-topcoatatelier-color",
+   "label": "Row po 4472wool topcoatatelier color",
+   "source": "row-po-4472wool-topcoatatelier rest color; row-po-4472wool-topcoatatelier hover color; row-po-4472wool-topcoatatelier pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--colorPaletteYellowForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorPaletteYellowBackground1"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "button-secondary-color-2",
-   "label": "Button secondary color (hover)",
-   "source": "button-secondary hover color",
+   "id": "row-po-4472wool-topcoatatelier-border",
+   "label": "Row po 4472wool topcoatatelier border",
+   "source": "row-po-4472wool-topcoatatelier rest border; row-po-4472wool-topcoatatelier hover border; row-po-4472wool-topcoatatelier pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorPaletteYellowBorder1"
+   },
+   "over": [
+    {
+     "v": "--colorPaletteYellowBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4473cotton-chinomonsoon-background-color",
+   "label": "Row po 4473cotton chinomonsoon background",
+   "source": "row-po-4473cotton-chinomonsoon rest background-color; row-po-4473cotton-chinomonsoon hover background-color; row-po-4473cotton-chinomonsoon pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorNeutralBackground4"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4473cotton-chinomonsoon-color",
+   "label": "Row po 4473cotton chinomonsoon color",
+   "source": "row-po-4473cotton-chinomonsoon rest color; row-po-4473cotton-chinomonsoon hover color; row-po-4473cotton-chinomonsoon pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground3"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground4"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "row-po-4473cotton-chinomonsoon-border",
+   "label": "Row po 4473cotton chinomonsoon border",
+   "source": "row-po-4473cotton-chinomonsoon rest border; row-po-4473cotton-chinomonsoon hover border; row-po-4473cotton-chinomonsoon pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground4"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4474selvedge-jeanridge-background-color",
+   "label": "Row po 4474selvedge jeanridge background",
+   "source": "row-po-4474selvedge-jeanridge rest background-color; row-po-4474selvedge-jeanridge hover background-color; row-po-4474selvedge-jeanridge pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--colorPaletteRedBackground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "row-po-4474selvedge-jeanridge-color",
+   "label": "Row po 4474selvedge jeanridge color",
+   "source": "row-po-4474selvedge-jeanridge rest color; row-po-4474selvedge-jeanridge hover color; row-po-4474selvedge-jeanridge pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--colorPaletteRedForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorPaletteRedBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "row-po-4474selvedge-jeanridge-border",
+   "label": "Row po 4474selvedge jeanridge border",
+   "source": "row-po-4474selvedge-jeanridge rest border; row-po-4474selvedge-jeanridge hover border; row-po-4474selvedge-jeanridge pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorPaletteRedBorder1"
+   },
+   "over": [
+    {
+     "v": "--colorPaletteRedBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-box-border-5",
+   "label": "Surface box border (pressed)",
+   "source": "surface-box pressed border; surface-box-2 pressed border; surface-box-3 pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorCompoundBrandStrokePressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "radio-private-background-color",
+   "label": "Radio private background (focus)",
+   "source": "radio-private focus background-color; radio-team focus background-color; radio-whole-organization focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorCompoundBrandForeground1"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-cancel-background-color",
+   "label": "Button cancel background (hover)",
+   "source": "button-cancel hover background-color; button-duplicate hover background-color; button-delete-workspace hover background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralBackground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-cancel-color",
+   "label": "Button cancel color (hover)",
+   "source": "button-cancel hover color; button-duplicate hover color; button-delete-workspace hover color",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground1Hover"
@@ -1077,9 +1705,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-secondary-border-3",
-   "label": "Button secondary border (hover)",
-   "source": "button-secondary hover border",
+   "id": "button-cancel-border-2",
+   "label": "Button cancel border (hover)",
+   "source": "button-cancel hover border; button-duplicate hover border; button-delete-workspace hover border",
    "element": "border-decorative",
    "paint": {
     "v": "--colorNeutralStroke1Hover"
@@ -1092,9 +1720,24 @@
    "metric": "dL"
   },
   {
-   "id": "button-secondary-color-3",
-   "label": "Button secondary color (pressed)",
-   "source": "button-secondary pressed color",
+   "id": "button-cancel-background-color-2",
+   "label": "Button cancel background (pressed)",
+   "source": "button-cancel pressed background-color; button-duplicate pressed background-color; button-delete-workspace pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorNeutralBackground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-cancel-color-2",
+   "label": "Button cancel color (pressed)",
+   "source": "button-cancel pressed color; button-duplicate pressed color; button-delete-workspace pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground1Pressed"
@@ -1107,9 +1750,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-secondary-border-4",
-   "label": "Button secondary border (pressed)",
-   "source": "button-secondary pressed border",
+   "id": "button-cancel-border-3",
+   "label": "Button cancel border (pressed)",
+   "source": "button-cancel pressed border; button-duplicate pressed border; button-delete-workspace pressed border",
    "element": "border-decorative",
    "paint": {
     "v": "--colorNeutralStroke1Pressed"
@@ -1122,9 +1765,24 @@
    "metric": "dL"
   },
   {
-   "id": "button-ghost-color-3",
-   "label": "Button ghost color (hover)",
-   "source": "button-ghost hover color",
+   "id": "button-notifications-fill",
+   "label": "Button notifications fill",
+   "source": "button-notifications rest fill; button-notifications focus fill",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground2"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-workspaces-color-2",
+   "label": "Link workspaces color (hover)",
+   "source": "link-workspaces hover color; button-cancel-2 hover color",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground2Hover"
@@ -1137,9 +1795,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-ghost-color-4",
-   "label": "Button ghost color (pressed)",
-   "source": "button-ghost pressed color",
+   "id": "link-workspaces-color-3",
+   "label": "Link workspaces color (pressed)",
+   "source": "link-workspaces pressed color; button-cancel-2 pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--colorNeutralForeground2Pressed"
@@ -1152,78 +1810,12 @@
    "metric": "lc"
   },
   {
-   "id": "tabs-color-2",
-   "label": "Tabs color (hover)",
-   "source": "tabs hover color",
-   "element": "text-primary",
-   "modes": [
-    "light"
-   ],
+   "id": "link-workspaces-border",
+   "label": "Link workspaces border (focus)",
+   "source": "link-workspaces focus border; button-spring-2027-collection focus border",
+   "element": "focus",
    "paint": {
-    "v": "--colorNeutralForeground1Hover"
-   },
-   "over": [
-    {
-     "v": "--colorCompoundBrandStrokeHover"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "tabs-color-3",
-   "label": "Tabs color (pressed)",
-   "source": "tabs pressed color",
-   "element": "text-primary",
-   "modes": [
-    "light"
-   ],
-   "paint": {
-    "v": "--colorNeutralForeground1Pressed"
-   },
-   "over": [
-    {
-     "v": "--colorCompoundBrandStrokePressed"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "link-color",
-   "label": "Link color",
-   "source": "link rest color; link focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--colorBrandForegroundLink"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "link-color-2",
-   "label": "Link color",
-   "source": "link rest color; link focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--colorBrandForegroundLink"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-background-color-3",
-   "label": "Button primary background (hover)",
-   "source": "button-primary hover background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorBrandBackgroundHover"
+    "v": "--colorStrokeFocus2"
    },
    "over": [
     {
@@ -1233,12 +1825,12 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-background-color-4",
-   "label": "Button primary background (pressed)",
-   "source": "button-primary pressed background-color",
-   "element": "state",
+   "id": "link-workspaces-inset-ring",
+   "label": "Link workspaces inset-ring (focus)",
+   "source": "link-workspaces focus inset-ring; button-spring-2027-collection focus inset-ring",
+   "element": "focus",
    "paint": {
-    "v": "--colorBrandBackgroundPressed"
+    "v": "--colorStrokeFocus2"
    },
    "over": [
     {
@@ -1248,210 +1840,24 @@
    "metric": "dL"
   },
   {
-   "id": "button-secondary-background-color-2",
-   "label": "Button secondary background (hover)",
-   "source": "button-secondary hover background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorNeutralBackground1Hover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-3",
-   "label": "Button secondary background (pressed)",
-   "source": "button-secondary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorNeutralBackground1Pressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-border-6",
-   "label": "Button outline border",
-   "source": "button-outline rest border",
+   "id": "surface-box-3-border",
+   "label": "Surface box 3 border",
+   "source": "surface-box-3 rest border; surface-box-3 hover border",
    "element": "border-decorative",
    "paint": {
-    "v": "--colorNeutralStroke1"
+    "v": "--colorPaletteRedBorder2"
    },
    "over": [
     {
-     "v": "--colorNeutralBackground2"
+     "v": "--colorNeutralBackground1"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "button-outline-color-2",
-   "label": "Button outline color (hover)",
-   "source": "button-outline hover color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground1Hover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-outline-color-3",
-   "label": "Button outline color (pressed)",
-   "source": "button-outline pressed color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--colorNeutralForeground1Pressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-background-color",
-   "label": "Button ghost background (hover)",
-   "source": "button-ghost hover background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorSubtleBackgroundHover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-background-color-2",
-   "label": "Button ghost background (pressed)",
-   "source": "button-ghost pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorSubtleBackgroundPressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-transparent-color",
-   "label": "Button transparent color (hover)",
-   "source": "button-transparent hover color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--colorNeutralForeground2BrandHover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-transparent-color-2",
-   "label": "Button transparent color (pressed)",
-   "source": "button-transparent pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--colorNeutralForeground2BrandPressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "tabs-background-color-2",
-   "label": "Tabs background (hover)",
-   "source": "tabs hover background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
-   "paint": {
-    "v": "--colorCompoundBrandStrokeHover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tabs-background-color-3",
-   "label": "Tabs background (pressed)",
-   "source": "tabs pressed background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
-   "paint": {
-    "v": "--colorCompoundBrandStrokePressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-color-3",
-   "label": "Link color (hover)",
-   "source": "link hover color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--colorBrandForegroundLinkHover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "link-color-4",
-   "label": "Link color (pressed)",
-   "source": "link pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--colorBrandForegroundLinkPressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground2"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-background-color-5",
-   "label": "Button primary background (hover)",
-   "source": "button-primary hover background-color",
+   "id": "button-save-changes-background-color-2",
+   "label": "Button save changes background (hover)",
+   "source": "button-save-changes hover background-color; button-save-changes-2 hover background-color",
    "element": "state",
    "paint": {
     "v": "--colorBrandBackgroundHover"
@@ -1464,9 +1870,24 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-background-color-6",
-   "label": "Button primary background (pressed)",
-   "source": "button-primary pressed background-color",
+   "id": "button-save-changes-color-2",
+   "label": "Button save changes color (hover)",
+   "source": "button-save-changes hover color; button-save-changes-2 hover color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForegroundOnBrand"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackgroundHover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-save-changes-background-color-3",
+   "label": "Button save changes background (pressed)",
+   "source": "button-save-changes pressed background-color; button-save-changes-2 pressed background-color",
    "element": "state",
    "paint": {
     "v": "--colorBrandBackgroundPressed"
@@ -1479,42 +1900,57 @@
    "metric": "dL"
   },
   {
-   "id": "button-secondary-background-color-4",
-   "label": "Button secondary background (hover)",
-   "source": "button-secondary hover background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorNeutralBackground1Hover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-5",
-   "label": "Button secondary background (pressed)",
-   "source": "button-secondary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorNeutralBackground1Pressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-color-4",
-   "label": "Button outline color (hover)",
-   "source": "button-outline hover color",
+   "id": "button-save-changes-color-3",
+   "label": "Button save changes color (pressed)",
+   "source": "button-save-changes pressed color; button-save-changes-2 pressed color",
    "element": "text-primary",
    "paint": {
-    "v": "--colorNeutralForeground1Hover"
+    "v": "--colorNeutralForegroundOnBrand"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackgroundPressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-save-changes-border",
+   "label": "Button save changes border (focus)",
+   "source": "button-save-changes focus border; button-save-changes-2 focus border",
+   "element": "focus",
+   "paint": {
+    "v": "--colorStrokeFocus2"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackground"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-inset-ring",
+   "label": "Button save changes inset-ring (focus)",
+   "source": "button-save-changes focus inset-ring; button-save-changes-2 focus inset-ring",
+   "element": "focus",
+   "paint": {
+    "v": "--colorNeutralForegroundOnBrand"
+   },
+   "over": [
+    {
+     "v": "--colorBrandBackground"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-delete-workspace-fill",
+   "label": "Button delete workspace fill",
+   "source": "button-delete-workspace rest fill; button-delete-workspace focus fill",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1"
    },
    "over": [
     {
@@ -1524,12 +1960,12 @@
    "metric": "lc"
   },
   {
-   "id": "button-outline-color-5",
-   "label": "Button outline color (pressed)",
-   "source": "button-outline pressed color",
-   "element": "text-primary",
+   "id": "link-view-supplier-scorecard-color",
+   "label": "Link view supplier scorecard color",
+   "source": "link-view-supplier-scorecard rest color; link-view-supplier-scorecard focus color",
+   "element": "text-secondary",
    "paint": {
-    "v": "--colorNeutralForeground1Pressed"
+    "v": "--colorBrandForegroundLink"
    },
    "over": [
     {
@@ -1539,75 +1975,72 @@
    "metric": "lc"
   },
   {
-   "id": "button-ghost-background-color-3",
-   "label": "Button ghost background (hover)",
-   "source": "button-ghost hover background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorSubtleBackgroundHover"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-background-color-4",
-   "label": "Button ghost background (pressed)",
-   "source": "button-ghost pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--colorSubtleBackgroundPressed"
-   },
-   "over": [
-    {
-     "v": "--colorNeutralBackground1"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-transparent-color-3",
-   "label": "Button transparent color (hover)",
-   "source": "button-transparent hover color",
+   "id": "button-notifications-fill-2",
+   "label": "Button notifications fill (hover)",
+   "source": "button-notifications hover fill",
    "element": "text-secondary",
    "paint": {
     "v": "--colorNeutralForeground2BrandHover"
    },
    "over": [
     {
-     "v": "--colorNeutralBackground1"
+     "v": "--colorSubtleBackgroundHover"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "button-transparent-color-4",
-   "label": "Button transparent color (pressed)",
-   "source": "button-transparent pressed color",
+   "id": "button-notifications-fill-3",
+   "label": "Button notifications fill (pressed)",
+   "source": "button-notifications pressed fill",
    "element": "text-secondary",
    "paint": {
     "v": "--colorNeutralForeground2BrandPressed"
    },
    "over": [
     {
-     "v": "--colorNeutralBackground1"
+     "v": "--colorSubtleBackgroundPressed"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "tabs-background-color-4",
-   "label": "Tabs background (hover)",
-   "source": "tabs hover background-color",
+   "id": "link-workspaces-background-color",
+   "label": "Link workspaces background (hover)",
+   "source": "link-workspaces hover background-color",
    "element": "state",
-   "modes": [
-    "light"
-   ],
    "paint": {
-    "v": "--colorCompoundBrandStrokeHover"
+    "v": "--colorSubtleBackgroundHover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-workspaces-background-color-2",
+   "label": "Link workspaces background (pressed)",
+   "source": "link-workspaces pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--colorSubtleBackgroundPressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground2"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-preview-border",
+   "label": "Button preview border (hover)",
+   "source": "button-preview hover border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--colorNeutralStroke1Hover"
    },
    "over": [
     {
@@ -1617,15 +2050,12 @@
    "metric": "dL"
   },
   {
-   "id": "tabs-background-color-5",
-   "label": "Tabs background (pressed)",
-   "source": "tabs pressed background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
+   "id": "button-preview-border-2",
+   "label": "Button preview border (pressed)",
+   "source": "button-preview pressed border",
+   "element": "border-decorative",
    "paint": {
-    "v": "--colorCompoundBrandStrokePressed"
+    "v": "--colorNeutralStroke1Pressed"
    },
    "over": [
     {
@@ -1635,9 +2065,39 @@
    "metric": "dL"
   },
   {
-   "id": "link-color-5",
-   "label": "Link color (hover)",
-   "source": "link hover color",
+   "id": "button-delete-workspace-fill-2",
+   "label": "Button delete workspace fill (hover)",
+   "source": "button-delete-workspace hover fill",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Hover"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1Hover"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-delete-workspace-fill-3",
+   "label": "Button delete workspace fill (pressed)",
+   "source": "button-delete-workspace pressed fill",
+   "element": "text-primary",
+   "paint": {
+    "v": "--colorNeutralForeground1Pressed"
+   },
+   "over": [
+    {
+     "v": "--colorNeutralBackground1Pressed"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-view-supplier-scorecard-color-2",
+   "label": "Link view supplier scorecard color (hover)",
+   "source": "link-view-supplier-scorecard hover color",
    "element": "text-secondary",
    "paint": {
     "v": "--colorBrandForegroundLinkHover"
@@ -1650,9 +2110,9 @@
    "metric": "lc"
   },
   {
-   "id": "link-color-6",
-   "label": "Link color (pressed)",
-   "source": "link pressed color",
+   "id": "link-view-supplier-scorecard-color-3",
+   "label": "Link view supplier scorecard color (pressed)",
+   "source": "link-view-supplier-scorecard pressed color",
    "element": "text-secondary",
    "paint": {
     "v": "--colorBrandForegroundLinkPressed"
@@ -1670,86 +2130,120 @@
    "--colorNeutralBackground2": "#fafafa",
    "--colorNeutralBackground1": "#ffffff",
    "--colorBrandBackground": "#0f6cbd",
-   "--colorBrandBackground2": "#ebf3fc",
    "--colorBrandBackgroundHover": "#115ea3",
    "--colorBrandBackgroundPressed": "#0c3b5e",
-   "--colorBrandForeground2": "#115ea3",
    "--colorBrandForegroundLink": "#115ea3",
    "--colorBrandForegroundLinkHover": "#0f548c",
    "--colorBrandForegroundLinkPressed": "#0c3b5e",
-   "--colorBrandStroke2": "#b4d6fa",
-   "--colorCompoundBrandBackground": "#0f6cbd",
+   "--colorCompoundBrandForeground1": "#0f6cbd",
    "--colorCompoundBrandStroke": "#0f6cbd",
-   "--colorCompoundBrandStrokeHover": "#115ea3",
    "--colorCompoundBrandStrokePressed": "#0f548c",
    "--colorNeutralBackground1Hover": "#f5f5f5",
    "--colorNeutralBackground1Pressed": "#e0e0e0",
    "--colorNeutralBackground3": "#f5f5f5",
+   "--colorNeutralBackground4": "#f0f0f0",
+   "--colorNeutralBackground6": "#e6e6e6",
+   "--colorNeutralBackgroundDisabled": "#f0f0f0",
+   "--colorStatusSuccessBackground1": "#f1faf1",
+   "--colorStatusWarningBackground1": "#fff9f5",
    "--colorStatusDangerBackground1": "#fdf3f4",
    "--colorNeutralForeground1": "#242424",
    "--colorNeutralForeground1Hover": "#242424",
    "--colorNeutralForeground1Pressed": "#242424",
    "--colorNeutralForeground2": "#424242",
+   "--colorSubtleBackgroundHover": "#f5f5f5",
    "--colorNeutralForeground2BrandHover": "#0f6cbd",
+   "--colorSubtleBackgroundPressed": "#e0e0e0",
    "--colorNeutralForeground2BrandPressed": "#115ea3",
    "--colorNeutralStroke1Hover": "#c7c7c7",
-   "--colorSubtleBackgroundHover": "#f5f5f5",
    "--colorNeutralForeground2Hover": "#242424",
    "--colorNeutralStroke1Pressed": "#b3b3b3",
-   "--colorSubtleBackgroundPressed": "#e0e0e0",
    "--colorNeutralForeground2Pressed": "#242424",
    "--colorNeutralForeground3": "#616161",
    "--colorNeutralForeground4": "#707070",
-   "--colorNeutralForegroundInverted": "#ffffff",
+   "--colorNeutralForegroundDisabled": "#bdbdbd",
    "--colorNeutralForegroundOnBrand": "#ffffff",
    "--colorNeutralStroke1": "#d1d1d1",
    "--colorNeutralStroke2": "#e0e0e0",
    "--colorNeutralStrokeAccessible": "#616161",
+   "--colorNeutralStrokeAccessibleHover": "#575757",
+   "--colorNeutralStrokeAccessiblePressed": "#4d4d4d",
+   "--colorPaletteGreenBackground1": "#f1faf1",
+   "--colorPaletteGreenBorder1": "#9fd89f",
+   "--colorPaletteGreenForeground1": "#0e700e",
+   "--colorPaletteRedBackground1": "#fdf6f6",
+   "--colorPaletteRedBorder1": "#f1bbbc",
+   "--colorPaletteRedBorder2": "#d13438",
+   "--colorPaletteRedForeground1": "#bc2f32",
+   "--colorPaletteYellowBackground1": "#fffef5",
+   "--colorPaletteYellowBorder1": "#fef7b2",
+   "--colorPaletteYellowForeground1": "#817400",
    "--colorStatusDangerBorder1": "#eeacb2",
    "--colorStatusDangerForeground1": "#b10e1c",
+   "--colorStatusSuccessBorder1": "#9fd89f",
+   "--colorStatusSuccessForeground1": "#0e700e",
+   "--colorStatusWarningBorder1": "#fdcfb4",
+   "--colorStatusWarningForeground3": "#bc4b09",
    "--colorStrokeFocus2": "#000000"
   },
   "dark": {
    "--colorNeutralBackground2": "#1f1f1f",
    "--colorNeutralBackground1": "#292929",
    "--colorBrandBackground": "#115ea3",
-   "--colorBrandBackground2": "#082338",
    "--colorBrandBackgroundHover": "#0f6cbd",
    "--colorBrandBackgroundPressed": "#0c3b5e",
-   "--colorBrandForeground2": "#62abf5",
    "--colorBrandForegroundLink": "#479ef5",
    "--colorBrandForegroundLinkHover": "#62abf5",
    "--colorBrandForegroundLinkPressed": "#2886de",
-   "--colorBrandStroke2": "#0e4775",
-   "--colorCompoundBrandBackground": "#479ef5",
+   "--colorCompoundBrandForeground1": "#479ef5",
    "--colorCompoundBrandStroke": "#479ef5",
-   "--colorCompoundBrandStrokeHover": "#62abf5",
    "--colorCompoundBrandStrokePressed": "#2886de",
    "--colorNeutralBackground1Hover": "#3d3d3d",
    "--colorNeutralBackground1Pressed": "#1f1f1f",
    "--colorNeutralBackground3": "#141414",
+   "--colorNeutralBackground4": "#0a0a0a",
+   "--colorNeutralBackground6": "#333333",
+   "--colorNeutralBackgroundDisabled": "#141414",
+   "--colorStatusSuccessBackground1": "#052505",
+   "--colorStatusWarningBackground1": "#4a1e04",
    "--colorStatusDangerBackground1": "#3b0509",
    "--colorNeutralForeground1": "#ffffff",
    "--colorNeutralForeground1Hover": "#ffffff",
    "--colorNeutralForeground1Pressed": "#ffffff",
    "--colorNeutralForeground2": "#d6d6d6",
+   "--colorSubtleBackgroundHover": "#383838",
    "--colorNeutralForeground2BrandHover": "#479ef5",
+   "--colorSubtleBackgroundPressed": "#2e2e2e",
    "--colorNeutralForeground2BrandPressed": "#2886de",
    "--colorNeutralStroke1Hover": "#757575",
-   "--colorSubtleBackgroundHover": "#383838",
    "--colorNeutralForeground2Hover": "#ffffff",
    "--colorNeutralStroke1Pressed": "#6b6b6b",
-   "--colorSubtleBackgroundPressed": "#2e2e2e",
    "--colorNeutralForeground2Pressed": "#ffffff",
    "--colorNeutralForeground3": "#adadad",
    "--colorNeutralForeground4": "#999999",
-   "--colorNeutralForegroundInverted": "#242424",
+   "--colorNeutralForegroundDisabled": "#5c5c5c",
    "--colorNeutralForegroundOnBrand": "#ffffff",
    "--colorNeutralStroke1": "#666666",
    "--colorNeutralStroke2": "#525252",
    "--colorNeutralStrokeAccessible": "#adadad",
+   "--colorNeutralStrokeAccessibleHover": "#bdbdbd",
+   "--colorNeutralStrokeAccessiblePressed": "#b3b3b3",
+   "--colorPaletteGreenBackground1": "#052505",
+   "--colorPaletteGreenBorder1": "#107c10",
+   "--colorPaletteGreenForeground1": "#54b054",
+   "--colorPaletteRedBackground1": "#3f1011",
+   "--colorPaletteRedBorder1": "#d13438",
+   "--colorPaletteRedBorder2": "#e37d80",
+   "--colorPaletteRedForeground1": "#e37d80",
+   "--colorPaletteYellowBackground1": "#4c4400",
+   "--colorPaletteYellowBorder1": "#fde300",
+   "--colorPaletteYellowForeground1": "#feee66",
    "--colorStatusDangerBorder1": "#c50f1f",
    "--colorStatusDangerForeground1": "#dc626d",
+   "--colorStatusSuccessBorder1": "#107c10",
+   "--colorStatusSuccessForeground1": "#54b054",
+   "--colorStatusWarningBorder1": "#f7630c",
+   "--colorStatusWarningForeground3": "#f98845",
    "--colorStrokeFocus2": "#ffffff"
   }
  }

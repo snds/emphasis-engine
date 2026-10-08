@@ -19,7 +19,7 @@ import { HAND_PROFILES } from "../src/engine/profiles/hand"
 import type { Mode } from "../src/engine/settings"
 import { applySentinels, discoverVars, readVars, restoreSentinels, sampleRoot, stillness, type FoundVar, type Sample } from "./probe-lib/browser"
 import { generateProfile, type Found, type ModeData } from "./probe-lib/generate"
-import { formatAs, key, parseComputed, parseStock, sentinels, stack, trace, type Format } from "./probe-lib/trace"
+import { formatAs, key, parseComputed, parseStock, sentinels, stack, trace, type Format, type Traced } from "./probe-lib/trace"
 import { SYSTEM, SYSTEMS, type SystemDef } from "./systems"
 
 const PORT = 5199
@@ -49,6 +49,8 @@ async function sampleAll(page: Page) {
     }
     await page.mouse.move(0, 0)
     await page.evaluate(() => (document.activeElement as HTMLElement | null)?.blur())
+    // Hit-testing only sees the viewport; bring the root into it first.
+    await page.evaluate((s) => document.querySelector(s)?.scrollIntoView({ block: "center" }), sel)
     await take("rest")
     const box = await page.locator(sel).first().boundingBox()
     if (!box || box.width === 0) continue
@@ -73,14 +75,36 @@ async function sampleAll(page: Page) {
   return all
 }
 
+/** A seeded shuffle, so the second sentinel pass is different but repeatable. */
+function shuffle<T>(xs: T[]): T[] {
+  const out = [...xs]
+  let seed = 0x9e3779b9
+  for (let i = out.length - 1; i > 0; i--) {
+    seed = (seed * 1664525 + 1013904223) >>> 0
+    const j = seed % (i + 1)
+    ;[out[i], out[j]] = [out[j], out[i]]
+  }
+  return out
+}
+
+/** Two traces name the same variables in the same shape, with amounts within sampling noise. */
+function same(a: Traced, b: Traced): boolean {
+  if ("literal" in a || "literal" in b) return false
+  if ("v" in a || "v" in b) return "v" in a && "v" in b && a.v === b.v
+  if ("alpha" in a || "alpha" in b) return "alpha" in a && "alpha" in b && Math.abs(a.k - b.k) <= 0.02 && same(a.alpha, b.alpha)
+  return "mix" in a && "mix" in b && Math.abs(a.k - b.k) <= 0.06 && same(a.mix[0], b.mix[0]) && same(a.mix[1], b.mix[1])
+}
+
 async function probeSystem(def: SystemDef, hand?: Profile) {
   const browser = await chromium.launch()
-  const page = await browser.newPage({ viewport: { width: 1600, height: 1600 }, reducedMotion: "reduce" })
+  const page = await browser.newPage({ viewport: { width: hand ? 1600 : 1280, height: 1600 }, reducedMotion: "reduce" })
   // tsx keeps function names with a helper that doesn't exist in the page.
   await page.addInitScript(() => ((window as unknown as { __name: (f: unknown) => unknown }).__name = (f) => f))
   const errors: string[] = []
   page.on("pageerror", (e) => errors.push(e.message))
-  await page.goto(`${BASE}/probe/${def.id}.html`)
+  // Hand profiles are diffed against their harness. Generated profiles are built from the
+  // native page: the same components, layout, and content the app shows, every one of them.
+  await page.goto(hand ? `${BASE}/probe/${def.id}.html` : `${BASE}/native/${def.id}.html?probe`)
   await page.waitForTimeout(3000)
 
   // Discover variables in both modes, then read their stock values.
@@ -108,40 +132,69 @@ async function probeSystem(def: SystemDef, hand?: Profile) {
   const keys = vars.map((v) => v.key).sort()
   if (process.env.PROBE_DEBUG) console.log(def.id, "found", found.size, "root", rootNames.size, "kept", keys.length, keys.slice(0, 12), Object.entries(stock.light).slice(0, 5))
   const sent = sentinels(keys)
+  // A second, shuffled assignment. A traced color counts only if both passes trace it to the
+  // same variables: a build-time literal (Bootstrap's link hover) can land near a blend of two
+  // sentinels by chance once, but not under two unrelated assignments.
+  const sentB = sentinels(shuffle(keys))
   const format = (k: string): Format => (MODES.map((m) => stock[m][k] && parseStock(stock[m][k])?.format).find(Boolean) as Format) ?? "color"
 
-  const result = {} as Record<Mode, { samples: number; found: Found[] }>
-  for (const mode of MODES) {
-    await setMode(page, mode)
+  const result = {} as Record<Mode, { samples: number; found: Found[]; rejected: number }>
+  const pass = async (assign: typeof sent) => {
     await page.evaluate(applySentinels, {
-      values: vars.map((v) => ({ key: v.key, name: v.name, selector: v.selector, value: formatAs(format(v.key), sent.get(v.key)!) })),
+      values: vars.map((v) => ({ key: v.key, name: v.name, selector: v.selector, value: formatAs(format(v.key), assign.get(v.key)!) })),
       scopedRedefs: redefs,
       rootSelectors: [...rootSelectors],
     })
     await page.waitForTimeout(200)
     const samples = await sampleAll(page)
     await page.evaluate(restoreSentinels)
+    return samples
+  }
+  // Backgrounds, outer rings, and outlines paint over what's behind the box;
+  // text, borders, and inset rings over the box's own background.
+  const traced = (s: Sample, assign: typeof sent) => {
+    const p = parseComputed(s.color)
+    if (!p || p.a * s.opacity < 0.005) return null // invisible: a state layer at rest
+    const paint = trace({ rgb: p.rgb, a: p.a * s.opacity }, assign)
+    if ("literal" in paint) return null
+    const outside = s.prop === "background-color" || s.prop === "ring" || s.prop === "outline"
+    const under = outside ? s.backdrop : [s.ownBg, ...s.backdrop].filter(Boolean)
+    const over = stack(under, assign)
+    if (!over.length) return null
+    return { paint, over }
+  }
+  const sampleId = (s: Sample & { state: string }) => `${s.probe}|${s.state}|${s.path}|${s.pseudo}|${s.prop}`
+  for (const mode of MODES) {
+    await setMode(page, mode)
+    const samples = await pass(sent)
+    await setMode(page, mode)
+    const second = new Map((await pass(sentB)).map((s) => [sampleId(s), s]))
 
     // Collapse samples into pairs: one per (paint, stack), with every source that produced it.
     const map = new Map<string, Found>()
+    let rejected = 0
     for (const s of samples) {
-      const p = parseComputed(s.color)
-      if (!p || p.a * s.opacity < 0.005) continue // invisible: a state layer at rest
-      const paint = trace({ rgb: p.rgb, a: p.a * s.opacity }, sent)
-      if ("literal" in paint) continue
-      // Backgrounds, outer rings, and outlines paint over what's behind the box;
-      // text, borders, and inset rings over the box's own background.
-      const outside = s.prop === "background-color" || s.prop === "ring" || s.prop === "outline"
-      const under = outside ? s.backdrop : [s.ownBg, ...s.backdrop].filter(Boolean)
-      const over = stack(under, sent)
-      if (!over.length) continue
+      const a = traced(s, sent)
+      if (!a) continue
+      const twin = second.get(sampleId(s))
+      const b = twin && traced(twin, sentB)
+      // Same variables in both passes; alpha and mix amounts within sampling noise.
+      if (process.env.PROBE_TRACE && s.probe.includes(process.env.PROBE_TRACE))
+        console.log(mode, s.state, s.prop, s.path, "A:", key(a.paint), "|", a.over.map(key).join(" > "), " B:", b ? `${key(b.paint)} | ${b.over.map(key).join(" > ")}` : twin ? "untraceable" : "missing")
+      if (!b || !same(a.paint, b.paint) || a.over.length !== b.over.length || a.over.some((e, i) => !same(e, b.over[i]))) {
+        rejected++
+        continue
+      }
+      const { paint, over } = a
       const k = `${key(paint)} | ${over.map(key).join(" > ")}`
       const src = `${s.probe} ${s.state} ${s.prop}`
-      const f = map.get(k) ?? { key: k, paint, over, prop: s.prop, sources: [] }
+      // One pair per property too: a color as a checkbox's focus outline and the same color as a
+      // button's fill over the same surface are different jobs.
+      const f = map.get(`${k} #${s.prop}`) ?? { key: k, paint, over, prop: s.prop, sources: [] }
       if (!f.sources.includes(src)) f.sources.push(src)
-      map.set(k, f)
+      map.set(`${k} #${s.prop}`, f)
     }
-    result[mode] = { samples: samples.length, found: [...map.values()].sort((a, b) => b.sources.length - a.sources.length) }
+    result[mode] = { samples: samples.length, rejected, found: [...map.values()].sort((a, b) => b.sources.length - a.sources.length) }
     if (process.env.PROBE_DEBUG) {
       console.log(mode, "samples", samples.length, "pairs", map.size)
       const lit = samples.slice(0, 400).filter((x) => x.probe.startsWith("text@page")).map((x) => [x.prop, x.color, x.backdrop.slice(0, 3)])
@@ -149,7 +202,8 @@ async function probeSystem(def: SystemDef, hand?: Profile) {
     }
   }
   await browser.close()
-  const meta = Object.fromEntries(vars.map((v) => [v.key, { name: v.name, selector: v.selector }]))
+  // Source order across the page's stylesheets, as discovery met each rule.
+  const meta = Object.fromEntries(vars.map((v, i) => [v.key, { name: v.name, selector: v.selector, order: i }]))
   return { keys, stock, result, meta, errors }
 }
 
@@ -212,11 +266,18 @@ function handReport(profile: Profile, o: { probedAt: string; source: string; var
   return lines.join("\n")
 }
 
+// Raw probe results are cached, so the generator can be re-run without a browser:
+//   npm run probe -- --cached carbon antd
+const CACHE = "node_modules/.cache/probe"
+
 async function main() {
-  const ids = process.argv.slice(2).length ? process.argv.slice(2) : SYSTEMS.map((s) => s.id)
-  const vite = spawn("npx", ["vite", "--port", String(PORT), "--strictPort"], { stdio: "ignore" })
+  const argv = process.argv.slice(2)
+  const cached = argv.includes("--cached")
+  const named = argv.filter((a) => !a.startsWith("--"))
+  const ids = named.length ? named : SYSTEMS.map((s) => s.id)
+  const vite = spawn("npx", cached ? ["true"] : ["vite", "--port", String(PORT), "--strictPort"], { stdio: "ignore" })
   try {
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 60 && !cached; i++) {
       try {
         if ((await fetch(BASE)).ok) break
       } catch {
@@ -232,7 +293,14 @@ async function main() {
       if (!def) throw new Error(`Unknown system ${id}`)
       const t0 = Date.now()
       const hand = HAND_PROFILES[id]
-      const { keys, stock, result, meta, errors } = await probeSystem(def, hand)
+      const raw = cached
+        ? (JSON.parse(readFileSync(`${CACHE}/${id}.json`, "utf8")) as Awaited<ReturnType<typeof probeSystem>>)
+        : await probeSystem(def, hand)
+      if (!cached) {
+        mkdirSync(CACHE, { recursive: true })
+        writeFileSync(`${CACHE}/${id}.json`, JSON.stringify(raw))
+      }
+      const { keys, stock, result, meta, errors } = raw
       const probedAt = new Date().toISOString().slice(0, 10)
       const source = def.pkg.startsWith("this") ? def.pkg : `${def.pkg} ${version(def.pkg)}`
       if (hand) {

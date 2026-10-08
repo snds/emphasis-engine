@@ -100,7 +100,9 @@ export const SYSTEMS: SystemDef[] = [
     kind: "generated",
     pkg: "@mantine/core",
     prefix: /^--mantine-(color-|primary-color)/,
-    exclude: /-\d$/,
+    // Hue shades (--mantine-color-red-6) are reached through the variant tokens. Gray and dark
+    // shades are not: components paint them directly (dark inputs on dark-6, borders on gray-3).
+    exclude: /^--mantine-(primary-color|color-(?!dark-|gray-)[a-z]+)-\d$/,
     description: "Per-color variants (filled, light, outline, text) and body, text, dimmed, and default colors.",
     docs: "https://mantine.dev/styles/css-variables/",
     selectors: { light: ':root[data-mantine-color-scheme="light"]', dark: ':root[data-mantine-color-scheme="dark"]' },

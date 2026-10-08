@@ -120,9 +120,10 @@ export type Profile = {
   /** Systems themed through a JS object export JSON keyed by token name. */
   json?: { strip: string; camel?: boolean; note: string }
   /** Variables the system stores as bare channels ("212 100% 47%"), written back that way. */
-  formats?: Record<string, "color" | "hsl-channels" | "rgb-channels">
+  formats?: Record<string, "color" | "hsl-channels" | "rgb-channels" | "rgb-csv">
   /** Variables defined on a component selector rather than the root: key → name and selector. */
-  scopes?: Record<string, { name: string; selector: string }>
+  /** Component-scoped variables. `order` is the declaring rule's source position, so overrides keep the cascade's order. */
+  scopes?: Record<string, { name: string; selector: string; order?: number }>
 }
 
 export type Paint = { rgb: RGB; a: number }
@@ -481,6 +482,18 @@ export function solveProfile(profile: Profile, intent: Intent): ProfileResult {
         const { fg, bg } = render(r, vals)
         return reqs.every((q) => signed(q.metric, fg, bg, polarity[r.id]) >= q.min - 1e-6)
       })
+    }
+    // Nothing paints this variable in this mode (Mantine's dark-6 only paints dark inputs).
+    // Keep its stock distance from its parent instead of collapsing onto the parent.
+    if (!reqs.length) {
+      const own = profile.reference[mode]?.[spec.name]
+      const par = profile.reference[mode]?.[p.from]
+      if (own && par) {
+        const a = parseCss(own)
+        const b = parseCss(par)
+        const t0 = w.translucent ? a.a : Math.abs(rgbToOklch(a.rgb).l - rgbToOklch(b.rgb).l)
+        return w.candidate(Math.min(w.hi, t0))
+      }
     }
     let t = w.hi
     if (ok(w.hi)) {

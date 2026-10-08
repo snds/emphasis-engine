@@ -6,16 +6,14 @@
  "modes": {
   "light": {
    "samples": 604,
-   "recipes": 31,
+   "recipes": 34,
    "observed": [
     "surface-container-low",
     "surface-container-highest",
     "on-surface",
     "on-surface-variant",
-    "on-surface-variant-highest",
     "outline",
     "primary",
-    "on-primary",
     "primary-hover",
     "primary-container",
     "on-primary-container",
@@ -24,8 +22,6 @@
     "on-secondary-container",
     "secondary-container-hover",
     "text-button-hover",
-    "switch-edge",
-    "filled-field-label",
     "control-hover"
    ],
    "unobserved": [
@@ -50,9 +46,19 @@
      "source": "--md-sys-color-on-surface on surface-container-highest"
     },
     {
+     "id": "on-surface-variant-highest",
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-highest",
+     "source": "--md-sys-color-on-surface-variant on surface-container-highest"
+    },
+    {
      "id": "outline-variant",
      "key": "--md-sys-color-outline-variant | --md-sys-color-surface",
      "source": "divider, card outline: outline-variant"
+    },
+    {
+     "id": "on-primary",
+     "key": "--md-sys-color-on-primary | --md-sys-color-primary",
+     "source": "--md-sys-color-on-primary on --md-sys-color-primary"
     },
     {
      "id": "primary-pressed",
@@ -125,6 +131,16 @@
      "source": "focus ring: secondary, 3dp"
     },
     {
+     "id": "switch-edge",
+     "key": "--md-sys-color-outline | --md-sys-color-surface-container-highest",
+     "source": "switch: outline on surface-container-highest (probe)"
+    },
+    {
+     "id": "filled-field-label",
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-highest",
+     "source": "filled text field: on-surface-variant on surface-container-highest"
+    },
+    {
      "id": "list-hover",
      "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container",
      "source": "state layer: on-surface at 8%"
@@ -141,60 +157,21 @@
      "prop": "color",
      "sources": [
       "textfield@card rest color",
-      "textfield@card rest placeholder",
-      "textfield@card hover border",
       "textfield@card hover color",
-      "textfield@card hover placeholder",
       "textfield@card pressed color",
-      "textfield@card pressed placeholder",
       "textfield@card focus color",
-      "textfield@card focus placeholder",
       "textfield-filled@card rest color",
-      "textfield-filled@card rest placeholder",
       "textfield-filled@card hover color",
-      "textfield-filled@card hover placeholder",
       "textfield-filled@card pressed color",
-      "textfield-filled@card pressed placeholder",
       "textfield-filled@card focus color",
-      "textfield-filled@card focus placeholder",
       "chip@card rest color",
       "chip@card hover color",
       "chip@card pressed color",
       "chip@card focus color",
-      "checkbox@card hover border",
-      "checkbox@card pressed border",
-      "checkbox@card focus border",
-      "checkbox-checked@card hover border",
-      "checkbox-checked@card pressed border",
-      "checkbox-checked@card focus border",
       "text@card rest color",
       "text@card hover color",
       "text@card pressed color",
       "text@card focus color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
-     "prop": "background-color",
-     "sources": [
-      "button-filled@card rest background-color",
-      "button-filled@card hover background-color",
-      "button-filled@card pressed background-color",
-      "button-filled@card focus background-color",
-      "textfield@card pressed border",
-      "textfield@card pressed color",
-      "textfield@card focus border",
-      "textfield@card focus color",
-      "textfield-filled@card pressed color",
-      "textfield-filled@card focus color",
-      "checkbox@card focus background-color",
-      "checkbox-checked@card rest background-color",
-      "checkbox-checked@card hover background-color",
-      "checkbox-checked@card pressed background-color",
-      "switch@card focus background-color",
-      "switch-checked@card rest background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
      ]
     },
     {
@@ -209,26 +186,7 @@
       "chip@card rest border",
       "chip@card hover border",
       "chip@card pressed border",
-      "chip@card focus border",
-      "switch@card rest border",
-      "switch@card hover border",
-      "switch@card pressed border",
-      "switch-checked@card focus border"
-     ]
-    },
-    {
-     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
-     "prop": "color",
-     "sources": [
-      "textfield@card rest color",
-      "textfield-filled@card rest color",
-      "textfield-filled@card hover color",
-      "checkbox@card rest border",
-      "checkbox-checked@card rest border",
-      "text-muted@card rest color",
-      "text-muted@card hover color",
-      "text-muted@card pressed color",
-      "text-muted@card focus color"
+      "chip@card focus border"
      ]
     },
     {
@@ -246,17 +204,43 @@
      ]
     },
     {
-     "key": "--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low",
-     "prop": "background-color",
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-low",
+     "prop": "placeholder",
      "sources": [
-      "textfield-filled@card rest background-color",
-      "textfield-filled@card hover background-color",
-      "textfield-filled@card pressed background-color",
-      "textfield-filled@card focus background-color",
-      "switch@card rest background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color",
-      "switch-checked@card focus background-color"
+      "textfield@card rest placeholder",
+      "textfield@card hover placeholder",
+      "textfield@card pressed placeholder",
+      "textfield@card focus placeholder",
+      "textfield-filled@card rest placeholder",
+      "textfield-filled@card hover placeholder",
+      "textfield-filled@card pressed placeholder",
+      "textfield-filled@card focus placeholder"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield@card rest color",
+      "textfield-filled@card rest color",
+      "textfield-filled@card hover color",
+      "text-muted@card rest color",
+      "text-muted@card hover color",
+      "text-muted@card pressed color",
+      "text-muted@card focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "textfield@card hover border",
+      "checkbox@card hover border",
+      "checkbox@card pressed border",
+      "checkbox@card focus border",
+      "checkbox-checked@card hover border",
+      "checkbox-checked@card pressed border",
+      "checkbox-checked@card focus border"
      ]
     },
     {
@@ -267,52 +251,18 @@
       "textfield-filled@card pressed background-color",
       "chip@card hover background-color",
       "chip@card pressed background-color",
-      "checkbox@card hover background-color",
-      "checkbox@card pressed background-color",
       "list-item@card hover background-color",
       "list-item@card pressed background-color"
      ]
     },
     {
-     "key": "--md-sys-color-primary-container | --md-sys-color-primary",
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
      "prop": "background-color",
      "sources": [
-      "switch@page focus background-color",
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color",
-      "switch@card focus background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary",
-     "prop": "background-color",
-     "sources": [
-      "checkbox-checked@page hover background-color",
-      "checkbox-checked@page pressed background-color",
-      "checkbox-checked@card hover background-color",
-      "checkbox-checked@card pressed background-color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant",
-     "prop": "background-color",
-     "sources": [
-      "switch@page hover background-color",
-      "switch@page pressed background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary-container",
-     "prop": "background-color",
-     "sources": [
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
+      "button-filled@card rest background-color",
+      "button-filled@card hover background-color",
+      "button-filled@card pressed background-color",
+      "button-filled@card focus background-color"
      ]
     },
     {
@@ -326,6 +276,26 @@
      ]
     },
     {
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield@card pressed color",
+      "textfield@card focus color",
+      "textfield-filled@card pressed color",
+      "textfield-filled@card focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "textfield-filled@card rest background-color",
+      "textfield-filled@card hover background-color",
+      "textfield-filled@card pressed background-color",
+      "textfield-filled@card focus background-color"
+     ]
+    },
+    {
      "key": "--md-sys-color-primary-container | --md-sys-color-surface-container-low",
      "prop": "background-color",
      "sources": [
@@ -334,26 +304,43 @@
       "fab-primary@card pressed background-color",
       "fab-primary@card focus background-color"
      ]
+    },
+    {
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "textfield@card pressed border",
+      "textfield@card focus border"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "checkbox@card rest border",
+      "checkbox-checked@card rest border"
+     ]
     }
    ],
    "elsewhere": [
     "on-surface-highest",
+    "on-surface-variant-highest",
     "text-button-label",
+    "switch-edge",
+    "filled-field-label",
     "list-hover"
    ]
   },
   "dark": {
    "samples": 604,
-   "recipes": 31,
+   "recipes": 34,
    "observed": [
     "surface-container-low",
     "surface-container-highest",
     "on-surface",
     "on-surface-variant",
-    "on-surface-variant-highest",
     "outline",
     "primary",
-    "on-primary",
     "primary-hover",
     "primary-container",
     "on-primary-container",
@@ -362,8 +349,6 @@
     "on-secondary-container",
     "secondary-container-hover",
     "text-button-hover",
-    "switch-edge",
-    "filled-field-label",
     "control-hover"
    ],
    "unobserved": [
@@ -388,9 +373,19 @@
      "source": "--md-sys-color-on-surface on surface-container-highest"
     },
     {
+     "id": "on-surface-variant-highest",
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-highest",
+     "source": "--md-sys-color-on-surface-variant on surface-container-highest"
+    },
+    {
      "id": "outline-variant",
      "key": "--md-sys-color-outline-variant | --md-sys-color-surface",
      "source": "divider, card outline: outline-variant"
+    },
+    {
+     "id": "on-primary",
+     "key": "--md-sys-color-on-primary | --md-sys-color-primary",
+     "source": "--md-sys-color-on-primary on --md-sys-color-primary"
     },
     {
      "id": "primary-pressed",
@@ -463,6 +458,16 @@
      "source": "focus ring: secondary, 3dp"
     },
     {
+     "id": "switch-edge",
+     "key": "--md-sys-color-outline | --md-sys-color-surface-container-highest",
+     "source": "switch: outline on surface-container-highest (probe)"
+    },
+    {
+     "id": "filled-field-label",
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-highest",
+     "source": "filled text field: on-surface-variant on surface-container-highest"
+    },
+    {
      "id": "list-hover",
      "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-surface-container",
      "source": "state layer: on-surface at 8%"
@@ -479,60 +484,21 @@
      "prop": "color",
      "sources": [
       "textfield@card rest color",
-      "textfield@card rest placeholder",
-      "textfield@card hover border",
       "textfield@card hover color",
-      "textfield@card hover placeholder",
       "textfield@card pressed color",
-      "textfield@card pressed placeholder",
       "textfield@card focus color",
-      "textfield@card focus placeholder",
       "textfield-filled@card rest color",
-      "textfield-filled@card rest placeholder",
       "textfield-filled@card hover color",
-      "textfield-filled@card hover placeholder",
       "textfield-filled@card pressed color",
-      "textfield-filled@card pressed placeholder",
       "textfield-filled@card focus color",
-      "textfield-filled@card focus placeholder",
       "chip@card rest color",
       "chip@card hover color",
       "chip@card pressed color",
       "chip@card focus color",
-      "checkbox@card hover border",
-      "checkbox@card pressed border",
-      "checkbox@card focus border",
-      "checkbox-checked@card hover border",
-      "checkbox-checked@card pressed border",
-      "checkbox-checked@card focus border",
       "text@card rest color",
       "text@card hover color",
       "text@card pressed color",
       "text@card focus color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
-     "prop": "background-color",
-     "sources": [
-      "button-filled@card rest background-color",
-      "button-filled@card hover background-color",
-      "button-filled@card pressed background-color",
-      "button-filled@card focus background-color",
-      "textfield@card pressed border",
-      "textfield@card pressed color",
-      "textfield@card focus border",
-      "textfield@card focus color",
-      "textfield-filled@card pressed color",
-      "textfield-filled@card focus color",
-      "checkbox@card rest background-color",
-      "checkbox@card hover background-color",
-      "checkbox@card pressed background-color",
-      "checkbox-checked@card focus background-color",
-      "switch@card rest background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color",
-      "switch-checked@card focus background-color"
      ]
     },
     {
@@ -547,26 +513,7 @@
       "chip@card rest border",
       "chip@card hover border",
       "chip@card pressed border",
-      "chip@card focus border",
-      "switch@card focus border",
-      "switch-checked@card rest border",
-      "switch-checked@card hover border",
-      "switch-checked@card pressed border"
-     ]
-    },
-    {
-     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
-     "prop": "color",
-     "sources": [
-      "textfield@card rest color",
-      "textfield-filled@card rest color",
-      "textfield-filled@card hover color",
-      "checkbox@card rest border",
-      "checkbox-checked@card rest border",
-      "text-muted@card rest color",
-      "text-muted@card hover color",
-      "text-muted@card pressed color",
-      "text-muted@card focus color"
+      "chip@card focus border"
      ]
     },
     {
@@ -584,17 +531,43 @@
      ]
     },
     {
-     "key": "--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low",
-     "prop": "background-color",
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-low",
+     "prop": "placeholder",
      "sources": [
-      "textfield-filled@card rest background-color",
-      "textfield-filled@card hover background-color",
-      "textfield-filled@card pressed background-color",
-      "textfield-filled@card focus background-color",
-      "switch@card focus background-color",
-      "switch-checked@card rest background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
+      "textfield@card rest placeholder",
+      "textfield@card hover placeholder",
+      "textfield@card pressed placeholder",
+      "textfield@card focus placeholder",
+      "textfield-filled@card rest placeholder",
+      "textfield-filled@card hover placeholder",
+      "textfield-filled@card pressed placeholder",
+      "textfield-filled@card focus placeholder"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield@card rest color",
+      "textfield-filled@card rest color",
+      "textfield-filled@card hover color",
+      "text-muted@card rest color",
+      "text-muted@card hover color",
+      "text-muted@card pressed color",
+      "text-muted@card focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "textfield@card hover border",
+      "checkbox@card hover border",
+      "checkbox@card pressed border",
+      "checkbox@card focus border",
+      "checkbox-checked@card hover border",
+      "checkbox-checked@card pressed border",
+      "checkbox-checked@card focus border"
      ]
     },
     {
@@ -605,52 +578,18 @@
       "textfield-filled@card pressed background-color",
       "chip@card hover background-color",
       "chip@card pressed background-color",
-      "checkbox-checked@card hover background-color",
-      "checkbox-checked@card pressed background-color",
       "list-item@card hover background-color",
       "list-item@card pressed background-color"
      ]
     },
     {
-     "key": "--md-sys-color-primary-container | --md-sys-color-primary",
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
      "prop": "background-color",
      "sources": [
-      "switch@page hover background-color",
-      "switch@page pressed background-color",
-      "switch-checked@page focus background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color",
-      "switch-checked@card focus background-color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary",
-     "prop": "background-color",
-     "sources": [
-      "checkbox@page hover background-color",
-      "checkbox@page pressed background-color",
-      "checkbox@card hover background-color",
-      "checkbox@card pressed background-color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-primary/0.08 | --md-sys-color-primary-container",
-     "prop": "background-color",
-     "sources": [
-      "switch@page hover background-color",
-      "switch@page pressed background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color"
-     ]
-    },
-    {
-     "key": "--md-sys-color-on-surface/0.08 | --md-sys-color-on-surface-variant",
-     "prop": "background-color",
-     "sources": [
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
+      "button-filled@card rest background-color",
+      "button-filled@card hover background-color",
+      "button-filled@card pressed background-color",
+      "button-filled@card focus background-color"
      ]
     },
     {
@@ -664,6 +603,26 @@
      ]
     },
     {
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
+     "prop": "color",
+     "sources": [
+      "textfield@card pressed color",
+      "textfield@card focus color",
+      "textfield-filled@card pressed color",
+      "textfield-filled@card focus color"
+     ]
+    },
+    {
+     "key": "--md-sys-color-surface-container-highest | --md-sys-color-surface-container-low",
+     "prop": "background-color",
+     "sources": [
+      "textfield-filled@card rest background-color",
+      "textfield-filled@card hover background-color",
+      "textfield-filled@card pressed background-color",
+      "textfield-filled@card focus background-color"
+     ]
+    },
+    {
      "key": "--md-sys-color-primary-container | --md-sys-color-surface-container-low",
      "prop": "background-color",
      "sources": [
@@ -672,11 +631,30 @@
       "fab-primary@card pressed background-color",
       "fab-primary@card focus background-color"
      ]
+    },
+    {
+     "key": "--md-sys-color-primary | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "textfield@card pressed border",
+      "textfield@card focus border"
+     ]
+    },
+    {
+     "key": "--md-sys-color-on-surface-variant | --md-sys-color-surface-container-low",
+     "prop": "border",
+     "sources": [
+      "checkbox@card rest border",
+      "checkbox-checked@card rest border"
+     ]
     }
    ],
    "elsewhere": [
     "on-surface-highest",
+    "on-surface-variant-highest",
     "text-button-label",
+    "switch-edge",
+    "filled-field-label",
     "list-hover"
    ]
   }

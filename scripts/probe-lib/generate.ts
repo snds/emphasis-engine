@@ -28,21 +28,25 @@ const ROLE_NAMES: [RoleId, RegExp][] = [
   ["danger", /(danger|error|critical|negative|destructive|red\b|-red|invalid)/i],
   ["success", /(success|positive|green|valid)/i],
   ["warning", /(warning|caution|attention|yellow|orange|amber|notice)/i],
-  ["info", /(info|discovery|informative|informational|cyan|teal)/i],
-  ["brand", /(brand|primary|accent|interactive|link|selected|focus|blue|theme|highlight|checked)/i],
+  // Blue is info by convention (Bootstrap, Carbon tags, Mantine and Chakra alerts). Brand comes
+  // from brand words, so a system whose brand happens to be blue keeps the two apart.
+  ["info", /(info|discovery|informative|informational|cyan|teal|blue)/i],
+  // A chromatic "secondary" is a second brand color (daisyUI's); a gray one is caught as neutral first.
+  ["brand", /(brand|primary|secondary|accent|interactive|link|selected|focus|theme|highlight|checked)/i],
 ]
 const SECONDARY = /(muted|secondary|subtle|subdued|tertiary|weak|dimmed|hint|description|variant|soft|low|placeholder)/i
 
-export function generateProfile(def: { id: string; label: string; description?: string; selectors?: { light: string; dark: string } }, data: Record<Mode, ModeData>, meta: Record<string, { name: string; selector: string | null }>) {
+export function generateProfile(def: { id: string; label: string; description?: string; selectors?: { light: string; dark: string } }, data: Record<Mode, ModeData>, meta: Record<string, { name: string; selector: string | null; order?: number }>) {
   // Merge the two modes' pairs.
   const pairs = new Map<string, Pair>()
   for (const mode of MODES)
     for (const f of data[mode].found) {
       if ([f.paint, ...f.over].some((e) => "literal" in e)) continue
-      const p = pairs.get(f.key) ?? { ...f, sources: [], modes: new Set<Mode>() }
+      const id = `${f.key} #${f.prop}`
+      const p = pairs.get(id) ?? { ...f, sources: [], modes: new Set<Mode>() }
       p.modes.add(mode)
       for (const s of f.sources) if (!p.sources.includes(s)) p.sources.push(s)
-      pairs.set(f.key, p)
+      pairs.set(id, p)
     }
   const all = [...pairs.values()]
 
@@ -97,12 +101,25 @@ export function generateProfile(def: { id: string; label: string; description?: 
   for (const k of used) {
     if (k === page) continue
     const counts = new Map<string, number>()
+    const inMode = { light: new Set<string>(), dark: new Set<string>() }
     for (const p of all) {
       if (!varsOf(p.paint).includes(k)) continue
-      const t = topVar(p.over)
-      if (t && t !== k && used.has(t)) counts.set(t, (counts.get(t) ?? 0) + p.sources.length)
+      // The surface under it: the topmost opaque layer. A faint tint on top (a card footer's
+      // 3% text-color wash) colors the stack but isn't the surface a variable is tuned against.
+      const solidLayers = p.over.filter((e) => "v" in e && !translucent(e.v))
+      // A stack of only translucent layers sits on the page (recipes add it underneath too).
+      const t = solidLayers.length ? varsOf(solidLayers[solidLayers.length - 1])[0] : page
+      if (!t || t === k || !used.has(t)) continue
+      counts.set(t, (counts.get(t) ?? 0) + p.sources.length)
+      for (const m of p.modes) inMode[m].add(t)
     }
-    parentOf.set(k, [...counts.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] ?? page)
+    // A parent should be under this variable in both modes. When the surfaces differ by mode
+    // (Mantine's light inputs on white, dark ones on dark-6), the page is the shared reference:
+    // walking from a surface the variable never sits on in one mode breaks the solve there.
+    const ranked = [...counts.entries()].sort((a, b) => b[1] - a[1]).map(([t]) => t)
+    const both = ranked.filter((t) => inMode.light.has(t) && inMode.dark.has(t))
+    const painted = MODES.filter((m) => all.some((p) => p.modes.has(m) && varsOf(p.paint).includes(k)))
+    parentOf.set(k, painted.length < 2 ? (ranked[0] ?? page) : (both[0] ?? page))
   }
   // Break cycles: a variable whose parent chain returns to it hangs off the page.
   for (const k of parentOf.keys()) {
@@ -122,9 +139,14 @@ export function generateProfile(def: { id: string; label: string; description?: 
   const roleOf = (k: string): RoleId => {
     const c = lch(k)
     const darkC = stock("dark", k) ? rgbToOklch(stock("dark", k)!.rgb).c : c.c
+    // The selector names the role as often as the variable does (--bs-alert-bg@.alert-success).
+    const name = `${short(meta[k]?.name ?? k)} ${meta[k]?.selector ?? ""}`
+    const named = ROLE_NAMES.find(([, re]) => re.test(name))?.[0]
+    // A status name wins over low chroma: pale status tints (an info alert's #e6f4ff) are
+    // still that status, not a neutral the brand tint can pull toward the brand.
+    if (named && named !== "brand" && Math.max(c.c, darkC) >= 0.012) return named
     if (c.c < 0.035 && darkC < 0.05) return "neutral"
-    const name = short(meta[k]?.name ?? k)
-    for (const [role, re] of ROLE_NAMES) if (re.test(name)) return role
+    if (named) return named
     const h = c.h
     if (h < 45 || h > 345) return "danger"
     if (h >= 120 && h < 175) return "success"
@@ -133,15 +155,29 @@ export function generateProfile(def: { id: string; label: string; description?: 
   }
 
   // Solids: per role, the chromatic background with the most text painted on it.
-  const textOver = (k: string) => all.filter((p) => TEXT_PROPS.has(p.prop) && topVar(p.over) === k).reduce((n, p) => n + p.sources.length, 0)
+  // Text sitting on a fill at rest: a hover or pressed fill carries the same label, but the
+  // rest fill is the one people mean by "the button color".
+  const textOver = (k: string) =>
+    all.filter((p) => TEXT_PROPS.has(p.prop) && topVar(p.over) === k).reduce((n, p) => n + p.sources.filter((s) => s.split(" ")[1] === "rest").length, 0)
+  const notState = (k: string) => !/(hover|active|pressed|selected|stroke|border|disabled)/i.test(short(meta[k]?.name ?? k))
   const solidRole = new Map<string, RoleId>()
   // Only the brand fill becomes the engine's solid (the user's theme color).
   // Status fills stay steps on their role's palette, so they keep the system's
   // own lightness, which its labels are tuned to (daisyUI's dark text on pale red).
   for (const role of ["brand"] as RoleId[]) {
     const cands = [...used].filter((k) => k !== page && roleOf(k) === role && lch(k).c >= 0.08 && !translucent(k) && all.some((p) => p.prop === "background-color" && varsOf(p.paint)[0] === k && "v" in p.paint))
-    const best = cands.map((k) => [k, textOver(k)] as const).filter(([, n]) => n > 0).sort((a, b) => b[1] - a[1])[0]
+    // Prefer a fill named for rest (not hover, border, or stroke), then the most labels on it.
+    const best = cands
+      .map((k) => [k, textOver(k)] as const)
+      .filter(([, n]) => n > 0)
+      .sort((a, b) => Number(notState(b[0])) - Number(notState(a[0])) || b[1] - a[1])[0]
+    if (process.env.PROBE_DEBUG) console.log("solid candidates", role, cands.map((k) => [k, textOver(k), lch(k).c.toFixed(3), roleOf(k)]))
+    // No traceable label on it (Ant Design's white label is a literal): the rest fill painted most.
+    const restFills = (k: string) =>
+      all.filter((p) => p.prop === "background-color" && varsOf(p.paint)[0] === k && "v" in p.paint).reduce((n, p) => n + p.sources.filter((s) => s.split(" ")[1] === "rest").length, 0)
+    const fallback = cands.filter(notState).sort((a, b) => restFills(b) - restFills(a))[0]
     if (best) solidRole.set(best[0], role)
+    else if (fallback && restFills(fallback) > 0) solidRole.set(fallback, role)
   }
   // Labels that only ever sit on one role's solid.
   const onSolidRole = new Map<string, RoleId>()
@@ -187,7 +223,7 @@ export function generateProfile(def: { id: string; label: string; description?: 
       return Math.sign(votes)
     })
     const one = (d: number) => (d < 0 ? "back" : "away")
-    const dir: Path extends infer _ ? "away" | "back" | { light: "away" | "back"; dark: "away" | "back" } : never =
+    const dir: "away" | "back" | { light: "away" | "back"; dark: "away" | "back" } =
       dirs[0] === dirs[1] || dirs[0] === 0 || dirs[1] === 0 ? one(dirs[0] || dirs[1]) : { light: one(dirs[0]), dark: one(dirs[1]) }
     const ref = roleRef.get(role) ?? Math.max(...[...used].filter((x) => roleOf(x) === role).map(sat), 0.01)
     const chroma = role === "neutral" ? 1 : Math.min(1.2, Math.max(0.1, +(sat(k) / ref).toFixed(2)))
@@ -242,7 +278,7 @@ export function generateProfile(def: { id: string; label: string; description?: 
     const states = new Set(p.sources.map((s) => s.split(" ")[1]))
     const name = short(meta[paintVar]?.name ?? paintVar)
     let element: ElementKind
-    let check = fixed(paintVar)
+    const check = fixed(paintVar)
     const top = topVar(p.over)
     if (p.prop === "background-color") {
       element = "alpha" in p.paint || "mix" in p.paint || !states.has("rest") ? "state" : paths.get(paintVar)?.kind === "solid" ? "solid" : "surface"
@@ -297,10 +333,10 @@ export function generateProfile(def: { id: string; label: string; description?: 
     for (const k of order) {
       const s = stock(mode, k)
       if (!s) continue
-      reference[mode][k] = s.format === "rgb-channels" ? `rgb(${s.rgb.join(" ")})` : s.a < 1 ? `rgb(${s.rgb.join(" ")} / ${+(s.a * 100).toFixed(1)}%)` : formatAs("color", s.rgb as RGB)
+      reference[mode][k] = s.format === "rgb-channels" || s.format === "rgb-csv" ? `rgb(${s.rgb.join(" ")})` : s.a < 1 ? `rgb(${s.rgb.join(" ")} / ${+(s.a * 100).toFixed(1)}%)` : formatAs("color", s.rgb as RGB)
       if (s.format !== "color") formats[k] = s.format
     }
   }
-  const scopes = Object.fromEntries(order.filter((k) => meta[k]?.selector).map((k) => [k, { name: meta[k].name, selector: meta[k].selector! }]))
+  const scopes = Object.fromEntries(order.filter((k) => meta[k]?.selector).map((k) => [k, { name: meta[k].name, selector: meta[k].selector!, ...(meta[k].order !== undefined ? { order: meta[k].order } : {}) }]))
   return { vars, recipes, reference, formats, scopes, page }
 }

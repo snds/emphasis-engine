@@ -12,235 +12,386 @@
   "docs": "https://getbootstrap.com/docs/5.3/customize/css-variables/",
   "page": "--bs-body-bg",
   "samples": {
-   "light": 488,
-   "dark": 488
+   "light": 916,
+   "dark": 916
   }
  },
- "formats": {},
+ "formats": {
+  "--bs-body-color-rgb": "rgb-csv",
+  "--bs-tertiary-bg-rgb": "rgb-csv",
+  "--bs-btn-focus-shadow-rgb@.btn-danger": "rgb-csv",
+  "--bs-btn-focus-shadow-rgb@.btn-link": "rgb-csv",
+  "--bs-btn-focus-shadow-rgb@.btn-outline-primary": "rgb-csv",
+  "--bs-btn-focus-shadow-rgb@.btn-primary": "rgb-csv",
+  "--bs-btn-focus-shadow-rgb@.btn-secondary": "rgb-csv",
+  "--bs-danger-rgb": "rgb-csv",
+  "--bs-emphasis-color-rgb": "rgb-csv",
+  "--bs-info-rgb": "rgb-csv",
+  "--bs-link-color-rgb": "rgb-csv",
+  "--bs-link-hover-color-rgb": "rgb-csv",
+  "--bs-success-rgb": "rgb-csv",
+  "--bs-warning-rgb": "rgb-csv"
+ },
  "scopes": {
-  "--bs-card-bg@.card": {
-   "name": "--bs-card-bg",
-   "selector": ".card"
-  },
   "--bs-alert-bg@.alert-danger": {
    "name": "--bs-alert-bg",
-   "selector": ".alert-danger"
+   "selector": ".alert-danger",
+   "order": 189
   },
-  "--bs-alert-bg@.alert-primary": {
+  "--bs-alert-bg@.alert-info": {
    "name": "--bs-alert-bg",
-   "selector": ".alert-primary"
+   "selector": ".alert-info",
+   "order": 181
+  },
+  "--bs-alert-bg@.alert-success": {
+   "name": "--bs-alert-bg",
+   "selector": ".alert-success",
+   "order": 177
+  },
+  "--bs-alert-bg@.alert-warning": {
+   "name": "--bs-alert-bg",
+   "selector": ".alert-warning",
+   "order": 185
   },
   "--bs-alert-border-color@.alert-danger": {
    "name": "--bs-alert-border-color",
-   "selector": ".alert-danger"
+   "selector": ".alert-danger",
+   "order": 190
   },
-  "--bs-alert-border-color@.alert-primary": {
+  "--bs-alert-border-color@.alert-info": {
    "name": "--bs-alert-border-color",
-   "selector": ".alert-primary"
+   "selector": ".alert-info",
+   "order": 182
+  },
+  "--bs-alert-border-color@.alert-success": {
+   "name": "--bs-alert-border-color",
+   "selector": ".alert-success",
+   "order": 178
+  },
+  "--bs-alert-border-color@.alert-warning": {
+   "name": "--bs-alert-border-color",
+   "selector": ".alert-warning",
+   "order": 186
   },
   "--bs-alert-color@.alert-danger": {
    "name": "--bs-alert-color",
-   "selector": ".alert-danger"
+   "selector": ".alert-danger",
+   "order": 188
   },
-  "--bs-alert-color@.alert-primary": {
+  "--bs-alert-color@.alert-info": {
    "name": "--bs-alert-color",
-   "selector": ".alert-primary"
+   "selector": ".alert-info",
+   "order": 180
+  },
+  "--bs-alert-color@.alert-success": {
+   "name": "--bs-alert-color",
+   "selector": ".alert-success",
+   "order": 176
+  },
+  "--bs-alert-color@.alert-warning": {
+   "name": "--bs-alert-color",
+   "selector": ".alert-warning",
+   "order": 184
+  },
+  "--bs-card-bg@.card": {
+   "name": "--bs-card-bg",
+   "selector": ".card",
+   "order": 171
   },
   "--bs-form-check-bg@.form-check-input": {
    "name": "--bs-form-check-bg",
-   "selector": ".form-check-input"
-  },
-  "--bs-nav-tabs-link-active-bg@.nav-tabs": {
-   "name": "--bs-nav-tabs-link-active-bg",
-   "selector": ".nav-tabs"
+   "selector": ".form-check-input",
+   "order": 100
   },
   "--bs-btn-active-bg@.btn-danger": {
    "name": "--bs-btn-active-bg",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 137
   },
   "--bs-btn-active-bg@.btn-outline-primary": {
    "name": "--bs-btn-active-bg",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 149
   },
   "--bs-btn-active-bg@.btn-primary": {
    "name": "--bs-btn-active-bg",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 111
   },
   "--bs-btn-active-bg@.btn-secondary": {
    "name": "--bs-btn-active-bg",
-   "selector": ".btn-secondary"
+   "selector": ".btn-secondary",
+   "order": 124
   },
   "--bs-btn-active-border-color@.btn-danger": {
    "name": "--bs-btn-active-border-color",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 138
   },
   "--bs-btn-active-border-color@.btn-outline-primary": {
    "name": "--bs-btn-active-border-color",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 150
   },
   "--bs-btn-active-border-color@.btn-primary": {
    "name": "--bs-btn-active-border-color",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 112
   },
   "--bs-btn-active-border-color@.btn-secondary": {
    "name": "--bs-btn-active-border-color",
-   "selector": ".btn-secondary"
+   "selector": ".btn-secondary",
+   "order": 125
   },
   "--bs-btn-active-color@.btn-danger": {
    "name": "--bs-btn-active-color",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 136
   },
   "--bs-btn-active-color@.btn-link": {
    "name": "--bs-btn-active-color",
-   "selector": ".btn-link"
+   "selector": ".btn-link",
+   "order": 156
   },
   "--bs-btn-active-color@.btn-outline-primary": {
    "name": "--bs-btn-active-color",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 148
   },
   "--bs-btn-active-color@.btn-primary": {
    "name": "--bs-btn-active-color",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 110
   },
   "--bs-btn-active-color@.btn-secondary": {
    "name": "--bs-btn-active-color",
-   "selector": ".btn-secondary"
-  },
-  "--bs-btn-bg@.btn": {
-   "name": "--bs-btn-bg",
-   "selector": ".btn"
+   "selector": ".btn-secondary",
+   "order": 123
   },
   "--bs-btn-bg@.btn-danger": {
    "name": "--bs-btn-bg",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 130
   },
   "--bs-btn-bg@.btn-primary": {
    "name": "--bs-btn-bg",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 104
   },
   "--bs-btn-bg@.btn-secondary": {
    "name": "--bs-btn-bg",
-   "selector": ".btn-secondary"
-  },
-  "--bs-btn-border-color@.btn": {
-   "name": "--bs-btn-border-color",
-   "selector": ".btn"
+   "selector": ".btn-secondary",
+   "order": 117
   },
   "--bs-btn-border-color@.btn-danger": {
    "name": "--bs-btn-border-color",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 131
   },
   "--bs-btn-border-color@.btn-outline-primary": {
    "name": "--bs-btn-border-color",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 143
   },
   "--bs-btn-border-color@.btn-primary": {
    "name": "--bs-btn-border-color",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 105
   },
   "--bs-btn-border-color@.btn-secondary": {
    "name": "--bs-btn-border-color",
-   "selector": ".btn-secondary"
+   "selector": ".btn-secondary",
+   "order": 118
   },
   "--bs-btn-color@.btn-danger": {
    "name": "--bs-btn-color",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 129
   },
   "--bs-btn-color@.btn-link": {
    "name": "--bs-btn-color",
-   "selector": ".btn-link"
+   "selector": ".btn-link",
+   "order": 154
   },
   "--bs-btn-color@.btn-outline-primary": {
    "name": "--bs-btn-color",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 142
   },
   "--bs-btn-color@.btn-primary": {
    "name": "--bs-btn-color",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 103
   },
   "--bs-btn-color@.btn-secondary": {
    "name": "--bs-btn-color",
-   "selector": ".btn-secondary"
+   "selector": ".btn-secondary",
+   "order": 116
+  },
+  "--bs-btn-disabled-bg@.btn-primary": {
+   "name": "--bs-btn-disabled-bg",
+   "selector": ".btn-primary",
+   "order": 114
+  },
+  "--bs-btn-disabled-border-color@.btn-primary": {
+   "name": "--bs-btn-disabled-border-color",
+   "selector": ".btn-primary",
+   "order": 115
+  },
+  "--bs-btn-disabled-color@.btn-primary": {
+   "name": "--bs-btn-disabled-color",
+   "selector": ".btn-primary",
+   "order": 113
+  },
+  "--bs-btn-focus-shadow-rgb@.btn-danger": {
+   "name": "--bs-btn-focus-shadow-rgb",
+   "selector": ".btn-danger",
+   "order": 135
+  },
+  "--bs-btn-focus-shadow-rgb@.btn-link": {
+   "name": "--bs-btn-focus-shadow-rgb",
+   "selector": ".btn-link",
+   "order": 158
+  },
+  "--bs-btn-focus-shadow-rgb@.btn-outline-primary": {
+   "name": "--bs-btn-focus-shadow-rgb",
+   "selector": ".btn-outline-primary",
+   "order": 147
+  },
+  "--bs-btn-focus-shadow-rgb@.btn-primary": {
+   "name": "--bs-btn-focus-shadow-rgb",
+   "selector": ".btn-primary",
+   "order": 109
+  },
+  "--bs-btn-focus-shadow-rgb@.btn-secondary": {
+   "name": "--bs-btn-focus-shadow-rgb",
+   "selector": ".btn-secondary",
+   "order": 122
   },
   "--bs-btn-hover-bg@.btn-danger": {
    "name": "--bs-btn-hover-bg",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 133
   },
   "--bs-btn-hover-bg@.btn-outline-primary": {
    "name": "--bs-btn-hover-bg",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 145
   },
   "--bs-btn-hover-bg@.btn-primary": {
    "name": "--bs-btn-hover-bg",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 107
   },
   "--bs-btn-hover-bg@.btn-secondary": {
    "name": "--bs-btn-hover-bg",
-   "selector": ".btn-secondary"
-  },
-  "--bs-btn-hover-border-color@.btn": {
-   "name": "--bs-btn-hover-border-color",
-   "selector": ".btn"
+   "selector": ".btn-secondary",
+   "order": 120
   },
   "--bs-btn-hover-border-color@.btn-danger": {
    "name": "--bs-btn-hover-border-color",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 134
   },
   "--bs-btn-hover-border-color@.btn-outline-primary": {
    "name": "--bs-btn-hover-border-color",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 146
   },
   "--bs-btn-hover-border-color@.btn-primary": {
    "name": "--bs-btn-hover-border-color",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 108
   },
   "--bs-btn-hover-border-color@.btn-secondary": {
    "name": "--bs-btn-hover-border-color",
-   "selector": ".btn-secondary"
+   "selector": ".btn-secondary",
+   "order": 121
   },
   "--bs-btn-hover-color@.btn-danger": {
    "name": "--bs-btn-hover-color",
-   "selector": ".btn-danger"
+   "selector": ".btn-danger",
+   "order": 132
   },
   "--bs-btn-hover-color@.btn-link": {
    "name": "--bs-btn-hover-color",
-   "selector": ".btn-link"
+   "selector": ".btn-link",
+   "order": 155
   },
   "--bs-btn-hover-color@.btn-outline-primary": {
    "name": "--bs-btn-hover-color",
-   "selector": ".btn-outline-primary"
+   "selector": ".btn-outline-primary",
+   "order": 144
   },
   "--bs-btn-hover-color@.btn-primary": {
    "name": "--bs-btn-hover-color",
-   "selector": ".btn-primary"
+   "selector": ".btn-primary",
+   "order": 106
   },
   "--bs-btn-hover-color@.btn-secondary": {
    "name": "--bs-btn-hover-color",
-   "selector": ".btn-secondary"
+   "selector": ".btn-secondary",
+   "order": 119
   },
   "--bs-card-border-color@.card": {
    "name": "--bs-card-border-color",
-   "selector": ".card"
+   "selector": ".card",
+   "order": 170
   },
-  "--bs-card-cap-bg@.card": {
-   "name": "--bs-card-cap-bg",
-   "selector": ".card"
+  "--bs-table-bg@.table": {
+   "name": "--bs-table-bg",
+   "selector": ".table",
+   "order": 95
   },
   "--bs-nav-link-color@.nav": {
    "name": "--bs-nav-link-color",
-   "selector": ".nav"
+   "selector": ".nav",
+   "order": 159
+  },
+  "--bs-nav-link-color@.navbar-nav": {
+   "name": "--bs-nav-link-color",
+   "selector": ".navbar-nav",
+   "order": 167
   },
   "--bs-nav-link-hover-color@.nav": {
    "name": "--bs-nav-link-hover-color",
-   "selector": ".nav"
+   "selector": ".nav",
+   "order": 160
   },
-  "--bs-nav-tabs-border-color@.nav-tabs": {
-   "name": "--bs-nav-tabs-border-color",
-   "selector": ".nav-tabs"
+  "--bs-nav-tabs-link-active-bg@.nav-tabs": {
+   "name": "--bs-nav-tabs-link-active-bg",
+   "selector": ".nav-tabs",
+   "order": 165
+  },
+  "--bs-nav-tabs-link-active-border-color@.nav-tabs": {
+   "name": "--bs-nav-tabs-link-active-border-color",
+   "selector": ".nav-tabs",
+   "order": 166
   },
   "--bs-nav-tabs-link-active-color@.nav-tabs": {
    "name": "--bs-nav-tabs-link-active-color",
-   "selector": ".nav-tabs"
+   "selector": ".nav-tabs",
+   "order": 164
+  },
+  "--bs-nav-tabs-link-hover-border-color@.nav-tabs": {
+   "name": "--bs-nav-tabs-link-hover-border-color",
+   "selector": ".nav-tabs",
+   "order": 163
+  },
+  "--bs-table-border-color@.table": {
+   "name": "--bs-table-border-color",
+   "selector": ".table",
+   "order": 96
+  },
+  "--bs-table-color@.table": {
+   "name": "--bs-table-color",
+   "selector": ".table",
+   "order": 94
+  },
+  "--bs-table-hover-color@.table": {
+   "name": "--bs-table-hover-color",
+   "selector": ".table",
+   "order": 99
   }
  },
  "vars": [
@@ -248,14 +399,6 @@
    "name": "--bs-body-bg",
    "path": {
     "kind": "page"
-   }
-  },
-  {
-   "name": "--bs-card-bg@.card",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--bs-body-bg"
    }
   },
   {
@@ -272,16 +415,38 @@
    }
   },
   {
-   "name": "--bs-alert-bg@.alert-primary",
+   "name": "--bs-alert-bg@.alert-info",
    "path": {
     "kind": "step",
-    "palette": "brand",
+    "palette": "info",
     "from": "--bs-body-bg",
-    "chroma": 1.04,
+    "chroma": 0.84,
     "dir": {
      "light": "away",
      "dark": "back"
     }
+   }
+  },
+  {
+   "name": "--bs-alert-bg@.alert-success",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--bs-body-bg",
+    "chroma": 0.2,
+    "dir": {
+     "light": "away",
+     "dark": "back"
+    }
+   }
+  },
+  {
+   "name": "--bs-alert-bg@.alert-warning",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--bs-body-bg",
+    "chroma": 0.99
    }
   },
   {
@@ -294,12 +459,29 @@
    }
   },
   {
-   "name": "--bs-alert-border-color@.alert-primary",
+   "name": "--bs-alert-border-color@.alert-info",
    "path": {
     "kind": "step",
-    "palette": "brand",
-    "from": "--bs-alert-bg@.alert-primary",
-    "chroma": 1.02
+    "palette": "info",
+    "from": "--bs-alert-bg@.alert-info",
+    "chroma": 0.83
+   }
+  },
+  {
+   "name": "--bs-alert-border-color@.alert-success",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--bs-alert-bg@.alert-success",
+    "chroma": 0.34
+   }
+  },
+  {
+   "name": "--bs-alert-border-color@.alert-warning",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--bs-alert-bg@.alert-warning"
    }
   },
   {
@@ -312,12 +494,46 @@
    }
   },
   {
-   "name": "--bs-alert-color@.alert-primary",
+   "name": "--bs-alert-color@.alert-info",
    "path": {
     "kind": "step",
-    "palette": "brand",
-    "from": "--bs-alert-bg@.alert-primary",
-    "chroma": 0.96
+    "palette": "info",
+    "from": "--bs-alert-bg@.alert-info",
+    "chroma": 0.98
+   }
+  },
+  {
+   "name": "--bs-alert-color@.alert-success",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--bs-alert-bg@.alert-success",
+    "chroma": 0.93
+   }
+  },
+  {
+   "name": "--bs-alert-color@.alert-warning",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--bs-alert-bg@.alert-warning",
+    "chroma": 0.99
+   }
+  },
+  {
+   "name": "--bs-card-bg@.card",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-body-color-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-card-bg@.card"
    }
   },
   {
@@ -333,11 +549,11 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--bs-body-bg"
+    "from": "--bs-card-bg@.card"
    }
   },
   {
-   "name": "--bs-nav-tabs-link-active-bg@.nav-tabs",
+   "name": "--bs-tertiary-bg-rgb",
    "path": {
     "kind": "step",
     "palette": "neutral",
@@ -349,7 +565,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--bs-form-check-bg@.form-check-input"
+    "from": "--bs-body-bg"
    }
   },
   {
@@ -366,8 +582,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg",
-    "chroma": 1.02
+    "from": "--bs-body-bg"
    }
   },
   {
@@ -375,7 +590,8 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg"
+    "from": "--bs-card-bg@.card",
+    "chroma": 0.97
    }
   },
   {
@@ -404,8 +620,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-btn-active-bg@.btn-outline-primary",
-    "chroma": 1.02
+    "from": "--bs-btn-active-bg@.btn-outline-primary"
    }
   },
   {
@@ -414,7 +629,7 @@
     "kind": "step",
     "palette": "brand",
     "from": "--bs-btn-active-bg@.btn-primary",
-    "chroma": 0.99,
+    "chroma": 0.97,
     "dir": {
      "light": "away",
      "dark": "back"
@@ -450,7 +665,8 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg"
+    "from": "--bs-card-bg@.card",
+    "chroma": 0.97
    }
   },
   {
@@ -490,15 +706,6 @@
    }
   },
   {
-   "name": "--bs-btn-bg@.btn",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--bs-body-bg",
-    "chroma": 1.02
-   }
-  },
-  {
    "name": "--bs-btn-bg@.btn-danger",
    "path": {
     "kind": "step",
@@ -509,10 +716,8 @@
   {
    "name": "--bs-btn-bg@.btn-primary",
    "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--bs-body-bg",
-    "chroma": 1.02
+    "kind": "solid",
+    "role": "brand"
    }
   },
   {
@@ -521,15 +726,6 @@
     "kind": "step",
     "palette": "neutral",
     "from": "--bs-body-bg"
-   }
-  },
-  {
-   "name": "--bs-btn-border-color@.btn",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
-    "from": "--bs-btn-bg@.btn",
-    "chroma": 1.02
    }
   },
   {
@@ -545,8 +741,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-btn-bg@.btn",
-    "chroma": 1.02
+    "from": "--bs-body-bg"
    }
   },
   {
@@ -554,8 +749,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-btn-bg@.btn-primary",
-    "chroma": 1.02
+    "from": "--bs-btn-bg@.btn-primary"
    }
   },
   {
@@ -583,8 +777,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-btn-bg@.btn",
-    "chroma": 1.02
+    "from": "--bs-card-bg@.card"
    }
   },
   {
@@ -592,8 +785,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-btn-bg@.btn",
-    "chroma": 1.02
+    "from": "--bs-body-bg"
    }
   },
   {
@@ -621,6 +813,75 @@
    }
   },
   {
+   "name": "--bs-btn-disabled-bg@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-disabled-border-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-btn-disabled-bg@.btn-primary"
+   }
+  },
+  {
+   "name": "--bs-btn-disabled-color@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-btn-disabled-bg@.btn-primary",
+    "dir": {
+     "light": "back",
+     "dark": "away"
+    }
+   }
+  },
+  {
+   "name": "--bs-btn-focus-shadow-rgb@.btn-danger",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-body-bg",
+    "chroma": 0.82
+   }
+  },
+  {
+   "name": "--bs-btn-focus-shadow-rgb@.btn-link",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-card-bg@.card"
+   }
+  },
+  {
+   "name": "--bs-btn-focus-shadow-rgb@.btn-outline-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-btn-focus-shadow-rgb@.btn-primary",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-card-bg@.card"
+   }
+  },
+  {
+   "name": "--bs-btn-focus-shadow-rgb@.btn-secondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
    "name": "--bs-btn-hover-bg@.btn-danger",
    "path": {
     "kind": "step",
@@ -634,15 +895,16 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg",
-    "chroma": 1.02
+    "from": "--bs-body-bg"
    }
   },
   {
    "name": "--bs-btn-hover-bg@.btn-primary",
    "path": {
-    "kind": "solid",
-    "role": "brand"
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-card-bg@.card",
+    "chroma": 0.98
    }
   },
   {
@@ -650,14 +912,6 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--bs-body-bg"
-   }
-  },
-  {
-   "name": "--bs-btn-hover-border-color@.btn",
-   "path": {
-    "kind": "step",
-    "palette": "brand",
     "from": "--bs-body-bg"
    }
   },
@@ -679,8 +933,7 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-btn-hover-bg@.btn-outline-primary",
-    "chroma": 1.02
+    "from": "--bs-btn-hover-bg@.btn-outline-primary"
    }
   },
   {
@@ -689,6 +942,7 @@
     "kind": "step",
     "palette": "brand",
     "from": "--bs-btn-hover-bg@.btn-primary",
+    "chroma": 0.97,
     "dir": {
      "light": "away",
      "dark": "back"
@@ -724,7 +978,8 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg"
+    "from": "--bs-card-bg@.card",
+    "chroma": 0.97
    }
   },
   {
@@ -773,12 +1028,68 @@
    }
   },
   {
-   "name": "--bs-card-cap-bg@.card",
+   "name": "--bs-table-bg@.table",
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--bs-form-check-bg@.form-check-input",
-    "translucent": "always"
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-danger-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-emphasis-color-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-form-invalid-border-color",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-form-invalid-color",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--bs-card-bg@.card"
+   }
+  },
+  {
+   "name": "--bs-info-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "info",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-link-color-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-link-hover-color-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "brand",
+    "from": "--bs-body-bg",
+    "chroma": 0.97
    }
   },
   {
@@ -786,8 +1097,16 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg",
-    "chroma": 1.02
+    "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-nav-link-color@.navbar-nav",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-tertiary-bg-rgb",
+    "translucent": "always"
    }
   },
   {
@@ -795,15 +1114,24 @@
    "path": {
     "kind": "step",
     "palette": "brand",
-    "from": "--bs-body-bg"
+    "from": "--bs-body-bg",
+    "chroma": 0.97
    }
   },
   {
-   "name": "--bs-nav-tabs-border-color@.nav-tabs",
+   "name": "--bs-nav-tabs-link-active-bg@.nav-tabs",
    "path": {
     "kind": "step",
     "palette": "neutral",
     "from": "--bs-body-bg"
+   }
+  },
+  {
+   "name": "--bs-nav-tabs-link-active-border-color@.nav-tabs",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-nav-tabs-link-active-bg@.nav-tabs"
    }
   },
   {
@@ -815,7 +1143,7 @@
    }
   },
   {
-   "name": "--bs-secondary-bg",
+   "name": "--bs-nav-tabs-link-hover-border-color@.nav-tabs",
    "path": {
     "kind": "step",
     "palette": "neutral",
@@ -827,35 +1155,68 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
+    "from": "--bs-card-bg@.card",
+    "translucent": "always"
+   }
+  },
+  {
+   "name": "--bs-success-rgb",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-table-border-color@.table",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-table-color@.table",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-table-hover-color@.table",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--bs-table-bg@.table"
+   }
+  },
+  {
+   "name": "--bs-tertiary-color",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
     "from": "--bs-body-bg",
     "translucent": "always"
    }
   },
   {
-   "name": "--bs-success-border-subtle",
-   "path": {
-    "kind": "step",
-    "palette": "success",
-    "from": "--bs-form-check-bg@.form-check-input"
-   }
-  },
-  {
-   "name": "--bs-warning-text-emphasis",
+   "name": "--bs-warning-rgb",
    "path": {
     "kind": "step",
     "palette": "warning",
-    "from": "--bs-body-bg"
+    "from": "--bs-table-bg@.table"
    }
   }
  ],
  "recipes": [
   {
-   "id": "checkbox-background-color",
-   "label": "Checkbox background",
-   "source": "checkbox rest background-color; checkbox hover background-color; checkbox pressed background-color; +13",
+   "id": "surface-order-background-color",
+   "label": "Surface order background",
+   "source": "surface-order rest background-color; surface-order hover background-color; surface-order pressed background-color; +97",
    "element": "surface",
    "paint": {
-    "v": "--bs-form-check-bg@.form-check-input"
+    "v": "--bs-table-bg@.table"
    },
    "over": [
     {
@@ -865,63 +1226,57 @@
    "metric": "dL"
   },
   {
-   "id": "checkbox-border",
-   "label": "Checkbox border",
-   "source": "checkbox rest border; checkbox hover border; switch rest border; +5",
-   "element": "border-control",
+   "id": "surface-order-border",
+   "label": "Surface order border",
+   "source": "surface-order rest border; surface-order hover border; surface-order pressed border; +97",
+   "element": "border-decorative",
    "paint": {
-    "v": "--bs-border-color"
+    "v": "--bs-table-border-color@.table"
    },
    "over": [
     {
-     "v": "--bs-form-check-bg@.form-check-input"
+     "v": "--bs-table-bg@.table"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "checkbox-border-2",
-   "label": "Checkbox border (pressed, focus)",
-   "source": "checkbox pressed border; checkbox-checked focus border; switch pressed border; +5",
-   "element": "border-control",
+   "id": "surface-order-color",
+   "label": "Surface order color",
+   "source": "surface-order rest color; surface-order hover color; surface-order pressed color; +49",
+   "element": "text-primary",
    "paint": {
-    "mix": [
-     {
-      "v": "--bs-success-border-subtle"
-     },
-     {
-      "v": "--bs-card-cap-bg@.card"
-     }
-    ],
-    "k": 0.47,
-    "space": "oklch"
+    "v": "--bs-table-color@.table"
    },
    "over": [
     {
-     "v": "--bs-form-check-bg@.form-check-input"
+     "v": "--bs-table-bg@.table"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-po-4471-inset-ring",
+   "label": "Surface po 4471 inset-ring (hover, pressed)",
+   "source": "surface-po-4471 hover inset-ring; surface-po-4471 pressed inset-ring; surface-linen-overshirt hover inset-ring; +37",
+   "element": "border-decorative",
+   "paint": {
+    "alpha": {
+     "v": "--bs-emphasis-color-rgb"
+    },
+    "k": 0.075
+   },
+   "over": [
+    {
+     "v": "--bs-table-bg@.table"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "checkbox-background-color-2",
-   "label": "Checkbox background",
-   "source": "checkbox rest background-color; checkbox hover background-color; checkbox pressed background-color; +13",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-form-check-bg@.form-check-input"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-color",
-   "label": "Input color",
-   "source": "input rest color; input hover color; input pressed color; +5",
+   "id": "heading-workspace-settings-color",
+   "label": "Heading workspace settings color",
+   "source": "heading-workspace-settings rest color; heading-workspace-settings hover color; heading-workspace-settings pressed color; +29",
    "element": "text-primary",
    "paint": {
     "v": "--bs-body-color"
@@ -934,336 +1289,39 @@
    "metric": "lc"
   },
   {
-   "id": "input-placeholder",
-   "label": "Input placeholder",
-   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +5",
-   "element": "state",
+   "id": "surface-po-4471-color",
+   "label": "Surface po 4471 color (hover, pressed)",
+   "source": "surface-po-4471 hover color; surface-po-4471 pressed color; surface-linen-overshirt hover color; +29",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-table-hover-color@.table"
+   },
+   "over": [
+    {
+     "v": "--bs-table-bg@.table"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-open-orders24-3-color",
+   "label": "Surface open orders24 3 color",
+   "source": "surface-open-orders24-3 rest color; surface-open-orders24-3 hover color; surface-open-orders24-3 pressed color; +25",
+   "element": "text-secondary",
    "paint": {
     "v": "--bs-secondary-color"
    },
    "over": [
     {
-     "v": "--bs-body-bg"
+     "v": "--bs-card-bg@.card"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "tabs-color",
-   "label": "Tabs color",
-   "source": "tabs rest color; tabs hover color; tabs pressed color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--bs-nav-tabs-link-active-color@.nav-tabs"
-   },
-   "over": [
-    {
-     "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "tabs-border",
-   "label": "Tabs border",
-   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-border-color"
-   },
-   "over": [
-    {
-     "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-danger-color",
-   "label": "Alert danger color",
-   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--bs-alert-color@.alert-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-alert-bg@.alert-danger"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "alert-danger-border",
-   "label": "Alert danger border",
-   "source": "alert-danger rest border; alert-danger hover border; alert-danger pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-alert-border-color@.alert-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-alert-bg@.alert-danger"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-info-color",
-   "label": "Alert info color",
-   "source": "alert-info rest color; alert-info hover color; alert-info pressed color; +1",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--bs-alert-color@.alert-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-alert-bg@.alert-primary"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "alert-info-border",
-   "label": "Alert info border",
-   "source": "alert-info rest border; alert-info hover border; alert-info pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-alert-border-color@.alert-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-alert-bg@.alert-primary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-border",
-   "label": "Input border",
-   "source": "input rest border; input hover border; tab-inactive hover border; +2",
-   "element": "border-control",
-   "paint": {
-    "v": "--bs-border-color"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-color",
-   "label": "Button primary color (hover, focus)",
-   "source": "button-primary hover color; button-primary focus color",
-   "element": "on-solid",
-   "paint": {
-    "v": "--bs-btn-hover-color@.btn-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-primary"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-border",
-   "label": "Button primary border (hover, focus)",
-   "source": "button-primary hover border; button-primary focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-btn-hover-border-color@.btn-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-primary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-color",
-   "label": "Button secondary color (hover, focus)",
-   "source": "button-secondary hover color; button-secondary focus color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--bs-btn-hover-color@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-secondary"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-secondary-border",
-   "label": "Button secondary border (hover, focus)",
-   "source": "button-secondary hover border; button-secondary focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-btn-hover-border-color@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-secondary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-color",
-   "label": "Button outline color (hover, focus)",
-   "source": "button-outline hover color; button-outline focus color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--bs-btn-hover-color@.btn-outline-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-outline-primary"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-danger-color",
-   "label": "Button danger color (hover, focus)",
-   "source": "button-danger hover color; button-danger focus color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--bs-btn-hover-color@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-danger"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-danger-border",
-   "label": "Button danger border (hover, focus)",
-   "source": "button-danger hover border; button-danger focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-btn-hover-border-color@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-hover-bg@.btn-danger"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-border-2",
-   "label": "Input border (pressed, focus)",
-   "source": "input pressed border; input focus border",
-   "element": "border-control",
-   "paint": {
-    "mix": [
-     {
-      "v": "--bs-success-border-subtle"
-     },
-     {
-      "v": "--bs-card-cap-bg@.card"
-     }
-    ],
-    "k": 0.47,
-    "space": "oklch"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tabs-border-2",
-   "label": "Tabs border",
-   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-nav-tabs-border-color@.nav-tabs"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tabs-background-color",
-   "label": "Tabs background",
-   "source": "tabs rest background-color; tabs hover background-color; tabs pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "divider-border",
-   "label": "Divider border",
-   "source": "divider rest border; divider hover border; divider pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "alpha": {
-     "v": "--bs-body-color"
-    },
-    "k": 0.25
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-danger-background-color",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-alert-bg@.alert-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-info-background-color",
-   "label": "Alert info background",
-   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-alert-bg@.alert-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-background-color",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "id": "surface-open-orders24-3-background-color",
+   "label": "Surface open orders24 3 background",
+   "source": "surface-open-orders24-3 rest background-color; surface-open-orders24-3 hover background-color; surface-open-orders24-3 pressed background-color; +13",
    "element": "surface",
    "paint": {
     "v": "--bs-card-bg@.card"
@@ -1276,9 +1334,9 @@
    "metric": "dL"
   },
   {
-   "id": "card-border",
-   "label": "Card border",
-   "source": "card rest border; card hover border; card pressed border; +1",
+   "id": "surface-open-orders24-3-border",
+   "label": "Surface open orders24 3 border",
+   "source": "surface-open-orders24-3 rest border; surface-open-orders24-3 hover border; surface-open-orders24-3 pressed border; +13",
    "element": "border-decorative",
    "paint": {
     "v": "--bs-card-border-color@.card"
@@ -1291,39 +1349,9 @@
    "metric": "dL"
   },
   {
-   "id": "tabs-border-3",
-   "label": "Tabs border",
-   "source": "tabs rest border; tabs hover border; tabs pressed border; +1",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-nav-tabs-border-color@.nav-tabs"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tabs-background-color-2",
-   "label": "Tabs background",
-   "source": "tabs rest background-color; tabs hover background-color; tabs pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "text-color",
-   "label": "Text color",
-   "source": "text rest color; text hover color; text pressed color; +1",
+   "id": "surface-open-orders24-3-color-2",
+   "label": "Surface open orders24 3 color",
+   "source": "surface-open-orders24-3 rest color; surface-open-orders24-3 hover color; surface-open-orders24-3 pressed color; +13",
    "element": "text-primary",
    "paint": {
     "v": "--bs-body-color"
@@ -1336,12 +1364,309 @@
    "metric": "lc"
   },
   {
-   "id": "text-muted-color",
-   "label": "Text muted color",
-   "source": "text-muted rest color; text-muted hover color; text-muted pressed color; +1",
+   "id": "link-suppliers-color",
+   "label": "Link suppliers color (hover, pressed, focus)",
+   "source": "link-suppliers hover color; link-suppliers pressed color; link-suppliers focus color; +6",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-nav-link-hover-color@.nav"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-suppliers-border",
+   "label": "Link suppliers border (hover, pressed, focus)",
+   "source": "link-suppliers hover border; link-suppliers pressed border; link-suppliers focus border; +6",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-nav-tabs-link-hover-border-color@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "radio-private-background-color",
+   "label": "Radio private background",
+   "source": "radio-private rest background-color; radio-private hover background-color; radio-private pressed background-color; +6",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-form-check-bg@.form-check-input"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "text-color",
+   "label": "Text color",
+   "source": "text rest color; text hover color; text pressed color; +5",
    "element": "text-secondary",
    "paint": {
     "v": "--bs-secondary-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-general-background-color",
+   "label": "Surface general background",
+   "source": "surface-general rest background-color; surface-general hover background-color; surface-general pressed background-color; +5",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--bs-body-color-rgb"
+    },
+    "k": 0.03
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-general-border",
+   "label": "Surface general border",
+   "source": "surface-general rest border; surface-general hover border; surface-general pressed border; +5",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-card-border-color@.card"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-spring-2027-collection-placeholder",
+   "label": "Input spring 2027 collection placeholder",
+   "source": "input-spring-2027-collection rest placeholder; input-spring-2027-collection hover placeholder; input-spring-2027-collection pressed placeholder; +5",
+   "element": "state",
+   "paint": {
+    "v": "--bs-body-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-spring-2027-collection-border",
+   "label": "Input spring 2027 collection border",
+   "source": "input-spring-2027-collection rest border; input-spring-2027-collection hover border; input-team-example-com rest border; +3",
+   "element": "border-control",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "radio-private-border",
+   "label": "Radio private border",
+   "source": "radio-private rest border; radio-private hover border; radio-team rest border; +3",
+   "element": "border-control",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-form-check-bg@.form-check-input"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-background-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli background",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest background-color; surface-atelier-plmoverviewstylesmaterialssuppli hover background-color; surface-atelier-plmoverviewstylesmaterialssuppli pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-tertiary-bg-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-border",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli border",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest border; surface-atelier-plmoverviewstylesmaterialssuppli hover border; surface-atelier-plmoverviewstylesmaterialssuppli pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-tertiary-bg-rgb"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera-color",
+   "label": "Button atelier plmoverviewstylesmaterialssuppliersreportssam rivera color",
+   "source": "button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera rest color; button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera hover color; button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-emphasis-color-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-tertiary-bg-rgb"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera-color-2",
+   "label": "Button atelier plmoverviewstylesmaterialssuppliersreportssam rivera color",
+   "source": "button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera rest color; button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera hover color; button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-nav-link-color@.navbar-nav"
+   },
+   "over": [
+    {
+     "v": "--bs-tertiary-bg-rgb"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera-color-3",
+   "label": "Button atelier plmoverviewstylesmaterialssuppliersreportssam rivera color",
+   "source": "button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera rest color; button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera hover color; button-atelier-plmoverviewstylesmaterialssuppliersreportssam-rivera pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "alpha": {
+     "v": "--bs-emphasis-color-rgb"
+    },
+    "k": 0.65
+   },
+   "over": [
+    {
+     "v": "--bs-tertiary-bg-rgb"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-workspaces-color",
+   "label": "Link workspaces color",
+   "source": "link-workspaces rest color; link-workspaces focus color; link-view-supplier-scorecard rest color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-link-color-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-workspaces-color-2",
+   "label": "Link workspaces color (hover, pressed)",
+   "source": "link-workspaces hover color; link-workspaces pressed color; link-view-supplier-scorecard hover color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-link-hover-color-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-general-background-color",
+   "label": "Link general background",
+   "source": "link-general rest background-color; link-general hover background-color; link-general pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-general-color",
+   "label": "Link general color",
+   "source": "link-general rest color; link-general hover color; link-general pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-nav-tabs-link-active-color@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-general-border",
+   "label": "Link general border",
+   "source": "link-general rest border; link-general hover border; link-general pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-nav-tabs-link-active-border-color@.nav-tabs"
+   },
+   "over": [
+    {
+     "v": "--bs-nav-tabs-link-active-bg@.nav-tabs"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-generalworkspace-namenotification-emailu-color",
+   "label": "Surface generalworkspace namenotification emailu color",
+   "source": "surface-generalworkspace-namenotification-emailu rest color; surface-generalworkspace-namenotification-emailu hover color; surface-generalworkspace-namenotification-emailu pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-form-invalid-color"
    },
    "over": [
     {
@@ -1351,13 +1676,400 @@
    "metric": "lc"
   },
   {
-   "id": "divider-border-2",
-   "label": "Divider border",
-   "source": "divider rest border; divider hover border; divider pressed border; +1",
+   "id": "heading-general-color",
+   "label": "Heading general color",
+   "source": "heading-general rest color; heading-general hover color; heading-general pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-body-color"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-team-example-com-placeholder",
+   "label": "Input team example com placeholder",
+   "source": "input-team-example-com rest placeholder; input-team-example-com hover placeholder; input-team-example-com pressed placeholder; +1",
+   "element": "state",
+   "paint": {
+    "v": "--bs-secondary-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-sp-27x-border",
+   "label": "Input sp 27x border",
+   "source": "input-sp-27x rest border; input-sp-27x hover border; input-sp-27x pressed border; +1",
+   "element": "border-control",
+   "paint": {
+    "v": "--bs-form-invalid-border-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-color",
+   "label": "Button save changes color (hover, focus)",
+   "source": "button-save-changes hover color; button-save-changes focus color; button-save-changes-2 hover color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-save-changes-border",
+   "label": "Button save changes border (hover, focus)",
+   "source": "button-save-changes hover border; button-save-changes focus border; button-save-changes-2 hover border; +1",
    "element": "border-decorative",
    "paint": {
+    "v": "--bs-btn-hover-border-color@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-primary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-samples-approvedall-six-background-color",
+   "label": "Alert samples approvedall six background",
+   "source": "alert-samples-approvedall-six rest background-color; alert-samples-approvedall-six hover background-color; alert-samples-approvedall-six pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-success"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-samples-approvedall-six-border",
+   "label": "Alert samples approvedall six border",
+   "source": "alert-samples-approvedall-six rest border; alert-samples-approvedall-six hover border; alert-samples-approvedall-six pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-alert-border-color@.alert-success"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-success"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-samples-approvedall-six-color",
+   "label": "Alert samples approvedall six color",
+   "source": "alert-samples-approvedall-six rest color; alert-samples-approvedall-six hover color; alert-samples-approvedall-six pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-alert-color@.alert-success"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-success"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-new-supplier-addedmill-background-color",
+   "label": "Alert new supplier addedmill background",
+   "source": "alert-new-supplier-addedmill rest background-color; alert-new-supplier-addedmill hover background-color; alert-new-supplier-addedmill pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-info"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-new-supplier-addedmill-border",
+   "label": "Alert new supplier addedmill border",
+   "source": "alert-new-supplier-addedmill rest border; alert-new-supplier-addedmill hover border; alert-new-supplier-addedmill pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-alert-border-color@.alert-info"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-info"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-new-supplier-addedmill-color",
+   "label": "Alert new supplier addedmill color",
+   "source": "alert-new-supplier-addedmill rest color; alert-new-supplier-addedmill hover color; alert-new-supplier-addedmill pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-alert-color@.alert-info"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-info"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-background-color",
+   "label": "Alert costing pendingtwo styles background",
+   "source": "alert-costing-pendingtwo-styles rest background-color; alert-costing-pendingtwo-styles hover background-color; alert-costing-pendingtwo-styles pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-warning"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-border",
+   "label": "Alert costing pendingtwo styles border",
+   "source": "alert-costing-pendingtwo-styles rest border; alert-costing-pendingtwo-styles hover border; alert-costing-pendingtwo-styles pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-alert-border-color@.alert-warning"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-warning"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-costing-pendingtwo-styles-color",
+   "label": "Alert costing pendingtwo styles color",
+   "source": "alert-costing-pendingtwo-styles rest color; alert-costing-pendingtwo-styles hover color; alert-costing-pendingtwo-styles pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-alert-color@.alert-warning"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-warning"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-background-color",
+   "label": "Alert sync failedthe erp background",
+   "source": "alert-sync-failedthe-erp rest background-color; alert-sync-failedthe-erp hover background-color; alert-sync-failedthe-erp pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-alert-bg@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-border",
+   "label": "Alert sync failedthe erp border",
+   "source": "alert-sync-failedthe-erp rest border; alert-sync-failedthe-erp hover border; alert-sync-failedthe-erp pressed border; +1",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-alert-border-color@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-danger"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "alert-sync-failedthe-erp-color",
+   "label": "Alert sync failedthe erp color",
+   "source": "alert-sync-failedthe-erp rest color; alert-sync-failedthe-erp hover color; alert-sync-failedthe-erp pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--bs-alert-color@.alert-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-alert-bg@.alert-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-publish-background-color",
+   "label": "Button publish background",
+   "source": "button-publish rest background-color; button-publish hover background-color; button-publish pressed background-color; +1",
+   "element": "state",
+   "paint": {
     "alpha": {
-     "v": "--bs-body-color"
+     "v": "--bs-btn-disabled-bg@.btn-primary"
+    },
+    "k": 0.65
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-publish-color",
+   "label": "Button publish color",
+   "source": "button-publish rest color; button-publish hover color; button-publish pressed color; +1",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--bs-btn-disabled-color@.btn-primary"
+    },
+    "k": 0.65
+   },
+   "over": [
+    {
+     "v": "--bs-btn-disabled-bg@.btn-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "text-disabled-text-sits-color",
+   "label": "Text disabled text sits color",
+   "source": "text-disabled-text-sits rest color; text-disabled-text-sits hover color; text-disabled-text-sits pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-tertiary-color"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-shipped-background-color",
+   "label": "Surface shipped background",
+   "source": "surface-shipped rest background-color; surface-shipped hover background-color; surface-shipped pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-success-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-table-bg@.table"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-delayed-background-color",
+   "label": "Surface delayed background",
+   "source": "surface-delayed rest background-color; surface-delayed hover background-color; surface-delayed pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-warning-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-table-bg@.table"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-in-production-background-color",
+   "label": "Surface in production background",
+   "source": "surface-in-production rest background-color; surface-in-production hover background-color; surface-in-production pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-info-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-table-bg@.table"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-rejected-background-color",
+   "label": "Surface rejected background",
+   "source": "surface-rejected rest background-color; surface-rejected hover background-color; surface-rejected pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-danger-rgb"
+   },
+   "over": [
+    {
+     "v": "--bs-table-bg@.table"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-suppliers-color-2",
+   "label": "Link suppliers color",
+   "source": "link-suppliers rest color; link-notifications rest color; link-danger-zone rest color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-nav-link-color@.nav"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-sp-27x-ring",
+   "label": "Input sp 27x ring (pressed, focus)",
+   "source": "input-sp-27x pressed ring; input-sp-27x focus ring",
+   "element": "border-control",
+   "paint": {
+    "alpha": {
+     "v": "--bs-danger-rgb"
     },
     "k": 0.25
    },
@@ -1369,115 +2081,31 @@
    "metric": "dL"
   },
   {
-   "id": "alert-danger-background-color-2",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-alert-bg@.alert-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-info-background-color-2",
-   "label": "Alert info background",
-   "source": "alert-info rest background-color; alert-info hover background-color; alert-info pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-alert-bg@.alert-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tab-inactive-color",
-   "label": "Tab inactive color (hover, pressed, focus)",
-   "source": "tab-inactive hover color; tab-inactive pressed color; tab-inactive focus color",
+   "id": "button-cancel-color",
+   "label": "Button cancel color",
+   "source": "button-cancel rest color; button-cancel focus color",
    "element": "text-secondary",
    "paint": {
-    "v": "--bs-nav-link-hover-color@.nav"
+    "v": "--bs-btn-color@.btn-link"
    },
    "over": [
     {
-     "v": "--bs-body-bg"
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "tab-inactive-border",
-   "label": "Tab inactive border (hover, pressed, focus)",
-   "source": "tab-inactive hover border; tab-inactive pressed border; tab-inactive focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-secondary-bg"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tab-inactive-color-2",
-   "label": "Tab inactive color (hover, pressed, focus)",
-   "source": "tab-inactive hover color; tab-inactive pressed color; tab-inactive focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-nav-link-hover-color@.nav"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "tab-inactive-border-2",
-   "label": "Tab inactive border (hover, pressed, focus)",
-   "source": "tab-inactive hover border; tab-inactive pressed border; tab-inactive focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-secondary-bg"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tab-inactive-border-3",
-   "label": "Tab inactive border (hover, pressed, focus)",
-   "source": "tab-inactive hover border; tab-inactive pressed border; tab-inactive focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-border-color"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-color-2",
-   "label": "Button primary color",
-   "source": "button-primary rest color",
-   "element": "text-primary",
+   "id": "button-save-changes-color-2",
+   "label": "Button save changes color",
+   "source": "button-save-changes rest color; button-save-changes-2 rest color",
+   "element": "on-solid",
    "paint": {
     "v": "--bs-btn-color@.btn-primary"
    },
@@ -1489,25 +2117,30 @@
    "metric": "lc"
   },
   {
-   "id": "button-primary-background-color",
-   "label": "Button primary background (hover, focus)",
-   "source": "button-primary hover background-color; button-primary focus background-color",
+   "id": "button-save-changes-background-color",
+   "label": "Button save changes background (hover, focus)",
+   "source": "button-save-changes hover background-color; button-save-changes focus background-color",
    "element": "state",
    "paint": {
     "v": "--bs-btn-hover-bg@.btn-primary"
    },
    "over": [
     {
-     "v": "--bs-body-bg"
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
     }
    ],
-   "metric": "dL",
-   "check": true
+   "metric": "dL"
   },
   {
-   "id": "button-primary-color-3",
-   "label": "Button primary color (pressed)",
-   "source": "button-primary pressed color",
+   "id": "button-save-changes-color-3",
+   "label": "Button save changes color (pressed)",
+   "source": "button-save-changes pressed color; button-save-changes-2 pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--bs-btn-active-color@.btn-primary"
@@ -1520,9 +2153,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-primary-border-2",
-   "label": "Button primary border (pressed)",
-   "source": "button-primary pressed border",
+   "id": "button-save-changes-border-2",
+   "label": "Button save changes border (pressed)",
+   "source": "button-save-changes pressed border; button-save-changes-2 pressed border",
    "element": "border-decorative",
    "paint": {
     "v": "--bs-btn-active-border-color@.btn-primary"
@@ -1535,9 +2168,356 @@
    "metric": "dL"
   },
   {
-   "id": "button-secondary-color-2",
-   "label": "Button secondary color",
-   "source": "button-secondary rest color",
+   "id": "button-save-changes-2-background-color",
+   "label": "Button save changes 2 background (hover, focus)",
+   "source": "button-save-changes-2 hover background-color; button-save-changes-2 focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-duplicate-background-color",
+   "label": "Button duplicate background (hover, focus)",
+   "source": "button-duplicate hover background-color; button-duplicate focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-duplicate-color",
+   "label": "Button duplicate color (hover, focus)",
+   "source": "button-duplicate hover color; button-duplicate focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-secondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-duplicate-border",
+   "label": "Button duplicate border (hover, focus)",
+   "source": "button-duplicate hover border; button-duplicate focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-secondary"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-preview-background-color",
+   "label": "Button preview background (hover, focus)",
+   "source": "button-preview hover background-color; button-preview focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-preview-color",
+   "label": "Button preview color (hover, focus)",
+   "source": "button-preview hover color; button-preview focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-outline-primary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-cancel-2-color",
+   "label": "Button cancel 2 color",
+   "source": "button-cancel-2 rest color; button-cancel-2 focus color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-delete-workspace-background-color",
+   "label": "Button delete workspace background (hover, focus)",
+   "source": "button-delete-workspace hover background-color; button-delete-workspace focus background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-hover-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-delete-workspace-color",
+   "label": "Button delete workspace color (hover, focus)",
+   "source": "button-delete-workspace hover color; button-delete-workspace focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-danger"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-delete-workspace-border",
+   "label": "Button delete workspace border (hover, focus)",
+   "source": "button-delete-workspace hover border; button-delete-workspace focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--bs-btn-hover-border-color@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-btn-hover-bg@.btn-danger"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-cancel-color-2",
+   "label": "Button cancel color (hover)",
+   "source": "button-cancel hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-cancel-color-3",
+   "label": "Button cancel color (pressed)",
+   "source": "button-cancel pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-cancel-ring",
+   "label": "Button cancel ring (focus)",
+   "source": "button-cancel focus ring",
+   "element": "focus",
+   "paint": {
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-link"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-background-color-2",
+   "label": "Button save changes background",
+   "source": "button-save-changes rest background-color",
+   "element": "solid",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-save-changes-background-color-3",
+   "label": "Button save changes background (pressed)",
+   "source": "button-save-changes pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-ring",
+   "label": "Button save changes ring (focus)",
+   "source": "button-save-changes focus ring",
+   "element": "focus",
+   "paint": {
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-primary"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--bs-card-bg@.card"
+    },
+    {
+     "alpha": {
+      "v": "--bs-body-color-rgb"
+     },
+     "k": 0.03
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-2-background-color-2",
+   "label": "Button save changes 2 background",
+   "source": "button-save-changes-2 rest background-color",
+   "element": "solid",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "button-save-changes-2-background-color-3",
+   "label": "Button save changes 2 background (pressed)",
+   "source": "button-save-changes-2 pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-2-ring",
+   "label": "Button save changes 2 ring (focus)",
+   "source": "button-save-changes-2 focus ring",
+   "element": "focus",
+   "paint": {
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-primary"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-duplicate-background-color-2",
+   "label": "Button duplicate background",
+   "source": "button-duplicate rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-secondary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-duplicate-color-2",
+   "label": "Button duplicate color",
+   "source": "button-duplicate rest color",
    "element": "text-primary",
    "paint": {
     "v": "--bs-btn-color@.btn-secondary"
@@ -1550,12 +2530,12 @@
    "metric": "lc"
   },
   {
-   "id": "button-secondary-background-color",
-   "label": "Button secondary background (hover, focus)",
-   "source": "button-secondary hover background-color; button-secondary focus background-color",
+   "id": "button-duplicate-background-color-3",
+   "label": "Button duplicate background (pressed)",
+   "source": "button-duplicate pressed background-color",
    "element": "state",
    "paint": {
-    "v": "--bs-btn-hover-bg@.btn-secondary"
+    "v": "--bs-btn-active-bg@.btn-secondary"
    },
    "over": [
     {
@@ -1565,9 +2545,9 @@
    "metric": "dL"
   },
   {
-   "id": "button-secondary-color-3",
-   "label": "Button secondary color (pressed)",
-   "source": "button-secondary pressed color",
+   "id": "button-duplicate-color-3",
+   "label": "Button duplicate color (pressed)",
+   "source": "button-duplicate pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--bs-btn-active-color@.btn-secondary"
@@ -1580,9 +2560,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-secondary-border-2",
-   "label": "Button secondary border (pressed)",
-   "source": "button-secondary pressed border",
+   "id": "button-duplicate-border-2",
+   "label": "Button duplicate border (pressed)",
+   "source": "button-duplicate pressed border",
    "element": "border-decorative",
    "paint": {
     "v": "--bs-btn-active-border-color@.btn-secondary"
@@ -1595,12 +2575,15 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-background-color",
-   "label": "Button outline background",
-   "source": "button-outline rest background-color; button-ghost rest background-color",
-   "element": "surface",
+   "id": "button-duplicate-ring",
+   "label": "Button duplicate ring (focus)",
+   "source": "button-duplicate focus ring",
+   "element": "focus",
    "paint": {
-    "v": "--bs-btn-bg@.btn"
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-secondary"
+    },
+    "k": 0.5
    },
    "over": [
     {
@@ -1610,27 +2593,27 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-color-2",
-   "label": "Button outline color",
-   "source": "button-outline rest color",
-   "element": "text-on-tint",
+   "id": "button-preview-color-2",
+   "label": "Button preview color",
+   "source": "button-preview rest color",
+   "element": "text-secondary",
    "paint": {
     "v": "--bs-btn-color@.btn-outline-primary"
    },
    "over": [
     {
-     "v": "--bs-btn-bg@.btn"
+     "v": "--bs-body-bg"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "button-outline-background-color-2",
-   "label": "Button outline background (hover, focus)",
-   "source": "button-outline hover background-color; button-outline focus background-color",
-   "element": "state",
+   "id": "button-preview-border",
+   "label": "Button preview border",
+   "source": "button-preview rest border",
+   "element": "border-decorative",
    "paint": {
-    "v": "--bs-btn-hover-bg@.btn-outline-primary"
+    "v": "--bs-btn-border-color@.btn-outline-primary"
    },
    "over": [
     {
@@ -1640,9 +2623,24 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-color-3",
-   "label": "Button outline color (pressed)",
-   "source": "button-outline pressed color",
+   "id": "button-preview-background-color-2",
+   "label": "Button preview background (pressed)",
+   "source": "button-preview pressed background-color",
+   "element": "state",
+   "paint": {
+    "v": "--bs-btn-active-bg@.btn-outline-primary"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-preview-color-3",
+   "label": "Button preview color (pressed)",
+   "source": "button-preview pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--bs-btn-active-color@.btn-outline-primary"
@@ -1655,27 +2653,15 @@
    "metric": "lc"
   },
   {
-   "id": "button-ghost-color",
-   "label": "Button ghost color",
-   "source": "button-ghost rest color",
-   "element": "text-on-tint",
+   "id": "button-preview-ring",
+   "label": "Button preview ring (focus)",
+   "source": "button-preview focus ring",
+   "element": "focus",
    "paint": {
-    "v": "--bs-btn-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-btn-bg@.btn"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-border",
-   "label": "Button ghost border (hover, focus)",
-   "source": "button-ghost hover border; button-ghost focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-btn-hover-border-color@.btn"
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-outline-primary"
+    },
+    "k": 0.5
    },
    "over": [
     {
@@ -1685,9 +2671,72 @@
    "metric": "dL"
   },
   {
-   "id": "button-danger-color-2",
-   "label": "Button danger color",
-   "source": "button-danger rest color",
+   "id": "button-cancel-2-color-2",
+   "label": "Button cancel 2 color (hover)",
+   "source": "button-cancel-2 hover color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-hover-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-cancel-2-color-3",
+   "label": "Button cancel 2 color (pressed)",
+   "source": "button-cancel-2 pressed color",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--bs-btn-active-color@.btn-link"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-cancel-2-ring",
+   "label": "Button cancel 2 ring (focus)",
+   "source": "button-cancel-2 focus ring",
+   "element": "focus",
+   "paint": {
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-link"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-delete-workspace-background-color-2",
+   "label": "Button delete workspace background",
+   "source": "button-delete-workspace rest background-color",
+   "element": "surface",
+   "paint": {
+    "v": "--bs-btn-bg@.btn-danger"
+   },
+   "over": [
+    {
+     "v": "--bs-body-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-delete-workspace-color-2",
+   "label": "Button delete workspace color",
+   "source": "button-delete-workspace rest color",
    "element": "text-primary",
    "paint": {
     "v": "--bs-btn-color@.btn-danger"
@@ -1700,12 +2749,12 @@
    "metric": "lc"
   },
   {
-   "id": "button-danger-background-color",
-   "label": "Button danger background (hover, focus)",
-   "source": "button-danger hover background-color; button-danger focus background-color",
+   "id": "button-delete-workspace-background-color-3",
+   "label": "Button delete workspace background (pressed)",
+   "source": "button-delete-workspace pressed background-color",
    "element": "state",
    "paint": {
-    "v": "--bs-btn-hover-bg@.btn-danger"
+    "v": "--bs-btn-active-bg@.btn-danger"
    },
    "over": [
     {
@@ -1715,9 +2764,9 @@
    "metric": "dL"
   },
   {
-   "id": "button-danger-color-3",
-   "label": "Button danger color (pressed)",
-   "source": "button-danger pressed color",
+   "id": "button-delete-workspace-color-3",
+   "label": "Button delete workspace color (pressed)",
+   "source": "button-delete-workspace pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--bs-btn-active-color@.btn-danger"
@@ -1730,9 +2779,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-danger-border-2",
-   "label": "Button danger border (pressed)",
-   "source": "button-danger pressed border",
+   "id": "button-delete-workspace-border-2",
+   "label": "Button delete workspace border (pressed)",
+   "source": "button-delete-workspace pressed border",
    "element": "border-decorative",
    "paint": {
     "v": "--bs-btn-active-border-color@.btn-danger"
@@ -1745,157 +2794,15 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-background-color-2",
-   "label": "Button primary background (hover, focus)",
-   "source": "button-primary hover background-color; button-primary focus background-color",
-   "element": "state",
+   "id": "button-delete-workspace-ring",
+   "label": "Button delete workspace ring (focus)",
+   "source": "button-delete-workspace focus ring",
+   "element": "focus",
    "paint": {
-    "v": "--bs-btn-hover-bg@.btn-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL",
-   "check": true
-  },
-  {
-   "id": "button-secondary-background-color-2",
-   "label": "Button secondary background (hover, focus)",
-   "source": "button-secondary hover background-color; button-secondary focus background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-hover-bg@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-background-color-3",
-   "label": "Button outline background",
-   "source": "button-outline rest background-color; button-ghost rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-background-color-4",
-   "label": "Button outline background (hover, focus)",
-   "source": "button-outline hover background-color; button-outline focus background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-hover-bg@.btn-outline-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-border-2",
-   "label": "Button ghost border (hover, focus)",
-   "source": "button-ghost hover border; button-ghost focus border",
-   "element": "border-decorative",
-   "paint": {
-    "v": "--bs-btn-hover-border-color@.btn"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-2",
-   "label": "Button danger background (hover, focus)",
-   "source": "button-danger hover background-color; button-danger focus background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-hover-bg@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-color",
-   "label": "Link color (hover, pressed)",
-   "source": "link hover color; link pressed color",
-   "element": "text-primary",
-   "modes": [
-    "dark"
-   ],
-   "paint": {
-    "mix": [
-     {
-      "v": "--bs-card-cap-bg@.card"
-     },
-     {
-      "v": "--bs-warning-text-emphasis"
-     }
-    ],
-    "k": 0.48,
-    "space": "oklch"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "link-color-2",
-   "label": "Link color (hover, pressed)",
-   "source": "link hover color; link pressed color",
-   "element": "text-primary",
-   "modes": [
-    "dark"
-   ],
-   "paint": {
-    "mix": [
-     {
-      "v": "--bs-card-cap-bg@.card"
-     },
-     {
-      "v": "--bs-warning-text-emphasis"
-     }
-    ],
-    "k": 0.48,
-    "space": "oklch"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-background-color-3",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn-primary"
+    "alpha": {
+     "v": "--bs-btn-focus-shadow-rgb@.btn-danger"
+    },
+    "k": 0.5
    },
    "over": [
     {
@@ -1903,336 +2810,28 @@
     }
    ],
    "metric": "dL"
-  },
-  {
-   "id": "button-primary-background-color-4",
-   "label": "Button primary background (pressed)",
-   "source": "button-primary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-3",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-4",
-   "label": "Button secondary background (pressed)",
-   "source": "button-secondary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-background-color-5",
-   "label": "Button outline background (pressed)",
-   "source": "button-outline pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-outline-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-color-2",
-   "label": "Button ghost color (hover)",
-   "source": "button-ghost hover color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-btn-hover-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-color-3",
-   "label": "Button ghost color (pressed)",
-   "source": "button-ghost pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-btn-active-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-color-4",
-   "label": "Button ghost color (focus)",
-   "source": "button-ghost focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-btn-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-danger-background-color-3",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-4",
-   "label": "Button danger background (pressed)",
-   "source": "button-danger pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tab-inactive-color-3",
-   "label": "Tab inactive color",
-   "source": "tab-inactive rest color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-nav-link-color@.nav"
-   },
-   "over": [
-    {
-     "v": "--bs-body-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-background-color-5",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-background-color-6",
-   "label": "Button primary background (pressed)",
-   "source": "button-primary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-5",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-6",
-   "label": "Button secondary background (pressed)",
-   "source": "button-secondary pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-secondary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-background-color-6",
-   "label": "Button outline background (pressed)",
-   "source": "button-outline pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-outline-primary"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-ghost-color-5",
-   "label": "Button ghost color (hover)",
-   "source": "button-ghost hover color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-btn-hover-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-color-6",
-   "label": "Button ghost color (pressed)",
-   "source": "button-ghost pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-btn-active-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-ghost-color-7",
-   "label": "Button ghost color (focus)",
-   "source": "button-ghost focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-btn-color@.btn-link"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-danger-background-color-5",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--bs-btn-bg@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-6",
-   "label": "Button danger background (pressed)",
-   "source": "button-danger pressed background-color",
-   "element": "state",
-   "paint": {
-    "v": "--bs-btn-active-bg@.btn-danger"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tab-inactive-color-4",
-   "label": "Tab inactive color",
-   "source": "tab-inactive rest color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--bs-nav-link-color@.nav"
-   },
-   "over": [
-    {
-     "v": "--bs-card-bg@.card"
-    }
-   ],
-   "metric": "lc"
   }
  ],
  "reference": {
   "light": {
    "--bs-body-bg": "#ffffff",
-   "--bs-card-bg@.card": "#ffffff",
    "--bs-alert-bg@.alert-danger": "#f8d7da",
-   "--bs-alert-bg@.alert-primary": "#cfe2ff",
+   "--bs-alert-bg@.alert-info": "#cff4fc",
+   "--bs-alert-bg@.alert-success": "#d1e7dd",
+   "--bs-alert-bg@.alert-warning": "#fff3cd",
    "--bs-alert-border-color@.alert-danger": "#f1aeb5",
-   "--bs-alert-border-color@.alert-primary": "#9ec5fe",
+   "--bs-alert-border-color@.alert-info": "#9eeaf9",
+   "--bs-alert-border-color@.alert-success": "#a3cfbb",
+   "--bs-alert-border-color@.alert-warning": "#ffe69c",
    "--bs-alert-color@.alert-danger": "#58151c",
-   "--bs-alert-color@.alert-primary": "#052c65",
+   "--bs-alert-color@.alert-info": "#055160",
+   "--bs-alert-color@.alert-success": "#0a3622",
+   "--bs-alert-color@.alert-warning": "#664d03",
+   "--bs-card-bg@.card": "#ffffff",
+   "--bs-body-color-rgb": "rgb(33 37 41)",
    "--bs-body-color": "#212529",
    "--bs-form-check-bg@.form-check-input": "#ffffff",
-   "--bs-nav-tabs-link-active-bg@.nav-tabs": "#ffffff",
+   "--bs-tertiary-bg-rgb": "rgb(248 249 250)",
    "--bs-border-color": "#dee2e6",
    "--bs-btn-active-bg@.btn-danger": "#b02a37",
    "--bs-btn-active-bg@.btn-outline-primary": "#0d6efd",
@@ -2247,11 +2846,9 @@
    "--bs-btn-active-color@.btn-outline-primary": "#ffffff",
    "--bs-btn-active-color@.btn-primary": "#ffffff",
    "--bs-btn-active-color@.btn-secondary": "#ffffff",
-   "--bs-btn-bg@.btn": "#0d6efd",
    "--bs-btn-bg@.btn-danger": "#dc3545",
    "--bs-btn-bg@.btn-primary": "#0d6efd",
    "--bs-btn-bg@.btn-secondary": "#6c757d",
-   "--bs-btn-border-color@.btn": "#0d6efd",
    "--bs-btn-border-color@.btn-danger": "#dc3545",
    "--bs-btn-border-color@.btn-outline-primary": "#0d6efd",
    "--bs-btn-border-color@.btn-primary": "#0d6efd",
@@ -2261,11 +2858,18 @@
    "--bs-btn-color@.btn-outline-primary": "#0d6efd",
    "--bs-btn-color@.btn-primary": "#ffffff",
    "--bs-btn-color@.btn-secondary": "#ffffff",
+   "--bs-btn-disabled-bg@.btn-primary": "#0d6efd",
+   "--bs-btn-disabled-border-color@.btn-primary": "#0d6efd",
+   "--bs-btn-disabled-color@.btn-primary": "#ffffff",
+   "--bs-btn-focus-shadow-rgb@.btn-danger": "rgb(225 83 97)",
+   "--bs-btn-focus-shadow-rgb@.btn-link": "rgb(49 132 253)",
+   "--bs-btn-focus-shadow-rgb@.btn-outline-primary": "rgb(13 110 253)",
+   "--bs-btn-focus-shadow-rgb@.btn-primary": "rgb(49 132 253)",
+   "--bs-btn-focus-shadow-rgb@.btn-secondary": "rgb(130 138 145)",
    "--bs-btn-hover-bg@.btn-danger": "#bb2d3b",
    "--bs-btn-hover-bg@.btn-outline-primary": "#0d6efd",
    "--bs-btn-hover-bg@.btn-primary": "#0b5ed7",
    "--bs-btn-hover-bg@.btn-secondary": "#5c636a",
-   "--bs-btn-hover-border-color@.btn": "#0a58ca",
    "--bs-btn-hover-border-color@.btn-danger": "#b02a37",
    "--bs-btn-hover-border-color@.btn-outline-primary": "#0d6efd",
    "--bs-btn-hover-border-color@.btn-primary": "#0a58ca",
@@ -2276,28 +2880,48 @@
    "--bs-btn-hover-color@.btn-primary": "#ffffff",
    "--bs-btn-hover-color@.btn-secondary": "#ffffff",
    "--bs-card-border-color@.card": "rgb(0 0 0 / 17.5%)",
-   "--bs-card-cap-bg@.card": "rgb(33 37 41 / 3%)",
+   "--bs-table-bg@.table": "#ffffff",
+   "--bs-danger-rgb": "rgb(220 53 69)",
+   "--bs-emphasis-color-rgb": "rgb(0 0 0)",
+   "--bs-form-invalid-border-color": "#dc3545",
+   "--bs-form-invalid-color": "#dc3545",
+   "--bs-info-rgb": "rgb(13 202 240)",
+   "--bs-link-color-rgb": "rgb(13 110 253)",
+   "--bs-link-hover-color-rgb": "rgb(10 88 202)",
    "--bs-nav-link-color@.nav": "#0d6efd",
+   "--bs-nav-link-color@.navbar-nav": "rgb(0 0 0 / 65%)",
    "--bs-nav-link-hover-color@.nav": "#0a58ca",
-   "--bs-nav-tabs-border-color@.nav-tabs": "#dee2e6",
+   "--bs-nav-tabs-link-active-bg@.nav-tabs": "#ffffff",
+   "--bs-nav-tabs-link-active-border-color@.nav-tabs": "#dee2e6",
    "--bs-nav-tabs-link-active-color@.nav-tabs": "#000000",
-   "--bs-secondary-bg": "#e9ecef",
+   "--bs-nav-tabs-link-hover-border-color@.nav-tabs": "#e9ecef",
    "--bs-secondary-color": "rgb(33 37 41 / 75%)",
-   "--bs-success-border-subtle": "#a3cfbb",
-   "--bs-warning-text-emphasis": "#664d03"
+   "--bs-success-rgb": "rgb(25 135 84)",
+   "--bs-table-border-color@.table": "#dee2e6",
+   "--bs-table-color@.table": "#000000",
+   "--bs-table-hover-color@.table": "#000000",
+   "--bs-tertiary-color": "rgb(33 37 41 / 50%)",
+   "--bs-warning-rgb": "rgb(255 193 7)"
   },
   "dark": {
    "--bs-body-bg": "#212529",
-   "--bs-card-bg@.card": "#212529",
    "--bs-alert-bg@.alert-danger": "#2c0b0e",
-   "--bs-alert-bg@.alert-primary": "#031633",
+   "--bs-alert-bg@.alert-info": "#032830",
+   "--bs-alert-bg@.alert-success": "#051b11",
+   "--bs-alert-bg@.alert-warning": "#332701",
    "--bs-alert-border-color@.alert-danger": "#842029",
-   "--bs-alert-border-color@.alert-primary": "#084298",
+   "--bs-alert-border-color@.alert-info": "#087990",
+   "--bs-alert-border-color@.alert-success": "#0f5132",
+   "--bs-alert-border-color@.alert-warning": "#997404",
    "--bs-alert-color@.alert-danger": "#ea868f",
-   "--bs-alert-color@.alert-primary": "#6ea8fe",
+   "--bs-alert-color@.alert-info": "#6edff6",
+   "--bs-alert-color@.alert-success": "#75b798",
+   "--bs-alert-color@.alert-warning": "#ffda6a",
+   "--bs-card-bg@.card": "#212529",
+   "--bs-body-color-rgb": "rgb(222 226 230)",
    "--bs-body-color": "#dee2e6",
    "--bs-form-check-bg@.form-check-input": "#212529",
-   "--bs-nav-tabs-link-active-bg@.nav-tabs": "#212529",
+   "--bs-tertiary-bg-rgb": "rgb(43 48 53)",
    "--bs-border-color": "#495057",
    "--bs-btn-active-bg@.btn-danger": "#b02a37",
    "--bs-btn-active-bg@.btn-outline-primary": "#0d6efd",
@@ -2312,11 +2936,9 @@
    "--bs-btn-active-color@.btn-outline-primary": "#ffffff",
    "--bs-btn-active-color@.btn-primary": "#ffffff",
    "--bs-btn-active-color@.btn-secondary": "#ffffff",
-   "--bs-btn-bg@.btn": "#0d6efd",
    "--bs-btn-bg@.btn-danger": "#dc3545",
    "--bs-btn-bg@.btn-primary": "#0d6efd",
    "--bs-btn-bg@.btn-secondary": "#6c757d",
-   "--bs-btn-border-color@.btn": "#0d6efd",
    "--bs-btn-border-color@.btn-danger": "#dc3545",
    "--bs-btn-border-color@.btn-outline-primary": "#0d6efd",
    "--bs-btn-border-color@.btn-primary": "#0d6efd",
@@ -2326,11 +2948,18 @@
    "--bs-btn-color@.btn-outline-primary": "#0d6efd",
    "--bs-btn-color@.btn-primary": "#ffffff",
    "--bs-btn-color@.btn-secondary": "#ffffff",
+   "--bs-btn-disabled-bg@.btn-primary": "#0d6efd",
+   "--bs-btn-disabled-border-color@.btn-primary": "#0d6efd",
+   "--bs-btn-disabled-color@.btn-primary": "#ffffff",
+   "--bs-btn-focus-shadow-rgb@.btn-danger": "rgb(225 83 97)",
+   "--bs-btn-focus-shadow-rgb@.btn-link": "rgb(49 132 253)",
+   "--bs-btn-focus-shadow-rgb@.btn-outline-primary": "rgb(13 110 253)",
+   "--bs-btn-focus-shadow-rgb@.btn-primary": "rgb(49 132 253)",
+   "--bs-btn-focus-shadow-rgb@.btn-secondary": "rgb(130 138 145)",
    "--bs-btn-hover-bg@.btn-danger": "#bb2d3b",
    "--bs-btn-hover-bg@.btn-outline-primary": "#0d6efd",
    "--bs-btn-hover-bg@.btn-primary": "#0b5ed7",
    "--bs-btn-hover-bg@.btn-secondary": "#5c636a",
-   "--bs-btn-hover-border-color@.btn": "#0a58ca",
    "--bs-btn-hover-border-color@.btn-danger": "#b02a37",
    "--bs-btn-hover-border-color@.btn-outline-primary": "#0d6efd",
    "--bs-btn-hover-border-color@.btn-primary": "#0a58ca",
@@ -2341,15 +2970,28 @@
    "--bs-btn-hover-color@.btn-primary": "#ffffff",
    "--bs-btn-hover-color@.btn-secondary": "#ffffff",
    "--bs-card-border-color@.card": "rgb(255 255 255 / 15%)",
-   "--bs-card-cap-bg@.card": "rgb(222 226 230 / 3%)",
+   "--bs-table-bg@.table": "#212529",
+   "--bs-danger-rgb": "rgb(220 53 69)",
+   "--bs-emphasis-color-rgb": "rgb(255 255 255)",
+   "--bs-form-invalid-border-color": "#ea868f",
+   "--bs-form-invalid-color": "#ea868f",
+   "--bs-info-rgb": "rgb(13 202 240)",
+   "--bs-link-color-rgb": "rgb(110 168 254)",
+   "--bs-link-hover-color-rgb": "rgb(139 185 254)",
    "--bs-nav-link-color@.nav": "#6ea8fe",
+   "--bs-nav-link-color@.navbar-nav": "rgb(255 255 255 / 65%)",
    "--bs-nav-link-hover-color@.nav": "#8bb9fe",
-   "--bs-nav-tabs-border-color@.nav-tabs": "#495057",
+   "--bs-nav-tabs-link-active-bg@.nav-tabs": "#212529",
+   "--bs-nav-tabs-link-active-border-color@.nav-tabs": "#495057",
    "--bs-nav-tabs-link-active-color@.nav-tabs": "#ffffff",
-   "--bs-secondary-bg": "#343a40",
+   "--bs-nav-tabs-link-hover-border-color@.nav-tabs": "#343a40",
    "--bs-secondary-color": "rgb(222 226 230 / 75%)",
-   "--bs-success-border-subtle": "#0f5132",
-   "--bs-warning-text-emphasis": "#ffda6a"
+   "--bs-success-rgb": "rgb(25 135 84)",
+   "--bs-table-border-color@.table": "#495057",
+   "--bs-table-color@.table": "#ffffff",
+   "--bs-table-hover-color@.table": "#ffffff",
+   "--bs-tertiary-color": "rgb(222 226 230 / 50%)",
+   "--bs-warning-rgb": "rgb(255 193 7)"
   }
  }
 }

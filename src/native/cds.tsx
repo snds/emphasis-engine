@@ -24,7 +24,7 @@ import { Tabs } from "@coinbase/cds-web/tabs"
 import { Tag } from "@coinbase/cds-web/tag"
 import { defaultTheme } from "@coinbase/cds-web/themes/defaultTheme"
 import { Link, TextBody, TextHeadline, TextLabel1, TextLabel2, TextTitle1, TextTitle2 } from "@coinbase/cds-web/typography"
-import { mountNative } from "./kit"
+import { mountNative, useThemeValues, type Mode } from "./kit"
 import { ACTIONS, ALERTS, APP, FORM, ORDERS, PAGE, STATS, TABS, TEXT, type Status } from "./scene"
 
 // Tag hues by status. CDS tags carry status by color scheme at low emphasis.
@@ -287,12 +287,25 @@ function Page() {
   )
 }
 
-mountNative(
-  "cds",
-  (m) => (
-    <ThemeProvider theme={defaultTheme} activeColorScheme={m}>
+/**
+ * CDS blends hover, pressed, and disabled colors in JS from the theme object, then writes
+ * them inline. So the solved colors go into the theme object too (--color-bgPrimary →
+ * bgPrimary), not only over the variables, or every hover stays stock.
+ */
+function Themed({ mode }: { mode: Mode }) {
+  const values = useThemeValues()
+  const key = mode === "dark" ? "darkColor" : "lightColor"
+  const solved = values ? Object.fromEntries(Object.entries(values).filter(([k]) => k.startsWith("--color-")).map(([k, v]) => [k.slice(8), v])) : {}
+  const theme = values ? { ...defaultTheme, [key]: { ...defaultTheme[key], ...solved } } : defaultTheme
+  return (
+    <ThemeProvider theme={theme as typeof defaultTheme} activeColorScheme={mode}>
       <Page />
     </ThemeProvider>
-  ),
+  )
+}
+
+mountNative(
+  "cds",
+  (m) => <Themed mode={m} />,
   { scopes: () => Array.from(document.querySelectorAll(`.${defaultTheme.id}`)) },
 )

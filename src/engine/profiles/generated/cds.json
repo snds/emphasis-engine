@@ -12,8 +12,8 @@
   "docs": "https://cds.coinbase.com/getting-started/theming",
   "page": "--color-bg",
   "samples": {
-   "light": 440,
-   "dark": 440
+   "light": 898,
+   "dark": 898
   }
  },
  "json": {
@@ -54,14 +54,6 @@
    }
   },
   {
-   "name": "--color-bgTertiary",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--color-bg"
-   }
-  },
-  {
    "name": "--color-fgInverse",
    "path": {
     "kind": "step",
@@ -72,6 +64,30 @@
   },
   {
    "name": "--color-bgSecondary",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
+    "from": "--color-bg"
+   }
+  },
+  {
+   "name": "--color-bgWarningWash",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--color-bg"
+   }
+  },
+  {
+   "name": "--color-bgNegativeWash",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--color-bg"
+   }
+  },
+  {
+   "name": "--color-bgTertiary",
    "path": {
     "kind": "step",
     "palette": "neutral",
@@ -91,7 +107,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--color-fgInverse",
+    "from": "--color-bg",
     "translucent": "always"
    }
   },
@@ -102,14 +118,6 @@
     "palette": "neutral",
     "from": "--color-bg",
     "translucent": "always"
-   }
-  },
-  {
-   "name": "--color-bgNegativeWash",
-   "path": {
-    "kind": "step",
-    "palette": "danger",
-    "from": "--color-bg"
    }
   },
   {
@@ -125,8 +133,16 @@
    "path": {
     "kind": "step",
     "palette": "danger",
-    "from": "--color-bgNegativeWash",
+    "from": "--color-bg",
     "chroma": 0.94
+   }
+  },
+  {
+   "name": "--color-fgPositive",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--color-bgSecondary"
    }
   },
   {
@@ -136,43 +152,21 @@
     "palette": "brand",
     "from": "--color-bg"
    }
+  },
+  {
+   "name": "--color-fgWarning",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--color-bgWarningWash"
+   }
   }
  ],
  "recipes": [
   {
-   "id": "input-color",
-   "label": "Input color",
-   "source": "input rest color; input rest placeholder; input hover color; +15",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--color-fgMuted"
-   },
-   "over": [
-    {
-     "v": "--color-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-color",
-   "label": "Button primary color",
-   "source": "button-primary rest color; button-primary focus color; checkbox-checked rest color; +5",
-   "element": "on-solid",
-   "paint": {
-    "v": "--color-fgInverse"
-   },
-   "over": [
-    {
-     "v": "--color-bgPrimary"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "input-color-2",
-   "label": "Input color",
-   "source": "input rest color; input focus color; checkbox-checked rest color; +11",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest color; surface-atelier-plmoverviewstylesmaterialssuppli hover color; surface-atelier-plmoverviewstylesmaterialssuppli pressed color; +71",
    "element": "text-primary",
    "paint": {
     "v": "--color-fg"
@@ -185,9 +179,55 @@
    "metric": "lc"
   },
   {
-   "id": "input-color-3",
-   "label": "Input color",
-   "source": "input rest color; input hover color; input pressed color; +13",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-color-2",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest color; surface-atelier-plmoverviewstylesmaterialssuppli hover color; surface-atelier-plmoverviewstylesmaterialssuppli pressed color; +38",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-fgMuted"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-border",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli border",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest border; surface-atelier-plmoverviewstylesmaterialssuppli hover border; surface-atelier-plmoverviewstylesmaterialssuppli pressed border; +21",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--color-bgLine"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-overview-outline",
+   "label": "Link overview outline (focus)",
+   "source": "link-overview focus outline; link-styles focus outline; link-materials focus outline; +21",
+   "element": "focus",
+   "paint": {
+    "v": "--color-bgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "surface-open-orders24-3-color",
+   "label": "Surface open orders24 3 color",
+   "source": "surface-open-orders24-3 rest color; surface-open-orders24-3 hover color; surface-open-orders24-3 pressed color; +21",
    "element": "text-secondary",
    "paint": {
     "v": "--color-fgMuted"
@@ -200,9 +240,24 @@
    "metric": "lc"
   },
   {
-   "id": "button-primary-background-color",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; button-primary focus outline; +11",
+   "id": "link-overview-color",
+   "label": "Link overview color",
+   "source": "link-overview rest color; link-overview focus color; link-styles rest color; +17",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-fg"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-background-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli background",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest background-color; surface-atelier-plmoverviewstylesmaterialssuppli hover background-color; surface-atelier-plmoverviewstylesmaterialssuppli pressed background-color; +9",
    "element": "solid",
    "paint": {
     "v": "--color-bgPrimary"
@@ -216,41 +271,39 @@
    "check": true
   },
   {
-   "id": "button-primary-background-color-2",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; button-primary focus outline; +11",
-   "element": "solid",
+   "id": "surface-open-orders24-3-background-color",
+   "label": "Surface open orders24 3 background",
+   "source": "surface-open-orders24-3 rest background-color; surface-open-orders24-3 hover background-color; surface-open-orders24-3 pressed background-color; +9",
+   "element": "surface",
    "paint": {
-    "v": "--color-bgPrimary"
+    "v": "--color-bgAlternate"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-open-orders24-3-border",
+   "label": "Surface open orders24 3 border",
+   "source": "surface-open-orders24-3 rest border; surface-open-orders24-3 hover border; surface-open-orders24-3 pressed border; +9",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--color-bgLine"
    },
    "over": [
     {
      "v": "--color-bgAlternate"
     }
    ],
-   "metric": "dL",
-   "check": true
+   "metric": "dL"
   },
   {
-   "id": "checkbox-checked-background-color",
-   "label": "Checkbox checked background",
-   "source": "checkbox-checked rest background-color; checkbox-checked hover background-color; checkbox-checked pressed background-color; +3",
-   "element": "solid",
-   "paint": {
-    "v": "--color-bgPrimary"
-   },
-   "over": [
-    {
-     "v": "--color-bg"
-    }
-   ],
-   "metric": "dL",
-   "check": true
-  },
-  {
-   "id": "checkbox-checked-color",
-   "label": "Checkbox checked color",
-   "source": "checkbox-checked rest color; checkbox-checked hover color; checkbox-checked pressed color; +9",
+   "id": "surface-open-orders24-3-color-2",
+   "label": "Surface open orders24 3 color",
+   "source": "surface-open-orders24-3 rest color; surface-open-orders24-3 hover color; surface-open-orders24-3 pressed color; +9",
    "element": "text-primary",
    "paint": {
     "v": "--color-fg"
@@ -263,9 +316,9 @@
    "metric": "lc"
   },
   {
-   "id": "checkbox-border",
-   "label": "Checkbox border",
-   "source": "checkbox rest border; checkbox hover border; checkbox pressed border; +1",
+   "id": "surface-box-border",
+   "label": "Surface box border",
+   "source": "surface-box rest border; surface-box-2 rest border; surface-north-america rest border; +9",
    "element": "border-control",
    "paint": {
     "v": "--color-bgLineHeavy"
@@ -278,75 +331,24 @@
    "metric": "dL"
   },
   {
-   "id": "switch-border",
-   "label": "Switch border",
-   "source": "switch rest border; switch focus border; switch-checked rest border; +1",
-   "element": "border-control",
-   "modes": [
-    "light"
-   ],
+   "id": "surface-samples-approvedall-six-background-color",
+   "label": "Surface samples approvedall six background",
+   "source": "surface-samples-approvedall-six rest background-color; surface-samples-approvedall-six hover background-color; surface-samples-approvedall-six pressed background-color; +7",
+   "element": "surface",
    "paint": {
-    "v": "--color-bgLine"
+    "v": "--color-bgSecondary"
    },
    "over": [
     {
-     "v": "--color-fgInverse"
+     "v": "--color-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "alert-danger-color",
-   "label": "Alert danger color",
-   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--color-fgNegative"
-   },
-   "over": [
-    {
-     "v": "--color-bgNegativeWash"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-outline-color",
-   "label": "Button outline color",
-   "source": "button-outline rest color; button-outline focus color; switch rest background-color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--color-fg"
-   },
-   "over": [
-    {
-     "v": "--color-bgTertiary"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-border-2",
-   "label": "Switch border",
-   "source": "switch rest border; switch focus border; switch-checked rest border; +1",
-   "element": "border-control",
-   "modes": [
-    "dark"
-   ],
-   "paint": {
-    "v": "--color-bgLine"
-   },
-   "over": [
-    {
-     "v": "--color-fg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-color",
-   "label": "Button secondary color",
-   "source": "button-secondary rest color; button-secondary focus color",
+   "id": "surface-samples-approvedall-six-color",
+   "label": "Surface samples approvedall six color",
+   "source": "surface-samples-approvedall-six rest color; surface-samples-approvedall-six hover color; surface-samples-approvedall-six pressed color; +7",
    "element": "text-primary",
    "paint": {
     "v": "--color-fg"
@@ -359,10 +361,138 @@
    "metric": "lc"
   },
   {
-   "id": "button-ghost-color",
-   "label": "Button ghost color",
-   "source": "button-ghost rest color; button-ghost focus color",
-   "element": "text-primary",
+   "id": "link-overview-color-2",
+   "label": "Link overview color (hover, pressed)",
+   "source": "link-overview hover color; link-styles hover color; link-materials hover color; +5",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-fgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-workspaces-color",
+   "label": "Link workspaces color",
+   "source": "link-workspaces rest color; link-workspaces focus color; tab-general focus color; +5",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-fgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "checkbox-email-me-a-color",
+   "label": "Checkbox email me a color",
+   "source": "checkbox-email-me-a rest color; checkbox-email-me-a hover color; checkbox-email-me-a pressed color; +5",
+   "element": "on-solid",
+   "paint": {
+    "v": "--color-fgInverse"
+   },
+   "over": [
+    {
+     "v": "--color-bgPrimary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-box-ring",
+   "label": "Surface box ring (pressed, focus)",
+   "source": "surface-box pressed ring; surface-box focus ring; surface-box-2 pressed ring; +3",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--color-bgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "surface-box-border-2",
+   "label": "Surface box border (focus)",
+   "source": "surface-box focus border; surface-box-2 focus border; surface-north-america focus border; +3",
+   "element": "border-control",
+   "paint": {
+    "v": "--color-bgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-color-3",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest color; surface-atelier-plmoverviewstylesmaterialssuppli hover color; surface-atelier-plmoverviewstylesmaterialssuppli pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "alpha": {
+     "v": "--color-fgMuted"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-overview-color-3",
+   "label": "Link overview color (pressed)",
+   "source": "link-overview pressed color; link-styles pressed color; link-materials pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "alpha": {
+     "v": "--color-fgPrimary"
+    },
+    "k": 0.86
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-generalname-contact-and-color",
+   "label": "Surface generalname contact and color",
+   "source": "surface-generalname-contact-and rest color; surface-generalname-contact-and hover color; surface-generalname-contact-and pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-fgNegative"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-workspace-name-placeholder",
+   "label": "Input workspace name placeholder",
+   "source": "input-workspace-name rest placeholder; input-workspace-name focus placeholder; input-season-code rest placeholder; +1",
+   "element": "state",
    "paint": {
     "v": "--color-fg"
    },
@@ -374,39 +504,9 @@
    "metric": "lc"
   },
   {
-   "id": "button-danger-color",
-   "label": "Button danger color",
-   "source": "button-danger rest color; button-danger focus color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--color-fgInverse"
-   },
-   "over": [
-    {
-     "v": "--color-bgNegative"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-background-color",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch focus background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--color-bgTertiary"
-   },
-   "over": [
-    {
-     "v": "--color-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-2",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch focus background-color",
+   "id": "switch-sync-supplier-updates-background-color",
+   "label": "Switch sync supplier updates background",
+   "source": "switch-sync-supplier-updates rest background-color; switch-sync-supplier-updates hover background-color; switch-sync-supplier-updates pressed background-color; +1",
    "element": "surface",
    "modes": [
     "light"
@@ -416,24 +516,21 @@
    },
    "over": [
     {
-     "v": "--color-bgTertiary"
+     "v": "--color-bgPrimary"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "switch-border-3",
-   "label": "Switch border (hover)",
-   "source": "switch hover border; switch-checked hover border",
+   "id": "switch-sync-supplier-updates-border",
+   "label": "Switch sync supplier updates border",
+   "source": "switch-sync-supplier-updates rest border; switch-sync-supplier-updates hover border; switch-sync-supplier-updates pressed border; +1",
    "element": "border-control",
    "modes": [
     "light"
    ],
    "paint": {
-    "alpha": {
-     "v": "--color-bgLine"
-    },
-    "k": 0.88
+    "v": "--color-bgLine"
    },
    "over": [
     {
@@ -441,42 +538,6 @@
     }
    ],
    "metric": "dL"
-  },
-  {
-   "id": "switch-border-4",
-   "label": "Switch border (pressed)",
-   "source": "switch pressed border; switch-checked pressed border",
-   "element": "border-control",
-   "modes": [
-    "light"
-   ],
-   "paint": {
-    "alpha": {
-     "v": "--color-bgLine"
-    },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-fgInverse"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-color",
-   "label": "Link color",
-   "source": "link rest color; link focus color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--color-fgPrimary"
-   },
-   "over": [
-    {
-     "v": "--color-bg"
-    }
-   ],
-   "metric": "lc"
   },
   {
    "id": "divider-background-color",
@@ -494,9 +555,100 @@
    "metric": "dL"
   },
   {
-   "id": "alert-danger-background-color",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
+   "id": "button-save-changes-background-color",
+   "label": "Button save changes background",
+   "source": "button-save-changes rest background-color; button-save-changes focus background-color; button-save-changes-2 rest background-color; +1",
+   "element": "solid",
+   "paint": {
+    "v": "--color-bgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL",
+   "check": true
+  },
+  {
+   "id": "surface-samples-approvedall-six-color-2",
+   "label": "Surface samples approvedall six color",
+   "source": "surface-samples-approvedall-six rest color; surface-samples-approvedall-six hover color; surface-samples-approvedall-six pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-fgPositive"
+   },
+   "over": [
+    {
+     "v": "--color-bgSecondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-color",
+   "label": "Surface new supplier addedmill color",
+   "source": "surface-new-supplier-addedmill rest color; surface-new-supplier-addedmill hover color; surface-new-supplier-addedmill pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--color-fgPrimary"
+   },
+   "over": [
+    {
+     "v": "--color-bgSecondary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-background-color",
+   "label": "Surface costing pendingtwo styles background",
+   "source": "surface-costing-pendingtwo-styles rest background-color; surface-costing-pendingtwo-styles hover background-color; surface-costing-pendingtwo-styles pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--color-bgWarningWash"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-color",
+   "label": "Surface costing pendingtwo styles color",
+   "source": "surface-costing-pendingtwo-styles rest color; surface-costing-pendingtwo-styles hover color; surface-costing-pendingtwo-styles pressed color; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--color-fgWarning"
+   },
+   "over": [
+    {
+     "v": "--color-bgWarningWash"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-color-2",
+   "label": "Surface costing pendingtwo styles color",
+   "source": "surface-costing-pendingtwo-styles rest color; surface-costing-pendingtwo-styles hover color; surface-costing-pendingtwo-styles pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-fg"
+   },
+   "over": [
+    {
+     "v": "--color-bgWarningWash"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-background-color",
+   "label": "Surface sync failedthe erp background",
+   "source": "surface-sync-failedthe-erp rest background-color; surface-sync-failedthe-erp hover background-color; surface-sync-failedthe-erp pressed background-color; +1",
    "element": "surface",
    "paint": {
     "v": "--color-bgNegativeWash"
@@ -509,96 +661,93 @@
    "metric": "dL"
   },
   {
-   "id": "card-background-color",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
-   "element": "surface",
+   "id": "surface-sync-failedthe-erp-color",
+   "label": "Surface sync failedthe erp color",
+   "source": "surface-sync-failedthe-erp rest color; surface-sync-failedthe-erp hover color; surface-sync-failedthe-erp pressed color; +1",
+   "element": "text-on-tint",
    "paint": {
-    "v": "--color-bgAlternate"
+    "v": "--color-fgNegative"
    },
    "over": [
     {
-     "v": "--color-bg"
+     "v": "--color-bgNegativeWash"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "divider-background-color-2",
-   "label": "Divider background",
-   "source": "divider rest background-color; divider hover background-color; divider pressed background-color; +1",
-   "element": "surface",
+   "id": "surface-sync-failedthe-erp-color-2",
+   "label": "Surface sync failedthe erp color",
+   "source": "surface-sync-failedthe-erp rest color; surface-sync-failedthe-erp hover color; surface-sync-failedthe-erp pressed color; +1",
+   "element": "text-primary",
    "paint": {
-    "v": "--color-bgLine"
+    "v": "--color-fg"
    },
    "over": [
     {
-     "v": "--color-bgAlternate"
+     "v": "--color-bgNegativeWash"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "alert-danger-background-color-2",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--color-bgNegativeWash"
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-border-5",
-   "label": "Switch border (hover)",
-   "source": "switch hover border; switch-checked hover border",
-   "element": "border-control",
-   "modes": [
-    "dark"
-   ],
+   "id": "button-publish-color",
+   "label": "Button publish color",
+   "source": "button-publish rest color; button-publish hover color; button-publish pressed color; +1",
+   "element": "text-primary",
    "paint": {
     "alpha": {
-     "v": "--color-bgLine"
+     "v": "--color-fgInverse"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-suppliers-color",
+   "label": "Tab suppliers color (hover)",
+   "source": "tab-suppliers hover color; tab-notifications hover color; tab-danger-zone hover color; +1",
+   "element": "text-primary",
+   "paint": {
+    "alpha": {
+     "v": "--color-fg"
     },
     "k": 0.88
    },
    "over": [
     {
-     "v": "--color-fg"
+     "v": "--color-bg"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "switch-border-6",
-   "label": "Switch border (pressed)",
-   "source": "switch pressed border; switch-checked pressed border",
-   "element": "border-control",
-   "modes": [
-    "dark"
-   ],
+   "id": "tab-suppliers-color-2",
+   "label": "Tab suppliers color (pressed)",
+   "source": "tab-suppliers pressed color; tab-notifications pressed color; tab-danger-zone pressed color; +1",
+   "element": "text-primary",
    "paint": {
     "alpha": {
-     "v": "--color-bgLine"
+     "v": "--color-fg"
     },
     "k": 0.82
    },
    "over": [
     {
-     "v": "--color-fg"
+     "v": "--color-bg"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "switch-checked-background-color",
-   "label": "Switch checked background",
-   "source": "switch-checked rest background-color; switch-checked focus background-color",
+   "id": "switch-sync-supplier-updates-background-color-2",
+   "label": "Switch sync supplier updates background",
+   "source": "switch-sync-supplier-updates rest background-color; switch-sync-supplier-updates hover background-color; switch-sync-supplier-updates pressed background-color; +1",
    "element": "surface",
    "modes": [
     "dark"
@@ -614,12 +763,30 @@
    "metric": "dL"
   },
   {
-   "id": "button-secondary-background-color",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color; button-secondary focus background-color",
-   "element": "surface",
+   "id": "switch-sync-supplier-updates-border-2",
+   "label": "Switch sync supplier updates border",
+   "source": "switch-sync-supplier-updates rest border; switch-sync-supplier-updates hover border; switch-sync-supplier-updates pressed border; +1",
+   "element": "border-control",
+   "modes": [
+    "dark"
+   ],
    "paint": {
-    "v": "--color-bgSecondary"
+    "v": "--color-bgLine"
+   },
+   "over": [
+    {
+     "v": "--color-fg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-suppliers-border",
+   "label": "Link suppliers border",
+   "source": "link-suppliers rest border; link-suppliers hover border; link-suppliers focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--color-fgPrimary"
    },
    "over": [
     {
@@ -629,9 +796,54 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-background-color",
-   "label": "Button outline background",
-   "source": "button-outline rest background-color; button-outline focus background-color",
+   "id": "input-notification-email-placeholder",
+   "label": "Input notification email placeholder",
+   "source": "input-notification-email rest placeholder; input-notification-email focus placeholder",
+   "element": "state",
+   "paint": {
+    "v": "--color-fgMuted"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-box-3-border",
+   "label": "Surface box 3 border",
+   "source": "surface-box-3 rest border; surface-box-3 focus border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--color-bgNegative"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-box-3-ring",
+   "label": "Surface box 3 ring (pressed, focus)",
+   "source": "surface-box-3 pressed ring; surface-box-3 focus ring",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--color-bgNegative"
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-preview-background-color",
+   "label": "Button preview background",
+   "source": "button-preview rest background-color; button-preview focus background-color",
    "element": "surface",
    "paint": {
     "v": "--color-bgTertiary"
@@ -644,9 +856,24 @@
    "metric": "dL"
   },
   {
-   "id": "button-danger-background-color",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color; button-danger focus background-color",
+   "id": "button-preview-color",
+   "label": "Button preview color",
+   "source": "button-preview rest color; button-preview focus color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--color-fg"
+   },
+   "over": [
+    {
+     "v": "--color-bgTertiary"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-delete-workspace-background-color",
+   "label": "Button delete workspace background",
+   "source": "button-delete-workspace rest background-color; button-delete-workspace focus background-color",
    "element": "surface",
    "paint": {
     "v": "--color-bgNegative"
@@ -659,96 +886,48 @@
    "metric": "dL"
   },
   {
-   "id": "switch-background-color-3",
-   "label": "Switch background (hover)",
-   "source": "switch hover background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
+   "id": "button-delete-workspace-color",
+   "label": "Button delete workspace color",
+   "source": "button-delete-workspace rest color; button-delete-workspace focus color",
+   "element": "text-primary",
    "paint": {
-    "alpha": {
-     "v": "--color-fgInverse"
-    },
-    "k": 0.88
+    "v": "--color-fgInverse"
    },
    "over": [
     {
-     "v": "--color-bgTertiary"
+     "v": "--color-bgNegative"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-suppliers-border-2",
+   "label": "Link suppliers border (pressed)",
+   "source": "link-suppliers pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "alpha": {
+     "v": "--color-fgPrimary"
+    },
+    "k": 0.86
+   },
+   "over": [
+    {
+     "v": "--color-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "switch-background-color-4",
-   "label": "Switch background (pressed)",
-   "source": "switch pressed background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
+   "id": "link-suppliers-color",
+   "label": "Link suppliers color (pressed)",
+   "source": "link-suppliers pressed color",
+   "element": "text-primary",
    "paint": {
     "alpha": {
-     "v": "--color-fgInverse"
+     "v": "--color-fg"
     },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-bgTertiary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-checked-background-color-2",
-   "label": "Switch checked background (hover)",
-   "source": "switch-checked hover background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
-   "paint": {
-    "alpha": {
-     "v": "--color-fgInverse"
-    },
-    "k": 0.88
-   },
-   "over": [
-    {
-     "v": "--color-bgPrimary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-checked-background-color-3",
-   "label": "Switch checked background (pressed)",
-   "source": "switch-checked pressed background-color",
-   "element": "state",
-   "modes": [
-    "light"
-   ],
-   "paint": {
-    "alpha": {
-     "v": "--color-fgInverse"
-    },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-bgPrimary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-color-2",
-   "label": "Link color (hover, pressed)",
-   "source": "link hover color; link pressed color",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--color-fgPrimary"
+    "k": 0.86
    },
    "over": [
     {
@@ -758,295 +937,135 @@
    "metric": "lc"
   },
   {
-   "id": "button-secondary-background-color-2",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color; button-secondary focus background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--color-bgSecondary"
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-outline-background-color-2",
-   "label": "Button outline background",
-   "source": "button-outline rest background-color; button-outline focus background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--color-bgTertiary"
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-2",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color; button-danger focus background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--color-bgNegative"
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-color-3",
-   "label": "Link color (hover, pressed)",
-   "source": "link hover color; link pressed color",
+   "id": "radio-private-fill",
+   "label": "Radio private fill (focus)",
+   "source": "radio-private focus fill",
    "element": "text-secondary",
-   "paint": {
-    "v": "--color-fgPrimary"
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-background-color-5",
-   "label": "Switch background (hover)",
-   "source": "switch hover background-color",
-   "element": "state",
    "modes": [
-    "dark"
+    "light"
    ],
    "paint": {
     "alpha": {
-     "v": "--color-fg"
-    },
-    "k": 0.88
-   },
-   "over": [
-    {
-     "v": "--color-bgTertiary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-6",
-   "label": "Switch background (pressed)",
-   "source": "switch pressed background-color",
-   "element": "state",
-   "modes": [
-    "dark"
-   ],
-   "paint": {
-    "alpha": {
-     "v": "--color-fg"
-    },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-bgTertiary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-checked-background-color-4",
-   "label": "Switch checked background (hover)",
-   "source": "switch-checked hover background-color",
-   "element": "state",
-   "modes": [
-    "dark"
-   ],
-   "paint": {
-    "alpha": {
-     "v": "--color-fg"
-    },
-    "k": 0.88
-   },
-   "over": [
-    {
      "v": "--color-bgPrimary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-checked-background-color-5",
-   "label": "Switch checked background (pressed)",
-   "source": "switch-checked pressed background-color",
-   "element": "state",
-   "modes": [
-    "dark"
-   ],
-   "paint": {
-    "alpha": {
-     "v": "--color-fg"
     },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-bgPrimary"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-7",
-   "label": "Switch background (hover)",
-   "source": "switch hover background-color",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--color-bgTertiary"
-    },
-    "k": 0.88
+    "k": 0.66
    },
    "over": [
     {
      "v": "--color-bg"
     }
    ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-8",
-   "label": "Switch background (pressed)",
-   "source": "switch pressed background-color",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--color-bgTertiary"
-    },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-checked-background-color-6",
-   "label": "Switch checked background (hover)",
-   "source": "switch-checked hover background-color",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--color-bgPrimary"
-    },
-    "k": 0.88
-   },
-   "over": [
-    {
-     "v": "--color-bg"
-    }
-   ],
-   "metric": "dL",
+   "metric": "lc",
    "check": true
   },
   {
-   "id": "switch-checked-background-color-7",
-   "label": "Switch checked background (pressed)",
-   "source": "switch-checked pressed background-color",
-   "element": "state",
+   "id": "radio-team-fill",
+   "label": "Radio team fill (focus)",
+   "source": "radio-team focus fill",
+   "element": "text-secondary",
+   "modes": [
+    "light"
+   ],
    "paint": {
     "alpha": {
      "v": "--color-bgPrimary"
     },
-    "k": 0.82
+    "k": 0.655
    },
    "over": [
     {
      "v": "--color-bg"
     }
    ],
-   "metric": "dL",
+   "metric": "lc",
    "check": true
   },
   {
-   "id": "switch-background-color-9",
-   "label": "Switch background (hover)",
-   "source": "switch hover background-color",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--color-bgTertiary"
-    },
-    "k": 0.88
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
+   "id": "radio-whole-organization-fill",
+   "label": "Radio whole organization fill (focus)",
+   "source": "radio-whole-organization focus fill",
+   "element": "text-secondary",
+   "modes": [
+    "light"
    ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-background-color-10",
-   "label": "Switch background (pressed)",
-   "source": "switch pressed background-color",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--color-bgTertiary"
-    },
-    "k": 0.82
-   },
-   "over": [
-    {
-     "v": "--color-bgAlternate"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "switch-checked-background-color-8",
-   "label": "Switch checked background (hover)",
-   "source": "switch-checked hover background-color",
-   "element": "state",
    "paint": {
     "alpha": {
      "v": "--color-bgPrimary"
     },
-    "k": 0.88
+    "k": 0.651
    },
    "over": [
     {
-     "v": "--color-bgAlternate"
+     "v": "--color-bg"
     }
    ],
-   "metric": "dL",
+   "metric": "lc",
    "check": true
   },
   {
-   "id": "switch-checked-background-color-9",
-   "label": "Switch checked background (pressed)",
-   "source": "switch-checked pressed background-color",
-   "element": "state",
+   "id": "radio-private-fill-2",
+   "label": "Radio private fill (focus)",
+   "source": "radio-private focus fill",
+   "element": "text-secondary",
+   "modes": [
+    "dark"
+   ],
    "paint": {
     "alpha": {
      "v": "--color-bgPrimary"
     },
-    "k": 0.82
+    "k": 0.654
    },
    "over": [
     {
-     "v": "--color-bgAlternate"
+     "v": "--color-bg"
     }
    ],
-   "metric": "dL",
+   "metric": "lc",
+   "check": true
+  },
+  {
+   "id": "radio-team-fill-2",
+   "label": "Radio team fill (focus)",
+   "source": "radio-team focus fill",
+   "element": "text-secondary",
+   "modes": [
+    "dark"
+   ],
+   "paint": {
+    "alpha": {
+     "v": "--color-bgPrimary"
+    },
+    "k": 0.658
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc",
+   "check": true
+  },
+  {
+   "id": "radio-whole-organization-fill-2",
+   "label": "Radio whole organization fill (focus)",
+   "source": "radio-whole-organization focus fill",
+   "element": "text-secondary",
+   "modes": [
+    "dark"
+   ],
+   "paint": {
+    "alpha": {
+     "v": "--color-bgPrimary"
+    },
+    "k": 0.67
+   },
+   "over": [
+    {
+     "v": "--color-bg"
+    }
+   ],
+   "metric": "lc",
    "check": true
   }
  ],
@@ -1056,32 +1075,38 @@
    "--color-bgAlternate": "#eef0f3",
    "--color-bgPrimary": "#0052ff",
    "--color-bgNegative": "#cf202f",
-   "--color-bgTertiary": "#ced2db",
    "--color-fgInverse": "#ffffff",
    "--color-bgSecondary": "#eef0f3",
+   "--color-bgWarningWash": "#fffaf5",
+   "--color-bgNegativeWash": "#fff5f6",
+   "--color-bgTertiary": "#ced2db",
    "--color-fg": "#0a0b0d",
    "--color-bgLine": "rgb(91 97 110 / 20%)",
    "--color-bgLineHeavy": "rgb(91 97 110 / 66%)",
-   "--color-bgNegativeWash": "#fff5f6",
    "--color-fgMuted": "#5b616e",
    "--color-fgNegative": "#cf202f",
-   "--color-fgPrimary": "#0052ff"
+   "--color-fgPositive": "#098551",
+   "--color-fgPrimary": "#0052ff",
+   "--color-fgWarning": "#cf470e"
   },
   "dark": {
    "--color-bg": "#0a0b0d",
    "--color-bgAlternate": "#141519",
    "--color-bgPrimary": "#578bfa",
    "--color-bgNegative": "#f0616d",
-   "--color-bgTertiary": "#32353d",
    "--color-fgInverse": "#0a0b0d",
    "--color-bgSecondary": "#282b31",
+   "--color-bgWarningWash": "#330d00",
+   "--color-bgNegativeWash": "#330004",
+   "--color-bgTertiary": "#32353d",
    "--color-fg": "#ffffff",
    "--color-bgLine": "rgb(138 145 158 / 20%)",
    "--color-bgLineHeavy": "rgb(138 145 158 / 66%)",
-   "--color-bgNegativeWash": "#330004",
    "--color-fgMuted": "#8a919e",
    "--color-fgNegative": "#f0616d",
-   "--color-fgPrimary": "#578bfa"
+   "--color-fgPositive": "#27ad75",
+   "--color-fgPrimary": "#578bfa",
+   "--color-fgWarning": "#f89656"
   }
  }
 }

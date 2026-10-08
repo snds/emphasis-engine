@@ -82,3 +82,10 @@ learned, not what you did. Plain language, short sentences. Sections:
 
 A short summary: what the page contains, what the themed theme did and didn't reach,
 anything that needs a contract change, and the paths of your files.
+
+## Later additions
+
+- **The probe reads these pages.** Generated profiles are built from the native page, opened with `?probe`. The page tags its own sample roots (`src/native/probe-tags.ts`), so anything you put on the page gets measured and themed.
+  - Put `data-probe-skip` on a subtree to leave it out.
+  - Keep the page description text exactly as in `scene.ts`. The probe finds the page surface from it.
+- **JS-themed systems.** `useThemeValues()` from the kit returns the solved root values (name → color in hex or `rgba()`), or `null` for stock. Feed them into the system's theme object when its states are computed in JS. `antd.tsx` and `cds.tsx` show how.

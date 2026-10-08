@@ -8,7 +8,7 @@ import { createRoot } from "react-dom/client"
 
 export type Mode = "light" | "dark"
 /** One solved variable. Root variables have no selector; scoped ones name the component selector. */
-export type ThemeValue = { name: string; selector: string | null; value: string }
+export type ThemeValue = { name: string; selector: string | null; value: string; js?: string; order?: number }
 export type ThemeMessage = { type: "ee:theme"; mode: Mode; values: ThemeValue[] | null }
 
 const frames = (n: number) =>
@@ -20,6 +20,14 @@ const frames = (n: number) =>
 let mode: Mode = new URLSearchParams(location.search).get("mode") === "dark" ? "dark" : "light"
 const listeners = new Set<() => void>()
 export const useMode = () => useSyncExternalStore((l) => (listeners.add(l), () => listeners.delete(l)), () => mode)
+
+// The solved root values in JS-friendly syntax, for systems whose theme is a JS object
+// (Ant Design's tokens, Coinbase CDS's ThemeProvider). Their hover and pressed colors are
+// computed in JS from that object, so CSS overrides alone never reach them.
+let jsValues: Record<string, string> | null = null
+const valueListeners = new Set<() => void>()
+export const useThemeValues = () =>
+  useSyncExternalStore((l) => (valueListeners.add(l), () => valueListeners.delete(l)), () => jsValues)
 
 type Saved = { el: HTMLElement; name: string; value: string; priority: string; set: string }
 let saved: Saved[] = []
@@ -85,7 +93,10 @@ function apply(values: ThemeValue[], scopes: Element[]) {
   const els = Array.from(new Set([document.documentElement, ...scopes])) as HTMLElement[]
   const rules: string[] = []
   const root = new Map<string, string>()
-  for (const v of values) {
+  // Scoped overrides are all !important, so source order decides between a base rule and its
+  // variant on the same element. Keep the system's own order (.btn before .btn-primary).
+  const ordered = [...values].sort((a, b) => (a.order ?? -1) - (b.order ?? -1))
+  for (const v of ordered) {
     if (v.selector) rules.push(`${v.selector}{${v.name}:${v.value} !important}`)
     else {
       root.set(v.name, v.value)
@@ -133,6 +144,11 @@ export function mountNative(id: string, render: (mode: Mode) => ReactNode, opts:
       await opts.onMode?.(mode)
       listeners.forEach((l) => l())
     }
+    const next = msg.values ? Object.fromEntries(msg.values.filter((v) => !v.selector).map((v) => [v.name, v.js ?? v.value])) : null
+    if (JSON.stringify(next) !== JSON.stringify(jsValues)) {
+      jsValues = next
+      valueListeners.forEach((l) => l())
+    }
     // Two frames: React commits the mode, the system's provider writes its variables.
     await frames(2)
     restore()
@@ -144,6 +160,22 @@ export function mountNative(id: string, render: (mode: Mode) => ReactNode, opts:
     // Serialize: a fast scrub sends many messages; each applies after the last finished.
     busy = busy.then(() => (last === e.data ? set(e.data) : undefined))
   })
+
+  // ?probe: the component probe reads this page. It switches modes through the same path as the
+  // app, finds theme variables on the same scopes, and samples roots the page tags itself.
+  if (new URLSearchParams(location.search).has("probe")) {
+    const settle = () => new Promise((r) => setTimeout(r, 150))
+    ;(window as unknown as { __probe: unknown }).__probe = {
+      async setMode(m: Mode) {
+        await set({ type: "ee:theme", mode: m, values: null })
+        await frames(4)
+        await settle()
+        const { tagProbeRoots } = await import("./probe-tags")
+        tagProbeRoots()
+      },
+      scopes: () => (scopes().length ? scopes() : [document.documentElement]),
+    }
+  }
 
   // Report content height so the host can size the frame and let the app page scroll, not the frame.
   const post = () => parent.postMessage({ type: "ee:height", id, h: document.documentElement.scrollHeight }, "*")

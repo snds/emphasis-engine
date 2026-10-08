@@ -1,7 +1,7 @@
 // Output systems: the engine's intent solved through each system profile.
 import { buildIntent } from "./intent"
 import { solveProfile, type Outcome, type Profile, type ProfileResult } from "./profile"
-import type { RGB } from "./color"
+import { hex, type RGB } from "./color"
 import { PROFILES, type ProfileId } from "./profiles"
 import { withReference } from "./reference"
 import type { A11y, Mode } from "./settings"
@@ -52,6 +52,7 @@ function rgbToHsl([r, g, b]: RGB) {
 function valueAs(p: Profile, key: string, v: { rgb: RGB; a: number; css: string }) {
   const f = p.formats?.[key]
   if (f === "rgb-channels") return v.rgb.join(" ")
+  if (f === "rgb-csv") return v.rgb.join(", ")
   if (f === "hsl-channels") {
     const [h, s, l] = rgbToHsl(v.rgb)
     return `${+h.toFixed(1)} ${+s.toFixed(1)}% ${+l.toFixed(1)}%`
@@ -77,7 +78,9 @@ export function outputCss(sys: System, id: ProfileId): string {
   for (const mode of ["light", "dark"] as Mode[]) {
     const vals = solveOutput(sys, id, mode).values
     const groups = new Map<string, string[]>()
-    for (const [k, v] of Object.entries(vals)) {
+    // Scoped rules in the system's own source order: a base rule (.btn) before its variants (.btn-primary).
+    const entries = Object.entries(vals).sort(([a], [b]) => (p.scopes?.[a]?.order ?? -1) - (p.scopes?.[b]?.order ?? -1))
+    for (const [k, v] of entries) {
       const scope = p.scopes?.[k]
       const sel = scope ? within(p.selectors[mode], scope.selector) : p.selectors[mode]
       const name = scope ? scope.name : k
@@ -109,10 +112,21 @@ export function outputJson(sys: System, id: ProfileId): string | null {
 }
 
 /** The solved values for one mode, as a native page applies them: root or scoped, in each variable's own format. */
-export function nativeTheme(sys: System, id: ProfileId, mode: Mode): { name: string; selector: string | null; value: string }[] {
+export function nativeTheme(
+  sys: System,
+  id: ProfileId,
+  mode: Mode,
+): { name: string; selector: string | null; value: string; js: string; order?: number }[] {
   const p = PROFILES[id]
   return Object.entries(solveOutput(sys, id, mode).values).map(([k, v]) => {
     const scope = p.scopes?.[k]
-    return { name: scope ? scope.name : k, selector: scope ? scope.selector : null, value: valueAs(p, k, v) }
+    return {
+      name: scope ? scope.name : k,
+      selector: scope ? scope.selector : null,
+      value: valueAs(p, k, v),
+      // For systems whose theme is a JS object: legacy syntax every color parser reads.
+      js: v.a < 1 ? `rgba(${v.rgb.join(", ")}, ${+v.a.toFixed(3)})` : hex(v.rgb),
+      ...(scope?.order !== undefined ? { order: scope.order } : {}),
+    }
   })
 }

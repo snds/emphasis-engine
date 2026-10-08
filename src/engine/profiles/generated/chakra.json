@@ -12,8 +12,8 @@
   "docs": "https://chakra-ui.com/docs/theming/semantic-tokens",
   "page": "--chakra-colors-bg",
   "samples": {
-   "light": 414,
-   "dark": 408
+   "light": 860,
+   "dark": 857
   }
  },
  "formats": {},
@@ -34,18 +34,10 @@
    }
   },
   {
-   "name": "--chakra-colors-bg-emphasized",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--chakra-colors-bg"
-   }
-  },
-  {
    "name": "--chakra-colors-blue-subtle",
    "path": {
     "kind": "step",
-    "palette": "brand",
+    "palette": "info",
     "from": "--chakra-colors-bg"
    }
   },
@@ -53,7 +45,7 @@
    "name": "--chakra-colors-blue-fg",
    "path": {
     "kind": "step",
-    "palette": "brand",
+    "palette": "info",
     "from": "--chakra-colors-blue-subtle",
     "chroma": 0.65
    }
@@ -62,7 +54,7 @@
    "name": "--chakra-colors-blue-focus-ring",
    "path": {
     "kind": "step",
-    "palette": "brand",
+    "palette": "info",
     "from": "--chakra-colors-bg",
     "chroma": 0.97
    }
@@ -80,7 +72,16 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--chakra-colors-bg"
+    "from": "--chakra-colors-bg-panel"
+   }
+  },
+  {
+   "name": "--chakra-colors-border-error",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--chakra-colors-bg-panel",
+    "chroma": 0.88
    }
   },
   {
@@ -96,7 +97,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--chakra-colors-color-palette-subtle"
+    "from": "--chakra-colors-bg"
    }
   },
   {
@@ -121,7 +122,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--chakra-colors-bg"
+    "from": "--chakra-colors-bg-panel"
    }
   },
   {
@@ -137,7 +138,7 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--chakra-colors-bg"
+    "from": "--chakra-colors-bg-panel"
    }
   },
   {
@@ -145,11 +146,16 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
-    "from": "--chakra-colors-color-palette-solid",
-    "dir": {
-     "light": "away",
-     "dark": "back"
-    }
+    "from": "--chakra-colors-bg-panel"
+   }
+  },
+  {
+   "name": "--chakra-colors-fg-error",
+   "path": {
+    "kind": "step",
+    "palette": "danger",
+    "from": "--chakra-colors-bg-panel",
+    "chroma": 0.88
    }
   },
   {
@@ -157,7 +163,58 @@
    "path": {
     "kind": "step",
     "palette": "neutral",
+    "from": "--chakra-colors-bg-panel"
+   }
+  },
+  {
+   "name": "--chakra-colors-fg-subtle",
+   "path": {
+    "kind": "step",
+    "palette": "neutral",
     "from": "--chakra-colors-bg"
+   }
+  },
+  {
+   "name": "--chakra-colors-fg-success",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--chakra-colors-bg-panel"
+   }
+  },
+  {
+   "name": "--chakra-colors-green-subtle",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--chakra-colors-bg",
+    "chroma": 0.77
+   }
+  },
+  {
+   "name": "--chakra-colors-green-fg",
+   "path": {
+    "kind": "step",
+    "palette": "success",
+    "from": "--chakra-colors-green-subtle",
+    "chroma": 0.97
+   }
+  },
+  {
+   "name": "--chakra-colors-orange-subtle",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--chakra-colors-bg"
+   }
+  },
+  {
+   "name": "--chakra-colors-orange-fg",
+   "path": {
+    "kind": "step",
+    "palette": "warning",
+    "from": "--chakra-colors-orange-subtle",
+    "chroma": 0.96
    }
   },
   {
@@ -194,85 +251,13 @@
     "from": "--chakra-colors-bg",
     "chroma": 0.97
    }
-  },
-  {
-   "name": "--chakra-colors-white",
-   "path": {
-    "kind": "step",
-    "palette": "neutral",
-    "from": "--chakra-colors-bg-emphasized",
-    "dir": {
-     "light": "back",
-     "dark": "away"
-    }
-   }
   }
  ],
  "recipes": [
   {
-   "id": "checkbox-color",
-   "label": "Checkbox color",
-   "source": "checkbox focus color; checkbox focus placeholder; checkbox-checked rest color; +29",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-color-palette-solid"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-primary-color",
-   "label": "Button primary color",
-   "source": "button-primary rest color; button-primary focus color; checkbox focus stroke; +15",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-color-palette-contrast"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-color-palette-solid"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-color",
-   "label": "Switch color",
-   "source": "switch rest color; switch rest placeholder; switch hover color; +13",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-emphasized"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "input-color",
-   "label": "Input color",
-   "source": "input rest color; input hover color; input pressed color; +26",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "input-color-2",
-   "label": "Input color",
-   "source": "input rest color; input hover color; input pressed color; +26",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-2-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli 2 color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli-2 rest color; surface-atelier-plmoverviewstylesmaterialssuppli-2 hover color; surface-atelier-plmoverviewstylesmaterialssuppli-2 pressed color; +57",
    "element": "text-primary",
    "paint": {
     "v": "--chakra-colors-fg"
@@ -285,177 +270,12 @@
    "metric": "lc"
   },
   {
-   "id": "button-primary-background-color",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; checkbox focus background-color; +20",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-color-palette-solid"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-background-color-2",
-   "label": "Button primary background",
-   "source": "button-primary rest background-color; button-primary focus background-color; checkbox focus background-color; +20",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-color-palette-solid"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-color",
-   "label": "Button secondary color",
-   "source": "button-secondary rest color; button-secondary focus color; button-outline hover color; +7",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest color; surface-atelier-plmoverviewstylesmaterialssuppli hover color; surface-atelier-plmoverviewstylesmaterialssuppli pressed color; +43",
    "element": "text-primary",
    "paint": {
-    "v": "--chakra-colors-color-palette-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-color-palette-subtle"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "badge-color",
-   "label": "Badge color",
-   "source": "badge rest color; badge hover color; badge pressed color; +5",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--chakra-colors-blue-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-blue-subtle"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-background-color",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch hover background-color; switch pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-white"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-emphasized"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-border",
-   "label": "Card border",
-   "source": "card rest border; card hover border; card pressed border; +11",
-   "element": "border-control",
-   "paint": {
-    "v": "--chakra-colors-border"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-outline",
-   "label": "Button primary outline (focus, pressed)",
-   "source": "button-primary focus outline; button-secondary focus outline; button-outline focus outline; +7",
-   "element": "focus",
-   "paint": {
-    "v": "--chakra-colors-color-palette-focus-ring"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color; button-secondary focus background-color; button-outline hover background-color; +7",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-color-palette-subtle"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-border",
-   "label": "Input border",
-   "source": "input rest border; input hover border; tabs rest border; +7",
-   "element": "border-control",
-   "paint": {
-    "v": "--chakra-colors-border"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-outline-2",
-   "label": "Button primary outline (focus, pressed)",
-   "source": "button-primary focus outline; button-secondary focus outline; button-outline focus outline; +7",
-   "element": "focus",
-   "paint": {
-    "v": "--chakra-colors-color-palette-focus-ring"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-background-color-2",
-   "label": "Button secondary background",
-   "source": "button-secondary rest background-color; button-secondary focus background-color; button-outline hover background-color; +7",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-color-palette-subtle"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "tab-inactive-color",
-   "label": "Tab inactive color",
-   "source": "tab-inactive rest color; tab-inactive hover color; tab-inactive pressed color; +7",
-   "element": "text-secondary",
-   "paint": {
-    "v": "--chakra-colors-fg-muted"
+    "v": "--chakra-colors-fg"
    },
    "over": [
     {
@@ -465,9 +285,9 @@
    "metric": "lc"
   },
   {
-   "id": "tab-inactive-color-2",
-   "label": "Tab inactive color",
-   "source": "tab-inactive rest color; tab-inactive hover color; tab-inactive pressed color; +7",
+   "id": "link-overview-color",
+   "label": "Link overview color",
+   "source": "link-overview rest color; link-overview hover color; link-overview pressed color; +29",
    "element": "text-secondary",
    "paint": {
     "v": "--chakra-colors-fg-muted"
@@ -480,102 +300,12 @@
    "metric": "lc"
   },
   {
-   "id": "badge-background-color",
-   "label": "Badge background",
-   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-blue-subtle"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "alert-danger-color",
-   "label": "Alert danger color",
-   "source": "alert-danger rest color; alert-danger hover color; alert-danger pressed color; +1",
-   "element": "text-on-tint",
-   "paint": {
-    "v": "--chakra-colors-red-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-red-subtle"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "badge-background-color-2",
-   "label": "Badge background",
-   "source": "badge rest background-color; badge hover background-color; badge pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-blue-subtle"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "checkbox-border",
-   "label": "Checkbox border",
-   "source": "checkbox rest border; checkbox hover border; checkbox pressed border; +5",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-2-border",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli 2 border",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli-2 rest border; surface-atelier-plmoverviewstylesmaterialssuppli-2 hover border; surface-atelier-plmoverviewstylesmaterialssuppli-2 pressed border; +23",
    "element": "border-control",
    "paint": {
-    "v": "--chakra-colors-border-emphasized"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "checkbox-stroke",
-   "label": "Checkbox stroke",
-   "source": "checkbox rest stroke; checkbox hover stroke; checkbox pressed stroke; +5",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-white"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-background-color-2",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch hover background-color; switch pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-bg-emphasized"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "checkbox-border-2",
-   "label": "Checkbox border",
-   "source": "checkbox rest border; checkbox hover border; checkbox pressed border; +5",
-   "element": "border-control",
-   "paint": {
-    "v": "--chakra-colors-border-emphasized"
+    "v": "--chakra-colors-border"
    },
    "over": [
     {
@@ -585,105 +315,27 @@
    "metric": "dL"
   },
   {
-   "id": "checkbox-stroke-2",
-   "label": "Checkbox stroke",
-   "source": "checkbox rest stroke; checkbox hover stroke; checkbox pressed stroke; +5",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-white"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "switch-background-color-3",
-   "label": "Switch background",
-   "source": "switch rest background-color; switch hover background-color; switch pressed background-color; +5",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-bg-emphasized"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-secondary-color-2",
-   "label": "Button secondary color (hover, pressed)",
-   "source": "button-secondary hover color; button-secondary pressed color",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-color-palette-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-color-palette-muted"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-outline-color",
-   "label": "Button outline color",
-   "source": "button-outline rest color; button-outline focus color; button-ghost rest color; +1",
-   "element": "text-primary",
-   "paint": {
-    "v": "--chakra-colors-color-palette-fg"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "lc"
-  },
-  {
-   "id": "button-outline-border",
-   "label": "Button outline border (hover, pressed)",
-   "source": "button-outline hover border; button-outline pressed border",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-border",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli border",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest border; surface-atelier-plmoverviewstylesmaterialssuppli hover border; surface-atelier-plmoverviewstylesmaterialssuppli pressed border; +21",
    "element": "border-decorative",
    "paint": {
-    "v": "--chakra-colors-color-palette-border"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-color-palette-subtle"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "input-placeholder",
-   "label": "Input placeholder",
-   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +1",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--chakra-colors-fg-muted"
-    },
-    "k": 0.8
+    "v": "--chakra-colors-border"
    },
    "over": [
     {
      "v": "--chakra-colors-bg"
     }
    ],
-   "metric": "lc"
+   "metric": "dL"
   },
   {
-   "id": "link-color",
-   "label": "Link color",
-   "source": "link rest color; link hover color; link pressed color; +1",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-color-2",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest color; surface-atelier-plmoverviewstylesmaterialssuppli hover color; surface-atelier-plmoverviewstylesmaterialssuppli pressed color; +19",
    "element": "text-secondary",
    "paint": {
-    "v": "--chakra-colors-blue-fg"
+    "v": "--chakra-colors-fg-muted"
    },
    "over": [
     {
@@ -693,24 +345,9 @@
    "metric": "lc"
   },
   {
-   "id": "alert-danger-background-color",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-red-subtle"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "card-background-color",
-   "label": "Card background",
-   "source": "card rest background-color; card hover background-color; card pressed background-color; +1",
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-2-background-color",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli 2 background",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli-2 rest background-color; surface-atelier-plmoverviewstylesmaterialssuppli-2 hover background-color; surface-atelier-plmoverviewstylesmaterialssuppli-2 pressed background-color; +17",
    "element": "surface",
    "paint": {
     "v": "--chakra-colors-bg-panel"
@@ -723,12 +360,12 @@
    "metric": "dL"
   },
   {
-   "id": "button-outline-color-2",
-   "label": "Button outline color",
-   "source": "button-outline rest color; button-outline focus color; button-ghost rest color; +1",
-   "element": "text-primary",
+   "id": "input-spring-2027-collection-placeholder",
+   "label": "Input spring 2027 collection placeholder",
+   "source": "input-spring-2027-collection rest placeholder; input-spring-2027-collection hover placeholder; input-spring-2027-collection pressed placeholder; +14",
+   "element": "state",
    "paint": {
-    "v": "--chakra-colors-color-palette-fg"
+    "v": "--chakra-colors-fg"
    },
    "over": [
     {
@@ -738,9 +375,387 @@
    "metric": "lc"
   },
   {
-   "id": "input-placeholder-2",
-   "label": "Input placeholder",
-   "source": "input rest placeholder; input hover placeholder; input pressed placeholder; +1",
+   "id": "link-overview-outline",
+   "label": "Link overview outline (focus, pressed)",
+   "source": "link-overview focus outline; link-styles focus outline; link-materials focus outline; +11",
+   "element": "focus",
+   "paint": {
+    "v": "--chakra-colors-color-palette-focus-ring"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-duplicate-background-color",
+   "label": "Button duplicate background",
+   "source": "button-duplicate rest background-color; button-duplicate focus background-color; button-preview hover background-color; +11",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-color-palette-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "link-workspaces-outline",
+   "label": "Link workspaces outline (pressed, focus)",
+   "source": "link-workspaces pressed outline; link-workspaces focus outline; tab-general focus outline; +7",
+   "element": "focus",
+   "paint": {
+    "v": "--chakra-colors-color-palette-focus-ring"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "radio-private-border",
+   "label": "Radio private border",
+   "source": "radio-private rest border; radio-private hover border; radio-private pressed border; +6",
+   "element": "border-control",
+   "paint": {
+    "v": "--chakra-colors-border-emphasized"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-cancel-color",
+   "label": "Button cancel color",
+   "source": "button-cancel hover color; button-cancel pressed color; button-duplicate rest color; +5",
+   "element": "text-primary",
+   "paint": {
+    "v": "--chakra-colors-color-palette-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-color-palette-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-samples-approvedall-six-background-color",
+   "label": "Surface samples approvedall six background",
+   "source": "surface-samples-approvedall-six rest background-color; surface-samples-approvedall-six hover background-color; surface-samples-approvedall-six pressed background-color; +5",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-green-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-samples-approvedall-six-color",
+   "label": "Surface samples approvedall six color",
+   "source": "surface-samples-approvedall-six rest color; surface-samples-approvedall-six hover color; surface-samples-approvedall-six pressed color; +5",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-green-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-green-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-background-color",
+   "label": "Surface new supplier addedmill background",
+   "source": "surface-new-supplier-addedmill rest background-color; surface-new-supplier-addedmill hover background-color; surface-new-supplier-addedmill pressed background-color; +5",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-blue-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-color",
+   "label": "Surface new supplier addedmill color",
+   "source": "surface-new-supplier-addedmill rest color; surface-new-supplier-addedmill hover color; surface-new-supplier-addedmill pressed color; +5",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-blue-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-blue-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-background-color",
+   "label": "Surface costing pendingtwo styles background",
+   "source": "surface-costing-pendingtwo-styles rest background-color; surface-costing-pendingtwo-styles hover background-color; surface-costing-pendingtwo-styles pressed background-color; +5",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-orange-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-color",
+   "label": "Surface costing pendingtwo styles color",
+   "source": "surface-costing-pendingtwo-styles rest color; surface-costing-pendingtwo-styles hover color; surface-costing-pendingtwo-styles pressed color; +5",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-orange-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-orange-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-background-color",
+   "label": "Surface sync failedthe erp background",
+   "source": "surface-sync-failedthe-erp rest background-color; surface-sync-failedthe-erp hover background-color; surface-sync-failedthe-erp pressed background-color; +5",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-red-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-color",
+   "label": "Surface sync failedthe erp color",
+   "source": "surface-sync-failedthe-erp rest color; surface-sync-failedthe-erp hover color; surface-sync-failedthe-erp pressed color; +5",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-red-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-red-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-2-color-2",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli 2 color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli-2 rest color; surface-atelier-plmoverviewstylesmaterialssuppli-2 hover color; surface-atelier-plmoverviewstylesmaterialssuppli-2 pressed color; +3",
+   "element": "text-primary",
+   "paint": {
+    "v": "--chakra-colors-color-palette-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-color-palette-muted"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "tab-general-background-color",
+   "label": "Tab general background",
+   "source": "tab-general focus background-color; tab-suppliers focus background-color; tab-notifications focus background-color; +3",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-color-palette-solid"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "input-spring-2027-collection-border",
+   "label": "Input spring 2027 collection border (pressed, focus)",
+   "source": "input-spring-2027-collection pressed border; input-spring-2027-collection focus border; input-team-example-com pressed border; +3",
+   "element": "focus",
+   "paint": {
+    "v": "--chakra-colors-color-palette-focus-ring"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "radio-private-background-color",
+   "label": "Radio private background",
+   "source": "radio-private focus background-color; radio-team focus background-color; radio-whole-organization focus background-color; +2",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-color-palette-solid"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-stroke",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli stroke",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest stroke; surface-atelier-plmoverviewstylesmaterialssuppli hover stroke; surface-atelier-plmoverviewstylesmaterialssuppli pressed stroke; +1",
+   "element": "text-secondary",
+   "paint": {
+    "alpha": {
+     "v": "--chakra-colors-fg-muted"
+    },
+    "k": 0.8
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-color-3",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli color",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli rest color; surface-atelier-plmoverviewstylesmaterialssuppli hover color; surface-atelier-plmoverviewstylesmaterialssuppli pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--chakra-colors-fg-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-atelier-plmoverviewstylesmaterialssuppli-2-background-color-2",
+   "label": "Surface atelier plmoverviewstylesmaterialssuppli 2 background",
+   "source": "surface-atelier-plmoverviewstylesmaterialssuppli-2 rest background-color; surface-atelier-plmoverviewstylesmaterialssuppli-2 hover background-color; surface-atelier-plmoverviewstylesmaterialssuppli-2 pressed background-color; +1",
+   "element": "surface",
+   "paint": {
+    "v": "--chakra-colors-color-palette-muted"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-notifications-background-color",
+   "label": "Button notifications background (hover, pressed)",
+   "source": "button-notifications hover background-color; button-notifications pressed background-color; button-cancel hover background-color; +1",
+   "element": "state",
+   "paint": {
+    "v": "--chakra-colors-color-palette-subtle"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "surface-open-orders24-3-stroke",
+   "label": "Surface open orders24 3 stroke",
+   "source": "surface-open-orders24-3 rest stroke; surface-open-orders24-3 hover stroke; surface-open-orders24-3 pressed stroke; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--chakra-colors-fg-success"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-on-time-rate92-stroke",
+   "label": "Surface on time rate92 stroke",
+   "source": "surface-on-time-rate92 rest stroke; surface-on-time-rate92 hover stroke; surface-on-time-rate92 pressed stroke; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--chakra-colors-fg-error"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-generalwho-gets-updates-color",
+   "label": "Surface generalwho gets updates color",
+   "source": "surface-generalwho-gets-updates rest color; surface-generalwho-gets-updates hover color; surface-generalwho-gets-updates pressed color; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--chakra-colors-fg-error"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-generalwho-gets-updates-stroke",
+   "label": "Surface generalwho gets updates stroke",
+   "source": "surface-generalwho-gets-updates rest stroke; surface-generalwho-gets-updates hover stroke; surface-generalwho-gets-updates pressed stroke; +1",
+   "element": "text-secondary",
+   "paint": {
+    "v": "--chakra-colors-fg-muted"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-team-example-com-placeholder",
+   "label": "Input team example com placeholder",
+   "source": "input-team-example-com rest placeholder; input-team-example-com hover placeholder; input-team-example-com pressed placeholder; +1",
    "element": "state",
    "paint": {
     "alpha": {
@@ -756,141 +771,330 @@
    "metric": "lc"
   },
   {
-   "id": "link-color-2",
-   "label": "Link color",
-   "source": "link rest color; link hover color; link pressed color; +1",
+   "id": "input-sp-27x-border",
+   "label": "Input sp 27x border",
+   "source": "input-sp-27x rest border; input-sp-27x hover border; input-sp-27x pressed border; +1",
+   "element": "border-control",
+   "paint": {
+    "v": "--chakra-colors-border-error"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-color",
+   "label": "Button save changes color",
+   "source": "button-save-changes rest color; button-save-changes focus color; button-save-changes-2 rest color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--chakra-colors-color-palette-contrast"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-color-palette-solid"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-samples-approvedall-six-fill",
+   "label": "Surface samples approvedall six fill",
+   "source": "surface-samples-approvedall-six rest fill; surface-samples-approvedall-six hover fill; surface-samples-approvedall-six pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-green-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-green-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-samples-approvedall-six-stroke",
+   "label": "Surface samples approvedall six stroke",
+   "source": "surface-samples-approvedall-six rest stroke; surface-samples-approvedall-six hover stroke; surface-samples-approvedall-six pressed stroke; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-green-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-green-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-fill",
+   "label": "Surface new supplier addedmill fill",
+   "source": "surface-new-supplier-addedmill rest fill; surface-new-supplier-addedmill hover fill; surface-new-supplier-addedmill pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-blue-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-blue-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-new-supplier-addedmill-stroke",
+   "label": "Surface new supplier addedmill stroke",
+   "source": "surface-new-supplier-addedmill rest stroke; surface-new-supplier-addedmill hover stroke; surface-new-supplier-addedmill pressed stroke; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-blue-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-blue-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-fill",
+   "label": "Surface costing pendingtwo styles fill",
+   "source": "surface-costing-pendingtwo-styles rest fill; surface-costing-pendingtwo-styles hover fill; surface-costing-pendingtwo-styles pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-orange-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-orange-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-costing-pendingtwo-styles-stroke",
+   "label": "Surface costing pendingtwo styles stroke",
+   "source": "surface-costing-pendingtwo-styles rest stroke; surface-costing-pendingtwo-styles hover stroke; surface-costing-pendingtwo-styles pressed stroke; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-orange-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-orange-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-fill",
+   "label": "Surface sync failedthe erp fill",
+   "source": "surface-sync-failedthe-erp rest fill; surface-sync-failedthe-erp hover fill; surface-sync-failedthe-erp pressed fill; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-red-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-red-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "surface-sync-failedthe-erp-stroke",
+   "label": "Surface sync failedthe erp stroke",
+   "source": "surface-sync-failedthe-erp rest stroke; surface-sync-failedthe-erp hover stroke; surface-sync-failedthe-erp pressed stroke; +1",
+   "element": "text-on-tint",
+   "paint": {
+    "v": "--chakra-colors-red-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-red-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-preview-color",
+   "label": "Button preview color",
+   "source": "button-preview rest color; button-preview focus color; button-cancel-2 rest color; +1",
+   "element": "text-primary",
+   "paint": {
+    "v": "--chakra-colors-color-palette-fg"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-publish-background-color",
+   "label": "Button publish background",
+   "source": "button-publish rest background-color; button-publish hover background-color; button-publish pressed background-color; +1",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--chakra-colors-color-palette-solid"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-publish-color",
+   "label": "Button publish color",
+   "source": "button-publish rest color; button-publish hover color; button-publish pressed color; +1",
+   "element": "text-primary",
+   "paint": {
+    "alpha": {
+     "v": "--chakra-colors-color-palette-contrast"
+    },
+    "k": 0.5
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-color-palette-solid"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "link-view-supplier-scorecard-color",
+   "label": "Link view supplier scorecard color",
+   "source": "link-view-supplier-scorecard rest color; link-view-supplier-scorecard hover color; link-view-supplier-scorecard pressed color; +1",
    "element": "text-secondary",
    "paint": {
     "v": "--chakra-colors-blue-fg"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg-panel"
+     "v": "--chakra-colors-bg"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "alert-danger-background-color-2",
-   "label": "Alert danger background",
-   "source": "alert-danger rest background-color; alert-danger hover background-color; alert-danger pressed background-color; +1",
-   "element": "surface",
+   "id": "radio-private-color",
+   "label": "Radio private color (focus)",
+   "source": "radio-private focus color; radio-team focus color; radio-whole-organization focus color",
+   "element": "text-primary",
    "paint": {
-    "v": "--chakra-colors-red-subtle"
+    "v": "--chakra-colors-fg"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg-panel"
+     "v": "--chakra-colors-color-palette-solid"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "button-primary-background-color-3",
-   "label": "Button primary background (hover, pressed)",
-   "source": "button-primary hover background-color; button-primary pressed background-color",
+   "id": "radio-private-placeholder",
+   "label": "Radio private placeholder (focus)",
+   "source": "radio-private focus placeholder; radio-team focus placeholder; radio-whole-organization focus placeholder",
    "element": "state",
    "paint": {
-    "alpha": {
-     "v": "--chakra-colors-color-palette-solid"
-    },
-    "k": 0.9
+    "v": "--chakra-colors-fg"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg"
+     "v": "--chakra-colors-color-palette-solid"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "button-primary-color-2",
-   "label": "Button primary color (hover, pressed)",
-   "source": "button-primary hover color; button-primary pressed color",
-   "element": "text-primary",
+   "id": "radio-private-background-color-2",
+   "label": "Radio private background (focus)",
+   "source": "radio-private focus background-color; radio-team focus background-color; radio-whole-organization focus background-color",
+   "element": "state",
    "paint": {
     "v": "--chakra-colors-color-palette-contrast"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg"
-    },
+     "v": "--chakra-colors-color-palette-solid"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-notifications-stroke",
+   "label": "Button notifications stroke",
+   "source": "button-notifications rest stroke; button-notifications focus stroke",
+   "element": "text-primary",
+   "paint": {
+    "v": "--chakra-colors-color-palette-fg"
+   },
+   "over": [
     {
-     "alpha": {
-      "v": "--chakra-colors-color-palette-solid"
-     },
-     "k": 0.9
+     "v": "--chakra-colors-bg-panel"
     }
    ],
    "metric": "lc"
   },
   {
-   "id": "button-secondary-background-color-3",
-   "label": "Button secondary background (hover, pressed)",
-   "source": "button-secondary hover background-color; button-secondary pressed background-color",
-   "element": "state",
+   "id": "button-notifications-stroke-2",
+   "label": "Button notifications stroke (hover, pressed)",
+   "source": "button-notifications hover stroke; button-notifications pressed stroke",
+   "element": "text-primary",
    "paint": {
-    "v": "--chakra-colors-color-palette-muted"
+    "v": "--chakra-colors-color-palette-fg"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg"
+     "v": "--chakra-colors-color-palette-subtle"
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "input-sp-27x-outline",
+   "label": "Input sp 27x outline (pressed, focus)",
+   "source": "input-sp-27x pressed outline; input-sp-27x focus outline",
+   "element": "border-control",
+   "paint": {
+    "v": "--chakra-colors-border-error"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg-panel"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "button-outline-border-2",
-   "label": "Button outline border",
-   "source": "button-outline rest border; button-outline focus border",
-   "element": "border-decorative",
+   "id": "button-cancel-color-2",
+   "label": "Button cancel color",
+   "source": "button-cancel rest color; button-cancel focus color",
+   "element": "text-primary",
    "paint": {
-    "v": "--chakra-colors-color-palette-border"
+    "v": "--chakra-colors-color-palette-fg"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg"
+     "v": "--chakra-colors-bg-panel"
     }
    ],
-   "metric": "dL"
+   "metric": "lc"
   },
   {
-   "id": "button-danger-background-color",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color; button-danger focus background-color",
-   "element": "surface",
-   "paint": {
-    "v": "--chakra-colors-red-solid"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-background-color-2",
-   "label": "Button danger background (hover, pressed)",
-   "source": "button-danger hover background-color; button-danger pressed background-color",
-   "element": "state",
-   "paint": {
-    "alpha": {
-     "v": "--chakra-colors-red-solid"
-    },
-    "k": 0.9
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-primary-background-color-4",
-   "label": "Button primary background (hover, pressed)",
-   "source": "button-primary hover background-color; button-primary pressed background-color",
+   "id": "button-save-changes-background-color",
+   "label": "Button save changes background (hover, pressed)",
+   "source": "button-save-changes hover background-color; button-save-changes pressed background-color",
    "element": "state",
    "paint": {
     "alpha": {
@@ -906,9 +1110,9 @@
    "metric": "dL"
   },
   {
-   "id": "button-primary-color-3",
-   "label": "Button primary color (hover, pressed)",
-   "source": "button-primary hover color; button-primary pressed color",
+   "id": "button-save-changes-color-2",
+   "label": "Button save changes color (hover, pressed)",
+   "source": "button-save-changes hover color; button-save-changes pressed color",
    "element": "text-primary",
    "paint": {
     "v": "--chakra-colors-color-palette-contrast"
@@ -927,54 +1131,108 @@
    "metric": "lc"
   },
   {
-   "id": "button-secondary-background-color-4",
-   "label": "Button secondary background (hover, pressed)",
-   "source": "button-secondary hover background-color; button-secondary pressed background-color",
+   "id": "button-save-changes-2-background-color",
+   "label": "Button save changes 2 background (hover, pressed)",
+   "source": "button-save-changes-2 hover background-color; button-save-changes-2 pressed background-color",
+   "element": "state",
+   "paint": {
+    "alpha": {
+     "v": "--chakra-colors-color-palette-solid"
+    },
+    "k": 0.9
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-save-changes-2-color",
+   "label": "Button save changes 2 color (hover, pressed)",
+   "source": "button-save-changes-2 hover color; button-save-changes-2 pressed color",
+   "element": "text-primary",
+   "paint": {
+    "v": "--chakra-colors-color-palette-contrast"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-bg"
+    },
+    {
+     "alpha": {
+      "v": "--chakra-colors-color-palette-solid"
+     },
+     "k": 0.9
+    }
+   ],
+   "metric": "lc"
+  },
+  {
+   "id": "button-duplicate-background-color-2",
+   "label": "Button duplicate background (hover, pressed)",
+   "source": "button-duplicate hover background-color; button-duplicate pressed background-color",
    "element": "state",
    "paint": {
     "v": "--chakra-colors-color-palette-muted"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg-panel"
+     "v": "--chakra-colors-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "button-outline-border-3",
-   "label": "Button outline border",
-   "source": "button-outline rest border; button-outline focus border",
+   "id": "button-preview-border",
+   "label": "Button preview border",
+   "source": "button-preview rest border; button-preview focus border",
    "element": "border-decorative",
    "paint": {
     "v": "--chakra-colors-color-palette-border"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg-panel"
+     "v": "--chakra-colors-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "button-danger-background-color-3",
-   "label": "Button danger background",
-   "source": "button-danger rest background-color; button-danger focus background-color",
+   "id": "button-preview-border-2",
+   "label": "Button preview border (hover, pressed)",
+   "source": "button-preview hover border; button-preview pressed border",
+   "element": "border-decorative",
+   "paint": {
+    "v": "--chakra-colors-color-palette-border"
+   },
+   "over": [
+    {
+     "v": "--chakra-colors-color-palette-subtle"
+    }
+   ],
+   "metric": "dL"
+  },
+  {
+   "id": "button-delete-workspace-background-color",
+   "label": "Button delete workspace background",
+   "source": "button-delete-workspace rest background-color; button-delete-workspace focus background-color",
    "element": "surface",
    "paint": {
     "v": "--chakra-colors-red-solid"
    },
    "over": [
     {
-     "v": "--chakra-colors-bg-panel"
+     "v": "--chakra-colors-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "button-danger-background-color-4",
-   "label": "Button danger background (hover, pressed)",
-   "source": "button-danger hover background-color; button-danger pressed background-color",
+   "id": "button-delete-workspace-background-color-2",
+   "label": "Button delete workspace background (hover, pressed)",
+   "source": "button-delete-workspace hover background-color; button-delete-workspace pressed background-color",
    "element": "state",
    "paint": {
     "alpha": {
@@ -984,15 +1242,15 @@
    },
    "over": [
     {
-     "v": "--chakra-colors-bg-panel"
+     "v": "--chakra-colors-bg"
     }
    ],
    "metric": "dL"
   },
   {
-   "id": "button-danger-outline",
-   "label": "Button danger outline (focus)",
-   "source": "button-danger focus outline",
+   "id": "button-delete-workspace-outline",
+   "label": "Button delete workspace outline (focus)",
+   "source": "button-delete-workspace focus outline",
    "element": "focus",
    "paint": {
     "v": "--chakra-colors-red-focus-ring"
@@ -1005,9 +1263,9 @@
    "metric": "dL"
   },
   {
-   "id": "link-outline",
-   "label": "Link outline (focus)",
-   "source": "link focus outline",
+   "id": "link-view-supplier-scorecard-outline",
+   "label": "Link view supplier scorecard outline (focus)",
+   "source": "link-view-supplier-scorecard focus outline",
    "element": "focus",
    "paint": {
     "v": "--chakra-colors-blue-focus-ring"
@@ -1015,36 +1273,6 @@
    "over": [
     {
      "v": "--chakra-colors-bg"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "button-danger-outline-2",
-   "label": "Button danger outline (focus)",
-   "source": "button-danger focus outline",
-   "element": "focus",
-   "paint": {
-    "v": "--chakra-colors-red-focus-ring"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
-    }
-   ],
-   "metric": "dL"
-  },
-  {
-   "id": "link-outline-2",
-   "label": "Link outline (focus)",
-   "source": "link focus outline",
-   "element": "focus",
-   "paint": {
-    "v": "--chakra-colors-blue-focus-ring"
-   },
-   "over": [
-    {
-     "v": "--chakra-colors-bg-panel"
     }
    ],
    "metric": "dL"
@@ -1054,12 +1282,12 @@
   "light": {
    "--chakra-colors-bg": "#ffffff",
    "--chakra-colors-bg-panel": "#ffffff",
-   "--chakra-colors-bg-emphasized": "#e4e4e7",
    "--chakra-colors-blue-subtle": "#dbeafe",
    "--chakra-colors-blue-fg": "#173da6",
    "--chakra-colors-blue-focus-ring": "#3b82f6",
    "--chakra-colors-border": "#e4e4e7",
    "--chakra-colors-border-emphasized": "#d4d4d8",
+   "--chakra-colors-border-error": "#ef4444",
    "--chakra-colors-color-palette-subtle": "#f4f4f5",
    "--chakra-colors-color-palette-border": "#e4e4e7",
    "--chakra-colors-color-palette-solid": "#18181b",
@@ -1068,22 +1296,28 @@
    "--chakra-colors-color-palette-fg": "#27272a",
    "--chakra-colors-color-palette-focus-ring": "#a1a1aa",
    "--chakra-colors-fg": "#09090b",
+   "--chakra-colors-fg-error": "#ef4444",
    "--chakra-colors-fg-muted": "#52525b",
+   "--chakra-colors-fg-subtle": "#a1a1aa",
+   "--chakra-colors-fg-success": "#16a34a",
+   "--chakra-colors-green-subtle": "#dcfce7",
+   "--chakra-colors-green-fg": "#116932",
+   "--chakra-colors-orange-subtle": "#ffedd5",
+   "--chakra-colors-orange-fg": "#92310a",
    "--chakra-colors-red-subtle": "#fee2e2",
    "--chakra-colors-red-fg": "#991919",
    "--chakra-colors-red-focus-ring": "#ef4444",
-   "--chakra-colors-red-solid": "#dc2626",
-   "--chakra-colors-white": "#ffffff"
+   "--chakra-colors-red-solid": "#dc2626"
   },
   "dark": {
    "--chakra-colors-bg": "#09090b",
    "--chakra-colors-bg-panel": "#111111",
-   "--chakra-colors-bg-emphasized": "#27272a",
    "--chakra-colors-blue-subtle": "#14204a",
    "--chakra-colors-blue-fg": "#a3cfff",
    "--chakra-colors-blue-focus-ring": "#3b82f6",
    "--chakra-colors-border": "#27272a",
    "--chakra-colors-border-emphasized": "#3f3f46",
+   "--chakra-colors-border-error": "#f87171",
    "--chakra-colors-color-palette-subtle": "#18181b",
    "--chakra-colors-color-palette-border": "#27272a",
    "--chakra-colors-color-palette-solid": "#ffffff",
@@ -1092,12 +1326,18 @@
    "--chakra-colors-color-palette-fg": "#e4e4e7",
    "--chakra-colors-color-palette-focus-ring": "#a1a1aa",
    "--chakra-colors-fg": "#fafafa",
+   "--chakra-colors-fg-error": "#f87171",
    "--chakra-colors-fg-muted": "#a1a1aa",
+   "--chakra-colors-fg-subtle": "#71717a",
+   "--chakra-colors-fg-success": "#86efac",
+   "--chakra-colors-green-subtle": "#042713",
+   "--chakra-colors-green-fg": "#86efac",
+   "--chakra-colors-orange-subtle": "#3b1106",
+   "--chakra-colors-orange-fg": "#fdba74",
    "--chakra-colors-red-subtle": "#300c0c",
    "--chakra-colors-red-fg": "#fca5a5",
    "--chakra-colors-red-focus-ring": "#ef4444",
-   "--chakra-colors-red-solid": "#dc2626",
-   "--chakra-colors-white": "#ffffff"
+   "--chakra-colors-red-solid": "#dc2626"
   }
  }
 }

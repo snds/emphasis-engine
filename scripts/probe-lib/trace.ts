@@ -5,7 +5,8 @@ import { parseCss, type Expr } from "../../src/engine/profile"
 
 export type Paint = { rgb: RGB; a: number }
 export type Traced = Expr | { literal: string }
-export type Format = "color" | "hsl-channels" | "rgb-channels"
+// rgb-csv: Bootstrap's "13, 110, 253" channel triplets, read through rgba(var(--x-rgb), a).
+export type Format = "color" | "hsl-channels" | "rgb-channels" | "rgb-csv"
 
 /** Computed colors as Chromium reports them. */
 export function parseComputed(css: string): Paint | null {
@@ -27,6 +28,10 @@ export function parseComputed(css: string): Paint | null {
 /** A variable's stock value, which may be bare channels (hsl or rgb) for systems that wrap them later. */
 export function parseStock(value: string): (Paint & { format: Format }) | null {
   const v = value.trim()
+  if (/^\d{1,3}\s*,\s*\d{1,3}\s*,\s*\d{1,3}$/.test(v)) {
+    const [r, g, b] = v.split(/\s*,\s*/).map(Number)
+    return { rgb: [r, g, b], a: 1, format: "rgb-csv" }
+  }
   if (/^\d{1,3}\s+\d{1,3}\s+\d{1,3}$/.test(v)) {
     const [r, g, b] = v.split(/\s+/).map(Number)
     return { rgb: [r, g, b], a: 1, format: "rgb-channels" }
@@ -60,6 +65,7 @@ function rgbToHsl([r, g, b]: RGB) {
 /** Write a color in a variable's own format. */
 export function formatAs(format: Format, rgb: RGB): string {
   if (format === "rgb-channels") return `${rgb[0]} ${rgb[1]} ${rgb[2]}`
+  if (format === "rgb-csv") return `${rgb[0]}, ${rgb[1]}, ${rgb[2]}`
   if (format === "hsl-channels") {
     const [h, s, l] = rgbToHsl(rgb)
     return `${+h.toFixed(1)} ${+s.toFixed(1)}% ${+l.toFixed(1)}%`

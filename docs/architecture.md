@@ -181,23 +181,34 @@ What the native pages showed: whether a theme reaches a component depends on whe
   - build-time literals (Bootstrap);
   - JS-computed colors (Ant Design component tokens, Coinbase CDS hover and disabled).
 
-Profile fixes the pages surfaced:
-- **Bootstrap:** outline and link buttons go solid (`--bs-btn-bg@.btn`). Warning text-emphasis solves to white. The success border vanishes. The info alert themed is `.alert-primary`, not `.alert-info`.
-- **Mantine:** the dark placeholder equals the text color. The outline loses its hue.
-- **Atlassian:** `--ds-border` is transparent in dark. `background.brand.bold` is missing. Danger and info solve to a brand-tinted neutral.
-- **Radix:** `--accent-track` and `--accent-surface` are unsolved.
-- **Ant Design:** component tokens (Tabs, Radio, Menu, Header) are written as literals, and info-bg comes from neutrals.
-- **Primer:** `--header-*` and the disabled primary are missing. The underline is modeled on danger. Muted translucent tints come out near-gray.
-- **Coinbase CDS:** warning, positive, and spectrum colors are missing, and its dark selector is listed as `.dark`.
-- **Across systems:**
-  - Status families must never alias brand. Info turned brand-colored on Primer, Coinbase CDS, Chakra, Mantine, Carbon, Ant Design, and Fluent.
-  - A `render(mode, values)` hook would let JS-themed systems take solved values in their theme object.
+Profile fixes the pages surfaced, and how they were fixed (2026-10-08). Each fix went into the probe or the generator, not the JSON, so a re-probe reproduces it.
+- **Generated profiles are probed from the native pages.** Before, they came from small harnesses. With `?probe`, a page tags its own sample roots (`<kind>-<what it says>@page`) and exposes the same mode switch and scopes the app uses. Every alert, badge, table row, disabled button, and header the page shows is now measured. Hand profiles (shadcn, Radix, Material) are still diffed against their harnesses.
+- **Scoped stock values come from the declaring rule.** Bootstrap's `.btn { --bs-btn-bg: transparent }` was read off the first `.btn`, which is a `.btn-primary`, so it came out blue. The profile then painted outline and link buttons solid. Now the declared value is read, the transparent token drops out, and outline and link buttons stay outlined.
+- **Every trace is confirmed by a second, shuffled sentinel pass.** A build-time literal (Bootstrap's link hover, its focus borders) once landed near a blend of two sentinels by chance. That produced false "mix" recipes and Bootstrap's white warning text. A trace now counts only if both passes name the same variables.
+- **Pairs are grouped by property too.** A color as a checkbox's focus outline and the same color as a button fill over the same surface used to merge. The merged pair kept whichever property came first, so daisyUI and Coinbase CDS lost their brand solid.
+- **Overrides keep the system's source order.** Scoped overrides carry their rule's position, so a base rule lands before its variants. The order is kept in the probe, the CSS export, and the native kit.
+- **Comma channel triplets are read.** Bootstrap's `--bs-primary-rgb: 13, 110, 253` feeds its links, badges, and tables through `rgba(var(--x-rgb), a)`.
+- **Status names win over low chroma, and selectors count as names.** A pale info tint (`#e6f4ff`) is info, not a neutral the brand tint pulls pink. `--bs-alert-bg@.alert-success` is success. Blue means info. Brand comes from brand words (primary, accent, interactive, link, a chromatic secondary). So Mantine's and Chakra's blue, Carbon's blue tag, and Ant Design's info background keep their meaning when the brand changes.
+- **The brand solid is the rest fill.** The generator prefers a fill named for rest (not hover, border, or stroke) with the most labels on it. If its labels are literals (Ant Design), it falls back to the rest fill painted most.
+- **Parents sit under the variable in both modes.** If a variable sits on different surfaces in light and dark (Mantine's placeholder on white, then on dark-6), it hangs off the page. Faint tints in a stack (a card footer's 3% wash) are looked through.
+- **Unpainted in one mode keeps its stock distance.** A variable no recipe paints in a mode (Mantine's dark-6 in light mode) keeps its stock offset from its parent. Before, it collapsed onto the parent.
+- **JS-themed systems get the values in their theme object.** The kit's `useThemeValues()` gives pages the solved root values in legacy syntax. Ant Design takes them as tokens, and its algorithm re-derives the component tokens (the Tabs ink bar, a checked Radio, the selected Menu item). Coinbase CDS takes them in its ThemeProvider theme, so its JS-blended hover, pressed, and disabled colors follow.
+- **Radix's switch track** (`--accent-track`, an alias of step 9) and surface tint (`--accent-surface`) are solved.
+- **Mantine** probes its gray and dark shades. Components paint those directly (dark inputs on dark-6).
+
+What stays as each system designed it:
+- **Same role by design:** Primer's info and brand are one role (`accent`). Coinbase CDS's informational banner is its primary color. Both follow the brand.
+- **No brand color by default:** Chakra's default palette is gray, so the brand pick has nothing to drive until a page sets `colorPalette`.
+- **One brand:** daisyUI's secondary follows the brand, since the engine solves one brand color.
+- **Literals the solved theme can't reach:** Bootstrap's checked checkbox fill and focus rings are build-time literals.
+
+Results after the fixes: every generated profile still reproduces every stock outcome. Given each system's own brand color, about 99% of variables land within 0.03 lightness of stock, with each system above 90%.
 
 ## Known limits
 
 - **Recipes are still written by hand.** The probe verifies them and lists what's missing, but turning a candidate pair into a recipe (choosing its element kind and metric) is a person's call.
-- **The probe sees what the harness renders.** Popovers, sidebars, dialogs, and Material's error-colored components aren't in the harnesses yet, so their recipes show as Not seen.
-- **Animated states.** Material's pressed ripple is driven by script animation; the probe catches hover layers reliably and pressed layers only sometimes.
+- **The probe sees what the page renders.** Generated profiles cover everything on their native page. Popovers, menus, and dialogs aren't on any page yet. Hand profiles still use their harnesses.
+- **Animated states.** Material's pressed ripple is driven by script animation. Since traces must agree across two passes, its pressed layers are now usually rejected rather than half-caught (15 of 40 Material recipes observed, down from 19).
 - **One value per variable.** Where one variable serves conflicting uses, the solver reports the unmet recipe. The fix is a split variable through a component override, flagged as leaving stock.
 - **Monotonic paths assumed.** Each recipe's measure must grow as a variable moves away from its parent. True for every shadcn recipe; a profile with recipes that pull in opposite directions would need a different search.
 - **Light-mode outline buttons** use `--border`, not `--input`, so the field-border switch does not reach them.

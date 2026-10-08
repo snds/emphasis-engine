@@ -39,6 +39,11 @@ function reference(mode: Mode): Record<string, string> {
     })
   ref["--focus-8"] = ref["--accent-8"]
   ref["--accent-indicator"] = ref["--accent-9"]
+  // Switch, slider, and progress tracks read --accent-track, which Radix points at step 9
+  // through the hue's own name (--blue-track: var(--blue-9)). Unsolved, it stayed stock blue.
+  ref["--accent-track"] = ref["--accent-9"]
+  // Surface variants (soft fields, surface buttons): a translucent step-2 tint.
+  ref["--accent-surface"] = mode === "light" ? "#f1f9ffcc" : "#11213d80"
   // Probe-confirmed: cards paint the translucent panel, fields and checkboxes the surface color.
   ref["--color-panel"] = mode === "light" ? "rgba(255, 255, 255, 0.7)" : ref["--gray-a2"]
   ref["--color-surface"] = mode === "light" ? "rgba(255, 255, 255, 0.85)" : "rgba(0, 0, 0, 0.25)"
@@ -103,6 +108,8 @@ const VARS: VarSpec[] = [
   { name: "--accent-contrast", path: { kind: "onSolid", role: "brand" } },
   { name: "--focus-8", path: { kind: "alias", of: "--accent-8" } },
   { name: "--accent-indicator", path: { kind: "alias", of: "--accent-9" } },
+  { name: "--accent-track", path: { kind: "alias", of: "--accent-9" } },
+  { name: "--accent-surface", path: { kind: "alphaOf", of: "--accent-2", over: "--color-background" } },
 ]
 
 // Translucent layers always sit on the page, so stacks start there.

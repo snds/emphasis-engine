@@ -13,7 +13,16 @@ export type Sample = {
 }
 
 /** A color variable as the page defines it: root-level (or on a scope element), or scoped to a component selector. */
-export type FoundVar = { key: string; name: string; selector: string | null; remap?: boolean }
+export type FoundVar = {
+  key: string
+  name: string
+  selector: string | null
+  remap?: boolean
+  /** For scoped variables: the value as the rule declares it, before other rules on the same element override it. */
+  declared?: string
+  /** Source order of the declaring rule, so overrides can be re-applied in the cascade's own order. */
+  order?: number
+}
 
 /** Find every custom property matching the system's prefix, and where it's defined. */
 export function discoverVars(args: { prefix: string; exclude: string | null }): { vars: FoundVar[]; rootSelectors: string[] } {
@@ -41,10 +50,11 @@ export function discoverVars(args: { prefix: string; exclude: string | null }): 
   }
   const out = new Map<string, FoundVar>()
   const rootSelectors = new Set<string>()
-  const add = (name: string, selector: string | null, remap = false) => {
+  let order = 0
+  const add = (name: string, selector: string | null, remap = false, declared?: string) => {
     if (!prefix.test(name) || exclude?.test(name)) return
     const key = selector ? `${name}@${selector}` : name
-    if (!out.has(key)) out.set(key, { key, name, selector, remap })
+    if (!out.has(key)) out.set(key, { key, name, selector, remap, ...(declared !== undefined ? { declared } : {}), order: order++ })
   }
   const scan = (rules: CSSRuleList) => {
     for (const r of Array.from(rules)) {
@@ -58,7 +68,7 @@ export function discoverVars(args: { prefix: string; exclude: string | null }): 
         for (const n of names) {
           if (root) add(n, null)
           // A scoped definition that points at another variable is a deliberate remap (Radix's data-accent-color).
-          else if (usable(part)) add(n, part.trim(), /var\(/.test(r.style.getPropertyValue(n)))
+          else if (usable(part)) add(n, part.trim(), /var\(/.test(r.style.getPropertyValue(n)), r.style.getPropertyValue(n).trim())
         }
       }
     }
@@ -76,13 +86,26 @@ export function discoverVars(args: { prefix: string; exclude: string | null }): 
 }
 
 /** Read each variable's current (stock) value where it applies. */
-export function readVars(vars: { key: string; name: string; selector: string | null }[]): Record<string, string> {
+export function readVars(vars: { key: string; name: string; selector: string | null; declared?: string }[]): Record<string, string> {
   const html = document.documentElement
   const scopes = window.__probe?.scopes() ?? [html]
   const out: Record<string, string> = {}
   for (const v of vars) {
     const el = v.selector ? document.querySelector(v.selector) : (scopes[0] ?? html)
     if (!el) continue
+    // A scoped variable's own value is what its rule declares. Reading it off the first
+    // matching element is wrong when a more specific rule also sets it there: Bootstrap's
+    // .btn says --bs-btn-bg: transparent, but the first .btn is a .btn-primary.
+    if (v.selector && v.declared) {
+      const ref = v.declared.match(/^var\(\s*(--[\w-]+)/)
+      if (!ref) {
+        out[v.key] = v.declared
+        continue
+      }
+      const val = getComputedStyle(el).getPropertyValue(ref[1]).trim() || getComputedStyle(html).getPropertyValue(ref[1]).trim()
+      if (val) out[v.key] = val
+      continue
+    }
     const val = getComputedStyle(el).getPropertyValue(v.name).trim() || getComputedStyle(html).getPropertyValue(v.name).trim()
     if (val) out[v.key] = val
   }

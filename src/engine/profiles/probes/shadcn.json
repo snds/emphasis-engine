@@ -6,7 +6,7 @@
  "modes": {
   "light": {
    "samples": 542,
-   "recipes": 63,
+   "recipes": 66,
    "observed": [
     "card",
     "muted",
@@ -50,94 +50,6 @@
    ],
    "candidates": [
     {
-     "key": "--primary | --background",
-     "prop": "background-color",
-     "sources": [
-      "button-default@page rest background-color",
-      "button-default@page focus background-color",
-      "button-link@page rest color",
-      "button-link@page hover color",
-      "button-link@page pressed color",
-      "button-link@page focus color",
-      "checkbox@page focus background-color",
-      "checkbox-checked@page rest background-color",
-      "checkbox-checked@page hover background-color",
-      "checkbox-checked@page pressed background-color",
-      "switch@page focus background-color",
-      "switch-checked@page rest background-color",
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color",
-      "badge-default@page rest background-color",
-      "badge-default@page hover background-color",
-      "badge-default@page pressed background-color",
-      "badge-default@page focus background-color"
-     ]
-    },
-    {
-     "key": "--primary | --card",
-     "prop": "background-color",
-     "sources": [
-      "button-default@card rest background-color",
-      "button-default@card focus background-color",
-      "button-link@card rest color",
-      "button-link@card hover color",
-      "button-link@card pressed color",
-      "button-link@card focus color",
-      "checkbox@card focus background-color",
-      "checkbox-checked@card rest background-color",
-      "checkbox-checked@card hover background-color",
-      "checkbox-checked@card pressed background-color",
-      "switch@card focus background-color",
-      "switch-checked@card rest background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color",
-      "badge-default@card rest background-color",
-      "badge-default@card hover background-color",
-      "badge-default@card pressed background-color",
-      "badge-default@card focus background-color"
-     ]
-    },
-    {
-     "key": "--muted-foreground | --background",
-     "prop": "placeholder",
-     "sources": [
-      "input@page rest placeholder",
-      "input@page hover placeholder",
-      "input@page pressed placeholder",
-      "input@page focus placeholder",
-      "select@page rest color",
-      "select@page rest stroke",
-      "select@page hover color",
-      "select@page hover stroke",
-      "select@page pressed color",
-      "select@page pressed stroke",
-      "select@page focus color",
-      "select@page focus stroke",
-      "text-muted@page rest color",
-      "text-muted@page hover color",
-      "text-muted@page pressed color",
-      "text-muted@page focus color"
-     ]
-    },
-    {
-     "key": "--ring | --background",
-     "prop": "border",
-     "sources": [
-      "button-outline@page focus border",
-      "button-ghost@page focus border",
-      "button-link@page focus border",
-      "input@page pressed border",
-      "input@page focus border",
-      "checkbox-checked@page focus border",
-      "tabs@page focus border",
-      "tab-inactive@page focus border",
-      "select@page focus border",
-      "button-outline@card focus border",
-      "tabs@card focus border",
-      "tab-inactive@card focus border"
-     ]
-    },
-    {
      "key": "--secondary-foreground | --secondary",
      "prop": "color",
      "sources": [
@@ -156,6 +68,23 @@
      ]
     },
     {
+     "key": "--ring | --background",
+     "prop": "border",
+     "sources": [
+      "button-outline@page focus border",
+      "button-ghost@page focus border",
+      "button-link@page focus border",
+      "input@page pressed border",
+      "input@page focus border",
+      "tabs@page focus border",
+      "tab-inactive@page focus border",
+      "select@page focus border",
+      "button-outline@card focus border",
+      "tabs@card focus border",
+      "tab-inactive@card focus border"
+     ]
+    },
+    {
      "key": "--muted | --background",
      "prop": "background-color",
      "sources": [
@@ -165,7 +94,6 @@
       "button-ghost@page pressed background-color",
       "toggle@page hover background-color",
       "toggle@page pressed background-color",
-      "toggle@page focus background-color",
       "tabs@page rest background-color",
       "tabs@page hover background-color",
       "tabs@page pressed background-color",
@@ -173,47 +101,17 @@
      ]
     },
     {
-     "key": "--background | --muted",
-     "prop": "background-color",
+     "key": "--muted-foreground | --background",
+     "prop": "color",
      "sources": [
-      "tabs@page rest background-color",
-      "tabs@page hover background-color",
-      "tabs@page pressed background-color",
-      "tabs@page focus background-color",
-      "tab-inactive@page focus background-color",
-      "tabs@card rest background-color",
-      "tabs@card hover background-color",
-      "tabs@card pressed background-color",
-      "tabs@card focus background-color",
-      "tab-inactive@card focus background-color"
-     ]
-    },
-    {
-     "key": "--background | --input",
-     "prop": "background-color",
-     "sources": [
-      "switch@page rest background-color",
-      "switch@page hover background-color",
-      "switch@page pressed background-color",
-      "switch-checked@page focus background-color",
-      "switch@card rest background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color",
-      "switch-checked@card focus background-color"
-     ]
-    },
-    {
-     "key": "--background | --primary",
-     "prop": "background-color",
-     "sources": [
-      "switch@page focus background-color",
-      "switch-checked@page rest background-color",
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color",
-      "switch@card focus background-color",
-      "switch-checked@card rest background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
+      "select@page rest color",
+      "select@page hover color",
+      "select@page pressed color",
+      "select@page focus color",
+      "text-muted@page rest color",
+      "text-muted@page hover color",
+      "text-muted@page pressed color",
+      "text-muted@page focus color"
      ]
     },
     {
@@ -231,15 +129,28 @@
      ]
     },
     {
-     "key": "--ring | --primary",
-     "prop": "border",
+     "key": "--background | --muted",
+     "prop": "background-color",
      "sources": [
-      "button-default@page focus border",
-      "checkbox@page focus border",
-      "switch@page focus border",
-      "button-default@card focus border",
-      "checkbox@card focus border",
-      "switch@card focus border"
+      "tabs@page focus background-color",
+      "tab-inactive@page focus background-color",
+      "tabs@card rest background-color",
+      "tabs@card hover background-color",
+      "tabs@card pressed background-color",
+      "tabs@card focus background-color",
+      "tab-inactive@card focus background-color"
+     ]
+    },
+    {
+     "key": "--primary | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-default@page rest background-color",
+      "button-default@page focus background-color",
+      "badge-default@page rest background-color",
+      "badge-default@page hover background-color",
+      "badge-default@page pressed background-color",
+      "badge-default@page focus background-color"
      ]
     },
     {
@@ -279,15 +190,15 @@
      ]
     },
     {
-     "key": "--primary | --primary",
-     "prop": "border",
+     "key": "--primary | --card",
+     "prop": "background-color",
      "sources": [
-      "checkbox-checked@page rest border",
-      "checkbox-checked@page hover border",
-      "checkbox-checked@page pressed border",
-      "checkbox-checked@card rest border",
-      "checkbox-checked@card hover border",
-      "checkbox-checked@card pressed border"
+      "button-default@card rest background-color",
+      "button-default@card focus background-color",
+      "badge-default@card rest background-color",
+      "badge-default@card hover background-color",
+      "badge-default@card pressed background-color",
+      "badge-default@card focus background-color"
      ]
     },
     {
@@ -298,7 +209,6 @@
       "button-link@card focus border",
       "input@card pressed border",
       "input@card focus border",
-      "checkbox-checked@card focus border",
       "select@card focus border"
      ]
     },
@@ -323,13 +233,23 @@
      ]
     },
     {
-     "key": "--primary-foreground | --background",
-     "prop": "stroke",
+     "key": "--primary | --background",
+     "prop": "color",
      "sources": [
-      "checkbox@page focus stroke",
-      "checkbox-checked@page rest stroke",
-      "checkbox-checked@page hover stroke",
-      "checkbox-checked@page pressed stroke"
+      "button-link@page rest color",
+      "button-link@page hover color",
+      "button-link@page pressed color",
+      "button-link@page focus color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background",
+     "prop": "placeholder",
+     "sources": [
+      "input@page rest placeholder",
+      "input@page hover placeholder",
+      "input@page pressed placeholder",
+      "input@page focus placeholder"
      ]
     },
     {
@@ -353,13 +273,23 @@
      ]
     },
     {
-     "key": "--primary-foreground | --card",
+     "key": "--muted-foreground | --background",
      "prop": "stroke",
      "sources": [
-      "checkbox@card focus stroke",
-      "checkbox-checked@card rest stroke",
-      "checkbox-checked@card hover stroke",
-      "checkbox-checked@card pressed stroke"
+      "select@page rest stroke",
+      "select@page hover stroke",
+      "select@page pressed stroke",
+      "select@page focus stroke"
+     ]
+    },
+    {
+     "key": "--primary | --card",
+     "prop": "color",
+     "sources": [
+      "button-link@card rest color",
+      "button-link@card hover color",
+      "button-link@card pressed color",
+      "button-link@card focus color"
      ]
     },
     {
@@ -370,24 +300,6 @@
       "alert-destructive@card hover background-color",
       "alert-destructive@card pressed background-color",
       "alert-destructive@card focus background-color"
-     ]
-    },
-    {
-     "key": "--destructive/0.2 | --background",
-     "prop": "background-color",
-     "sources": [
-      "button-destructive@page hover background-color",
-      "button-destructive@page pressed background-color",
-      "button-destructive@page focus ring"
-     ]
-    },
-    {
-     "key": "--destructive/0.2 | --card",
-     "prop": "background-color",
-     "sources": [
-      "button-destructive@card hover background-color",
-      "button-destructive@card pressed background-color",
-      "button-destructive@card focus ring"
      ]
     },
     {
@@ -404,6 +316,14 @@
      "sources": [
       "button-default@page hover color",
       "button-default@page pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --primary",
+     "prop": "border",
+     "sources": [
+      "button-default@page focus border",
+      "button-default@card focus border"
      ]
     },
     {
@@ -431,19 +351,19 @@
      ]
     },
     {
+     "key": "--destructive/0.2 | --background",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive@page hover background-color",
+      "button-destructive@page pressed background-color"
+     ]
+    },
+    {
      "key": "--destructive | --background > --destructive/0.2",
      "prop": "color",
      "sources": [
       "button-destructive@page hover color",
       "button-destructive@page pressed color"
-     ]
-    },
-    {
-     "key": "--ring | --input",
-     "prop": "border",
-     "sources": [
-      "switch-checked@page focus border",
-      "switch-checked@card focus border"
      ]
     },
     {
@@ -471,6 +391,14 @@
      ]
     },
     {
+     "key": "--destructive/0.2 | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-destructive@card hover background-color",
+      "button-destructive@card pressed background-color"
+     ]
+    },
+    {
      "key": "--destructive | --card > --destructive/0.2",
      "prop": "color",
      "sources": [
@@ -486,10 +414,24 @@
      ]
     },
     {
+     "key": "--destructive/0.2 | --background",
+     "prop": "ring",
+     "sources": [
+      "button-destructive@page focus ring"
+     ]
+    },
+    {
      "key": "--destructive/0.4 | --card > --destructive/0.1",
      "prop": "border",
      "sources": [
       "button-destructive@card focus border"
+     ]
+    },
+    {
+     "key": "--destructive/0.2 | --card",
+     "prop": "ring",
+     "sources": [
+      "button-destructive@card focus ring"
      ]
     }
    ],
@@ -515,7 +457,6 @@
     "muted-50",
     "outline-rest",
     "outline-hover",
-    "switch-off",
     "secondary-hover",
     "primary-hover",
     "destr-tint-dark",
@@ -538,6 +479,11 @@
      "source": "sidebar: bg-sidebar"
     },
     {
+     "id": "switch-off",
+     "key": "--input/0.8 | --card",
+     "source": "switch: dark:data-unchecked:bg-input/80"
+    },
+    {
      "id": "item-highlight",
      "key": "--foreground/0.1 | --popover",
      "source": "select: data-highlighted:bg-foreground/10"
@@ -554,48 +500,6 @@
     }
    ],
    "candidates": [
-    {
-     "key": "--primary | --card",
-     "prop": "background-color",
-     "sources": [
-      "button-default@card rest background-color",
-      "button-default@card focus background-color",
-      "button-link@card rest color",
-      "button-link@card hover color",
-      "button-link@card pressed color",
-      "button-link@card focus color",
-      "checkbox@card rest background-color",
-      "checkbox@card hover background-color",
-      "checkbox@card pressed background-color",
-      "checkbox-checked@card focus background-color",
-      "switch@card rest background-color",
-      "switch@card hover background-color",
-      "switch@card pressed background-color",
-      "switch-checked@card focus background-color",
-      "badge-default@card rest background-color",
-      "badge-default@card hover background-color",
-      "badge-default@card pressed background-color",
-      "badge-default@card focus background-color"
-     ]
-    },
-    {
-     "key": "--input/0.3 | --background",
-     "prop": "background-color",
-     "sources": [
-      "button-outline@page rest background-color",
-      "button-outline@page focus background-color",
-      "input@page rest background-color",
-      "input@page hover background-color",
-      "input@page pressed background-color",
-      "input@page focus background-color",
-      "checkbox@page focus background-color",
-      "checkbox-checked@page rest background-color",
-      "checkbox-checked@page hover background-color",
-      "checkbox-checked@page pressed background-color",
-      "select@page rest background-color",
-      "select@page focus background-color"
-     ]
-    },
     {
      "key": "--secondary-foreground | --secondary",
      "prop": "color",
@@ -615,31 +519,17 @@
      ]
     },
     {
-     "key": "--input | --background > --input/0.3",
-     "prop": "border",
+     "key": "--input/0.3 | --background",
+     "prop": "background-color",
      "sources": [
-      "button-outline@page rest border",
-      "button-outline@page focus border",
-      "input@page rest border",
-      "input@page hover border",
-      "checkbox-checked@page rest border",
-      "checkbox-checked@page hover border",
-      "checkbox-checked@page pressed border",
-      "select@page rest border"
-     ]
-    },
-    {
-     "key": "--muted-foreground | --background > --input/0.3",
-     "prop": "placeholder",
-     "sources": [
-      "input@page rest placeholder",
-      "input@page hover placeholder",
-      "input@page pressed placeholder",
-      "input@page focus placeholder",
-      "select@page rest color",
-      "select@page rest stroke",
-      "select@page focus color",
-      "select@page focus stroke"
+      "button-outline@page rest background-color",
+      "button-outline@page focus background-color",
+      "input@page rest background-color",
+      "input@page hover background-color",
+      "input@page pressed background-color",
+      "input@page focus background-color",
+      "select@page rest background-color",
+      "select@page focus background-color"
      ]
     },
     {
@@ -654,47 +544,6 @@
       "alert-destructive@card hover color",
       "alert-destructive@card pressed color",
       "alert-destructive@card focus color"
-     ]
-    },
-    {
-     "key": "--input | --card > --input/0.3",
-     "prop": "border",
-     "sources": [
-      "button-outline@card rest border",
-      "button-outline@card focus border",
-      "input@card rest border",
-      "input@card hover border",
-      "checkbox-checked@card rest border",
-      "checkbox-checked@card hover border",
-      "checkbox-checked@card pressed border",
-      "select@card rest border"
-     ]
-    },
-    {
-     "key": "--muted-foreground | --card > --input/0.3",
-     "prop": "placeholder",
-     "sources": [
-      "input@card rest placeholder",
-      "input@card hover placeholder",
-      "input@card pressed placeholder",
-      "input@card focus placeholder",
-      "select@card rest color",
-      "select@card rest stroke",
-      "select@card focus color",
-      "select@card focus stroke"
-     ]
-    },
-    {
-     "key": "--muted | --background",
-     "prop": "background-color",
-     "sources": [
-      "toggle@page rest background-color",
-      "toggle@page hover background-color",
-      "toggle@page pressed background-color",
-      "tabs@page rest background-color",
-      "tabs@page hover background-color",
-      "tabs@page pressed background-color",
-      "tabs@page focus background-color"
      ]
     },
     {
@@ -734,18 +583,6 @@
       "tabs@card pressed border",
       "tabs@card focus border",
       "tab-inactive@card focus border"
-     ]
-    },
-    {
-     "key": "--ring | --primary",
-     "prop": "border",
-     "sources": [
-      "button-default@page focus border",
-      "checkbox-checked@page focus border",
-      "switch-checked@page focus border",
-      "button-default@card focus border",
-      "checkbox-checked@card focus border",
-      "switch-checked@card focus border"
      ]
     },
     {
@@ -797,15 +634,27 @@
      ]
     },
     {
-     "key": "--primary | --primary",
-     "prop": "border",
+     "key": "--muted | --background",
+     "prop": "background-color",
      "sources": [
-      "checkbox@page rest border",
-      "checkbox@page hover border",
-      "checkbox@page pressed border",
-      "checkbox@card rest border",
-      "checkbox@card hover border",
-      "checkbox@card pressed border"
+      "toggle@page hover background-color",
+      "toggle@page pressed background-color",
+      "tabs@page rest background-color",
+      "tabs@page hover background-color",
+      "tabs@page pressed background-color",
+      "tabs@page focus background-color"
+     ]
+    },
+    {
+     "key": "--primary | --card",
+     "prop": "background-color",
+     "sources": [
+      "button-default@card rest background-color",
+      "button-default@card focus background-color",
+      "badge-default@card rest background-color",
+      "badge-default@card hover background-color",
+      "badge-default@card pressed background-color",
+      "badge-default@card focus background-color"
      ]
     },
     {
@@ -818,6 +667,28 @@
       "input@card hover color",
       "input@card pressed color",
       "input@card focus color"
+     ]
+    },
+    {
+     "key": "--input | --background > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "button-outline@page rest border",
+      "button-outline@page focus border",
+      "input@page rest border",
+      "input@page hover border",
+      "select@page rest border"
+     ]
+    },
+    {
+     "key": "--input | --card > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "button-outline@card rest border",
+      "button-outline@card focus border",
+      "input@card rest border",
+      "input@card hover border",
+      "select@card rest border"
      ]
     },
     {
@@ -861,43 +732,13 @@
      ]
     },
     {
-     "key": "--ring | --background > --input/0.3",
-     "prop": "border",
+     "key": "--muted-foreground | --background > --input/0.3",
+     "prop": "placeholder",
      "sources": [
-      "input@page pressed border",
-      "input@page focus border",
-      "checkbox@page focus border",
-      "select@page focus border"
-     ]
-    },
-    {
-     "key": "--primary-foreground | --background",
-     "prop": "stroke",
-     "sources": [
-      "checkbox@page rest stroke",
-      "checkbox@page hover stroke",
-      "checkbox@page pressed stroke",
-      "checkbox-checked@page focus stroke"
-     ]
-    },
-    {
-     "key": "--input/0.8 | --background",
-     "prop": "background-color",
-     "sources": [
-      "switch@page focus background-color",
-      "switch-checked@page rest background-color",
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color"
-     ]
-    },
-    {
-     "key": "--foreground | --background > --input/0.8",
-     "prop": "background-color",
-     "sources": [
-      "switch@page focus background-color",
-      "switch-checked@page rest background-color",
-      "switch-checked@page hover background-color",
-      "switch-checked@page pressed background-color"
+      "input@page rest placeholder",
+      "input@page hover placeholder",
+      "input@page pressed placeholder",
+      "input@page focus placeholder"
      ]
     },
     {
@@ -921,16 +762,6 @@
      ]
     },
     {
-     "key": "--muted-foreground | --background > --input/0.5",
-     "prop": "color",
-     "sources": [
-      "select@page hover color",
-      "select@page hover stroke",
-      "select@page pressed color",
-      "select@page pressed stroke"
-     ]
-    },
-    {
      "key": "--muted-foreground | --background",
      "prop": "color",
      "sources": [
@@ -951,43 +782,23 @@
      ]
     },
     {
-     "key": "--ring | --card > --input/0.3",
-     "prop": "border",
-     "sources": [
-      "input@card pressed border",
-      "input@card focus border",
-      "checkbox@card focus border",
-      "select@card focus border"
-     ]
-    },
-    {
-     "key": "--primary-foreground | --card",
-     "prop": "stroke",
-     "sources": [
-      "checkbox@card rest stroke",
-      "checkbox@card hover stroke",
-      "checkbox@card pressed stroke",
-      "checkbox-checked@card focus stroke"
-     ]
-    },
-    {
-     "key": "--foreground | --card > --input/0.8",
-     "prop": "background-color",
-     "sources": [
-      "switch@card focus background-color",
-      "switch-checked@card rest background-color",
-      "switch-checked@card hover background-color",
-      "switch-checked@card pressed background-color"
-     ]
-    },
-    {
-     "key": "--muted-foreground | --card > --input/0.5",
+     "key": "--primary | --card",
      "prop": "color",
      "sources": [
-      "select@card hover color",
-      "select@card hover stroke",
-      "select@card pressed color",
-      "select@card pressed stroke"
+      "button-link@card rest color",
+      "button-link@card hover color",
+      "button-link@card pressed color",
+      "button-link@card focus color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --card > --input/0.3",
+     "prop": "placeholder",
+     "sources": [
+      "input@card rest placeholder",
+      "input@card hover placeholder",
+      "input@card pressed placeholder",
+      "input@card focus placeholder"
      ]
     },
     {
@@ -998,6 +809,24 @@
       "alert-destructive@card hover background-color",
       "alert-destructive@card pressed background-color",
       "alert-destructive@card focus background-color"
+     ]
+    },
+    {
+     "key": "--ring | --background > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "input@page pressed border",
+      "input@page focus border",
+      "select@page focus border"
+     ]
+    },
+    {
+     "key": "--ring | --card > --input/0.3",
+     "prop": "border",
+     "sources": [
+      "input@card pressed border",
+      "input@card focus border",
+      "select@card focus border"
      ]
     },
     {
@@ -1014,6 +843,14 @@
      "sources": [
       "button-default@page hover color",
       "button-default@page pressed color"
+     ]
+    },
+    {
+     "key": "--ring | --primary",
+     "prop": "border",
+     "sources": [
+      "button-default@page focus border",
+      "button-default@card focus border"
      ]
     },
     {
@@ -1073,6 +910,38 @@
      ]
     },
     {
+     "key": "--muted-foreground | --background > --input/0.3",
+     "prop": "color",
+     "sources": [
+      "select@page rest color",
+      "select@page focus color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background > --input/0.3",
+     "prop": "stroke",
+     "sources": [
+      "select@page rest stroke",
+      "select@page focus stroke"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background > --input/0.5",
+     "prop": "color",
+     "sources": [
+      "select@page hover color",
+      "select@page pressed color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --background > --input/0.5",
+     "prop": "stroke",
+     "sources": [
+      "select@page hover stroke",
+      "select@page pressed stroke"
+     ]
+    },
+    {
      "key": "--primary-foreground | --card > --primary/0.8",
      "prop": "color",
      "sources": [
@@ -1121,6 +990,38 @@
      ]
     },
     {
+     "key": "--muted-foreground | --card > --input/0.3",
+     "prop": "color",
+     "sources": [
+      "select@card rest color",
+      "select@card focus color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --card > --input/0.3",
+     "prop": "stroke",
+     "sources": [
+      "select@card rest stroke",
+      "select@card focus stroke"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --card > --input/0.5",
+     "prop": "color",
+     "sources": [
+      "select@card hover color",
+      "select@card pressed color"
+     ]
+    },
+    {
+     "key": "--muted-foreground | --card > --input/0.5",
+     "prop": "stroke",
+     "sources": [
+      "select@card hover stroke",
+      "select@card pressed stroke"
+     ]
+    },
+    {
      "key": "--destructive/0.4 | --background > --destructive/0.2",
      "prop": "border",
      "sources": [
@@ -1135,13 +1036,6 @@
      ]
     },
     {
-     "key": "--ring | --background > --input/0.8",
-     "prop": "border",
-     "sources": [
-      "switch@page focus border"
-     ]
-    },
-    {
      "key": "--destructive/0.4 | --card > --destructive/0.2",
      "prop": "border",
      "sources": [
@@ -1153,13 +1047,6 @@
      "prop": "ring",
      "sources": [
       "button-destructive@card focus ring"
-     ]
-    },
-    {
-     "key": "--ring | --card > --input/0.8",
-     "prop": "border",
-     "sources": [
-      "switch@card focus border"
      ]
     }
    ],

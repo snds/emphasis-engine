@@ -6,7 +6,7 @@
  "modes": {
   "light": {
    "samples": 394,
-   "recipes": 68,
+   "recipes": 62,
    "observed": [
     "card",
     "field",
@@ -104,20 +104,6 @@
      ]
     },
     {
-     "key": "--accent-indicator | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "checkbox@page focus background-color",
-      "checkbox-checked@page rest background-color",
-      "checkbox-checked@page hover background-color",
-      "checkbox-checked@page pressed background-color",
-      "tabs@page rest background-color",
-      "tabs@page hover background-color",
-      "tabs@page pressed background-color",
-      "tabs@page focus background-color"
-     ]
-    },
-    {
      "key": "--accent-a6 | --accent-surface",
      "prop": "inset-ring",
      "sources": [
@@ -143,20 +129,6 @@
       "text-muted@page hover color",
       "text-muted@page pressed color",
       "text-muted@page focus color"
-     ]
-    },
-    {
-     "key": "--accent-indicator | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "checkbox@card focus background-color",
-      "checkbox-checked@card rest background-color",
-      "checkbox-checked@card hover background-color",
-      "checkbox-checked@card pressed background-color",
-      "tabs@card rest background-color",
-      "tabs@card hover background-color",
-      "tabs@card pressed background-color",
-      "tabs@card focus background-color"
      ]
     },
     {
@@ -222,18 +194,6 @@
      ]
     },
     {
-     "key": "--accent-a4 | --gray-a3",
-     "prop": "ring",
-     "sources": [
-      "switch@page focus ring",
-      "switch-checked@page rest ring",
-      "switch-checked@page hover ring",
-      "switch@card focus ring",
-      "switch-checked@card rest ring",
-      "switch-checked@card hover ring"
-     ]
-    },
-    {
      "key": "--accent-9 | --color-panel",
      "prop": "background-color",
      "sources": [
@@ -288,23 +248,13 @@
      ]
     },
     {
-     "key": "--color-surface | --color-background",
+     "key": "--accent-indicator | --color-background",
      "prop": "background-color",
      "sources": [
-      "checkbox@page rest background-color",
-      "checkbox@page hover background-color",
-      "checkbox@page pressed background-color",
-      "checkbox-checked@page focus background-color"
-     ]
-    },
-    {
-     "key": "--gray-a7 | --color-background",
-     "prop": "inset-ring",
-     "sources": [
-      "checkbox@page rest inset-ring",
-      "checkbox@page hover inset-ring",
-      "checkbox@page pressed inset-ring",
-      "checkbox-checked@page focus inset-ring"
+      "tabs@page rest background-color",
+      "tabs@page hover background-color",
+      "tabs@page pressed background-color",
+      "tabs@page focus background-color"
      ]
     },
     {
@@ -348,13 +298,13 @@
      ]
     },
     {
-     "key": "--gray-a7 | --color-panel",
-     "prop": "inset-ring",
+     "key": "--accent-indicator | --color-panel",
+     "prop": "background-color",
      "sources": [
-      "checkbox@card rest inset-ring",
-      "checkbox@card hover inset-ring",
-      "checkbox@card pressed inset-ring",
-      "checkbox-checked@card focus inset-ring"
+      "tabs@card rest background-color",
+      "tabs@card hover background-color",
+      "tabs@card pressed background-color",
+      "tabs@card focus background-color"
      ]
     },
     {
@@ -413,14 +363,6 @@
      "sources": [
       "switch@page pressed background-color",
       "switch-checked@page pressed background-color"
-     ]
-    },
-    {
-     "key": "--accent-a4 | --gray-a4",
-     "prop": "ring",
-     "sources": [
-      "switch-checked@page pressed ring",
-      "switch-checked@card pressed ring"
      ]
     },
     {
@@ -514,7 +456,7 @@
   },
   "dark": {
    "samples": 394,
-   "recipes": 68,
+   "recipes": 62,
    "observed": [
     "card",
     "field",
@@ -641,20 +583,6 @@
      ]
     },
     {
-     "key": "--accent-indicator | --color-panel",
-     "prop": "background-color",
-     "sources": [
-      "checkbox@card rest background-color",
-      "checkbox@card hover background-color",
-      "checkbox@card pressed background-color",
-      "checkbox-checked@card focus background-color",
-      "tabs@card rest background-color",
-      "tabs@card hover background-color",
-      "tabs@card pressed background-color",
-      "tabs@card focus background-color"
-     ]
-    },
-    {
      "key": "--accent-surface | --color-background",
      "prop": "background-color",
      "sources": [
@@ -702,18 +630,6 @@
       "switch-checked@page rest background-color",
       "switch-checked@page hover background-color",
       "switch-checked@page focus background-color"
-     ]
-    },
-    {
-     "key": "--accent-a4 | --gray-a3",
-     "prop": "ring",
-     "sources": [
-      "switch@page rest ring",
-      "switch@page hover ring",
-      "switch-checked@page focus ring",
-      "switch@card rest ring",
-      "switch@card hover ring",
-      "switch-checked@card focus ring"
      ]
     },
     {
@@ -771,26 +687,6 @@
      ]
     },
     {
-     "key": "--color-surface | --color-background",
-     "prop": "background-color",
-     "sources": [
-      "checkbox@page focus background-color",
-      "checkbox-checked@page rest background-color",
-      "checkbox-checked@page hover background-color",
-      "checkbox-checked@page pressed background-color"
-     ]
-    },
-    {
-     "key": "--gray-a7 | --color-background",
-     "prop": "inset-ring",
-     "sources": [
-      "checkbox@page focus inset-ring",
-      "checkbox-checked@page rest inset-ring",
-      "checkbox-checked@page hover inset-ring",
-      "checkbox-checked@page pressed inset-ring"
-     ]
-    },
-    {
      "key": "--gray-12 | --accent-indicator",
      "prop": "color",
      "sources": [
@@ -831,13 +727,13 @@
      ]
     },
     {
-     "key": "--gray-a7 | --color-panel",
-     "prop": "inset-ring",
+     "key": "--accent-indicator | --color-panel",
+     "prop": "background-color",
      "sources": [
-      "checkbox@card focus inset-ring",
-      "checkbox-checked@card rest inset-ring",
-      "checkbox-checked@card hover inset-ring",
-      "checkbox-checked@card pressed inset-ring"
+      "tabs@card rest background-color",
+      "tabs@card hover background-color",
+      "tabs@card pressed background-color",
+      "tabs@card focus background-color"
      ]
     },
     {
@@ -896,14 +792,6 @@
      "sources": [
       "switch@page pressed background-color",
       "switch-checked@page pressed background-color"
-     ]
-    },
-    {
-     "key": "--accent-a4 | --gray-a4",
-     "prop": "ring",
-     "sources": [
-      "switch@page pressed ring",
-      "switch@card pressed ring"
      ]
     },
     {

@@ -35,7 +35,7 @@ import {
   theme,
 } from "antd"
 import type { TableColumnsType } from "antd"
-import { mountNative } from "./kit"
+import { mountNative, useThemeValues, type Mode } from "./kit"
 import { ACTIONS, ALERTS, APP, FORM, ORDERS, PAGE, STATS, TABS, TEXT, type Status } from "./scene"
 
 const { Header, Content, Footer } = Layout
@@ -205,12 +205,29 @@ function Page() {
   )
 }
 
-mountNative(
-  "antd",
-  (m) => (
-    <ConfigProvider theme={{ algorithm: m === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm, cssVar: { key: "probe" }, hashed: false }}>
+/**
+ * Ant Design resolves component tokens (the Tabs ink bar, a checked Radio, the selected Menu
+ * item) in JS from its global tokens and writes them as literals. So the solved values go in
+ * as tokens too (--ant-color-primary → colorPrimary), and the algorithm derives the rest.
+ */
+function Themed({ mode }: { mode: Mode }) {
+  const values = useThemeValues()
+  const token = values
+    ? Object.fromEntries(
+        Object.entries(values)
+          .filter(([k]) => k.startsWith("--ant-color-"))
+          .map(([k, v]) => [k.slice(6).replace(/-([a-z0-9])/g, (_, c: string) => c.toUpperCase()), v]),
+      )
+    : undefined
+  return (
+    <ConfigProvider theme={{ algorithm: mode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm, cssVar: { key: "probe" }, hashed: false, token }}>
       <Page />
     </ConfigProvider>
-  ),
+  )
+}
+
+mountNative(
+  "antd",
+  (m) => <Themed mode={m} />,
   { scopes: () => Array.from(document.querySelectorAll(".probe")) },
 )
