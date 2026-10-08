@@ -44,11 +44,26 @@ function precache(): Plugin {
   }
 }
 
+/**
+ * Library code (CSS.escape polyfills in Chakra and Mantine) carries a literal
+ * U+FFFD inside string literals. Some hosts reject files containing it, so it
+ * ships as the equivalent \uFFFD escape. Same string at runtime.
+ */
+function escapeReplacementChar(): Plugin {
+  return {
+    name: "escape-replacement-char",
+    apply: "build",
+    generateBundle(_, bundle) {
+      for (const chunk of Object.values(bundle)) if (chunk.type === "chunk") chunk.code = chunk.code.replaceAll("\uFFFD", "\\uFFFD")
+    },
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   // Relative asset paths so the build runs from any host or subfolder.
   base: "./",
-  plugins: [react(), tailwindcss(), precache()],
+  plugins: [react(), tailwindcss(), escapeReplacementChar(), precache()],
   resolve: {
     alias: {
       "@": resolve(root, "./src"),
