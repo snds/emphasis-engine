@@ -20,6 +20,19 @@ import { InfoTip } from "@/app/info-tip"
 import { extensionVars, shadcnVars } from "@/engine/export"
 import { advancedOverrides, type Mode } from "@/engine/settings"
 
+/** True at the md breakpoint and up, where controls get their own column. */
+function useWide() {
+  const query = "(min-width: 768px)"
+  const [wide, setWide] = useState(() => window.matchMedia(query).matches)
+  useEffect(() => {
+    const mq = window.matchMedia(query)
+    const on = () => setWide(mq.matches)
+    mq.addEventListener("change", on)
+    return () => mq.removeEventListener("change", on)
+  }, [])
+  return wide
+}
+
 function useResolvedMode(): [Mode, (m: Mode) => void] {
   const { theme, setTheme } = useTheme()
   const [system, setSystem] = useState<Mode>(() =>
@@ -39,7 +52,12 @@ export function App() {
   const { sys, settings, update } = engine
   const [mode, setMode] = useResolvedMode()
   const [themeApp, setThemeApp] = useState(false)
+  const wide = useWide()
+  // On phones, controls are a tab of their own; on wider screens they're a column.
   const [tab, setTab] = useState("preview")
+  useEffect(() => {
+    if (wide && tab === "controls") setTab("preview")
+  }, [wide, tab])
 
   // The preview reads the solved system through CSS variables scoped to it.
   const previewVars = useMemo(
@@ -61,9 +79,9 @@ export function App() {
     <TooltipProvider>
       <div className="flex min-h-svh flex-col bg-background text-foreground md:h-svh">
         <header className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-4 py-2.5">
-          <div className="mr-auto">
+          <div className="mr-auto min-w-0">
             <h1 className="text-base font-semibold">Emphasis Engine</h1>
-            <p className="text-xs text-muted-foreground">Perceptual color systems from three picks</p>
+            <p className="hidden text-xs text-muted-foreground sm:block">Perceptual color systems from three picks</p>
           </div>
 <div className="flex items-center gap-0.5">
           <ToggleGroup
@@ -75,10 +93,10 @@ export function App() {
             onValueChange={(v) => v[0] && setMode(v[0] as Mode)}
           >
             <ToggleGroupItem value="light" aria-label="Light mode">
-              <IconSun /> Light
+              <IconSun /> <span className="hidden sm:inline">Light</span>
             </ToggleGroupItem>
             <ToggleGroupItem value="dark" aria-label="Dark mode">
-              <IconMoon /> Dark
+              <IconMoon /> <span className="hidden sm:inline">Dark</span>
             </ToggleGroupItem>
           </ToggleGroup>
             <InfoTip label="Mode">Light and dark are solved as separate systems, not inverted.</InfoTip>
@@ -95,25 +113,35 @@ export function App() {
           </div>
           <div className="flex items-center gap-2">
             <Switch id="theme-app" checked={themeApp} onCheckedChange={setThemeApp} />
-            <Label htmlFor="theme-app">Theme this app</Label>
+            <Label htmlFor="theme-app">
+              Theme <span className="hidden sm:inline">this</span> app
+            </Label>
             <InfoTip label="Theme this app">Applies the generated theme to this tool's own interface.</InfoTip>
           </div>
         </header>
 
         <div className="flex flex-1 flex-col md:min-h-0 md:flex-row">
-          <aside className="border-b md:w-80 md:shrink-0 md:overflow-y-auto md:border-r md:border-b-0" aria-label="Controls">
-            <Controls engine={engine} />
-          </aside>
+          {wide && (
+            <aside className="w-80 shrink-0 overflow-y-auto border-r" aria-label="Controls">
+              <Controls engine={engine} />
+            </aside>
+          )}
           <main className="min-w-0 flex-1 md:overflow-y-auto">
             <Tabs value={tab} onValueChange={(v) => setTab(v as string)} className="gap-0">
-              <div className="sticky top-0 z-20 border-b bg-background/80 px-4 py-2 backdrop-blur">
+              <div className="sticky top-0 z-20 overflow-x-auto border-b bg-background/80 px-4 py-2 backdrop-blur">
                 <TabsList>
+                  {!wide && <TabsTrigger value="controls">Controls</TabsTrigger>}
                   <TabsTrigger value="preview">Preview</TabsTrigger>
                   <TabsTrigger value="grid">Grid</TabsTrigger>
                   <TabsTrigger value="report">Report</TabsTrigger>
                   <TabsTrigger value="export">Export</TabsTrigger>
                 </TabsList>
               </div>
+              {!wide && (
+                <TabsContent value="controls">
+                  <Controls engine={engine} />
+                </TabsContent>
+              )}
               <TabsContent value="preview" id="preview">
                 <div style={previewVars} className="min-h-full bg-background p-4 text-foreground">
                   {sys.settings.output === "shadcn" ? (

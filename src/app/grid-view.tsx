@@ -36,7 +36,7 @@ export function GridView({ sys, mode }: { sys: System; mode: Mode }) {
             Each cell is solved against the page background in {mode} mode, {layer === "alpha" ? "as live alpha ink" : "as flat color"}.
           </p>
         </div>
-        <ToggleGroup aria-label="Role" variant="outline" size="sm" spacing={0} value={[role]} onValueChange={(v) => v[0] && setRole(v[0] as RoleId)}>
+        <ToggleGroup aria-label="Role" variant="outline" size="sm" spacing={1} className="flex-wrap" value={[role]} onValueChange={(v) => v[0] && setRole(v[0] as RoleId)}>
           {ROLES.map((r) => (
             <ToggleGroupItem key={r} value={r} className="capitalize">
               {r}

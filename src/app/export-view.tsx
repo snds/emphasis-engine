@@ -72,8 +72,8 @@ export function ExportView({ sys }: { sys: System }) {
           <h2 className="text-base font-semibold">Export</h2>
           <p className="text-sm text-muted-foreground">{f.note} Tokens Studio and Figma variables are next.</p>
         </div>
-        <div className="flex items-center gap-2">
-          <ToggleGroup aria-label="Format" variant="outline" size="sm" spacing={0} value={[fmt]} onValueChange={(v) => v[0] && setFmt(v[0] as typeof fmt)}>
+        <div className="flex flex-wrap items-center gap-2">
+          <ToggleGroup aria-label="Format" variant="outline" size="sm" spacing={1} className="flex-wrap" value={[fmt]} onValueChange={(v) => v[0] && setFmt(v[0] as typeof fmt)}>
             {FORMATS.map((x) => (
               <ToggleGroupItem key={x.id} value={x.id}>
                 {x.label}

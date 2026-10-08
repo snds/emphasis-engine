@@ -44,7 +44,8 @@ export function SurfaceMatrix({ sys, mode }: { sys: System; mode: Mode }) {
           aria-label="Role"
           variant="outline"
           size="sm"
-          spacing={0}
+          spacing={1}
+          className="flex-wrap"
           value={[role]}
           onValueChange={(v) => v[0] && setRole(v[0] as RoleId)}
         >
