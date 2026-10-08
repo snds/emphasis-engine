@@ -205,7 +205,7 @@ export function solveOnFill(fill: RGB, hue: number): OnFill {
 }
 
 function buildCategorical(s: Settings, roles: Record<RoleId, Role>, mode: Mode, bg: RGB, log: LogEntry[]): Categorical {
-  const chart = parseColor(s.chart, "#06b6d4")
+  const chart = s.chartUseTheme ? roles.brand.named : parseColor(s.chart, "#06b6d4")
   const theme = roles.brand.named
   const n = Math.round(Math.min(12, Math.max(5, s.categoricalCount)))
   // Chart chroma ceiling follows the brand's saturation (C ÷ L), not its raw

@@ -91,6 +91,8 @@ export type Settings = {
   /** Solid fills (level 4) stay true to the named color down to an Lc 30 floor. */
   trueSolids: boolean
   categoricalCount: number
+  /** Seed the chart palette from the theme color instead of the chart pick. */
+  chartUseTheme: boolean
   familyPull: number
   offsets: { text: number; fill: number; stroke: number }
   surfaceScale: number
@@ -117,6 +119,7 @@ export const DEFAULT_SETTINGS: Settings = {
   neutralPrimary: "light",
   trueSolids: true,
   categoricalCount: 8,
+  chartUseTheme: false,
   familyPull: 0.5,
   offsets: { text: 0, fill: 0, stroke: 0 },
   surfaceScale: 1,

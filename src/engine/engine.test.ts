@@ -152,6 +152,13 @@ describe("generate", () => {
     }
   })
 
+  it("seeds the chart palette from the theme when asked", () => {
+    const sy = generate(s({ chartUseTheme: true, theme: "#7c3aed" }))
+    const first = rgbToOklch(sy.modes.light.categorical.colors[0].rgb)
+    expect(Math.abs(hueDelta(first.h, sy.roles.brand.named.h))).toBeLessThan(6)
+    expect(cssExport(sy)).not.toBe(cssExport(generate(s({ theme: "#7c3aed" }))))
+  })
+
   it("paints the light neutral primary as a light fill with dark text in both modes", () => {
     for (const mode of ["light", "dark"] as const) {
       const b = buildButton(sys, mode, "neutral", "primary")

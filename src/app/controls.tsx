@@ -63,11 +63,13 @@ function ColorField({
   value,
   onChange,
   presets,
+  disabled,
 }: {
   id: string
   value: string
   onChange: (v: string) => void
   presets?: string[]
+  disabled?: boolean
 }) {
   const valid = parseHex(value)
   return (
@@ -78,9 +80,10 @@ function ColorField({
           aria-label="Pick color"
           value={valid ? hex(valid) : "#000000"}
           onChange={(e) => onChange(e.target.value)}
-          className="size-8 shrink-0 cursor-pointer rounded-md border bg-transparent p-0.5"
+          disabled={disabled}
+          className="size-8 shrink-0 cursor-pointer rounded-md border bg-transparent p-0.5 disabled:cursor-not-allowed disabled:opacity-50"
         />
-        <Input id={id} value={value} onChange={(e) => onChange(e.target.value)} className="font-mono text-xs" aria-invalid={!valid} />
+        <Input id={id} value={value} onChange={(e) => onChange(e.target.value)} className="font-mono text-xs" aria-invalid={!valid} disabled={disabled} />
       </div>
       {presets && (
         <div className="flex gap-1.5">
@@ -235,8 +238,16 @@ export function Controls({ engine }: { engine: Engine }) {
           />
         )}
         <Field label="Chart" tip="Seed color for the chart palette." htmlFor="chart-color">
-          <ColorField id="chart-color" value={s.chart} onChange={(chart) => update({ chart })} />
+          <ColorField
+            id="chart-color"
+            value={s.chartUseTheme ? s.theme : s.chart}
+            onChange={(chart) => update({ chart })}
+            disabled={s.chartUseTheme}
+          />
         </Field>
+        <Row label="Use theme color" tip="Seeds the chart palette from the theme color instead of a separate pick." htmlFor="chart-use-theme">
+          <Switch id="chart-use-theme" checked={s.chartUseTheme} onCheckedChange={(chartUseTheme) => update({ chartUseTheme })} />
+        </Row>
         <Range
           label="Chart series"
           tip="How many distinct chart colors to generate."
