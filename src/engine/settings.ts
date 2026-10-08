@@ -111,7 +111,9 @@ export type Settings = {
   neutral: NeutralId
   themeTint: boolean
   tintStrength: number
-  layer: "flat" | "alpha"
+  layer: "flat" | "alpha" | "ink"
+  /** Surfaces every ink level must pass on. */
+  inkGuards: ("page" | "card" | "muted" | "hover" | "selected")[]
   tighter: boolean
   advanced: boolean
   leashDeg: number
@@ -144,7 +146,8 @@ export const DEFAULT_SETTINGS: Settings = {
   neutral: "mauve",
   themeTint: true,
   tintStrength: 0.35,
-  layer: "flat",
+  layer: "ink",
+  inkGuards: ["page", "card", "muted", "hover", "selected"],
   tighter: false,
   advanced: false,
   leashDeg: 5,

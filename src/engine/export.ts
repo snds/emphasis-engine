@@ -10,7 +10,10 @@ export function shadcnVars(sys: System, mode: Mode): Record<string, string> {
   const s = sys.settings
   const ms = sys.modes[mode]
   const t = (id: string) => active(ms.tokens[id], s.layer).css
-  const flat = (id: string) => hex(ms.tokens[id].flat.rgb)
+  // Text reads as ink in the ink model, so foregrounds compound too.
+  const flat = (id: string) => (s.layer === "ink" && id.includes(".text.") ? t(id) : hex(ms.tokens[id].flat.rgb))
+  const ink = s.layer === "ink"
+  const hoverOverlay = rgbaCss(ms.overlay.ink, ms.overlay.hover.alpha)
   const bg = hex(ms.bg)
   const card = mode === "light" ? bg : flat("neutral.surface.2")
   const secondaryTk =
@@ -33,7 +36,7 @@ export function shadcnVars(sys: System, mode: Mode): Record<string, string> {
     "--secondary-foreground": flat("neutral.text.5"),
     "--muted": t("neutral.surface.2"),
     "--muted-foreground": flat("neutral.text.3"),
-    "--accent": t("neutral.surface.2"),
+    "--accent": ink ? hoverOverlay : t("neutral.surface.2"),
     "--accent-foreground": flat("neutral.text.5"),
     "--destructive": t("danger.fill.4"),
     "--border": t("neutral.stroke.1"),
@@ -43,7 +46,7 @@ export function shadcnVars(sys: System, mode: Mode): Record<string, string> {
     "--sidebar-foreground": flat("neutral.text.5"),
     "--sidebar-primary": t("brand.fill.4"),
     "--sidebar-primary-foreground": onBrand,
-    "--sidebar-accent": t("neutral.surface.2"),
+    "--sidebar-accent": ink ? hoverOverlay : t("neutral.surface.2"),
     "--sidebar-accent-foreground": flat("neutral.text.5"),
     "--sidebar-border": t("neutral.stroke.1"),
     "--sidebar-ring": flat("brand.stroke.4"),
@@ -62,6 +65,9 @@ export function extensionVars(sys: System, mode: Mode): Record<string, string> {
       for (const lvl of LEVELS) vars[`--${role}-${ctx}-${lvl}`] = active(ms.tokens[tokenId(role, ctx, lvl)], s.layer).css
   for (const [id, f] of Object.entries(ms.onFill)) vars[`--on-${id.replace(/\./g, "-")}`] = f.css
   ms.categorical.colors.forEach((c, i) => (vars[`--series-${i + 1}`] = c.css))
+  // State overlays: one alpha that steps every guard surface by the state step.
+  vars["--overlay-hover"] = rgbaCss(ms.overlay.ink, ms.overlay.hover.alpha)
+  vars["--overlay-pressed"] = rgbaCss(ms.overlay.ink, ms.overlay.pressedAlpha)
   for (const [k, v] of Object.entries(ms.trend)) vars[`--trend-${k}`] = v.css
   for (const role of BUTTON_ROLES)
     for (const variant of VARIANTS) {

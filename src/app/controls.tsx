@@ -681,22 +681,46 @@ export function Controls({ engine }: { engine: Engine }) {
       <Separator />
       <Section
         title="Rendering"
-        hint="Flat is the base. Alpha keeps every ink translucent."
+        hint="Ink keeps emphasis translucent and checked on every surface."
       >
         <Field
           label="Layer"
-          tip="Flat paints solid colors. Alpha uses translucent ink that shows what's behind it."
+          tip="Ink: text, strokes, soft fills, and states are translucent ink that passes on every guard surface. Flat and Alpha solve against the page only."
         >
           <Choice
             label="Layer"
             value={s.layer}
             onChange={(layer) => update({ layer })}
             options={[
+              { value: "ink", label: "Ink" },
               { value: "flat", label: "Flat" },
               { value: "alpha", label: "Alpha" },
             ]}
           />
         </Field>
+        {s.layer === "ink" && (
+          <Field
+            label="Guard surfaces"
+            tip="Every ink level must pass on each surface picked here. More surfaces, slightly stronger inks."
+          >
+            <ToggleGroup
+              aria-label="Guard surfaces"
+              variant="outline"
+              size="sm"
+              spacing={1}
+              multiple
+              value={s.inkGuards}
+              onValueChange={(v) => v.length && update({ inkGuards: v as Settings["inkGuards"] })}
+              className="w-full flex-wrap"
+            >
+              {(["page", "card", "muted", "hover", "selected"] as const).map((g) => (
+                <ToggleGroupItem key={g} value={g} className="text-xs capitalize">
+                  {g}
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
+          </Field>
+        )}
         {!s.advanced && (
           <Row
             label="Tighter hue leash"

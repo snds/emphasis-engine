@@ -3,9 +3,10 @@ import { Badge } from "@/components/ui/badge"
 import { BUTTON_ROLES, STATES, VARIANTS, buildButton } from "@/engine/components"
 import { wcagRatio } from "@/engine/contrast"
 import { advancedOverrides, type Mode } from "@/engine/settings"
+import { SurfaceMatrix } from "./surface-matrix"
 import { active, type System } from "@/engine/system"
 
-export function ReportView({ sys }: { sys: System }) {
+export function ReportView({ sys, mode }: { sys: System; mode: Mode }) {
   const layer = sys.settings.layer
   const below = (["light", "dark"] as Mode[]).flatMap((mode) =>
     Object.values(sys.modes[mode].tokens)
@@ -23,7 +24,7 @@ export function ReportView({ sys }: { sys: System }) {
   )
 
   return (
-    <div className="flex max-w-4xl flex-col gap-8">
+    <div className="flex max-w-6xl flex-col gap-8">
       <section className="flex flex-col gap-2">
         <h2 className="text-base font-semibold">Contrast report</h2>
         <p className="text-sm text-muted-foreground">
@@ -58,6 +59,8 @@ export function ReportView({ sys }: { sys: System }) {
           </TableBody>
         </Table>
       )}
+
+      {sys.settings.layer === "ink" && <SurfaceMatrix sys={sys} mode={mode} />}
 
       <section className="flex flex-col gap-3">
         <h3 className="text-sm font-semibold">Button states</h3>

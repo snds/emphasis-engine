@@ -121,7 +121,7 @@ export function App() {
                 <GridView sys={sys} mode={mode} />
               </TabsContent>
               <TabsContent value="report" className="p-4">
-                <ReportView sys={sys} />
+                <ReportView sys={sys} mode={mode} />
               </TabsContent>
               <TabsContent value="export" className="p-4">
                 <ExportView sys={sys} />

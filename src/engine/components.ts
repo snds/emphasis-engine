@@ -1,6 +1,7 @@
 // Semantic layer: role × variant × slot × state. Recipes bind slots to
 // semantic tokens; state strategies move them. Neither knows about color.
 import { composite, hex, rgbToOklch, rgbaCss, toRgb, type RGB } from "./color"
+import { inkFor, solveOverlayAlpha } from "./ink"
 import { deltaL, lc } from "./contrast"
 import { ON_FILL_MIN, ON_FILL_PREFERRED, type Mode, type RoleId, type Settings } from "./settings"
 import { solveOverlay, chromaAt } from "./solve"
@@ -60,6 +61,29 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     ...extra,
   })
 
+  // Ink model: states are overlays, text is ink. Labels are measured on the
+  // ink as it composites over each state, so compounding is checked.
+  const inkMode = s.layer === "ink"
+  const textInk = (() => {
+    const tk = ms.tokens[tokenId(role, "text", role === "neutral" ? 5 : 4)]
+    return inkMode && tk.ink ? tk.ink : null
+  })()
+  const paintText = (bgCss: string, visible: RGB, fallback: RGB, extra: Partial<Paint> = {}): Paint => {
+    if (!textInk) return paint(bgCss, visible, fallback, extra)
+    const seen = composite(textInk.ink, textInk.alpha, visible)
+    return { bg: bgCss, fg: textInk.css, visible, ...label(seen, visible), ...extra }
+  }
+  // Guard overlay: one alpha that steps every guard surface by the state step.
+  const guardOverlay = (() => {
+    if (!inkMode) return null
+    if (sourceRole === "neutral") return { ink: ms.overlay.ink, hover: ms.overlay.hover.alpha, pressed: ms.overlay.pressedAlpha }
+    const ink = inkFor(mode, sys.roles[sourceRole].named.h, sys.roles[sourceRole].named.c, false)
+    const base = ms.guards.filter((g) => g.id === "page" || g.id === "card" || g.id === "muted")
+    const hover = solveOverlayAlpha(ink, base, delta).alpha
+    const pressed = s.pressedMode === "stacked" ? hover : solveOverlayAlpha(ink, base, delta * 2).alpha
+    return { ink, hover, pressed }
+  })()
+
   type Step = { bg: string; visible: RGB; overlay?: string }
 
   /**
@@ -67,7 +91,17 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
    * AWAY from its label by the configured step, so a state change can never
    * cost label contrast. Step re-solves the color; Overlay adds live ink.
    */
-  const chain = (restCss: string, rest: RGB, dir: 1 | -1, chroma?: { c: number; h: number }) => {
+  const chain = (restCss: string, rest: RGB, dir: 1 | -1, chroma?: { c: number; h: number }, solid = false) => {
+    if (guardOverlay && !solid) {
+      const { ink, hover: ha, pressed: pa } = guardOverlay
+      const h1 = composite(ink, ha, rest)
+      const hover: Step = { bg: restCss, visible: h1, overlay: rgbaCss(ink, ha) }
+      const pressed: Step =
+        s.pressedMode === "stacked"
+          ? { bg: restCss, visible: composite(ink, pa, h1), overlay: `${hover.overlay}, ${rgbaCss(ink, pa)}` }
+          : { bg: restCss, visible: composite(ink, pa, rest), overlay: rgbaCss(ink, pa) }
+      return { hover, pressed }
+    }
     const ink = dir < 0 ? darkInk : lightInk
     const move = (from: RGB, k: number): RGB => {
       const o = rgbToOklch(from)
@@ -76,7 +110,7 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
       const h = chroma ? chroma.h : o.c < 0.01 ? r.named.h : o.h
       return toRgb({ l, c, h })
     }
-    if (s.stateStrategy === "step") {
+    if (s.stateStrategy === "step" && !inkMode) {
       const hv = move(rest, 1)
       const pr = s.pressedMode === "stacked" ? move(hv, 1) : move(rest, 2)
       return {
@@ -139,7 +173,7 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     const restFg = fg(fill.rgb)
     // Away from the label: a light label means states darken, even in dark mode.
     const dir: 1 | -1 = rgbToOklch(restFg).l > rgbToOklch(fill.rgb).l ? -1 : 1
-    const st = chain(fill.css, fill.rgb, dir)
+    const st = chain(fill.css, fill.rgb, dir, undefined, true)
     spec.rest = paint(fill.css, fill.rgb, restFg)
     spec.hover = paint(st.hover.bg, st.hover.visible, fg(st.hover.visible), { overlay: st.hover.overlay })
     spec.pressed = paint(st.pressed.bg, st.pressed.visible, fg(st.pressed.visible), { overlay: st.pressed.overlay })
@@ -154,9 +188,9 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     const vis = useAlpha ? src.alpha.composite : src.flat.rgb
     const fgRgb = role === "neutral" ? n("text", 5).rgb : t("text", 4).rgb
     const st = chain(css, vis, awayFromPage)
-    spec.rest = paint(css, vis, fgRgb)
-    spec.hover = paint(st.hover.bg, st.hover.visible, fgRgb, { overlay: st.hover.overlay })
-    spec.pressed = paint(st.pressed.bg, st.pressed.visible, fgRgb, { overlay: st.pressed.overlay })
+    spec.rest = paintText(css, vis, fgRgb)
+    spec.hover = paintText(st.hover.bg, st.hover.visible, fgRgb, { overlay: st.hover.overlay })
+    spec.pressed = paintText(st.pressed.bg, st.pressed.visible, fgRgb, { overlay: st.pressed.overlay })
     spec.disabled = paint(disabledBg.css, disabledBg.rgb, disabledFg(disabledBg.rgb))
   } else {
     // Tertiary (outline) and ghost: no container fill at rest. Step states
@@ -165,9 +199,9 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     const border = variant === "tertiary" ? t("stroke", 3).css : undefined
     const tint = rgbToOklch(ms.tokens[tokenId(sourceRole, "surface", 3)].flat.rgb)
     const st = chain("transparent", page, awayFromPage, { c: tint.c, h: tint.h })
-    spec.rest = paint("transparent", page, fgRgb, { border })
-    spec.hover = paint(st.hover.bg, st.hover.visible, fgRgb, { border, overlay: st.hover.overlay })
-    spec.pressed = paint(st.pressed.bg, st.pressed.visible, fgRgb, { border, overlay: st.pressed.overlay })
+    spec.rest = paintText("transparent", page, fgRgb, { border })
+    spec.hover = paintText(st.hover.bg, st.hover.visible, fgRgb, { border, overlay: st.hover.overlay })
+    spec.pressed = paintText(st.pressed.bg, st.pressed.visible, fgRgb, { border, overlay: st.pressed.overlay })
     spec.disabled = paint("transparent", page, disabledFg(page), {
       border: variant === "tertiary" ? n("stroke", 1).css : undefined,
     })

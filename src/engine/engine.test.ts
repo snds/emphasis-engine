@@ -220,6 +220,56 @@ describe("generate", () => {
     expect(hex(sy.modes.dark.tokens["brand.fill.4"].flat.rgb)).toBe("#1447e6")
   })
 
+  describe("ink model", () => {
+    const scenarios: Partial<Settings>[] = [
+      {},
+      { offsets: { text: 5, fill: 5, stroke: -5 } },
+      { ramps: { text: "ease-out", fill: "ease-in", stroke: "ease-in-out", surface: "linear" } },
+      { theme: "#1447e6", darkSolid: { mode: "custom", l: 0.424, s: 0.68 } },
+      { theme: "#f40009", neutral: "slate", themeTint: false },
+    ]
+
+    it("is the default layer", () => {
+      expect(DEFAULT_SETTINGS.layer).toBe("ink")
+    })
+
+    it("passes every ink level on every guard surface", () => {
+      for (const over of scenarios) {
+        const sy = generate(s(over))
+        for (const mode of ["light", "dark"] as const) {
+          expect(sy.modes[mode].guards.length, `${mode} guards`).toBeGreaterThanOrEqual(4)
+          for (const t of Object.values(sy.modes[mode].tokens)) {
+            if (!t.ink) continue
+            for (const c of t.ink.checks) expect(c.met, `${JSON.stringify(over)} ${mode} ${t.id} on ${c.label}: ${c.achieved.toFixed(1)}`).toBe(true)
+          }
+        }
+      }
+    })
+
+    it("keeps ghost hovers visible on every surface, whatever the fill ramp", () => {
+      for (const over of scenarios) {
+        const sy = generate(s(over))
+        for (const mode of ["light", "dark"] as const)
+          for (const c of sy.modes[mode].overlay.hover.checks)
+            expect(c.achieved, `${JSON.stringify(over)} ${mode} hover on ${c.label}`).toBeGreaterThanOrEqual(sy.settings.stateDelta - 0.002)
+      }
+    })
+
+    it("keeps the lowest stroke visible on cards, not just the page", () => {
+      for (const mode of ["light", "dark"] as const) {
+        const t = sys.modes[mode].tokens["neutral.stroke.1"]
+        const onCard = t.ink!.checks.find((c) => c.label === "Card" || c.guard === "page")!
+        expect(onCard.achieved).toBeGreaterThanOrEqual(14.9)
+      }
+    })
+
+    it("uses one translucent ink for strokes so it compounds over any surface", () => {
+      const t = sys.modes.dark.tokens["neutral.stroke.2"]
+      expect(t.ink!.alpha).toBeLessThan(1)
+      expect(active(t, "ink").css).toMatch(/^rgb\(.* \/ \d+%\)$/)
+    })
+  })
+
   it("paints the light neutral primary as a light fill with dark text in both modes", () => {
     for (const mode of ["light", "dark"] as const) {
       const b = buildButton(sys, mode, "neutral", "primary")

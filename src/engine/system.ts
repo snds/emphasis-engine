@@ -36,6 +36,8 @@ import {
   type Target,
 } from "./settings"
 import { solveAlpha, solveFlat, type AlphaResult, type ChromaRule, type Direction, type FlatResult } from "./solve"
+import { composite } from "./color"
+import { GUARD_LABELS, dedupeGuards, inkFor, solveInk, solveOverlayAlpha, type Guard, type InkResult } from "./ink"
 
 export type LogEntry = {
   force: "semantic convention" | "brand identity" | "family coherence" | "categorical distinctness" | "solver"
@@ -63,10 +65,22 @@ export type Token = {
   alpha: AlphaResult
   /** True when the role's named color already landed this level's band. */
   anchored: boolean
+  /** Ink result: alpha solved across the guard surfaces (text, stroke, soft fills). */
+  ink?: InkResult
 }
 
 /** What a token paints in the active layer. */
 export function active(t: Token, layer: Settings["layer"]) {
+  if (layer === "ink" && t.ink) {
+    // What it looks like on the page; the checks hold every other guard.
+    return {
+      css: t.ink.css,
+      rgb: t.ink.checks[0].visible,
+      achieved: t.ink.minAchieved,
+      met: t.ink.met,
+      method: `ink · ${Math.round(t.ink.alpha * 100)}% · ${t.ink.checks.length} surfaces`,
+    }
+  }
   if (layer === "alpha") {
     return {
       css: rgbaCss(t.alpha.tint, t.alpha.alpha),
@@ -99,6 +113,9 @@ export type ModeSystem = {
   onFill: Record<string, OnFill>
   categorical: Categorical
   trend: Record<"up" | "down" | "warn" | "flat", { rgb: RGB; css: string }>
+  /** Ink model: the guard surfaces, and the neutral state overlays solved across them. */
+  guards: Guard[]
+  overlay: { ink: RGB; hover: InkResult; pressedAlpha: number }
 }
 
 export type System = {
@@ -400,6 +417,7 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
     }
   }
 
+  const { guards, overlay } = applyInk(s, roles, mode, bg, tokens, onFill)
   const categorical = buildCategorical(s, roles, mode, bg, log)
   // Chart-trend siblings: same hue family as UI status, quieter chroma, so
   // a falling metric never reads as an outage.
@@ -414,7 +432,64 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
     warn: sib(roles.warning),
     flat: { rgb: tokens[tokenId("neutral", "stroke", 3)].flat.rgb, css: hex(tokens[tokenId("neutral", "stroke", 3)].flat.rgb) },
   }
-  return { mode, bg, tokens, onFill, categorical, trend }
+  return { mode, bg, tokens, onFill, categorical, trend, guards, overlay }
+}
+
+/**
+ * Ink pass. Surfaces and solids are already solved flat; this solves every
+ * text, stroke, and soft-fill level as an ink alpha across the guard set,
+ * plus the neutral hover and pressed overlays.
+ */
+function applyInk(
+  s: Settings,
+  roles: Record<RoleId, Role>,
+  mode: Mode,
+  bg: RGB,
+  tokens: Record<string, Token>,
+  onFill: Record<string, OnFill>
+) {
+  const flat = (id: string) => tokens[id].flat.rgb
+  const g = (id: Guard["id"], rgb: RGB, label = GUARD_LABELS[id]): Guard => ({ id, label, rgb })
+  const card = mode === "light" ? bg : flat("neutral.surface.2")
+  const muted = mode === "light" ? flat("neutral.surface.2") : flat("neutral.surface.3")
+  const base = dedupeGuards([g("page", bg), g("card", card, "Card"), g("muted", muted)])
+
+  // Neutral state overlay: moves every base surface by the state step.
+  const nInk = inkFor(mode, roles.neutral.named.h, roles.neutral.named.c, true)
+  const hover = solveOverlayAlpha(nInk, base, s.stateDelta)
+  const pressedAlpha =
+    s.pressedMode === "stacked"
+      ? hover.alpha
+      : solveOverlayAlpha(nInk, base, s.stateDelta * 2).alpha
+
+  const want = new Set(s.inkGuards ?? ["page", "card", "muted", "hover", "selected"])
+  const all = dedupeGuards([
+    ...base,
+    g("hover", composite(nInk, hover.alpha, card), "Hover on card"),
+    g("hover", composite(nInk, hover.alpha, muted), "Hover on muted"),
+    g("selected", flat("brand.surface.3")),
+  ]).filter((x) => want.has(x.id))
+  const guards = all.length ? all : base.slice(0, 1)
+  const fillGuards = guards.filter((x) => x.id === "page" || x.id === "card" || x.id === "muted")
+
+  for (const roleId of ROLES) {
+    const role = roles[roleId]
+    const ink = inkFor(mode, role.named.h, role.named.c, roleId === "neutral")
+    const solid = flat(tokenId(roleId, "fill", 4))
+    for (const level of LEVELS) {
+      for (const ctx of ["text", "stroke"] as const) {
+        const t = tokens[tokenId(roleId, ctx, level)]
+        t.ink = solveInk(ink, guards, t.target)
+      }
+      if (level <= 3) {
+        // Soft fills: the role's own solid at an alpha.
+        const t = tokens[tokenId(roleId, "fill", level)]
+        t.ink = solveInk(solid, fillGuards.length ? fillGuards : guards.slice(0, 1), t.target)
+        if (s.layer === "ink" && level === 3) onFill[t.id] = solveOnFill(t.ink.checks[0].visible, role.named.h)
+      }
+    }
+  }
+  return { guards, overlay: { ink: nInk, hover, pressedAlpha } }
 }
 
 export function generate(s: Settings): System {
