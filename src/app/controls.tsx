@@ -48,7 +48,7 @@ import {
   type Icon,
 } from "@tabler/icons-react"
 
-const THEME_PRESETS = [
+export const THEME_PRESETS = [
   "#1447e6",
   "#2563eb",
   "#f40009",
@@ -563,10 +563,10 @@ function NeutralPicker({
   )
 }
 
-type Outputs = Record<Mode, ProfileResult>
+export type Outputs = Record<Mode, ProfileResult>
 
 /** The worst result per mode among the checks one Force accessibility switch governs. */
-function worstFor(out: Outputs, key: keyof A11y) {
+export function worstFor(out: Outputs, key: keyof A11y) {
   return (["light", "dark"] as Mode[]).flatMap((mode) => {
     const list = out[mode].outcomes.filter((o) => o.spec?.key === key)
     if (!list.length) return []
@@ -644,7 +644,13 @@ function Readout({ label, tip, light, dark }: { label: string; tip: string; ligh
   )
 }
 
-export function Controls({ engine }: { engine: Engine }) {
+export type SectionId = "colors" | "rendering" | "output" | "states" | "thresholds" | "advanced"
+
+/** Every control, sectioned. `only` limits it to some sections, for the phone's sheets. */
+export function Controls({ engine, only }: { engine: Engine; only?: SectionId[] }) {
+  const show = (id: SectionId) => !only || only.includes(id)
+  // Separators only between sections that both render.
+  const sep = (id: SectionId) => !only && <Separator key={`sep-${id}`} />
   const { settings: s, update, sys } = engine
   const out = useMemo<Outputs>(
     () => ({ light: solveOutput(sys, s.output, "light"), dark: solveOutput(sys, s.output, "dark") }),
@@ -664,7 +670,8 @@ export function Controls({ engine }: { engine: Engine }) {
     BOUNDS[k][tier] as readonly [number, number]
   return (
     <div className="flex flex-col">
-      <Section title="Colors" hint="Three picks drive the whole system.">
+      {show("colors") && (
+<Section title="Colors" hint="Three picks drive the whole system.">
         <Field
           label="Theme"
           tip="Your brand color. Drives primary actions, focus, and links."
@@ -790,8 +797,10 @@ export function Controls({ engine }: { engine: Engine }) {
           onChange={(categoricalCount) => update({ categoricalCount })}
         />
       </Section>
-      <Separator />
-      <Section
+)}
+      {sep("rendering")}
+      {show("rendering") && (
+<Section
         title="Rendering"
         hint="Ink keeps emphasis translucent and checked on every surface."
       >
@@ -847,8 +856,10 @@ export function Controls({ engine }: { engine: Engine }) {
           </Row>
         )}
       </Section>
-      <Separator />
-      <Section
+)}
+      {sep("output")}
+      {show("output") && (
+<Section
         title="Output system"
         hint="The engine's intent, solved back through the chosen system's own recipes. Nothing is layered on top."
       >
@@ -945,8 +956,10 @@ export function Controls({ engine }: { engine: Engine }) {
           tip="WCAG 1.4.11 asks 3:1 for a focus indicator. Measured as drawn: the ring at 50% over the card. On: the ring steps until the drawn ring passes."
         />
       </Section>
-      <Separator />
-      <Section title="Interaction states">
+)}
+      {sep("states")}
+      {show("states") && (
+<Section title="Interaction states">
         <Field
           label="State strategy"
           tip="Step swaps to the next solved color. Overlay adds a translucent tint layer."
@@ -1028,8 +1041,10 @@ export function Controls({ engine }: { engine: Engine }) {
           onChange={(stateDelta) => update({ stateDelta })}
         />
       </Section>
-      <Separator />
-      <Section
+)}
+      {sep("thresholds")}
+      {show("thresholds") && (
+<Section
         title="Thresholds"
         hint="Offset shifts every level. Ramp sets how the levels spread between the ends."
       >
@@ -1060,9 +1075,10 @@ export function Controls({ engine }: { engine: Engine }) {
         />
         <RampPicker context="surface" settings={s} update={update} />
       </Section>
-      {s.advanced && (
+)}
+      {s.advanced && show("advanced") && (
         <>
-          <Separator />
+          {sep("advanced")}
           <Section
             title="Advanced"
             hint="Every lever the solver pulls. Targets become warnings."
@@ -1142,11 +1158,11 @@ export function Controls({ engine }: { engine: Engine }) {
           </Section>
         </>
       )}
-      <div className="px-4 pb-6">
+      {!only && <div className="px-4 pb-6">
         <Button variant="ghost" size="sm" onClick={engine.reset}>
           Reset to defaults
         </Button>
-      </div>
+      </div>}
     </div>
   )
 }

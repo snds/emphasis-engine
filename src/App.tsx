@@ -17,8 +17,11 @@ import { ReportView } from "@/app/report-view"
 import { ExportView } from "@/app/export-view"
 import { CreditsView } from "@/app/credits-view"
 import { InfoTip } from "@/app/info-tip"
+import { MobileDock, MobileHeader, MoreSheet, type View } from "@/app/mobile-editor"
+import { generate } from "@/engine/system"
 import { extensionVars, shadcnVars } from "@/engine/export"
-import { advancedOverrides, type Mode } from "@/engine/settings"
+import { DEFAULT_SETTINGS, advancedOverrides, type Mode } from "@/engine/settings"
+import type { System } from "@/engine/system"
 
 /** True at the md breakpoint and up, where controls get their own column. */
 function useWide() {
@@ -47,22 +50,47 @@ function useResolvedMode(): [Mode, (m: Mode) => void] {
   return [theme === "system" ? system : (theme as Mode), setTheme]
 }
 
+/** The canvas for one view. Shared by the desktop tabs and the phone editor. */
+function Canvas({ view, sys, mode, previewVars }: { view: View; sys: System; mode: Mode; previewVars: CSSProperties }) {
+  if (view === "preview")
+    return (
+      <div style={previewVars} className="min-h-full bg-background p-4 text-foreground">
+        {sys.settings.output === "shadcn" ? (
+          <Preview sys={sys} mode={mode} />
+        ) : sys.settings.output === "radix" || sys.settings.output === "material" ? (
+          <Specimens sys={sys} mode={mode} id={sys.settings.output} />
+        ) : (
+          <RecipeBoard sys={sys} mode={mode} id={sys.settings.output} />
+        )}
+      </div>
+    )
+  return (
+    <div className="p-4">
+      {view === "grid" ? <GridView sys={sys} mode={mode} /> : view === "report" ? <ReportView sys={sys} mode={mode} /> : view === "export" ? <ExportView sys={sys} /> : <CreditsView />}
+    </div>
+  )
+}
+
 export function App() {
   const engine = useEngine()
   const { sys, settings, update } = engine
   const [mode, setMode] = useResolvedMode()
   const [themeApp, setThemeApp] = useState(false)
   const wide = useWide()
-  // On phones, controls are a tab of their own; on wider screens they're a column.
-  const [tab, setTab] = useState("preview")
-  useEffect(() => {
-    if (wide && tab === "controls") setTab("preview")
-  }, [wide, tab])
+  const [tab, setTab] = useState<View>("preview")
+  const [more, setMore] = useState(false)
+  // Hold to compare: the canvas shows the defaults for the same system and import, like Photos' before/after.
+  const [comparing, setComparing] = useState(false)
+  const stock = useMemo(
+    () => generate({ ...DEFAULT_SETTINGS, output: settings.output, imports: settings.imports, advanced: settings.advanced }),
+    [settings.output, settings.imports, settings.advanced]
+  )
+  const shown = comparing ? stock : sys
 
   // The preview reads the solved system through CSS variables scoped to it.
   const previewVars = useMemo(
-    () => ({ ...shadcnVars(sys, mode), ...extensionVars(sys, mode) }) as CSSProperties,
-    [sys, mode]
+    () => ({ ...shadcnVars(shown, mode), ...extensionVars(shown, mode) }) as CSSProperties,
+    [shown, mode]
   )
 
   // Optional: let the tool's own chrome wear the generated theme.
@@ -74,6 +102,25 @@ export function App() {
   }, [themeApp, sys, mode])
 
   const overrides = advancedOverrides(settings)
+
+  if (!wide)
+    return (
+      <TooltipProvider>
+        <div className="min-h-svh bg-background text-foreground">
+          <MobileHeader mode={mode} setMode={setMode} view={tab} setView={setTab} onCompare={setComparing} onMore={() => setMore(true)} />
+          <main className="relative pb-[calc(var(--dock-h,0px)+1rem)]">
+            {comparing && (
+              <span className="pointer-events-none fixed top-28 left-1/2 z-20 -translate-x-1/2 rounded-full bg-foreground px-3 py-1 text-xs font-medium text-background shadow">
+                Defaults
+              </span>
+            )}
+            <Canvas view={tab} sys={shown} mode={mode} previewVars={previewVars} />
+          </main>
+          <MobileDock engine={engine} />
+          <MoreSheet open={more} onOpenChange={setMore} engine={engine} themeApp={themeApp} setThemeApp={setThemeApp} onCredits={() => setTab("credits")} />
+        </div>
+      </TooltipProvider>
+    )
 
   return (
     <TooltipProvider>
@@ -121,50 +168,24 @@ export function App() {
         </header>
 
         <div className="flex flex-1 flex-col md:min-h-0 md:flex-row">
-          {wide && (
-            <aside className="w-80 shrink-0 overflow-y-auto border-r" aria-label="Controls">
-              <Controls engine={engine} />
-            </aside>
-          )}
+          <aside className="w-80 shrink-0 overflow-y-auto border-r" aria-label="Controls">
+            <Controls engine={engine} />
+          </aside>
           <main className="min-w-0 flex-1 md:overflow-y-auto">
-            <Tabs value={tab} onValueChange={(v) => setTab(v as string)} className="gap-0">
+            <Tabs value={tab} onValueChange={(v) => setTab(v as View)} className="gap-0">
               <div className="sticky top-0 z-20 overflow-x-auto border-b bg-background/80 px-4 py-2 backdrop-blur">
                 <TabsList>
-                  {!wide && <TabsTrigger value="controls">Controls</TabsTrigger>}
                   <TabsTrigger value="preview">Preview</TabsTrigger>
                   <TabsTrigger value="grid">Grid</TabsTrigger>
                   <TabsTrigger value="report">Report</TabsTrigger>
                   <TabsTrigger value="export">Export</TabsTrigger>
                 </TabsList>
               </div>
-              {!wide && (
-                <TabsContent value="controls">
-                  <Controls engine={engine} />
+              {(["preview", "grid", "report", "export", "credits"] as const).map((v) => (
+                <TabsContent key={v} value={v} id={v === "preview" ? "preview" : undefined}>
+                  <Canvas view={v} sys={shown} mode={mode} previewVars={previewVars} />
                 </TabsContent>
-              )}
-              <TabsContent value="preview" id="preview">
-                <div style={previewVars} className="min-h-full bg-background p-4 text-foreground">
-                  {sys.settings.output === "shadcn" ? (
-                    <Preview sys={sys} mode={mode} />
-                  ) : sys.settings.output === "radix" || sys.settings.output === "material" ? (
-                    <Specimens sys={sys} mode={mode} id={sys.settings.output} />
-                  ) : (
-                    <RecipeBoard sys={sys} mode={mode} id={sys.settings.output} />
-                  )}
-                </div>
-              </TabsContent>
-              <TabsContent value="grid" className="p-4">
-                <GridView sys={sys} mode={mode} />
-              </TabsContent>
-              <TabsContent value="report" className="p-4">
-                <ReportView sys={sys} mode={mode} />
-              </TabsContent>
-              <TabsContent value="export" className="p-4">
-                <ExportView sys={sys} />
-              </TabsContent>
-              <TabsContent value="credits" className="p-4">
-                <CreditsView />
-              </TabsContent>
+              ))}
             </Tabs>
             <footer className="border-t px-4 py-3 text-xs text-muted-foreground">
               <button type="button" className="underline underline-offset-2 hover:text-foreground" onClick={() => setTab("credits")}>
