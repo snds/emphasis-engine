@@ -176,6 +176,27 @@ describe("generate", () => {
     }
   })
 
+  it("keeps fill levels ordered and distinct, with the named color in one level", () => {
+    for (const fill of ["stepped", "linear", "ease-in", "ease-out", "ease-in-out"] as const) {
+      const sy = generate(s({ ramps: { ...DEFAULT_SETTINGS.ramps, fill } }))
+      for (const mode of ["light", "dark"] as const)
+        for (const role of ROLES) {
+          const lvls = ([1, 2, 3, 4, 5] as const).map((l) => sy.modes[mode].tokens[`${role}.fill.${l}`])
+          for (let i = 1; i < 5; i++)
+            expect(lvls[i].flat.achieved, `${fill} ${mode} ${role} L${i + 1}`).toBeGreaterThan(lvls[i - 1].flat.achieved + 1.5)
+          const named = hex(sy.roles[role].namedRgb)
+          expect(lvls.filter((t) => hex(t.flat.rgb) === named).length, `${fill} ${mode} ${role}`).toBeLessThanOrEqual(1)
+        }
+    }
+  })
+
+  it("keeps the lowest fill level a quiet tint, not a neon", () => {
+    for (const role of ["success", "caution", "brand"] as const) {
+      const o = rgbToOklch(sys.modes.light.tokens[`${role}.fill.1`].flat.rgb)
+      expect(o.c, role).toBeLessThan(0.09)
+    }
+  })
+
   it("paints the light neutral primary as a light fill with dark text in both modes", () => {
     for (const mode of ["light", "dark"] as const) {
       const b = buildButton(sys, mode, "neutral", "primary")

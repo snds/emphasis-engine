@@ -163,17 +163,46 @@ function resolveRoles(s: Settings, log: LogEntry[]): Record<RoleId, Role> {
   return roles
 }
 
-const CHROMA_FACTOR: Record<Context, number> = { fill: 1, text: 0.9, stroke: 0.8, surface: 0.4 }
+/**
+ * Chroma per context and level. Chroma peaks at the solid fill (level 4,
+ * the Radix step 9 analog) and tapers toward the page, so low-emphasis
+ * levels read as quiet tints instead of pastel neons.
+ */
+const CHROMA_TAPER: Record<Context, [number, number, number, number, number]> = {
+  fill: [0.35, 0.55, 0.8, 1, 1],
+  text: [0.75, 0.8, 0.85, 0.9, 0.9],
+  stroke: [0.45, 0.6, 0.75, 0.85, 0.9],
+  surface: [0.3, 0.35, 0.4, 0.45, 0.5],
+}
 
-function ruleFor(role: Role, context: Context, s: Settings): ChromaRule {
+function ruleFor(role: Role, context: Context, s: Settings, level: Level): ChromaRule {
   const isNeutral = role.id === "neutral"
   return {
     hue: role.named.h,
     baseChroma: role.named.c * (isNeutral ? 1 : s.chromaScale),
     baseL: role.named.l,
-    factor: isNeutral ? 1 : CHROMA_FACTOR[context],
+    factor: isNeutral ? 1 : CHROMA_TAPER[context][level - 1],
     holdSaturation: !isNeutral && s.holdSaturation,
   }
+}
+
+/** Smallest Lc gap kept between the solid fill and the level above it. */
+const SOLID_GAP = 10
+
+/**
+ * Fill targets that respect the solid. With true solids on, level 4 is the
+ * named color (achieved Lc A). Levels 1 to 3 are re-spread between level 1
+ * and A, keeping the ramp's proportions; level 5 sits at least SOLID_GAP
+ * past A. The named color therefore appears once, and levels stay ordered.
+ */
+function fillTargets(s: Settings, mode: Mode, anchorLc: number | null): number[] {
+  const t = LEVELS.map((l) => (targetFor(s, mode, "fill", l) as { value: number }).value)
+  if (anchorLc === null) return t
+  const lo = Math.max(5, Math.min(t[0], anchorLc - 12))
+  const span = t[3] - t[0] || 1
+  const out = [0, 1, 2].map((i) => lo + (anchorLc - lo) * ((t[i] - t[0]) / span))
+  out.push(anchorLc, Math.max(t[4], anchorLc + SOLID_GAP))
+  return out
 }
 
 export function targetFor(s: Settings, mode: Mode, context: Context, level: Level): Target {
@@ -269,35 +298,46 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
 
   for (const roleId of ROLES) {
     const role = roles[roleId]
+    // The true solid is solved first: every other fill level is placed
+    // relative to it.
+    let solid: FlatResult | null = null
+    if (s.trueSolids) {
+      const signed = lc(role.namedRgb, bg)
+      const rightSide = dir === "darker" ? signed > 0 : signed < 0
+      if (rightSide && Math.abs(signed) >= SOLID_FLOOR) {
+        solid = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
+      } else {
+        // Moves by lightness alone, holding saturation, to clear the floor.
+        const full: ChromaRule = { hue: role.named.h, baseChroma: role.named.c, baseL: role.named.l, factor: 1, holdSaturation: true }
+        solid = solveFlat(full, bg, { kind: "lc", value: SOLID_FLOOR }, dir)
+      }
+    }
+    const fills = fillTargets(s, mode, solid ? solid.achieved : null)
     for (const context of CONTEXTS) {
-      const rule = ruleFor(role, context, s)
       for (const level of LEVELS) {
-        const target = targetFor(s, mode, context, level)
-        let flat = solveFlat(rule, bg, target, dir)
-        // Anchor snapping (brand identity): if the named color already sits
-        // inside this level's band, it is the answer. Nobody wants a brand
-        // button that is almost the brand.
-        let anchored = false
+        const rule = ruleFor(role, context, s, level)
+        const target: Target =
+          context === "fill" ? { kind: "lc", value: fills[level - 1] } : targetFor(s, mode, context, level)
         let cellTarget: Target = target
-        if (context === "fill" && target.kind === "lc") {
-          const signed = lc(role.namedRgb, bg)
-          const rightSide = dir === "darker" ? signed > 0 : signed < 0
-          const next = level < 5 ? targetFor(s, mode, context, (level + 1) as Level).value : target.value + 15
-          if (rightSide && Math.abs(signed) >= target.value && Math.abs(signed) < next) {
-            flat = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
-            anchored = true
-          } else if (level === 4 && s.trueSolids) {
-            // True solids (the Radix step 9 move): the solid fill keeps the
-            // named color in both modes. It only moves, by lightness alone and
-            // at full chroma, when it can't clear the large-solid floor.
-            cellTarget = { kind: "lc", value: SOLID_FLOOR }
-            if (rightSide && Math.abs(signed) >= SOLID_FLOOR) {
+        let anchored = false
+        let flat: FlatResult
+        if (context === "fill" && level === 4 && solid) {
+          // True solid: the named color, or its lightness-only lift.
+          flat = solid
+          cellTarget = { kind: "lc", value: SOLID_FLOOR }
+          anchored = true
+        } else {
+          flat = solveFlat(rule, bg, target, dir)
+          // Without true solids, the named color still snaps into the one
+          // fill level whose band it already sits in.
+          if (context === "fill" && !solid && target.kind === "lc") {
+            const signed = lc(role.namedRgb, bg)
+            const rightSide = dir === "darker" ? signed > 0 : signed < 0
+            const next = level < 5 ? fills[level] : target.value + 15
+            if (rightSide && Math.abs(signed) >= target.value && Math.abs(signed) < next) {
               flat = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
-            } else {
-              const full: ChromaRule = { hue: role.named.h, baseChroma: role.named.c, baseL: role.named.l, factor: 1, holdSaturation: true }
-              flat = solveFlat(full, bg, cellTarget, dir)
+              anchored = true
             }
-            anchored = true
           }
         }
         const alpha = solveAlpha({

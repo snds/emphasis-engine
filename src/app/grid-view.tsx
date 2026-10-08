@@ -77,7 +77,7 @@ export function GridView({ sys, mode }: { sys: System; mode: Mode }) {
                             {isLc ? a.achieved.toFixed(0) : a.achieved.toFixed(3)}
                           </span>
                           <span className="text-xs text-muted-foreground">
-                            of {isLc ? `Lc ${t.target.value}` : `ΔL ${t.target.value.toFixed(3)}`}
+                            of {isLc ? `Lc ${+t.target.value.toFixed(1)}` : `ΔL ${t.target.value.toFixed(3)}`}
                           </span>
                           {a.met ? (
                             <IconCheck className="ml-auto size-4 text-muted-foreground" aria-label="Target met" />

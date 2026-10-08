@@ -50,7 +50,7 @@ export function ReportView({ sys }: { sys: System }) {
               <TableRow key={mode + t.id}>
                 <TableCell className="font-mono text-xs">{t.id}</TableCell>
                 <TableCell className="capitalize">{mode}</TableCell>
-                <TableCell>{t.target.kind === "lc" ? `Lc ${t.target.value}` : `ΔL ${t.target.value.toFixed(3)}`}</TableCell>
+                <TableCell>{t.target.kind === "lc" ? `Lc ${+t.target.value.toFixed(1)}` : `ΔL ${t.target.value.toFixed(3)}`}</TableCell>
                 <TableCell className="tabular-nums">{a.achieved.toFixed(t.target.kind === "lc" ? 1 : 3)}</TableCell>
                 <TableCell className="tabular-nums">{wcagRatio(a.rgb, t.surface).toFixed(2)}:1</TableCell>
               </TableRow>

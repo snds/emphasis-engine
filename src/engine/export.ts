@@ -150,7 +150,7 @@ export function dtcgJson(sys: System): string {
           c[LEVEL_NAMES[lvl]] = {
             $type: "color",
             $value: sys.settings.layer === "alpha" ? a.css : oklchCss(rgbToOklch(tk.flat.rgb)),
-            $description: `Level ${lvl}. Target ${tk.target.kind === "lc" ? "Lc " + tk.target.value : "ΔL " + tk.target.value.toFixed(3)}, achieved ${a.achieved.toFixed(tk.target.kind === "lc" ? 1 : 3)}${a.met ? "" : " (below target)"}.`,
+            $description: `Level ${lvl}. Target ${tk.target.kind === "lc" ? "Lc " + +tk.target.value.toFixed(1) : "ΔL " + tk.target.value.toFixed(3)}, achieved ${a.achieved.toFixed(tk.target.kind === "lc" ? 1 : 3)}${a.met ? "" : " (below target)"}.`,
           }
         }
         r[ctx] = c
