@@ -30,8 +30,14 @@ export type ChromaRule = {
 export function chromaAt(rule: ChromaRule, l: number): number {
   const max = maxChroma(l, rule.hue)
   if (rule.holdSaturation) {
+    // Saturation is chroma relative to lightness (C ÷ L). Holding it means a
+    // deep navy lifted to button lightness comes out a vivid blue, the way
+    // people read it, rather than the gray-blue absolute chroma would give.
+    // Never drops below the gamut-relative share or the absolute chroma.
     const rel = Math.min(1, rule.baseChroma / Math.max(1e-4, maxChroma(rule.baseL, rule.hue)))
-    return rel * max * rule.factor
+    const sat = rule.baseChroma / Math.max(0.05, rule.baseL)
+    const held = Math.max(rel * max, sat * l, Math.min(rule.baseChroma, max))
+    return Math.min(max, held) * rule.factor
   }
   return Math.min(rule.baseChroma * rule.factor, max)
 }

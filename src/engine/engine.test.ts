@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest"
 import { converter } from "culori"
-import { composite, hex, hueDelta, oklchToSrgb01, parseHex, rgbToOklch } from "./color"
+import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch } from "./color"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral } from "./system"
@@ -141,6 +141,14 @@ describe("generate", () => {
       const d = rgbToOklch(sys.modes.dark.tokens[`${role}.fill.4`].flat.rgb)
       expect(d.c, role).toBeGreaterThan(sys.roles[role].named.c * 0.9)
       expect(Math.abs(lc(sys.modes.dark.tokens[`${role}.fill.4`].flat.rgb, sys.modes.dark.bg))).toBeGreaterThanOrEqual(29.9)
+    }
+  })
+
+  it("keeps dark-mode solids saturated when the picked color is very dark", () => {
+    // Walking down a picker's value axis must not walk the dark fill to gray.
+    for (const theme of ["#1e40af", "#1e3a8a", "#172554", "#0b1a40", "#06102a"]) {
+      const o = rgbToOklch(generate(s({ theme })).modes.dark.tokens["brand.fill.4"].flat.rgb)
+      expect(o.c / maxChroma(o.l, o.h), theme).toBeGreaterThan(0.7)
     }
   })
 

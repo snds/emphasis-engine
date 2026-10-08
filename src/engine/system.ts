@@ -208,7 +208,9 @@ function buildCategorical(s: Settings, roles: Record<RoleId, Role>, mode: Mode, 
   const chart = parseColor(s.chart, "#06b6d4")
   const theme = roles.brand.named
   const n = Math.round(Math.min(12, Math.max(5, s.categoricalCount)))
-  const ceiling = Math.min(0.19, Math.max(0.1, theme.c))
+  // Chart chroma ceiling follows the brand's saturation (C ÷ L), not its raw
+  // chroma, so a deep brand still gets colorful charts.
+  const ceiling = Math.min(0.19, Math.max(0.12, (theme.c / Math.max(0.05, theme.l)) * 0.5))
   const baseL = mode === "light" ? 0.62 : 0.72
   const dir: Direction = mode === "light" ? "darker" : "lighter"
   const colors: Categorical["colors"] = []
@@ -282,7 +284,7 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
             if (rightSide && Math.abs(signed) >= SOLID_FLOOR) {
               flat = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
             } else {
-              const full: ChromaRule = { hue: role.named.h, baseChroma: role.named.c, baseL: role.named.l, factor: 1, holdSaturation: false }
+              const full: ChromaRule = { hue: role.named.h, baseChroma: role.named.c, baseL: role.named.l, factor: 1, holdSaturation: true }
               flat = solveFlat(full, bg, cellTarget, dir)
             }
             anchored = true
