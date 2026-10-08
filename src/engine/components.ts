@@ -2,7 +2,7 @@
 // semantic tokens; state strategies move them. Neither knows about color.
 import { composite, hex, rgbToOklch, rgbaCss, toRgb, type RGB } from "./color"
 import { deltaL, lc } from "./contrast"
-import { ON_FILL_MIN, type Mode, type RoleId, type Settings } from "./settings"
+import { ON_FILL_MIN, ON_FILL_PREFERRED, type Mode, type RoleId, type Settings } from "./settings"
 import { solveOverlay, chromaAt } from "./solve"
 import { active, solveOnFill, tokenId, type ModeSystem, type System } from "./system"
 
@@ -97,6 +97,28 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
     return { hover, pressed }
   }
 
+  /**
+   * Light neutral primary: a light gray fill carrying dark text, in both
+   * modes. Light mode uses the strongest neutral surface so it separates
+   * from the page. Dark mode takes the darkest gray that still gives the
+   * dark label its preferred contrast, so it reads light without glaring.
+   */
+  const lightNeutralFill = () => {
+    if (mode === "light") return n("surface", 5)
+    const hue = sys.roles.neutral.named.h
+    const c = sys.roles.neutral.named.c
+    let pick = toRgb({ l: 0.95, c, h: hue })
+    for (let i = 0; i <= 60; i++) {
+      const l = 0.6 + i / 150
+      const rgb = toRgb({ l, c, h: hue })
+      if (Math.abs(lc(darkInk, rgb)) >= ON_FILL_PREFERRED) {
+        pick = rgb
+        break
+      }
+    }
+    return { css: hex(pick), rgb: pick }
+  }
+
   const spec = {} as ButtonSpec
   const disabledBg = n("surface", 2)
   const disabledFg = (under: RGB) => {
@@ -111,7 +133,8 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
   }
 
   if (variant === "primary") {
-    const fill = t("fill", 4)
+    const fill =
+      role === "neutral" && s.neutralPrimary === "light" ? lightNeutralFill() : t("fill", 4)
     const fg = (under: RGB) => solveOnFill(under, r.named.h).rgb
     const restFg = fg(fill.rgb)
     // Away from the label: a light label means states darken, even in dark mode.

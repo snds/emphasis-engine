@@ -63,6 +63,9 @@ export const BASE_TARGETS: Record<Mode, Record<Context, Target[]>> = {
   },
 }
 
+/** Floor for a true-to-brand solid: APCA's minimum for large solid non-text. */
+export const SOLID_FLOOR = 30
+
 /** Minimum Lc for a label on a filled control (16px/700 per APCA). */
 export const ON_FILL_MIN = 60
 export const ON_FILL_PREFERRED = 75
@@ -83,6 +86,10 @@ export type Settings = {
   pressedMode: "stacked" | "from-rest"
   stateDelta: number
   secondarySource: "neutral-flat" | "neutral-alpha" | "role-tint"
+  /** Neutral primary: a light gray fill with dark text, or a solid gray. */
+  neutralPrimary: "light" | "solid"
+  /** Solid fills (level 4) stay true to the named color down to an Lc 30 floor. */
+  trueSolids: boolean
   categoricalCount: number
   familyPull: number
   offsets: { text: number; fill: number; stroke: number }
@@ -107,6 +114,8 @@ export const DEFAULT_SETTINGS: Settings = {
   pressedMode: "stacked",
   stateDelta: 0.04,
   secondarySource: "neutral-flat",
+  neutralPrimary: "light",
+  trueSolids: true,
   categoricalCount: 8,
   familyPull: 0.5,
   offsets: { text: 0, fill: 0, stroke: 0 },
@@ -146,6 +155,7 @@ export function advancedOverrides(s: Settings): string[] {
   if (s.surfaceScale < slo || s.surfaceScale > shi) out.push(`Surface spacing ${Math.round(s.surfaceScale * 100)}%`)
   const [dlo, dhi] = BOUNDS.stateDelta.basic
   if (s.stateDelta < dlo || s.stateDelta > dhi) out.push(`State step ${s.stateDelta.toFixed(3)}`)
+  if (!s.trueSolids) out.push("Solid fills contrast-solved")
   if (s.tintStrength > 0.6) out.push(`Tint strength ${Math.round(s.tintStrength * 100)}%`)
   return out
 }

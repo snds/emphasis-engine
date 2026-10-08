@@ -287,6 +287,18 @@ export function Controls({ engine }: { engine: Engine }) {
             ]}
           />
         </div>
+        <div className="flex flex-col gap-1.5">
+          <Label>Neutral primary</Label>
+          <Choice
+            label="Neutral primary"
+            value={s.neutralPrimary}
+            onChange={(neutralPrimary) => update({ neutralPrimary })}
+            options={[
+              { value: "light", label: "Light fill, dark text" },
+              { value: "solid", label: "Solid gray" },
+            ]}
+          />
+        </div>
         <Range
           label="State step (ΔL)"
           value={s.stateDelta}
@@ -343,6 +355,9 @@ export function Controls({ engine }: { engine: Engine }) {
               format={(v) => `${Math.round(v * 100)}%`}
               onChange={(chromaScale) => update({ chromaScale })}
             />
+            <Row label="True-color solid fills" htmlFor="true-solids">
+              <Switch id="true-solids" checked={s.trueSolids} onCheckedChange={(trueSolids) => update({ trueSolids })} />
+            </Row>
             <Row label="Hold saturation" htmlFor="hold-sat">
               <Switch id="hold-sat" checked={s.holdSaturation} onCheckedChange={(holdSaturation) => update({ holdSaturation })} />
             </Row>

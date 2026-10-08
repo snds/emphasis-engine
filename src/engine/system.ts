@@ -20,6 +20,7 @@ import {
   NEUTRALS,
   ON_FILL_MIN,
   ON_FILL_PREFERRED,
+  SOLID_FLOOR,
   ROLES,
   STATUS_ANCHORS,
   STATUS_ROLES,
@@ -265,6 +266,7 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
         // inside this level's band, it is the answer. Nobody wants a brand
         // button that is almost the brand.
         let anchored = false
+        let cellTarget: Target = target
         if (context === "fill" && target.kind === "lc") {
           const signed = lc(role.namedRgb, bg)
           const rightSide = dir === "darker" ? signed > 0 : signed < 0
@@ -272,24 +274,36 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
           if (rightSide && Math.abs(signed) >= target.value && Math.abs(signed) < next) {
             flat = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
             anchored = true
+          } else if (level === 4 && s.trueSolids) {
+            // True solids (the Radix step 9 move): the solid fill keeps the
+            // named color in both modes. It only moves, by lightness alone and
+            // at full chroma, when it can't clear the large-solid floor.
+            cellTarget = { kind: "lc", value: SOLID_FLOOR }
+            if (rightSide && Math.abs(signed) >= SOLID_FLOOR) {
+              flat = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
+            } else {
+              const full: ChromaRule = { hue: role.named.h, baseChroma: role.named.c, baseL: role.named.l, factor: 1, holdSaturation: false }
+              flat = solveFlat(full, bg, cellTarget, dir)
+            }
+            anchored = true
           }
         }
         const alpha = solveAlpha({
           flat,
           bg,
-          metric: target,
+          metric: cellTarget,
           hue: role.named.h,
           leashDeg: leash,
           tieBreak: s.tieBreak,
           named: role.namedRgb,
         })
         const id = tokenId(roleId, context, level)
-        tokens[id] = { id, role: roleId, context, level, mode, target, surface: bg, flat, alpha, anchored }
+        tokens[id] = { id, role: roleId, context, level, mode, target: cellTarget, surface: bg, flat, alpha, anchored }
         if (!flat.met) {
           log.push({
             force: "solver",
             mode,
-            message: `${id} cannot reach ${target.kind === "lc" ? "Lc " + target.value : "ΔL " + target.value.toFixed(3)}; best is ${flat.achieved.toFixed(target.kind === "lc" ? 1 : 3)} at the end of the lightness range.`,
+            message: `${id} cannot reach ${cellTarget.kind === "lc" ? "Lc " + cellTarget.value : "ΔL " + cellTarget.value.toFixed(3)}; best is ${flat.achieved.toFixed(cellTarget.kind === "lc" ? 1 : 3)} at the end of the lightness range.`,
           })
         }
         if (context === "fill" && level >= 3) {

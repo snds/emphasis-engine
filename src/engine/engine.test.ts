@@ -136,6 +136,23 @@ describe("generate", () => {
     }
   })
 
+  it("keeps solid fills true to the named color in dark mode", () => {
+    for (const role of ["brand", "danger", "success"] as const) {
+      const d = rgbToOklch(sys.modes.dark.tokens[`${role}.fill.4`].flat.rgb)
+      expect(d.c, role).toBeGreaterThan(sys.roles[role].named.c * 0.9)
+      expect(Math.abs(lc(sys.modes.dark.tokens[`${role}.fill.4`].flat.rgb, sys.modes.dark.bg))).toBeGreaterThanOrEqual(29.9)
+    }
+  })
+
+  it("paints the light neutral primary as a light fill with dark text in both modes", () => {
+    for (const mode of ["light", "dark"] as const) {
+      const b = buildButton(sys, mode, "neutral", "primary")
+      expect(rgbToOklch(b.rest.visible).l, mode).toBeGreaterThan(0.8)
+      expect(rgbToOklch(parseHex(b.rest.fg)!).l, mode).toBeLessThan(0.4)
+      expect(b.rest.labelLc, mode).toBeGreaterThanOrEqual(75)
+    }
+  })
+
   it("runs fast enough to re-solve on every drag", () => {
     const t0 = performance.now()
     generate(s({ theme: "#7c3aed", layer: "alpha" }))
