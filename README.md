@@ -11,7 +11,7 @@ Designers ask for emphasis, not hex values. "High-emphasis text" and "medium-emp
 - **Three layers.** Ink (the default) keeps surfaces and solids flat and makes text, strokes, soft fills, and state overlays translucent ink, each at the lowest alpha that passes on every guard surface (page, card, muted, hover, selected). Flat solves a solid color. Alpha solves a live translucent ink against the page only. Ink is never baked down.
 - **Semantic tier.** Component colors come from role × variant × slot × state. States move a container away from its label, so a hover can never cost label contrast.
 - **Light and dark** are solved as separate systems, the way Radix ships them. Dark is not light inverted.
-- **Intent, profiles, solver.** The engine outputs intent: rendered pairs (element kind, surface, requirement), independent of any design system. A system profile describes how a downstream system renders: its variables, the recipes its components paint them with (opacity modifiers and color mixes included), and its stock theme. The solver reads the stock theme through those recipes to get targets, then solves each variable so every recipe it paints meets them. Nothing is layered on top of the system. shadcn is the first profile. See `docs/architecture.md`.
+- **Intent, profiles, solver.** The engine outputs intent: rendered pairs (element kind, surface, requirement), independent of any design system. A system profile describes how a downstream system renders: its variables, the recipes its components paint them with (opacity modifiers and color mixes included), and its stock theme. The solver reads the stock theme through those recipes to get targets, then solves each variable so every recipe it paints meets them. Nothing is layered on top of the system. Profiles ship for shadcn/ui, Radix Themes, and Material 3. See `docs/architecture.md`.
 - **Force accessibility.** Accessibility floors belong to element kinds: control borders and focus at 3:1, secondary text at Lc 60, solids at Lc 30. Matching stock shadcn puts some under; each floor has a switch beside the control it affects, and the Report shows every recipe against its floor.
 
 References: [Radix Colors](https://www.radix-ui.com/colors) for the stepped structure, [APCA](https://git.apcacontrast.com/documentation/WhyAPCA) for thresholds, and the [shadcn/ui create page](https://ui.shadcn.com/create) for the live-preview pattern.
@@ -38,8 +38,8 @@ npm run build    # static build in dist/
 | `src/engine/ink.ts` | Ink solves across guard surfaces, state overlays |
 | `src/engine/intent.ts` | The intent contract: element kinds, requirements, accessibility floors |
 | `src/engine/profile.ts` | Profile types, recipe expressions, reference reading, the backward solver |
-| `src/engine/profiles/shadcn.ts` | shadcn as a profile: variables, 30 recipes, stock theme |
-| `src/engine/shadcn.ts` | Thin adapter the app and exports use |
+| `src/engine/profiles/` | System profiles: shadcn/ui, Radix Themes, Material 3 |
+| `src/engine/outputs.ts` | Solve, accessibility checks, and CSS per output system |
 | `src/engine/export.ts` | shadcn CSS, Radix-shaped scales, DTCG JSON |
 | `src/app/` | Controls, preview, grid, report, export, credits |
 | `src/components/ui/` | shadcn components from preset `b1sABueby` (Base UI, mauve, blue, cyan, IBM Plex Sans), icons switched from Phosphor to Tabler for its easing-curve set |

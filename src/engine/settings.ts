@@ -163,6 +163,8 @@ export type Settings = {
    * levels for each element kind.
    */
   targetSource: "reference" | "engine"
+  /** The downstream system the output is solved for. */
+  output: "shadcn" | "radix" | "material"
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -197,6 +199,7 @@ export const DEFAULT_SETTINGS: Settings = {
   chromaScale: 1,
   a11y: { inputBorders: false, secondaryText: false, solids: false, focusRing: false },
   targetSource: "reference",
+  output: "shadcn",
 }
 
 /** Bounds per control. Basic clamps to the inner range; Advanced to outer. */

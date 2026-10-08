@@ -10,6 +10,7 @@ import { useTheme } from "@/components/theme-provider"
 import { useEngine } from "@/app/use-engine"
 import { Controls } from "@/app/controls"
 import { Preview } from "@/app/preview"
+import { Specimens } from "@/app/specimen"
 import { GridView } from "@/app/grid-view"
 import { ReportView } from "@/app/report-view"
 import { ExportView } from "@/app/export-view"
@@ -114,7 +115,11 @@ export function App() {
               </div>
               <TabsContent value="preview" id="preview">
                 <div style={previewVars} className="min-h-full bg-background p-4 text-foreground">
-                  <Preview sys={sys} mode={mode} />
+                  {sys.settings.output === "shadcn" ? (
+                    <Preview sys={sys} mode={mode} />
+                  ) : (
+                    <Specimens sys={sys} mode={mode} id={sys.settings.output} />
+                  )}
                 </div>
               </TabsContent>
               <TabsContent value="grid" className="p-4">

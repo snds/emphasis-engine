@@ -15,9 +15,9 @@ const VARS: VarSpec[] = [
   { name: "--popover", path: { kind: "alias", of: "--card" } },
   { name: "--muted", path: neutral("--card", { engineSurface: { light: "surface-2", dark: "surface-3" } }) },
   { name: "--accent", path: neutral("--popover", { engineSurface: { light: "surface-2", dark: "surface-3" } }) },
-  { name: "--sidebar", path: neutral("--background", { engineSurface: { light: "surface-1", dark: "surface-2" } }) },
+  { name: "--sidebar", path: neutral("--background") },
   { name: "--foreground", path: neutral("--background", { chroma: 0.6 }), note: "Placed by lightness near the end of the range; APCA flattens out there." },
-  { name: "--secondary", path: neutral("--card", { engineSurface: { light: "surface-2", dark: "surface-3" } }) },
+  { name: "--secondary", path: neutral("--card") },
   { name: "--muted-foreground", path: neutral("--card") },
   { name: "--primary", path: { kind: "solid", role: "brand" } },
   { name: "--primary-foreground", path: { kind: "onSolid", role: "brand" } },
@@ -82,6 +82,8 @@ const R: Recipe[] = [
 export const SHADCN: Profile = {
   id: "shadcn",
   label: "shadcn/ui",
+  description: "About 30 CSS variables. Components fade them with opacity modifiers and color-mix.",
+  selectors: { light: ":root", dark: ".dark" },
   vars: VARS,
   recipes: R,
   reference: {

@@ -65,6 +65,8 @@ export type Intent = {
   palettes: Record<RoleId, Palette>
   /** Near-black or near-white ink per role, for translucent paths. */
   inks: Record<RoleId, RGB>
+  /** Both polarities of each role's ink, for paths that walk either way. */
+  inkPair: Record<RoleId, { dark: RGB; light: RGB }>
   /** Chart series. */
   series: RGB[]
   /** The engine's own requirement for an element kind, if it has an opinion. */
@@ -95,6 +97,10 @@ export function buildIntent(sys: System, mode: Mode): Intent {
       return { hue: n.h, chroma: n.c, l: n.l, holdSaturation: r !== "neutral" }
     }),
     inks: by((r) => inkFor(mode, sys.roles[r].named.h, sys.roles[r].named.c, r === "neutral")),
+    inkPair: by((r) => ({
+      dark: inkFor("light", sys.roles[r].named.h, sys.roles[r].named.c, r === "neutral"),
+      light: inkFor("dark", sys.roles[r].named.h, sys.roles[r].named.c, r === "neutral"),
+    })),
     series: ms.categorical.colors.map((c) => c.rgb),
     engine: (kind) => {
       if (kind === "state") return { metric: "dL", min: s.stateDelta, source: "engine" }

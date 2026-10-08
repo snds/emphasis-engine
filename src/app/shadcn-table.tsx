@@ -2,11 +2,11 @@ import { IconAlertTriangleFilled, IconCheck } from "@tabler/icons-react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { hex } from "@/engine/color"
 import { fmt, type Outcome } from "@/engine/profile"
-import { solveShadcn } from "@/engine/shadcn"
+import { solveOutput } from "@/engine/outputs"
 import type { Mode } from "@/engine/settings"
 import type { System } from "@/engine/system"
 
-const SOURCE_LABEL = { reference: "shadcn", engine: "engine", accessibility: "forced" } as const
+const SOURCE_LABEL = { reference: "stock", engine: "engine", accessibility: "forced" } as const
 
 function Pair({ o }: { o: Outcome }) {
   return (
@@ -18,16 +18,15 @@ function Pair({ o }: { o: Outcome }) {
 
 /** Every shadcn recipe as rendered: what it paints, on what, the target, and the result. */
 export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
-  const res = solveShadcn(sys, mode)
+  const res = solveOutput(sys, sys.settings.output, mode)
   const unmet = res.outcomes.filter((o) => !o.recipe.check && !o.met).length
   const under = res.outcomes.filter((o) => o.spec && !o.spec.pass).length
   return (
     <section className="flex flex-col gap-3">
       <div>
-        <h3 className="text-sm font-semibold">shadcn recipes, {mode} mode</h3>
+        <h3 className="text-sm font-semibold">{res.profile.label} recipes, {mode} mode</h3>
         <p className="text-sm text-muted-foreground">
-          Each row is a pair shadcn's components actually render, read from their class names, with opacity modifiers and color mixes
-          applied. The variables are solved so every row meets its target.{" "}
+          Each row is a pair {res.profile.label}'s components render, with the system's own opacities and mixes applied. The variables are solved so every row meets its target.{" "}
           {unmet === 0 ? "All targets met." : `${unmet} can't be met with one value per variable; shown in red.`}{" "}
           {under > 0 && `${under} sit under an accessibility floor; Force accessibility lifts them.`}
         </p>
@@ -66,6 +65,7 @@ export function ShadcnTable({ sys, mode }: { sys: System; mode: Mode }) {
                       .map((c) => fmt(c.req.metric, c.achieved))
                       .filter((v, i, all) => all.indexOf(v) === i)
                       .join(" · ")}
+                    {o.capped && <span className="text-muted-foreground"> max</span>}
                   </span>
                 </TableCell>
                 <TableCell>

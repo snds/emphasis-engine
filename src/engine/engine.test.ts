@@ -2,6 +2,9 @@ import { describe, expect, it } from "vitest"
 import { converter } from "culori"
 import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch, toRgb } from "./color"
 import { shadcnFindings, solveShadcn } from "./shadcn"
+import { outputCss, outputFindings, solveOutput } from "./outputs"
+import { PROFILES } from "./profiles"
+import { parseCss } from "./profile"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral, targetFor } from "./system"
@@ -389,5 +392,64 @@ describe("shadcn tier", () => {
     const f = shadcnFindings(generate(s({ a11y: { ...DEFAULT_SETTINGS.a11y, inputBorders: true } })))
     expect(f.inputBorders).toHaveLength(0)
     expect(f.secondaryText.length).toBeGreaterThan(0)
+  })
+})
+
+describe("system profiles", () => {
+  const ids = ["shadcn", "radix", "material"] as const
+  const themes = ["#2563eb", "#f40009", "#eab308", "#059669", "#0f172a"]
+
+  it("reproduces every reference outcome in every profile, across themes and layers", () => {
+    for (const id of ids)
+      for (const theme of themes)
+        for (const layer of ["ink", "flat"] as const) {
+          const sy = generate(s({ theme, layer }))
+          for (const mode of ["light", "dark"] as const)
+            for (const o of solveOutput(sy, id, mode).outcomes)
+              if (!o.recipe.check) expect(o.met, `${id} ${theme} ${layer} ${mode} ${o.recipe.id}`).toBe(true)
+        }
+  })
+
+  it("matches the stock Radix scales when given Radix's own colors", () => {
+    const sy = generate(s({ theme: "#0090ff", neutral: "gray", themeTint: false }))
+    for (const mode of ["light", "dark"] as const) {
+      const res = solveOutput(sy, "radix", mode)
+      const ref = PROFILES.radix.reference[mode]
+      const page = res.values["--color-background"].rgb
+      const refPage = parseCss(ref["--color-background"]).rgb
+      for (const [k, css] of Object.entries(ref)) {
+        const p = parseCss(css)
+        const v = res.values[k]
+        const want = rgbToOklch(p.a < 1 ? composite(p.rgb, p.a, refPage) : p.rgb).l
+        const got = rgbToOklch(v.a < 1 ? composite(v.rgb, v.a, page) : v.rgb).l
+        expect(Math.abs(want - got), `${mode} ${k}`).toBeLessThan(0.02)
+      }
+    }
+  })
+
+  it("makes Material's fixed state layers land by moving the color under them", () => {
+    const res = solveOutput(generate(s({ theme: "#6750a4" })), "material", "light")
+    for (const id of ["primary-hover", "error-hover", "secondary-pressed"]) {
+      const o = res.outcomes.find((x) => x.recipe.id === id)!
+      expect(o.met, id).toBe(true)
+      expect(o.capped, id).toBe(false)
+    }
+  })
+
+  it("lifts every profile into spec when accessibility is forced", () => {
+    const a11y = { inputBorders: true, secondaryText: true, solids: true, focusRing: true }
+    for (const id of ids)
+      for (const theme of themes)
+        for (const targetSource of ["reference", "engine"] as const) {
+          const f = outputFindings(generate(s({ theme, targetSource, a11y })), id)
+          for (const [k, list] of Object.entries(f)) expect(list, `${id} ${theme} ${targetSource} ${k}`).toHaveLength(0)
+        }
+  })
+
+  it("writes each profile's CSS with its own names and selectors", () => {
+    const sy = generate(s())
+    expect(outputCss(sy, "radix")).toContain(".dark, .dark-theme {")
+    expect(outputCss(sy, "radix")).toMatch(/--accent-a3: rgba?\(.*\//)
+    expect(outputCss(sy, "material")).toContain("--md-sys-color-on-primary-container:")
   })
 })

@@ -30,7 +30,9 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
-import { solveShadcn } from "@/engine/shadcn"
+import { solveOutput } from "@/engine/outputs"
+import { PROFILES, PROFILE_IDS } from "@/engine/profiles"
+import type { ElementKind } from "@/engine/intent"
 import { fmt, type Outcome, type ProfileResult } from "@/engine/profile"
 import type { A11y, Mode } from "@/engine/settings"
 import {
@@ -636,12 +638,17 @@ function Readout({ label, tip, light, dark }: { label: string; tip: string; ligh
 
 export function Controls({ engine }: { engine: Engine }) {
   const { settings: s, update, sys } = engine
-  const out = useMemo<Outputs>(() => ({ light: solveShadcn(sys, "light"), dark: solveShadcn(sys, "dark") }), [sys])
-  const o = (mode: Mode, id: string) => out[mode].outcomes.find((x) => x.recipe.id === id)!
-  // The weaker of two pairs, in the floor's metric when the pair has one.
-  const weak = (mode: Mode, ids: string[]) => {
-    const list = ids.map((id) => o(mode, id))
-    const w = list.reduce((a, b) => ((b.spec?.achieved ?? b.achieved) < (a.spec?.achieved ?? a.achieved) ? b : a))
+  const out = useMemo<Outputs>(
+    () => ({ light: solveOutput(sys, s.output, "light"), dark: solveOutput(sys, s.output, "dark") }),
+    [sys, s.output],
+  )
+  // The weakest rendered pair of one element kind, in the floor's metric when it has one.
+  const weak = (mode: Mode, kind: ElementKind) => {
+    const list = out[mode].outcomes.filter((x) => x.recipe.element === kind)
+    if (!list.length) return "n/a"
+    const val = (x: Outcome) => (x.spec ? x.spec.achieved : x.achieved)
+    const sameMetric = list.filter((x) => (x.spec?.metric ?? x.recipe.metric) === (list[0].spec?.metric ?? list[0].recipe.metric))
+    const w = sameMetric.reduce((a, b) => (val(b) < val(a) ? b : a))
     return w.spec ? fmt(w.spec.metric, w.spec.achieved) : fmt(w.recipe.metric, w.achieved)
   }
   const tier = s.advanced ? "advanced" : "basic"
@@ -834,60 +841,71 @@ export function Controls({ engine }: { engine: Engine }) {
       </Section>
       <Separator />
       <Section
-        title="Output: shadcn/ui"
-        hint="The engine's intent, solved back through shadcn's own component recipes. Nothing is layered on top."
+        title="Output system"
+        hint="The engine's intent, solved back through the chosen system's own recipes. Nothing is layered on top."
       >
         <Field
+          label="System"
+          tip="Each system turns tokens into color differently. shadcn fades about 30 variables with opacity modifiers; Radix Themes picks steps from 12-step solid and alpha scales; Material 3 maps roles to tones and paints states as fixed-opacity layers. Preview, Report, and Export follow this choice. Theme this app always uses shadcn, since this tool is built with it."
+        >
+          <Choice
+            label="System"
+            value={s.output}
+            onChange={(output) => update({ output })}
+            options={PROFILE_IDS.map((id) => ({ value: id, label: PROFILES[id].label.replace(" Themes", "").replace("/ui", "") }))}
+          />
+        </Field>
+        <Field
           label="Targets"
-          tip="Match shadcn reads the stock shadcn theme through its own recipes and reproduces what it renders, for your colors. Engine emphasis uses this tool's emphasis levels for each element instead."
+          tip="Match stock reads the system's stock theme through its own recipes and reproduces what it renders, for your colors. Engine emphasis uses this tool's emphasis levels for each element kind instead."
         >
           <Choice
             label="Targets"
             value={s.targetSource}
             onChange={(targetSource) => update({ targetSource })}
             options={[
-              { value: "reference", label: "Match shadcn" },
+              { value: "reference", label: "Match stock" },
               { value: "engine", label: "Engine emphasis" },
             ]}
           />
         </Field>
         <Readout
           label="Separators"
-          tip="--border on card and page. Decorative, so no contrast spec applies."
-          light={weak("light", ["border-card", "border-page"])}
-          dark={weak("dark", ["border-card", "border-page"])}
+          tip="Decorative edges: dividers, card outlines. No contrast spec applies. Weakest pair shown."
+          light={weak("light", "border-decorative")}
+          dark={weak("dark", "border-decorative")}
         />
         <Readout
-          label="Field borders"
-          tip="--input as a border on card and page. The same variable also tints dark-mode fields and outline buttons at 30%, and the solve satisfies both uses."
-          light={weak("light", ["input-card", "input-page"])}
-          dark={weak("dark", ["input-card", "input-page"])}
+          label="Control borders"
+          tip="Edges that identify a control: field borders, outline buttons. Weakest pair shown."
+          light={weak("light", "border-control")}
+          dark={weak("dark", "border-control")}
         />
         <A11yToggle
           k="inputBorders"
           settings={s}
           update={update}
           out={out}
-          tip="WCAG 1.4.11 asks 3:1 for the edge that identifies a control. On: field borders step until they pass on both page and card. Outline buttons and fields tinted with --input get a little stronger too."
+          tip="WCAG 1.4.11 asks 3:1 for the edge that identifies a control. On: every control-border recipe in the system must reach 3:1. In shadcn that also strengthens the 30% field fill, since it shares --input."
         />
         <Readout
           label="Muted text"
-          tip="--muted-foreground on card and on muted: descriptions, captions, inactive tabs. Shown as the weaker of the two."
-          light={weak("light", ["mfg-card", "mfg-muted"])}
-          dark={weak("dark", ["mfg-card", "mfg-muted"])}
+          tip="Secondary text: descriptions, captions, links, error text. Weakest pair shown."
+          light={weak("light", "text-secondary")}
+          dark={weak("dark", "text-secondary")}
         />
         <A11yToggle
           k="secondaryText"
           settings={s}
           update={update}
           out={out}
-          tip="APCA asks Lc 60 for body text. Covers muted text on card and muted, destructive text, and the destructive button's label on its own 10–20% tint. On: every one of those pairs reaches Lc 60."
+          tip="APCA asks Lc 60 for body text. Covers secondary text and labels on tints, measured on every surface the system paints them on. On: every one of those pairs reaches Lc 60."
         />
         <Readout
           label="Focus ring"
-          tip="--ring: neutral, drawn by the components at 50% opacity, 3px wide."
-          light={weak("light", ["ring-card", "ring-page"])}
-          dark={weak("dark", ["ring-card", "ring-page"])}
+          tip="The focus indicator, measured as the system draws it (shadcn at 50% opacity)."
+          light={weak("light", "focus")}
+          dark={weak("dark", "focus")}
         />
         <A11yToggle
           k="focusRing"

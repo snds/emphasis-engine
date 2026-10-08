@@ -1,6 +1,6 @@
 # Emphasis Engine: system-agnostic architecture
 
-Status: Phase 1 built (October 8, 2026). Supersedes the plan's assumption that the engine exports directly to one design system.
+Status: Phases 1 and 2 built (October 8, 2026). Supersedes the plan's assumption that the engine exports directly to one design system.
 
 ## The problem this fixes
 
@@ -36,10 +36,13 @@ A profile describes one downstream system:
   - `step`: a lightness walk away from a parent variable along a role palette, optionally as a translucent ink when the layer allows, optionally adopting an engine surface under Engine targets.
   - `solid`, `onSolid`, `series`: fixed engine values.
   - `alias`: same as another variable.
+  - `alphaOf`: the exact translucent form of another variable over a surface. Radix derives its alpha scales this way; it keeps the solid's hue and chroma, and recipes that paint the alpha form drive the solid it comes from.
+  - Step paths can walk away from the page (default), back toward it (Material's lowest container), or toward whichever end gives the parent more contrast (on-colors).
 - **Recipes**: every pair the system's components actually render, read from component source. Each recipe has a paint expression, the stack it sits on, a metric, an element kind, and optional mode filter. Expressions mirror the system's CSS: a plain variable, an opacity modifier (`color-mix(in oklab, X k, transparent)`), or a real blend (`color-mix(in oklch, A, B k)`).
 - **Reference**: the system's stock theme as its own CSS values.
+- **Recipe options**: `against` measures a render against another render instead of the surface underneath (a hover against its rest state). `alsoDrives` lets a recipe constrain a variable it doesn't paint (Material's fixed 8% on-color layer constrains the color under it); those are solved in a second pass.
 
-Code: `src/engine/profile.ts` (types and solver), `src/engine/profiles/shadcn.ts` (first profile, 30 recipes).
+Code: `src/engine/profile.ts` (types and solver), `src/engine/profiles/` (shadcn, Radix Themes, Material 3).
 
 ### 3. Solver
 
@@ -54,9 +57,9 @@ Nothing is layered on top of the downstream system. Its own recipes are the over
 
 | System | How a variable becomes a color on screen | What the solver picks |
 |---|---|---|
-| shadcn (built) | About 30 variables. Components apply opacity modifiers and `color-mix` | Variable values, worked back through each recipe |
-| Radix Themes | Lookup by convention: steps 3–5 component backgrounds, 6–8 borders, 9–10 solids, 11–12 text | The 12 steps, so each lookup lands its target |
-| Material 3 | Roles map to tones on a tonal palette. States are fixed-opacity layers (8–10%) in the on-color | The tone per role, given those fixed state alphas |
+| shadcn (built, 31 recipes) | About 30 variables. Components apply opacity modifiers and `color-mix` | Variable values, worked back through each recipe |
+| Radix Themes (built, 94 recipes) | Lookup by convention: steps 3–5 component backgrounds, 6–8 borders, 9–10 solids, 11–12 text | The 12 steps, so each lookup lands its target |
+| Material 3 (built, 37 recipes) | Roles map to tones on a tonal palette. States are fixed-opacity layers (8–10%) in the on-color | The tone per role, given those fixed state alphas |
 | MUI | `main`/`light`/`dark`/`contrastText`, plus fixed action opacities (hover 0.04, selected 0.08) | Palette values under those fixed alphas |
 | Tailwind or a tiered custom system | Direct, global → semantic → component | Values directly |
 
@@ -69,17 +72,28 @@ Material 3 and MUI state layers are the engine's ink overlay with fixed alphas, 
 - Shared variables are solved for every use. `--input` satisfies its 100% border, its 30% field fill, its 50% hover, and its 80% switch track at once.
 - Force accessibility works per element kind, so it will apply unchanged to future profiles.
 
+## What Phase 2 proved
+
+- **The contract held for two very different systems.** Radix (lookup into 12-step solid and alpha scales) and Material 3 (tonal roles with fixed-opacity state layers) needed three solver additions and no change to intent: derived alpha paths, walk direction, and recipes that constrain a variable they don't paint.
+- **Radix reproduces exactly.** Given Radix's own blue and gray, every solid and alpha step lands within 0.02 OKLCH lightness of stock Radix Colors, in both modes.
+- **Material's fixed state layers drive the color under them.** M3's opacities are the system's, not ours, so the solver moves the container until the 8% and 10% layers land. Example: with the engine's red, `error` comes out deeper than M3's baseline so the white hover layer stays visible.
+- **The accessibility floors travel.** The same four switches work in all three systems. Out of the box, stock Material 3 passes every floor, Radix misses control borders (gray-a7 is about 1.6:1) and two dark soft labels (about Lc 58), and shadcn misses control borders, focus ring, dark secondary text, and dark solids.
+- **Engine targets expose translation conflicts.** With Engine emphasis on, the one recipe nothing can satisfy is shadcn's `hover:bg-muted/50`: the engine wants a 0.04 lightness step, and half of the engine's muted surface can't give it. The Report flags it rather than hiding it.
+- **Every reference outcome is met** in all three profiles, for five themes, in Ink and Flat (tested).
+
 ## Known limits
 
 - **Recipes live in code.** They were read by hand from the preset's class names. They drift when components change or new ones are added.
 - **One value per variable.** Where one variable serves conflicting uses, the solver reports the unmet recipe. The fix is a split variable through a component override, flagged as leaving stock.
 - **Monotonic paths assumed.** Each recipe's measure must grow as a variable moves away from its parent. True for every shadcn recipe; a profile with recipes that pull in opposite directions would need a different search.
 - **Light-mode outline buttons** use `--border`, not `--input`, so the field-border switch does not reach them.
+- **Radix and Material previews are approximations.** The app ships shadcn components only, so those two render as small specimens painted with the system's own variables, stock beside yours. Recipes come from each system's documented usage and component styles, not from their source trees.
+- **One accent per profile.** Radix and Material carry one brand scale and red for errors; other status roles aren't mapped yet.
 
 ## Phasing
 
 1. **Intent contract and shadcn as the first profile.** Done.
-2. **Radix Themes and Material 3 profiles.** Two different rendering models (lookup, tonal palette plus state layers). If the contract survives both, it generalizes. Adds a profile picker to the Preview and per-profile exports.
+2. **Radix Themes and Material 3 profiles.** Done. Output system picker, stock-beside-yours specimens, per-system Report and CSS export.
 3. **Reference reading from any theme.** Paste or point at an existing theme; read it through the profile to get starting targets.
 4. **Browser probing.** Render real components headlessly, sample computed colors per state, and back-solve. Works for systems nobody has written a profile for, and validates hand-written profiles.
 

@@ -113,7 +113,8 @@ export function oklchCss({ l, c, h }: Oklch, alpha = 1): string {
 }
 
 export function rgbaCss(rgb: RGB, alpha: number): string {
-  return alpha >= 1 ? hex(rgb) : `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]} / ${Math.round(alpha * 100)}%)`
+  // Tenths of a percent: derived alpha scales need the precision to land exactly.
+  return alpha >= 1 ? hex(rgb) : `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]} / ${+(alpha * 100).toFixed(1)}%)`
 }
 
 /**

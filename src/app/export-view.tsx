@@ -3,22 +3,36 @@ import { IconCheck, IconCopy, IconDownload } from "@tabler/icons-react"
 import { Button } from "@/components/ui/button"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { cssExport, dtcgJson, radixCss } from "@/engine/export"
+import { outputCss } from "@/engine/outputs"
+import { PROFILES } from "@/engine/profiles"
 import type { System } from "@/engine/system"
 
 const FORMATS = [
-  { id: "css", label: "shadcn CSS", file: "emphasis-theme.css", note: "shadcn token names plus the extension set, light and dark." },
-  { id: "radix", label: "Radix scales", file: "emphasis-radix.css", note: "12-step solid and alpha scales per role, per mode." },
+  { id: "system", label: "System variables", file: "emphasis-system.css", note: "The chosen output system's own variables and mode selectors, solved through its recipes." },
+  { id: "css", label: "shadcn + extensions", file: "emphasis-theme.css", note: "shadcn token names plus the extension set, light and dark." },
+  { id: "radix", label: "Role scales", file: "emphasis-scales.css", note: "The engine's own 12-step solid and alpha scales per role, per mode." },
   { id: "dtcg", label: "DTCG JSON", file: "emphasis-tokens.json", note: "Design Tokens Community Group format, both modes." },
 ] as const
 
 export function ExportView({ sys }: { sys: System }) {
-  const [fmt, setFmt] = useState<(typeof FORMATS)[number]["id"]>("css")
+  const [fmt, setFmt] = useState<(typeof FORMATS)[number]["id"]>("system")
   const [copied, setCopied] = useState(false)
   const pre = useRef<HTMLPreElement>(null)
   // Embedded viewers block script-driven downloads; offer Copy only there.
   const embedded = typeof window !== "undefined" && window.self !== window.top
-  const text = useMemo(() => (fmt === "css" ? cssExport(sys) : fmt === "radix" ? radixCss(sys) : dtcgJson(sys)), [fmt, sys])
-  const f = FORMATS.find((x) => x.id === fmt)!
+  const text = useMemo(
+    () =>
+      fmt === "system"
+        ? `/* Emphasis Engine · ${PROFILES[sys.settings.output].label} */\n` + outputCss(sys, sys.settings.output)
+        : fmt === "css"
+          ? cssExport(sys)
+          : fmt === "radix"
+            ? radixCss(sys)
+            : dtcgJson(sys),
+    [fmt, sys],
+  )
+  const base = FORMATS.find((x) => x.id === fmt)!
+  const f = fmt === "system" ? { ...base, file: `emphasis-${sys.settings.output}.css`, note: `${PROFILES[sys.settings.output].label} variables, solved through its recipes.` } : base
 
   const copy = async () => {
     try {
