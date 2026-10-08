@@ -197,6 +197,29 @@ describe("generate", () => {
     }
   })
 
+  it("applies role overrides to that role only", () => {
+    const base = generate(s())
+    const sy = generate(s({ roleOverrides: { danger: { ramps: { text: "ease-out" }, offsets: { text: 5 } } } }))
+    expect(sy.modes.light.tokens["danger.text.2"].target.value).toBeGreaterThan(base.modes.light.tokens["danger.text.2"].target.value + 5)
+    expect(sy.modes.light.tokens["brand.text.2"].target.value).toBe(base.modes.light.tokens["brand.text.2"].target.value)
+  })
+
+  it("reaches shadcn's deeper dark-mode blue with a custom dark solid", () => {
+    const sat = 0.199 / maxChroma(0.424, 264.376)
+    const sy = generate(s({ theme: "#1447e6", darkSolid: { mode: "custom", l: 0.424, s: sat } }))
+    const solid = rgbToOklch(sy.modes.dark.tokens["brand.fill.4"].flat.rgb)
+    expect(solid.l).toBeCloseTo(0.424, 2)
+    expect(hex(sy.modes.light.tokens["brand.fill.4"].flat.rgb)).toBe("#1447e6")
+    expect(buildButton(sy, "dark", "brand", "primary").rest.labelLc).toBeGreaterThanOrEqual(60)
+    const lv = ([1, 2, 3, 4] as const).map((l) => rgbToOklch(sy.modes.dark.tokens[`brand.fill.${l}`].flat.rgb).l)
+    for (let i = 1; i < 4; i++) expect(lv[i]).toBeGreaterThan(lv[i - 1])
+  })
+
+  it("keeps the picked color as the dark solid under Match light", () => {
+    const sy = generate(s({ theme: "#1447e6", darkSolid: { mode: "match", l: 0.4, s: 0.7 } }))
+    expect(hex(sy.modes.dark.tokens["brand.fill.4"].flat.rgb)).toBe("#1447e6")
+  })
+
   it("paints the light neutral primary as a light fill with dark text in both modes", () => {
     for (const mode of ["light", "dark"] as const) {
       const b = buildButton(sys, mode, "neutral", "primary")

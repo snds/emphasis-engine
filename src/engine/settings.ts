@@ -91,6 +91,20 @@ export const SOLID_FLOOR = 30
 export const ON_FILL_MIN = 60
 export const ON_FILL_PREFERRED = 75
 
+/** Per-role overrides of the threshold controls. Unset keys inherit global. */
+export type RoleOverride = {
+  ramps?: Partial<Record<Context, Ramp>>
+  offsets?: Partial<{ text: number; fill: number; stroke: number }>
+  surfaceScale?: number
+}
+
+/**
+ * The dark-mode solid fill. Lift raises it to the large-solid floor
+ * (Lc 30). Match keeps the light-mode color. Custom sets its lightness and
+ * saturation directly, the way shadcn ships a deeper dark-mode primary.
+ */
+export type DarkSolid = { mode: "lift" | "match" | "custom"; l: number; s: number }
+
 export type Settings = {
   theme: string
   chart: string
@@ -117,6 +131,8 @@ export type Settings = {
   familyPull: number
   offsets: { text: number; fill: number; stroke: number }
   ramps: Record<Context, Ramp>
+  roleOverrides: Partial<Record<RoleId, RoleOverride>>
+  darkSolid: DarkSolid
   surfaceScale: number
   holdSaturation: boolean
   chromaScale: number
@@ -145,6 +161,8 @@ export const DEFAULT_SETTINGS: Settings = {
   familyPull: 0.5,
   offsets: { text: 0, fill: 0, stroke: 0 },
   ramps: { text: "stepped", fill: "stepped", stroke: "stepped", surface: "stepped" },
+  roleOverrides: {},
+  darkSolid: { mode: "lift", l: 0.42, s: 0.7 },
   surfaceScale: 1,
   holdSaturation: true,
   chromaScale: 1,
@@ -158,6 +176,18 @@ export const BOUNDS = {
   chromaScale: { basic: [1, 1], advanced: [0.5, 1.3] },
   stateDelta: { basic: [0.03, 0.06], advanced: [0.01, 0.12] },
 } as const
+
+/** Settings as one role sees them: its overrides layered over global. */
+export function withRole(s: Settings, role: RoleId): Settings {
+  const o = s.roleOverrides?.[role]
+  if (!o) return s
+  return {
+    ...s,
+    ramps: { ...s.ramps, ...o.ramps },
+    offsets: { ...s.offsets, ...o.offsets },
+    surfaceScale: o.surfaceScale ?? s.surfaceScale,
+  }
+}
 
 export function effectiveLeash(s: Settings): number {
   // An Advanced leash value persists in Basic as an override.
@@ -182,6 +212,12 @@ export function advancedOverrides(s: Settings): string[] {
   const [dlo, dhi] = BOUNDS.stateDelta.basic
   if (s.stateDelta < dlo || s.stateDelta > dhi) out.push(`State step ${s.stateDelta.toFixed(3)}`)
   if (!s.trueSolids) out.push("Solid fills contrast-solved")
+  for (const [role, o] of Object.entries(s.roleOverrides ?? {})) {
+    if (!o) continue
+    const n =
+      Object.keys(o.ramps ?? {}).length + Object.keys(o.offsets ?? {}).length + (o.surfaceScale !== undefined ? 1 : 0)
+    if (n) out.push(`${role[0].toUpperCase()}${role.slice(1)}: ${n} threshold override${n === 1 ? "" : "s"}`)
+  }
   if (s.tintStrength > 0.6) out.push(`Tint strength ${Math.round(s.tintStrength * 100)}%`)
   return out
 }

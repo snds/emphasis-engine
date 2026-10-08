@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react"
 import { Slider as SliderPrimitive } from "@base-ui/react/slider"
 import { cn } from "cn"
 
@@ -7,8 +8,12 @@ function Slider({
   value,
   min = 0,
   max = 100,
+  trackStyle,
   ...props
-}: SliderPrimitive.Root.Props) {
+}: SliderPrimitive.Root.Props & {
+  /** Paints the track (e.g. a color gradient) and hides the fill indicator. */
+  trackStyle?: CSSProperties
+}) {
   const _values = Array.isArray(value)
     ? value
     : Array.isArray(defaultValue)
@@ -29,11 +34,18 @@ function Slider({
       <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col">
         <SliderPrimitive.Track
           data-slot="slider-track"
-          className="relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
+          style={trackStyle}
+          className={cn(
+            "relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1",
+            trackStyle && "data-horizontal:h-2.5 ring-1 ring-foreground/10"
+          )}
         >
           <SliderPrimitive.Indicator
             data-slot="slider-range"
-            className="bg-primary select-none data-horizontal:h-full data-vertical:w-full"
+            className={cn(
+              "select-none data-horizontal:h-full data-vertical:w-full",
+              trackStyle ? "bg-transparent" : "bg-primary"
+            )}
           />
         </SliderPrimitive.Track>
         {Array.from({ length: _values.length }, (_, index) => (

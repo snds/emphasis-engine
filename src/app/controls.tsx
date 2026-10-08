@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import { useState, type ReactNode } from "react"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Slider } from "@/components/ui/slider"
@@ -11,15 +11,20 @@ import {
   BOUNDS,
   NEUTRALS,
   RAMPS,
+  ROLES,
+  withRole,
   type Context,
   type NeutralId,
   type Ramp,
+  type RoleId,
+  type RoleOverride,
   type Settings,
 } from "@/engine/settings"
 import { resolveNeutral, targetFor } from "@/engine/system"
 import { rgbToOklch } from "@/engine/color"
 import type { Engine } from "./use-engine"
 import { InfoTip } from "./info-tip"
+import { LshSliders, ThemeTune, lshFromHex } from "./tune"
 import {
   Tooltip,
   TooltipContent,
@@ -35,6 +40,7 @@ import {
 } from "@tabler/icons-react"
 
 const THEME_PRESETS = [
+  "#1447e6",
   "#2563eb",
   "#f40009",
   "#7c3aed",
@@ -275,6 +281,70 @@ const RAMP_META: Record<Ramp, { label: string; icon: Icon; note: string }> = {
 }
 
 /** Ramp picker: icon toggle group, each item tipped with the levels it yields. */
+function RampGroup({
+  label,
+  value,
+  onChange,
+  preview,
+}: {
+  label: string
+  value: Ramp
+  onChange: (r: Ramp) => void
+  preview: (r: Ramp) => string
+}) {
+  return (
+    <ToggleGroup
+      aria-label={label}
+      variant="outline"
+      size="sm"
+      spacing={0}
+      value={[value]}
+      onValueChange={(v) => v[0] && onChange(v[0] as Ramp)}
+      className="w-full"
+    >
+      {RAMPS.map((ramp) => {
+        const { label: name, icon: RampIcon, note } = RAMP_META[ramp]
+        return (
+          <Tooltip key={ramp}>
+            <TooltipTrigger
+              render={
+                <ToggleGroupItem
+                  value={ramp}
+                  aria-label={name}
+                  className="flex-1"
+                />
+              }
+            >
+              <RampIcon />
+            </TooltipTrigger>
+            <TooltipContent className="flex-col items-start gap-0.5">
+              <span className="font-medium">
+                {name}: {note}
+              </span>
+              <span className="tabular-nums opacity-80">
+                Light mode levels: {preview(ramp)}
+              </span>
+            </TooltipContent>
+          </Tooltip>
+        )
+      })}
+    </ToggleGroup>
+  )
+}
+
+/** Light-mode levels a context would get under a ramp, for tooltips. */
+function previewLevels(settings: Settings, context: Context, ramp: Ramp) {
+  const sim = { ...settings, ramps: { ...settings.ramps, [context]: ramp } }
+  return ([1, 2, 3, 4, 5] as const)
+    .map((l) => {
+      const t = targetFor(sim, "light", context, l)
+      return t.kind === "lc"
+        ? Math.round(t.value).toString()
+        : t.value.toFixed(3)
+    })
+    .join(", ")
+}
+
 function RampPicker({
   context,
   settings,
@@ -284,57 +354,140 @@ function RampPicker({
   settings: Settings
   update: Engine["update"]
 }) {
-  const levels = (ramp: Ramp) => {
-    const sim = { ...settings, ramps: { ...settings.ramps, [context]: ramp } }
-    return ([1, 2, 3, 4, 5] as const)
-      .map((l) => {
-        const t = targetFor(sim, "light", context, l)
-        return t.kind === "lc"
-          ? Math.round(t.value).toString()
-          : t.value.toFixed(3)
-      })
-      .join(", ")
-  }
   return (
-    <ToggleGroup
-      aria-label={`${context} ramp`}
-      variant="outline"
-      size="sm"
-      spacing={0}
-      value={[settings.ramps[context]]}
-      onValueChange={(v) =>
-        v[0] &&
-        update({ ramps: { ...settings.ramps, [context]: v[0] as Ramp } })
-      }
-      className="w-full"
-    >
-      {RAMPS.map((ramp) => {
-        const { label, icon: RampIcon, note } = RAMP_META[ramp]
-        return (
-          <Tooltip key={ramp}>
-            <TooltipTrigger
-              render={
-                <ToggleGroupItem
-                  value={ramp}
-                  aria-label={label}
-                  className="flex-1"
+    <RampGroup
+      label={`${context} ramp`}
+      value={settings.ramps[context]}
+      onChange={(r) => update({ ramps: { ...settings.ramps, [context]: r } })}
+      preview={(r) => previewLevels(settings, context, r)}
+    />
+  )
+}
+
+const CTX_LABEL: Record<Context, string> = {
+  text: "Text",
+  fill: "Fill",
+  stroke: "Stroke",
+  surface: "Surface",
+}
+
+/** Advanced: per-role thresholds that inherit global until changed. */
+function RoleOverrides({
+  settings: s,
+  update,
+  offsetBounds,
+}: {
+  settings: Settings
+  update: Engine["update"]
+  offsetBounds: readonly [number, number]
+}) {
+  const [role, setRole] = useState<RoleId>("danger")
+  const o: RoleOverride = s.roleOverrides[role] ?? {}
+  const eff = withRole(s, role)
+  const set = (next: RoleOverride) =>
+    update({ roleOverrides: { ...s.roleOverrides, [role]: next } })
+  const count =
+    Object.keys(o.ramps ?? {}).length +
+    Object.keys(o.offsets ?? {}).length +
+    (o.surfaceScale !== undefined ? 1 : 0)
+  const mark = (on: boolean) =>
+    on ? (
+      <span className="text-[11px] font-medium text-primary">Overridden</span>
+    ) : null
+  return (
+    <div className="flex flex-col gap-3">
+      <FieldLabel
+        label="Role overrides"
+        tip="Give one role its own offsets and ramps. Unchanged values inherit the global thresholds."
+      />
+      <ToggleGroup
+        aria-label="Role"
+        variant="outline"
+        size="sm"
+        spacing={1}
+        value={[role]}
+        onValueChange={(v) => v[0] && setRole(v[0] as RoleId)}
+        className="w-full flex-wrap"
+      >
+        {ROLES.map((r) => {
+          const has =
+            !!s.roleOverrides[r] &&
+            Object.values(s.roleOverrides[r]!).some(
+              (x) =>
+                x !== undefined &&
+                (typeof x !== "object" ||
+                  (x !== null && Object.keys(x).length > 0))
+            )
+          return (
+            <ToggleGroupItem key={r} value={r} className="text-xs capitalize">
+              {r}
+              {has && (
+                <span
+                  className="size-1.5 rounded-full bg-primary"
+                  aria-label="has overrides"
                 />
-              }
-            >
-              <RampIcon />
-            </TooltipTrigger>
-            <TooltipContent className="flex-col items-start gap-0.5">
-              <span className="font-medium">
-                {label}: {note}
-              </span>
-              <span className="tabular-nums opacity-80">
-                Light mode levels: {levels(ramp)}
-              </span>
-            </TooltipContent>
-          </Tooltip>
-        )
-      })}
-    </ToggleGroup>
+              )}
+            </ToggleGroupItem>
+          )
+        })}
+      </ToggleGroup>
+      <div className="flex items-center justify-between text-xs text-muted-foreground">
+        <span>
+          {count
+            ? `${count} override${count === 1 ? "" : "s"} on ${role}`
+            : `${role[0].toUpperCase()}${role.slice(1)} inherits global`}
+        </span>
+        {count > 0 && (
+          <Button variant="ghost" size="xs" onClick={() => set({})}>
+            Reset to global
+          </Button>
+        )}
+      </div>
+      {(["text", "fill", "stroke"] as const).map((ctx) => (
+        <div key={ctx} className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            {mark(
+              o.offsets?.[ctx] !== undefined || o.ramps?.[ctx] !== undefined
+            )}
+          </div>
+          <Range
+            label={`${CTX_LABEL[ctx]} offset`}
+            tip={`Raises or lowers every ${ctx} target for this role only.`}
+            value={eff.offsets[ctx]}
+            min={offsetBounds[0]}
+            max={offsetBounds[1]}
+            step={1}
+            format={(v) => `${v > 0 ? "+" : ""}${v} Lc`}
+            onChange={(v) => set({ ...o, offsets: { ...o.offsets, [ctx]: v } })}
+          />
+          <RampGroup
+            label={`${role} ${ctx} ramp`}
+            value={eff.ramps[ctx]}
+            onChange={(r) => set({ ...o, ramps: { ...o.ramps, [ctx]: r } })}
+            preview={(r) => previewLevels(eff, ctx, r)}
+          />
+        </div>
+      ))}
+      <div className="flex flex-col gap-2">
+        {mark(o.surfaceScale !== undefined || o.ramps?.surface !== undefined)}
+        <Range
+          label="Surface spacing"
+          tip="Surface level spacing for this role only."
+          value={eff.surfaceScale}
+          min={0.5}
+          max={1.8}
+          step={0.05}
+          format={(v) => `${Math.round(v * 100)}%`}
+          onChange={(v) => set({ ...o, surfaceScale: v })}
+        />
+        <RampGroup
+          label={`${role} surface ramp`}
+          value={eff.ramps.surface}
+          onChange={(r) => set({ ...o, ramps: { ...o.ramps, surface: r } })}
+          preview={(r) => previewLevels(eff, "surface", r)}
+        />
+      </div>
+    </div>
   )
 }
 
@@ -420,6 +573,47 @@ export function Controls({ engine }: { engine: Engine }) {
             onChange={(theme) => update({ theme })}
             presets={THEME_PRESETS}
           />
+          <ThemeTune theme={s.theme} onChange={(theme) => update({ theme })} />
+        </Field>
+        <Field
+          label="Dark-mode solid"
+          tip="The primary fill in dark mode. Lift raises it for contrast. Match keeps the light color. Custom sets it directly."
+        >
+          <Choice
+            label="Dark-mode solid"
+            value={s.darkSolid.mode}
+            onChange={(mode) =>
+              update({
+                darkSolid:
+                  mode === "custom" && s.darkSolid.mode !== "custom"
+                    ? {
+                        mode,
+                        l: Math.max(0.3, lshFromHex(s.theme).l - 0.06),
+                        s: lshFromHex(s.theme).s * 0.85,
+                      }
+                    : { ...s.darkSolid, mode },
+              })
+            }
+            options={[
+              { value: "lift", label: "Lift" },
+              { value: "match", label: "Match light" },
+              { value: "custom", label: "Custom" },
+            ]}
+          />
+          {s.darkSolid.mode === "custom" && (
+            <LshSliders
+              idPrefix="dark-solid"
+              showHue={false}
+              value={{
+                l: s.darkSolid.l,
+                s: s.darkSolid.s,
+                h: lshFromHex(s.theme).h,
+              }}
+              onChange={(v) =>
+                update({ darkSolid: { mode: "custom", l: v.l, s: v.s } })
+              }
+            />
+          )}
         </Field>
         <Field
           label="Base neutral"
@@ -704,6 +898,12 @@ export function Controls({ engine }: { engine: Engine }) {
               step={0.05}
               format={(v) => `${Math.round(v * 100)}%`}
               onChange={(familyPull) => update({ familyPull })}
+            />
+            <Separator />
+            <RoleOverrides
+              settings={s}
+              update={update}
+              offsetBounds={BOUNDS.offset.advanced}
             />
           </Section>
         </>

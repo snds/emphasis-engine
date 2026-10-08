@@ -5,6 +5,7 @@ import {
   hex,
   hueDelta,
   hueToward,
+  maxChroma,
   parseHex,
   rgbToOklch,
   rgbaCss,
@@ -26,6 +27,7 @@ import {
   STATUS_ROLES,
   effectiveLeash,
   easeRamp,
+  withRole,
   type Context,
   type Level,
   type Mode,
@@ -195,14 +197,24 @@ const SOLID_GAP = 10
  * and A, keeping the ramp's proportions; level 5 sits at least SOLID_GAP
  * past A. The named color therefore appears once, and levels stay ordered.
  */
-function fillTargets(s: Settings, mode: Mode, anchorLc: number | null): number[] {
+function fillTargets(s: Settings, mode: Mode, solid: FlatResult | null, bg: RGB): Target[] {
   const t = LEVELS.map((l) => (targetFor(s, mode, "fill", l) as { value: number }).value)
-  if (anchorLc === null) return t
-  const lo = Math.max(5, Math.min(t[0], anchorLc - 12))
+  const lc = (value: number): Target => ({ kind: "lc", value })
+  if (!solid) return t.map(lc)
+  const anchorLc = solid.achieved
   const span = t[3] - t[0] || 1
-  const out = [0, 1, 2].map((i) => lo + (anchorLc - lo) * ((t[i] - t[0]) / span))
-  out.push(anchorLc, Math.max(t[4], anchorLc + SOLID_GAP))
-  return out
+  const frac = [0, 1, 2].map((i) => (t[i] - t[0]) / span)
+  const top = lc(Math.max(t[4], anchorLc + SOLID_GAP))
+  if (anchorLc < SOLID_FLOOR) {
+    // A solid set below the floor (a deep dark-mode primary) leaves too
+    // little Lc room for three levels, and APCA reads 0 under about Lc 10.
+    // Space levels 1-3 by lightness between the page and the solid instead.
+    const d = Math.abs(rgbToOklch(solid.rgb).l - rgbToOklch(bg).l)
+    const lower = frac.map((f): Target => ({ kind: "dL", value: Math.max(0.02, d * (0.25 + 0.6 * f)) }))
+    return [...lower, lc(anchorLc), top]
+  }
+  const lo = Math.max(5, Math.min(t[0], anchorLc - 12))
+  return [...frac.map((f) => lc(lo + (anchorLc - lo) * f)), lc(anchorLc), top]
 }
 
 export function targetFor(s: Settings, mode: Mode, context: Context, level: Level): Target {
@@ -300,8 +312,31 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
     const role = roles[roleId]
     // The true solid is solved first: every other fill level is placed
     // relative to it.
+    // Each role sees global thresholds with its own overrides layered on.
+    const rs = withRole(s, roleId)
     let solid: FlatResult | null = null
-    if (s.trueSolids) {
+    const ds = s.darkSolid
+    if (mode === "dark" && ds && ds.mode !== "lift") {
+      // Forced dark solid: the picked color as-is, or set directly.
+      const color =
+        ds.mode === "match"
+          ? role.named
+          : { l: ds.l, c: Math.min(1, ds.s) * maxChroma(ds.l, role.named.h), h: role.named.h }
+      // Neutral and status keep their own anchors under Custom; only the
+      // brand takes the custom lightness and saturation.
+      const forced = ds.mode === "custom" && roleId !== "brand" ? null : color
+      if (forced) {
+        const rgb = toRgb(forced)
+        solid = { color: rgbToOklch(rgb), rgb, achieved: Math.abs(lc(rgb, bg)), met: true }
+        if (roleId === "brand" && solid.achieved < SOLID_FLOOR)
+          log.push({
+            force: "brand identity",
+            mode,
+            message: `Dark-mode brand solid set at Lc ${solid.achieved.toFixed(0)}, under the Lc 30 large-solid floor. Its label carries the contrast; lower fill levels are spaced by lightness.`,
+          })
+      }
+    }
+    if (!solid && s.trueSolids) {
       const signed = lc(role.namedRgb, bg)
       const rightSide = dir === "darker" ? signed > 0 : signed < 0
       if (rightSide && Math.abs(signed) >= SOLID_FLOOR) {
@@ -312,12 +347,11 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
         solid = solveFlat(full, bg, { kind: "lc", value: SOLID_FLOOR }, dir)
       }
     }
-    const fills = fillTargets(s, mode, solid ? solid.achieved : null)
+    const fills = fillTargets(rs, mode, solid, bg)
     for (const context of CONTEXTS) {
       for (const level of LEVELS) {
-        const rule = ruleFor(role, context, s, level)
-        const target: Target =
-          context === "fill" ? { kind: "lc", value: fills[level - 1] } : targetFor(s, mode, context, level)
+        const rule = ruleFor(role, context, rs, level)
+        const target: Target = context === "fill" ? fills[level - 1] : targetFor(rs, mode, context, level)
         let cellTarget: Target = target
         let anchored = false
         let flat: FlatResult
@@ -333,7 +367,7 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
           if (context === "fill" && !solid && target.kind === "lc") {
             const signed = lc(role.namedRgb, bg)
             const rightSide = dir === "darker" ? signed > 0 : signed < 0
-            const next = level < 5 ? fills[level] : target.value + 15
+            const next = level < 5 ? fills[level].value : target.value + 15
             if (rightSide && Math.abs(signed) >= target.value && Math.abs(signed) < next) {
               flat = { color: role.named, rgb: role.namedRgb, achieved: Math.abs(signed), met: true }
               anchored = true
