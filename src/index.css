@@ -128,3 +128,17 @@
     @apply font-sans;
     }
 }
+/* Unlayered on purpose. Hosts that embed this page (the artifact viewer)
+   ship their own unlayered body reset, which beats anything in @layer base.
+   These rules keep the page ground and color-scheme tied to the mode. */
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
