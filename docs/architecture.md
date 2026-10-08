@@ -154,6 +154,45 @@ Results, tested: every generated profile reproduces every stock outcome for six 
 
 Known outliers worth a look in the Report: Bootstrap's warning text emphasis, Carbon's link hover, Coinbase CDS's foreground and line colors, and Mantine's placeholder and outline colors land off stock. Each is a variable whose pairs pull in different directions once the engine's colors replace the stock ones.
 
+## Native examples
+
+Every system except shadcn gets a page built from its own real components and laid out by its own guidelines. They all share one scene's content (`src/native/scene.ts`): an enterprise PLM "Workspace settings" page with a header, form, actions, status alerts, an orders table, and text emphasis. The pages compare color treatment, not content. Where a system lacks a piece, the page uses that system's nearest equivalent or leaves it out.
+
+- **Isolation.** Each page is its own document (`native/<id>.html` → `src/native/<id>.tsx`) in an iframe. Systems ship global resets that would collide with each other and with the app.
+- **Theme in.** The app sends the solved values for the current mode by `postMessage`. The kit (`src/native/kit.tsx`) switches the system's own mode mechanism, then applies the values the way the probe applies sentinels:
+  - root variables inline `!important` on `<html>` and the system's scope elements;
+  - scoped variables as `!important` rules;
+  - literal redefinitions under component selectors get the same value.
+- **Restore.** Restore puts a variable back only if it still holds the value the kit set. That way a provider that rewrote its variables on a mode switch keeps its values.
+- **Sizing.** The page reports its content height, so the app page scrolls, not the frame. Native pages don't use `100vh`.
+- **Instant switching.**
+  - Every page is in the build: a multi-page Vite config with one entry per system.
+  - The last three frames stay mounted, and only the visible one receives theme messages.
+  - A service worker (`src/sw-template.js`, written to `dist/sw.js` with the full file list) caches every file after the first visit. That's about 8.8 MB, 86 files. It skips this when Data Saver is on.
+- **Preview.** Preview shows Native or Pairs. Pairs is the measurement view (the specimens for Radix and Material, the recipe board for generated systems). Hold-to-compare sends the defaults' solved values.
+- **Tooling.** `scripts/native-shot.ts <id>` screenshots stock and themed, light and dark, at 390 and 1280. It uses a loud brand so any component the theme misses stands out, and it solves in the page because the engine uses Vite-only imports. `docs/native/BRIEF.md` is the contract for building a page. `docs/systems/<id>.md` records what each system taught us.
+
+What the native pages showed: whether a theme reaches a component depends on where the system makes state colors.
+- **Followed the theme:**
+  - separate state tokens (Carbon, Fluent, Primer, Atlassian, Mantine);
+  - runtime `color-mix()` (daisyUI, Chakra);
+  - opacity (shadcn, Material).
+- **Didn't follow:**
+  - build-time literals (Bootstrap);
+  - JS-computed colors (Ant Design component tokens, Coinbase CDS hover and disabled).
+
+Profile fixes the pages surfaced:
+- **Bootstrap:** outline and link buttons go solid (`--bs-btn-bg@.btn`). Warning text-emphasis solves to white. The success border vanishes. The info alert themed is `.alert-primary`, not `.alert-info`.
+- **Mantine:** the dark placeholder equals the text color. The outline loses its hue.
+- **Atlassian:** `--ds-border` is transparent in dark. `background.brand.bold` is missing. Danger and info solve to a brand-tinted neutral.
+- **Radix:** `--accent-track` and `--accent-surface` are unsolved.
+- **Ant Design:** component tokens (Tabs, Radio, Menu, Header) are written as literals, and info-bg comes from neutrals.
+- **Primer:** `--header-*` and the disabled primary are missing. The underline is modeled on danger. Muted translucent tints come out near-gray.
+- **Coinbase CDS:** warning, positive, and spectrum colors are missing, and its dark selector is listed as `.dark`.
+- **Across systems:**
+  - Status families must never alias brand. Info turned brand-colored on Primer, Coinbase CDS, Chakra, Mantine, Carbon, Ant Design, and Fluent.
+  - A `render(mode, values)` hook would let JS-themed systems take solved values in their theme object.
+
 ## Known limits
 
 - **Recipes are still written by hand.** The probe verifies them and lists what's missing, but turning a candidate pair into a recipe (choosing its element kind and metric) is a person's call.
@@ -162,7 +201,7 @@ Known outliers worth a look in the Report: Bootstrap's warning text emphasis, Ca
 - **One value per variable.** Where one variable serves conflicting uses, the solver reports the unmet recipe. The fix is a split variable through a component override, flagged as leaving stock.
 - **Monotonic paths assumed.** Each recipe's measure must grow as a variable moves away from its parent. True for every shadcn recipe; a profile with recipes that pull in opposite directions would need a different search.
 - **Light-mode outline buttons** use `--border`, not `--input`, so the field-border switch does not reach them.
-- **Radix and Material previews are approximations.** The app ships shadcn components only, so those two render as small specimens painted with the system's own variables, stock beside yours. Recipes come from each system's documented usage and component styles, not from their source trees.
+- **Native pages theme only what the profile solves.** Variables the probe never saw, and colors a system computes in JS, stay stock on the native page. The Pairs view shows exactly what's solved.
 - **Recipes are version-specific.** The shadcn profile models the base-nova (v4) components. Themes written for other component versions read through them faithfully, which can show up as misses.
 - **CSS only.** Imports read CSS custom properties. DTCG or Tokens Studio JSON aren't read yet.
 - **One accent per profile.** Radix and Material carry one brand scale and red for errors; other status roles aren't mapped yet.
