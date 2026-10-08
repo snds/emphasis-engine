@@ -1,3 +1,4 @@
+import { buildTier } from "./shadcn"
 // Exports. shadcn token names for compatibility, an extension set for what
 // shadcn cannot express, Radix-shaped scales, and DTCG JSON.
 import { hex, rgbToOklch, oklchCss, rgbaCss } from "./color"
@@ -7,52 +8,9 @@ import { active, tokenId, type System } from "./system"
 
 /** shadcn variable → value, per mode. Each traces to a grid cell. */
 export function shadcnVars(sys: System, mode: Mode): Record<string, string> {
-  const s = sys.settings
-  const ms = sys.modes[mode]
-  const t = (id: string) => active(ms.tokens[id], s.layer).css
-  // Text reads as ink in the ink model, so foregrounds compound too.
-  const flat = (id: string) => (s.layer === "ink" && id.includes(".text.") ? t(id) : hex(ms.tokens[id].flat.rgb))
-  const ink = s.layer === "ink"
-  const hoverOverlay = rgbaCss(ms.overlay.ink, ms.overlay.hover.alpha)
-  const bg = hex(ms.bg)
-  const card = mode === "light" ? bg : flat("neutral.surface.2")
-  const secondaryTk =
-    s.secondarySource === "role-tint" ? ms.tokens["brand.surface.3"] : ms.tokens["neutral.surface.3"]
-  const secondary =
-    s.secondarySource === "neutral-flat"
-      ? hex(secondaryTk.flat.rgb)
-      : rgbaCss(secondaryTk.alpha.tint, secondaryTk.alpha.alpha)
-  const onBrand = ms.onFill["brand.fill.4"].css
-  const vars: Record<string, string> = {
-    "--background": bg,
-    "--foreground": flat("neutral.text.5"),
-    "--card": card,
-    "--card-foreground": flat("neutral.text.5"),
-    "--popover": card,
-    "--popover-foreground": flat("neutral.text.5"),
-    "--primary": t("brand.fill.4"),
-    "--primary-foreground": onBrand,
-    "--secondary": secondary,
-    "--secondary-foreground": flat("neutral.text.5"),
-    "--muted": t("neutral.surface.2"),
-    "--muted-foreground": flat("neutral.text.3"),
-    "--accent": ink ? hoverOverlay : t("neutral.surface.2"),
-    "--accent-foreground": flat("neutral.text.5"),
-    "--destructive": t("danger.fill.4"),
-    "--border": t("neutral.stroke.1"),
-    "--input": t("neutral.stroke.2"),
-    "--ring": flat("brand.stroke.4"),
-    "--sidebar": flat("neutral.surface.1"),
-    "--sidebar-foreground": flat("neutral.text.5"),
-    "--sidebar-primary": t("brand.fill.4"),
-    "--sidebar-primary-foreground": onBrand,
-    "--sidebar-accent": ink ? hoverOverlay : t("neutral.surface.2"),
-    "--sidebar-accent-foreground": flat("neutral.text.5"),
-    "--sidebar-border": t("neutral.stroke.1"),
-    "--sidebar-ring": flat("brand.stroke.4"),
-  }
-  ms.categorical.colors.slice(0, 5).forEach((c, i) => (vars[`--chart-${i + 1}`] = c.css))
-  return vars
+  // The shadcn component tier: each variable solved against its own job.
+  const tier = buildTier(sys, mode)
+  return Object.fromEntries(Object.values(tier).map((v) => [v.name, v.css]))
 }
 
 /** Extension set: every semantic token plus button component tokens. */

@@ -79,8 +79,9 @@ export const BASE_TARGETS: Record<Mode, Record<Context, Target[]>> = {
     // step 9 sits near Lc 38. Dark fills target lower so solids stay solid.
     fill: [15, 25, 35, 45, 60].map((value) => ({ kind: "lc", value })),
     stroke: [15, 30, 45, 60, 75].map((value) => ({ kind: "lc", value })),
-    // Dark surfaces need larger lightness steps to read as separate.
-    surface: [0.036, 0.074, 0.107, 0.136, 0.17].map((value) => ({ kind: "dL", value })),
+    // Dark surfaces need larger lightness steps to read as separate. Levels
+    // 2 and 3 are calibrated to shadcn's card (+0.067) and muted (+0.118).
+    surface: [0.036, 0.067, 0.118, 0.15, 0.185].map((value) => ({ kind: "dL", value })),
   },
 }
 
@@ -104,6 +105,23 @@ export type RoleOverride = {
  * saturation directly, the way shadcn ships a deeper dark-mode primary.
  */
 export type DarkSolid = { mode: "lift" | "match" | "custom"; l: number; s: number }
+
+/**
+ * Force accessibility. Parity with shadcn puts a few tokens under the spec;
+ * each switch here lifts one area back into it, at the cost of looking less
+ * like stock shadcn.
+ */
+export type A11y = {
+  /** Field and control borders ≥ 3:1 (WCAG 1.4.11). shadcn's sit near 1.3:1. */
+  inputBorders: boolean
+  /** Muted and destructive text ≥ Lc 60 on card and muted (APCA body text). */
+  secondaryText: boolean
+  /** Dark-mode solids ≥ Lc 30 against the page (APCA large solid). */
+  solids: boolean
+  /** Focus ring ≥ 3:1 against the card once drawn at shadcn's 50%. */
+  focusRing: boolean
+}
+export const A11Y_KEYS: (keyof A11y)[] = ["inputBorders", "secondaryText", "solids", "focusRing"]
 
 export type Settings = {
   theme: string
@@ -138,6 +156,7 @@ export type Settings = {
   surfaceScale: number
   holdSaturation: boolean
   chromaScale: number
+  a11y: A11y
 }
 
 export const DEFAULT_SETTINGS: Settings = {
@@ -165,10 +184,12 @@ export const DEFAULT_SETTINGS: Settings = {
   offsets: { text: 0, fill: 0, stroke: 0 },
   ramps: { text: "stepped", fill: "stepped", stroke: "stepped", surface: "stepped" },
   roleOverrides: {},
-  darkSolid: { mode: "lift", l: 0.42, s: 0.7 },
+  // Match keeps the picked color in dark mode, which is how shadcn ships it.
+  darkSolid: { mode: "match", l: 0.42, s: 0.7 },
   surfaceScale: 1,
   holdSaturation: true,
   chromaScale: 1,
+  a11y: { inputBorders: false, secondaryText: false, solids: false, focusRing: false },
 }
 
 /** Bounds per control. Basic clamps to the inner range; Advanced to outer. */

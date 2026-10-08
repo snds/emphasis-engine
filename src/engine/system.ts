@@ -250,16 +250,17 @@ export function targetFor(s: Settings, mode: Mode, context: Context, level: Leve
   return { kind: "lc", value: Math.max(5, base.value + offset) }
 }
 
+/** Page color. Calibrated to shadcn: white in light mode, near-black carrying the neutral's tint in dark. */
 function backgroundFor(mode: Mode, role: Role): RGB {
   const c = role.named.c
-  return mode === "light"
-    ? toRgb({ l: 0.995, c: c * 0.4, h: role.named.h })
-    : toRgb({ l: 0.17, c: c * 0.9, h: role.named.h })
+  return mode === "light" ? [255, 255, 255] : toRgb({ l: 0.145, c: c * 0.55, h: role.named.h })
 }
 
 export function solveOnFill(fill: RGB, hue: number): OnFill {
   const rule: ChromaRule = { hue, baseChroma: 0.03, baseL: 0.5, factor: 1, holdSaturation: false }
-  const metric = { kind: "lc" as const, value: ON_FILL_PREFERRED }
+  // Labels go for the most contrast the fill allows (shadcn's labels sit
+  // near white or black); the thresholds below are only pass marks.
+  const metric = { kind: "lc" as const, value: 108 }
   const dark = solveFlat(rule, fill, metric, "darker")
   const light = solveFlat(rule, fill, metric, "lighter")
   const pick = light.achieved >= dark.achieved ? light : dark
@@ -345,7 +346,11 @@ function buildMode(s: Settings, roles: Record<RoleId, Role>, mode: Mode, log: Lo
       if (forced) {
         const rgb = toRgb(forced)
         solid = { color: rgbToOklch(rgb), rgb, achieved: Math.abs(lc(rgb, bg)), met: true }
-        if (roleId === "brand" && solid.achieved < SOLID_FLOOR)
+        if (s.a11y?.solids && solid.achieved < SOLID_FLOOR) {
+          // Force accessibility: lift by lightness alone to the floor.
+          const full: ChromaRule = { hue: forced.h, baseChroma: forced.c, baseL: forced.l, factor: 1, holdSaturation: true }
+          solid = solveFlat(full, bg, { kind: "lc", value: SOLID_FLOOR }, dir)
+        } else if (roleId === "brand" && solid.achieved < SOLID_FLOOR)
           log.push({
             force: "brand identity",
             mode,

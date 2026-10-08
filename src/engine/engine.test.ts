@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { converter } from "culori"
-import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch } from "./color"
+import { composite, hex, hueDelta, maxChroma, oklchToSrgb01, parseHex, rgbToOklch, toRgb } from "./color"
+import { buildTier, tierFindings } from "./shadcn"
 import { lc } from "./contrast"
 import { DEFAULT_SETTINGS, NEUTRALS, ROLES, type Settings } from "./settings"
 import { active, generate, resolveNeutral, targetFor } from "./system"
@@ -39,8 +40,8 @@ describe("generate", () => {
   })
 
   it("solves both modes as separate systems", () => {
-    const l = sys.modes.light.tokens["brand.fill.4"].flat.rgb
-    const d = sys.modes.dark.tokens["brand.fill.4"].flat.rgb
+    const l = sys.modes.light.tokens["brand.text.3"].flat.rgb
+    const d = sys.modes.dark.tokens["brand.text.3"].flat.rgb
     expect(hex(l)).not.toBe(hex(d))
   })
 
@@ -137,6 +138,7 @@ describe("generate", () => {
   })
 
   it("keeps solid fills true to the named color in dark mode", () => {
+    const sys = generate(s({ darkSolid: { ...DEFAULT_SETTINGS.darkSolid, mode: "lift" } }))
     for (const role of ["brand", "danger", "success"] as const) {
       const d = rgbToOklch(sys.modes.dark.tokens[`${role}.fill.4`].flat.rgb)
       expect(d.c, role).toBeGreaterThan(sys.roles[role].named.c * 0.9)
@@ -147,7 +149,7 @@ describe("generate", () => {
   it("keeps dark-mode solids saturated when the picked color is very dark", () => {
     // Walking down a picker's value axis must not walk the dark fill to gray.
     for (const theme of ["#1e40af", "#1e3a8a", "#172554", "#0b1a40", "#06102a"]) {
-      const o = rgbToOklch(generate(s({ theme })).modes.dark.tokens["brand.fill.4"].flat.rgb)
+      const o = rgbToOklch(generate(s({ theme, darkSolid: { ...DEFAULT_SETTINGS.darkSolid, mode: "lift" } })).modes.dark.tokens["brand.fill.4"].flat.rgb)
       expect(o.c / maxChroma(o.l, o.h), theme).toBeGreaterThan(0.7)
     }
   })
@@ -178,7 +180,7 @@ describe("generate", () => {
 
   it("keeps fill levels ordered and distinct, with the named color in one level", () => {
     for (const fill of ["stepped", "linear", "ease-in", "ease-out", "ease-in-out"] as const) {
-      const sy = generate(s({ ramps: { ...DEFAULT_SETTINGS.ramps, fill } }))
+      const sy = generate(s({ ramps: { ...DEFAULT_SETTINGS.ramps, fill }, darkSolid: { ...DEFAULT_SETTINGS.darkSolid, mode: "lift" } }))
       for (const mode of ["light", "dark"] as const)
         for (const role of ROLES) {
           const lvls = ([1, 2, 3, 4, 5] as const).map((l) => sy.modes[mode].tokens[`${role}.fill.${l}`])
@@ -289,5 +291,65 @@ describe("generate", () => {
     const doc = JSON.parse(dtcgJson(sys))
     for (const role of ROLES) expect(doc.light[role].fill.high.$type).toBe("color")
     expect(active(sys.modes.light.tokens["brand.fill.4"], "flat").css).toBe("#2563eb")
+  })
+})
+
+describe("shadcn tier", () => {
+  // OKLCH lightness of the b1sABueby preset, measured on its own surfaces.
+  const PRESET: Record<"light" | "dark", Record<string, number>> = {
+    light: {
+      "--background": 1, "--foreground": 0.145, "--card": 1, "--muted": 0.96, "--muted-foreground": 0.542,
+      "--secondary": 0.967, "--accent": 0.96, "--primary": 0.488, "--destructive": 0.578,
+      "--border": 0.922, "--input": 0.922, "--ring": 0.711, "--sidebar": 0.985,
+    },
+    dark: {
+      "--background": 0.145, "--foreground": 0.985, "--card": 0.212, "--muted": 0.263, "--muted-foreground": 0.711,
+      "--secondary": 0.274, "--accent": 0.263, "--destructive": 0.704,
+      "--border": 0.308, "--input": 0.353, "--ring": 0.542, "--sidebar": 0.212,
+    },
+  }
+  const presetTheme = hex(toRgb({ l: 0.488, c: 0.243, h: 264.376 }))
+
+  it("matches the shadcn preset within 0.02 lightness, in every layer", () => {
+    for (const layer of ["ink", "flat", "alpha"] as const) {
+      const sy = generate(s({ theme: presetTheme, neutral: "mauve", layer }))
+      for (const mode of ["light", "dark"] as const) {
+        const tier = buildTier(sy, mode)
+        for (const [name, l] of Object.entries(PRESET[mode]))
+          expect(Math.abs(rgbToOklch(tier[name].rgb).l - l), `${layer} ${mode} ${name}`).toBeLessThan(0.02)
+      }
+    }
+  })
+
+  it("ships opaque values for variables the components modify with opacity", () => {
+    const tier = buildTier(generate(s()), "dark")
+    for (const n of ["--muted", "--primary", "--secondary", "--destructive", "--ring", "--foreground"])
+      expect(tier[n].css.startsWith("#"), n).toBe(true)
+  })
+
+  it("names the specs parity misses", () => {
+    const f = tierFindings(generate(s()))
+    expect(f.inputBorders.length).toBeGreaterThan(0)
+    expect(f.secondaryText.some((x) => x.mode === "dark")).toBe(true)
+  })
+
+  it("lifts each area into spec when accessibility is forced", () => {
+    const all = { inputBorders: true, secondaryText: true, solids: true, focusRing: true }
+    for (const over of [
+      {},
+      { theme: "#153b99" },
+      { theme: "#f40009", neutral: "sand" as const },
+      { theme: "#0f172a", neutral: "gray" as const, layer: "flat" as const },
+      { darkSolid: { mode: "custom" as const, l: 0.3, s: 0.8 } },
+    ]) {
+      const f = tierFindings(generate(s({ ...over, a11y: all })))
+      for (const [k, list] of Object.entries(f)) expect(list, `${JSON.stringify(over)} ${k}`).toHaveLength(0)
+    }
+  })
+
+  it("forces only the area whose switch is on", () => {
+    const f = tierFindings(generate(s({ a11y: { ...DEFAULT_SETTINGS.a11y, inputBorders: true } })))
+    expect(f.inputBorders).toHaveLength(0)
+    expect(f.secondaryText.length).toBeGreaterThan(0)
   })
 })

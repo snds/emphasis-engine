@@ -45,8 +45,10 @@ export function buildButton(sys: System, mode: Mode, role: RoleId, variant: Vari
   const sourceRole: RoleId = s.overlaySource === "brand" ? (role === "neutral" ? "brand" : role) : "neutral"
   // Overlay inks of both polarities. A state darkens with dark ink and
   // lightens with light ink, whatever the page mode.
-  const darkInk = sys.modes.light.tokens[tokenId(sourceRole, "text", 5)].flat.rgb
-  const lightInk = sys.modes.dark.tokens[tokenId(sourceRole, "text", 5)].flat.rgb
+  // Extremes of the range, so even a pale fill has room to lighten.
+  const src = sys.roles[sourceRole]
+  const darkInk = inkFor("light", src.named.h, src.named.c, sourceRole === "neutral")
+  const lightInk = inkFor("dark", src.named.h, src.named.c, sourceRole === "neutral")
 
   const label = (fg: RGB, under: RGB, min = ON_FILL_MIN) => {
     const v = Math.abs(lc(fg, under))

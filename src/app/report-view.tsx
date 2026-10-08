@@ -4,6 +4,7 @@ import { BUTTON_ROLES, STATES, VARIANTS, buildButton } from "@/engine/components
 import { wcagRatio } from "@/engine/contrast"
 import { advancedOverrides, type Mode } from "@/engine/settings"
 import { SurfaceMatrix } from "./surface-matrix"
+import { ShadcnTable } from "./shadcn-table"
 import { active, type System } from "@/engine/system"
 
 export function ReportView({ sys, mode }: { sys: System; mode: Mode }) {
@@ -59,6 +60,8 @@ export function ReportView({ sys, mode }: { sys: System; mode: Mode }) {
           </TableBody>
         </Table>
       )}
+
+      <ShadcnTable sys={sys} mode={mode} />
 
       {sys.settings.layer === "ink" && <SurfaceMatrix sys={sys} mode={mode} />}
 

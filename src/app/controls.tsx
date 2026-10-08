@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react"
+import { useMemo, useState, type ReactNode } from "react"
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"
 import { Slider } from "@/components/ui/slider"
@@ -30,7 +30,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip"
+import { buildTier, type Tier } from "@/engine/shadcn"
+import type { A11y, Mode } from "@/engine/settings"
 import {
+  IconAlertTriangleFilled,
+  IconCheck,
   IconEaseIn,
   IconEaseInOut,
   IconEaseOut,
@@ -554,8 +558,85 @@ function NeutralPicker({
   )
 }
 
+type Tiers = Record<Mode, Tier>
+
+/** Every spec check one Force accessibility switch governs, in both modes. */
+function checksFor(tiers: Tiers, key: keyof A11y) {
+  const out: { mode: Mode; name: string; rule: string; achieved: string; pass: boolean }[] = []
+  for (const mode of ["light", "dark"] as Mode[])
+    for (const v of Object.values(tiers[mode]))
+      if (v.spec?.a11y === key) out.push({ mode, name: v.name, ...v.spec })
+  return out
+}
+
+/**
+ * Force accessibility, placed beside the control whose parity value can drop
+ * under a spec. Shows what the spec asks and where each mode lands.
+ */
+function A11yToggle({
+  k,
+  settings,
+  update,
+  tiers,
+  tip,
+}: {
+  k: keyof A11y
+  settings: Settings
+  update: Engine["update"]
+  tiers: Tiers
+  tip: string
+}) {
+  const checks = checksFor(tiers, k)
+  const failing = checks.filter((c) => !c.pass)
+  const on = settings.a11y[k]
+  const id = `a11y-${k}`
+  return (
+    <div className="flex flex-col gap-1 rounded-md border border-dashed px-2.5 py-2">
+      <div className="flex items-center justify-between gap-3">
+        <FieldLabel label="Force accessibility" tip={tip} htmlFor={id} strong={false} />
+        <Switch
+          id={id}
+          size="sm"
+          checked={on}
+          onCheckedChange={(v) => update({ a11y: { ...settings.a11y, [k]: v } })}
+        />
+      </div>
+      <ul className="flex flex-col gap-0.5 text-xs text-muted-foreground">
+        {checks.map((c) => (
+          <li key={c.mode + c.name} className="flex items-center gap-1.5">
+            {c.pass ? (
+              <IconCheck className="size-3.5 shrink-0" aria-label="Meets spec" />
+            ) : (
+              <IconAlertTriangleFilled className="size-3.5 shrink-0" style={{ color: "var(--destructive)" }} aria-label="Under spec" />
+            )}
+            <span className="capitalize">{c.mode}</span>
+            <code className="font-mono text-[11px]">{c.name.replace(/^--/, "")}</code>
+            <span className="ml-auto tabular-nums">{c.achieved}</span>
+          </li>
+        ))}
+      </ul>
+      <p className="text-[11px] text-muted-foreground">
+        {failing.length ? `Under spec: ${checks[0].rule}.` : `Meets ${checks[0].rule}.`}
+      </p>
+    </div>
+  )
+}
+
+/** A read-only measurement row: what a shadcn variable lands at in each mode. */
+function Readout({ label, tip, light, dark }: { label: string; tip: string; light: string; dark: string }) {
+  return (
+    <div className="flex items-center justify-between gap-3">
+      <FieldLabel label={label} tip={tip} strong={false} />
+      <span className="text-xs text-muted-foreground tabular-nums">
+        {light} · {dark}
+      </span>
+    </div>
+  )
+}
+
 export function Controls({ engine }: { engine: Engine }) {
-  const { settings: s, update } = engine
+  const { settings: s, update, sys } = engine
+  const tiers = useMemo<Tiers>(() => ({ light: buildTier(sys, "light"), dark: buildTier(sys, "dark") }), [sys])
   const tier = s.advanced ? "advanced" : "basic"
   const b = (k: keyof typeof BOUNDS) =>
     BOUNDS[k][tier] as readonly [number, number]
@@ -612,6 +693,15 @@ export function Controls({ engine }: { engine: Engine }) {
               onChange={(v) =>
                 update({ darkSolid: { mode: "custom", l: v.l, s: v.s } })
               }
+            />
+          )}
+          {s.darkSolid.mode !== "lift" && (
+            <A11yToggle
+              k="solids"
+              settings={s}
+              update={update}
+              tiers={tiers}
+              tip="shadcn's dark primary sits near Lc 12 against the page. On: any dark solid under APCA's Lc 30 large-solid floor is lifted by lightness alone, keeping hue and saturation."
             />
           )}
         </Field>
@@ -734,6 +824,57 @@ export function Controls({ engine }: { engine: Engine }) {
             />
           </Row>
         )}
+      </Section>
+      <Separator />
+      <Section
+        title="shadcn tokens"
+        hint="The exported shadcn variables, each solved for its own job. Tuned to match stock shadcn."
+      >
+        <Readout
+          label="Separators"
+          tip="--border: card and table edges, dividers. A lightness step from the card, the way shadcn draws them. Decorative, so no contrast spec applies."
+          light={`ΔL ${tiers.light["--border"].dL.toFixed(3)}`}
+          dark={`ΔL ${tiers.dark["--border"].dL.toFixed(3)}`}
+        />
+        <Readout
+          label="Field borders"
+          tip="--input: text fields, selects, and dark-mode outline buttons. shadcn draws them as faint as separators. Light-mode outline buttons use --border."
+          light={`${tiers.light["--input"].spec?.achieved}`}
+          dark={`${tiers.dark["--input"].spec?.achieved}`}
+        />
+        <A11yToggle
+          k="inputBorders"
+          settings={s}
+          update={update}
+          tiers={tiers}
+          tip="WCAG 1.4.11 asks 3:1 for the edge that identifies a control. On: field borders step until they pass on both page and card. Outline buttons and fields tinted with --input get a little stronger too."
+        />
+        <Readout
+          label="Muted text"
+          tip="--muted-foreground: descriptions, captions, placeholders. Matches shadcn: Lc 75 in light mode, Lc 50 in dark."
+          light={`Lc ${Math.round(tiers.light["--muted-foreground"].lc)}`}
+          dark={`Lc ${Math.round(tiers.dark["--muted-foreground"].lc)}`}
+        />
+        <A11yToggle
+          k="secondaryText"
+          settings={s}
+          update={update}
+          tiers={tiers}
+          tip="APCA asks Lc 60 for body text. shadcn's dark muted text and dark destructive text sit under it. On: both reach Lc 60 on card and on muted."
+        />
+        <Readout
+          label="Focus ring"
+          tip="--ring: neutral, drawn by the components at 50% opacity, 3px wide."
+          light={`${tiers.light["--ring"].spec?.achieved}`}
+          dark={`${tiers.dark["--ring"].spec?.achieved}`}
+        />
+        <A11yToggle
+          k="focusRing"
+          settings={s}
+          update={update}
+          tiers={tiers}
+          tip="WCAG 1.4.11 asks 3:1 for a focus indicator. Measured as drawn: the ring at 50% over the card. On: the ring steps until the drawn ring passes."
+        />
       </Section>
       <Separator />
       <Section title="Interaction states">
