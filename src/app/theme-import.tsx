@@ -18,10 +18,22 @@ const HINTS: Record<string, string> = {
  * the targets, read through the system's own recipes, and your colors are
  * solved against them.
  */
-export function ThemeImport({ settings: s, update }: { settings: Settings; update: Engine["update"] }) {
+export function ThemeImport({
+  settings: s,
+  update,
+  defaultOpen = false,
+  onDone,
+}: {
+  settings: Settings
+  update: Engine["update"]
+  /** Open the paste box right away (when the import lives in its own popover or sheet). */
+  defaultOpen?: boolean
+  /** Called after a theme is read, so a popover or sheet can close. */
+  onDone?: () => void
+}) {
   const profile = PROFILES[s.output]
   const imported = s.imports?.[s.output]
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(defaultOpen && !imported)
   const [text, setText] = useState(imported?.source ?? "")
   const [error, setError] = useState<string | null>(null)
 
@@ -35,6 +47,7 @@ export function ThemeImport({ settings: s, update }: { settings: Settings; updat
     setError(null)
     update({ imports: { ...s.imports, [s.output]: t } })
     setOpen(false)
+    onDone?.()
   }
   const clear = () => {
     const next = { ...s.imports }
@@ -77,9 +90,12 @@ export function ThemeImport({ settings: s, update }: { settings: Settings; updat
         </div>
       )}
       <div className="flex flex-wrap gap-1.5">
-        <Button variant="outline" size="sm" onClick={() => setOpen((o) => !o)}>
-          {imported ? "Edit import" : "Import theme"}
-        </Button>
+        {/* With the paste box already open, its own button would only repeat it. */}
+        {!(open && !imported) && (
+          <Button variant="outline" size="sm" onClick={() => setOpen((o) => !o)}>
+            {imported ? "Edit import" : "Import theme"}
+          </Button>
+        )}
         {brand && brand !== s.theme.toLowerCase() && (
           <Button variant="outline" size="sm" onClick={() => update({ theme: brand })}>
             <span className="size-3 rounded-sm border" style={{ background: brand }} />
@@ -107,7 +123,7 @@ export function ThemeImport({ settings: s, update }: { settings: Settings; updat
             <Button size="sm" onClick={read} disabled={!text.trim()}>
               Read theme
             </Button>
-            <Button variant="ghost" size="sm" onClick={() => setOpen(false)}>
+            <Button variant="ghost" size="sm" onClick={() => (setOpen(false), defaultOpen && onDone?.())}>
               Cancel
             </Button>
           </div>

@@ -13,10 +13,8 @@ import {
   IconCircleHalf2,
   IconClick,
   IconColorSwatch,
-  IconComponents,
   IconDots,
   IconDroplet,
-  IconFileImport,
   IconFocus2,
   IconHandFinger,
   IconLayersSubtract,
@@ -40,11 +38,11 @@ import { Label } from "@/components/ui/label"
 import { Drawer, DrawerContent } from "@/components/ui/drawer"
 import { Controls, THEME_PRESETS, worstFor, type Outputs, type SectionId } from "./controls"
 import { Scrubber, ValueRing } from "./scrubber"
+import { SystemSheetButton } from "./system-picker"
 import { hexFromLsh, lshFromHex } from "./tune"
 import type { Engine } from "./use-engine"
 import { BOUNDS, DEFAULT_SETTINGS, NEUTRALS, type A11y, type Mode, type NeutralId, type Settings } from "@/engine/settings"
 import { solveOutput } from "@/engine/outputs"
-import { PROFILES, PROFILE_IDS } from "@/engine/profiles"
 import { fmt } from "@/engine/profile"
 import { resolveNeutral } from "@/engine/system"
 import { hex, parseHex, rgbToOklch, toRgb } from "@/engine/color"
@@ -237,20 +235,11 @@ function useTools(engine: Engine, out: Outputs): Tool[] {
       ],
     },
     {
-      id: "system",
-      label: "System",
-      icon: IconComponents,
+      // The system itself is picked from the header; this tool holds what's read from it.
+      id: "targets",
+      label: "Targets",
+      icon: IconTarget,
       params: [
-        {
-          kind: "choice",
-          id: "system",
-          label: "System",
-          icon: IconComponents,
-          value: s.output,
-          options: PROFILE_IDS.map((id) => ({ value: id, label: PROFILES[id].label })),
-          onChange: (output) => update({ output }),
-          note: PROFILES[s.output].description,
-        },
         {
           kind: "choice",
           id: "targets",
@@ -267,7 +256,7 @@ function useTools(engine: Engine, out: Outputs): Tool[] {
         a11y("inputBorders", "a11y-borders", "Borders", IconBorderOuter, "Force accessibility: every control border reaches 3:1 (WCAG 1.4.11)."),
         a11y("secondaryText", "a11y-text", "Text", IconLetterT, "Force accessibility: secondary text and labels on tints reach Lc 60 on every surface."),
         a11y("focusRing", "a11y-focus", "Focus", IconFocus2, "Force accessibility: the focus ring, as drawn, reaches 3:1."),
-        { kind: "sheet", id: "import", label: "Import", icon: IconFileImport, section: "output", title: "Output system" },
+        { kind: "sheet", id: "all-targets", label: "All", icon: IconDots, section: "output", title: "Targets and accessibility" },
       ],
     },
     {
@@ -633,6 +622,7 @@ export type View = "preview" | "grid" | "report" | "export" | "credits"
  * switcher, the way Photos keeps its secondary tools in a row up top.
  */
 export function MobileHeader({
+  engine,
   mode,
   setMode,
   view,
@@ -640,6 +630,7 @@ export function MobileHeader({
   onCompare,
   onMore,
 }: {
+  engine: Engine
   mode: Mode
   setMode: (m: Mode) => void
   view: View
@@ -651,7 +642,10 @@ export function MobileHeader({
   return (
     <header className="sticky top-0 z-30 border-b bg-background/85 pt-[env(safe-area-inset-top)] backdrop-blur-xl">
       <div className="flex items-center gap-1 pr-1 pl-4">
-        <h1 className="mr-auto truncate text-base font-semibold">Emphasis Engine</h1>
+        {/* The title is the output system: tap to switch systems or import a theme. */}
+        <h1 className="mr-auto min-w-0">
+          <SystemSheetButton engine={engine} />
+        </h1>
         <button
           type="button"
           className={cn(icon, "select-none [-webkit-touch-callout:none]")}

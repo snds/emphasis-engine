@@ -18,6 +18,7 @@ import { ExportView } from "@/app/export-view"
 import { CreditsView } from "@/app/credits-view"
 import { InfoTip } from "@/app/info-tip"
 import { MobileDock, MobileHeader, MoreSheet, type View } from "@/app/mobile-editor"
+import { ImportPopover, SystemSelect } from "@/app/system-picker"
 import { generate } from "@/engine/system"
 import { NativeStage, hasNative } from "@/app/native-frame"
 import { PROFILES } from "@/engine/profiles"
@@ -128,7 +129,7 @@ export function App() {
     return (
       <TooltipProvider>
         <div className="min-h-svh bg-background text-foreground">
-          <MobileHeader mode={mode} setMode={setMode} view={tab} setView={setTab} onCompare={setComparing} onMore={() => setMore(true)} />
+          <MobileHeader engine={engine} mode={mode} setMode={setMode} view={tab} setView={setTab} onCompare={setComparing} onMore={() => setMore(true)} />
           <main className="relative pb-[calc(var(--dock-h,0px)+1rem)]">
             {comparing && (
               <span className="pointer-events-none fixed top-28 left-1/2 z-20 -translate-x-1/2 rounded-full bg-foreground px-3 py-1 text-xs font-medium text-background shadow">
@@ -147,9 +148,19 @@ export function App() {
     <TooltipProvider>
       <div className="flex min-h-svh flex-col bg-background text-foreground md:h-svh">
         <header className="flex flex-wrap items-center gap-x-6 gap-y-2 border-b px-4 py-2.5">
-          <div className="mr-auto min-w-0">
+          <div className="min-w-0">
             <h1 className="text-base font-semibold">Emphasis Engine</h1>
             <p className="hidden text-xs text-muted-foreground sm:block">Perceptual color systems from three picks</p>
+          </div>
+          {/* The output system decides what every view shows, so it sits beside the title, with its import. */}
+          <div className="mr-auto flex items-center gap-1.5">
+            <SystemSelect engine={engine} />
+            <ImportPopover engine={engine} />
+            <InfoTip label="Output system">
+              The design system your colors are written for. Each turns tokens into color its own way; Preview, Report, and Export follow
+              this choice. Import reads your own theme for it, so the targets are what your theme renders today. Theme this app always uses
+              shadcn, since this tool is built with it.
+            </InfoTip>
           </div>
 <div className="flex items-center gap-0.5">
           <ToggleGroup
